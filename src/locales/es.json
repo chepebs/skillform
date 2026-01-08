@@ -1,0 +1,603 @@
+{
+  "common": {
+    "buttons": {
+      "save": "Guardar",
+      "cancel": "Cancelar",
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "submit": "Enviar",
+      "next": "Siguiente",
+      "back": "Atrás",
+      "add": "Agregar",
+      "remove": "Quitar",
+      "export": "Exportar",
+      "import": "Importar",
+      "copy": "Copiar",
+      "share": "Compartir",
+      "confirm": "Confirmar",
+      "close": "Cerrar",
+      "create": "Crear",
+      "update": "Actualizar",
+      "search": "Buscar",
+      "clear": "Limpiar",
+      "apply": "Aplicar",
+      "reset": "Restablecer",
+      "viewAll": "Ver Todo",
+      "loadMore": "Cargar Más",
+      "retry": "Reintentar",
+      "continue": "Continuar",
+      "skip": "Omitir",
+      "done": "Hecho"
+    },
+    "actions": {
+      "addNew": "Agregar Nuevo",
+      "editProfile": "Editar Perfil",
+      "viewProfile": "Ver Perfil",
+      "deleteUser": "Eliminar Usuario",
+      "changeRole": "Cambiar Rol",
+      "sendInvitation": "Enviar Invitación",
+      "resendInvitation": "Reenviar Invitación",
+      "copyLink": "Copiar Enlace",
+      "exportCsv": "Exportar CSV",
+      "exportPdf": "Exportar PDF",
+      "addToGroup": "Agregar al Grupo",
+      "removeFromGroup": "Quitar del Grupo",
+      "moveToGroup": "Mover al Grupo"
+    },
+    "navigation": {
+      "dashboard": "Panel",
+      "myProfile": "Mi Perfil",
+      "directory": "Directorio",
+      "admin": "Administrador",
+      "organizer": "Organizador",
+      "director": "Director",
+      "masterAdmin": "Admin Principal",
+      "groups": "Grupos",
+      "myTeam": "Mi Equipo",
+      "departmentInfo": "Info del Departamento",
+      "userManagement": "Gestión de Usuarios",
+      "analytics": "Analíticas",
+      "settings": "Configuración"
+    },
+    "status": {
+      "active": "Activo",
+      "inactive": "Inactivo",
+      "online": "En línea",
+      "offline": "Desconectado",
+      "completed": "Completado",
+      "pending": "Pendiente",
+      "inProgress": "En Progreso",
+      "draft": "Borrador",
+      "approved": "Aprobado",
+      "rejected": "Rechazado",
+      "expired": "Expirado",
+      "overdue": "Atrasado"
+    },
+    "labels": {
+      "name": "Nombre",
+      "email": "Correo",
+      "phone": "Teléfono",
+      "address": "Dirección",
+      "country": "País",
+      "department": "Departamento",
+      "agency": "Agencia",
+      "position": "Puesto",
+      "role": "Rol",
+      "status": "Estado",
+      "date": "Fecha",
+      "time": "Hora",
+      "description": "Descripción",
+      "notes": "Notas",
+      "actions": "Acciones",
+      "details": "Detalles",
+      "total": "Total",
+      "average": "Promedio",
+      "percentage": "Porcentaje",
+      "count": "Cantidad"
+    },
+    "messages": {
+      "loading": "Cargando...",
+      "noResults": "No se encontraron resultados",
+      "noData": "No hay datos disponibles",
+      "error": "Ocurrió un error",
+      "success": "¡Éxito!",
+      "saved": "Guardado exitosamente",
+      "deleted": "Eliminado exitosamente",
+      "updated": "Actualizado exitosamente",
+      "created": "Creado exitosamente",
+      "copied": "Copiado al portapapeles",
+      "confirmDelete": "¿Estás seguro de que deseas eliminar esto?",
+      "unsavedChanges": "Tienes cambios sin guardar",
+      "required": "Este campo es obligatorio",
+      "invalidEmail": "Por favor ingresa un correo válido",
+      "invalidPhone": "Por favor ingresa un teléfono válido"
+    },
+    "time": {
+      "now": "Ahora mismo",
+      "minutesAgo": "Hace {{count}} minuto",
+      "minutesAgo_plural": "Hace {{count}} minutos",
+      "hoursAgo": "Hace {{count}} hora",
+      "hoursAgo_plural": "Hace {{count}} horas",
+      "daysAgo": "Hace {{count}} día",
+      "daysAgo_plural": "Hace {{count}} días",
+      "weeksAgo": "Hace {{count}} semana",
+      "weeksAgo_plural": "Hace {{count}} semanas",
+      "monthsAgo": "Hace {{count}} mes",
+      "monthsAgo_plural": "Hace {{count}} meses",
+      "yearsAgo": "Hace {{count}} año",
+      "yearsAgo_plural": "Hace {{count}} años"
+    },
+    "pagination": {
+      "page": "Página",
+      "of": "de",
+      "showing": "Mostrando",
+      "results": "resultados",
+      "items": "elementos",
+      "previous": "Anterior",
+      "next": "Siguiente",
+      "first": "Primero",
+      "last": "Último",
+      "goToPage": "Ir a página",
+      "itemsPerPage": "Elementos por página"
+    },
+    "roles": {
+      "employee": "Empleado",
+      "organizer_admin": "Administrador de Organización",
+      "department_director": "Director de Departamento",
+      "master_admin": "Administrador Principal"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Bienvenido de Nuevo",
+      "subtitle": "Inicia sesión en tu cuenta",
+      "emailLabel": "Correo Electrónico",
+      "emailPlaceholder": "Ingresa tu correo",
+      "passwordLabel": "Contraseña",
+      "passwordPlaceholder": "Ingresa tu contraseña",
+      "rememberMe": "Recordarme",
+      "forgotPassword": "¿Olvidaste tu contraseña?",
+      "signIn": "Iniciar Sesión",
+      "signingIn": "Iniciando sesión...",
+      "noAccount": "¿No tienes cuenta?",
+      "signUp": "Regístrate",
+      "invalidCredentials": "Correo o contraseña inválidos",
+      "accountLocked": "La cuenta está bloqueada. Por favor contacta a soporte."
+    },
+    "register": {
+      "title": "Crear Cuenta",
+      "subtitle": "Únete al Mapa de Talento",
+      "firstNameLabel": "Nombre",
+      "firstNamePlaceholder": "Ingresa tu nombre",
+      "lastNameLabel": "Apellido",
+      "lastNamePlaceholder": "Ingresa tu apellido",
+      "emailLabel": "Correo Electrónico",
+      "emailPlaceholder": "Ingresa tu correo",
+      "passwordLabel": "Contraseña",
+      "passwordPlaceholder": "Crea una contraseña",
+      "confirmPasswordLabel": "Confirmar Contraseña",
+      "confirmPasswordPlaceholder": "Confirma tu contraseña",
+      "acceptTerms": "Acepto los términos y condiciones",
+      "createAccount": "Crear Cuenta",
+      "creatingAccount": "Creando cuenta...",
+      "haveAccount": "¿Ya tienes cuenta?",
+      "signIn": "Iniciar sesión",
+      "passwordRequirements": {
+        "title": "La contraseña debe contener:",
+        "length": "Al menos 8 caracteres",
+        "uppercase": "Una letra mayúscula",
+        "lowercase": "Una letra minúscula",
+        "number": "Un número",
+        "special": "Un carácter especial"
+      }
+    },
+    "password": {
+      "reset": "Restablecer Contraseña",
+      "resetSubtitle": "Ingresa tu correo para recibir un enlace de restablecimiento",
+      "sendLink": "Enviar Enlace",
+      "backToLogin": "Volver al inicio de sesión",
+      "newPassword": "Nueva Contraseña",
+      "confirmNewPassword": "Confirmar Nueva Contraseña",
+      "updatePassword": "Actualizar Contraseña",
+      "passwordUpdated": "Contraseña actualizada exitosamente"
+    },
+    "logout": "Cerrar Sesión",
+    "myAccount": "Mi Cuenta"
+  },
+  "profile": {
+    "title": "Perfil",
+    "viewProfile": "Ver Perfil",
+    "editProfile": "Editar Perfil",
+    "createProfile": "Crear Perfil",
+    "completeProfile": "Completa Tu Perfil",
+    "profileCompleted": "Perfil Completado",
+    "profileIncomplete": "Perfil Incompleto",
+    "completionProgress": "{{percentage}}% Completo",
+    "basicInfo": {
+      "title": "Información Básica",
+      "subtitle": "Datos personales e información de contacto",
+      "firstName": "Nombre",
+      "lastName": "Apellido",
+      "email": "Correo Electrónico",
+      "phone": "Número de Teléfono",
+      "photo": "Foto de Perfil",
+      "uploadPhoto": "Subir Foto",
+      "changePhoto": "Cambiar Foto",
+      "removePhoto": "Eliminar Foto",
+      "dragDropPhoto": "Arrastra y suelta o haz clic para subir"
+    },
+    "professional": {
+      "title": "Información Profesional",
+      "subtitle": "Tu rol actual y departamento",
+      "currentPosition": "Puesto Actual",
+      "positionPlaceholder": "ej. Estratega Senior",
+      "department": "Departamento",
+      "selectDepartment": "Seleccionar departamento",
+      "agency": "Agencia",
+      "selectAgency": "Seleccionar agencia",
+      "country": "País",
+      "selectCountry": "Seleccionar país",
+      "bio": "Biografía Profesional",
+      "bioPlaceholder": "Escribe un breve resumen profesional..."
+    },
+    "education": {
+      "title": "Educación y Experiencia",
+      "subtitle": "Tu formación académica e historial laboral",
+      "academicDegree": "Título Académico",
+      "degreePlaceholder": "ej. MBA, Licenciatura en Marketing",
+      "yearsOfExperience": "Años de Experiencia",
+      "previousAgencies": "Agencias Anteriores",
+      "agencyName": "Nombre de la Agencia",
+      "roleAtAgency": "Puesto",
+      "startDate": "Fecha de Inicio",
+      "endDate": "Fecha de Fin",
+      "present": "Actualidad",
+      "addAgency": "Agregar Agencia",
+      "removeAgency": "Eliminar Agencia"
+    },
+    "performance": {
+      "title": "Métricas de Desempeño",
+      "subtitle": "Tus logros profesionales y métricas",
+      "pitchPerformance": "Desempeño en Pitches",
+      "pitchesWon": "Pitches Ganados",
+      "pitchesParticipated": "Pitches Participados",
+      "pitchWinRate": "Tasa de Éxito en Pitches",
+      "brandWork": "Trabajo de Marca",
+      "brandCreations": "Creaciones de Marca",
+      "brandRefreshes": "Renovaciones de Marca",
+      "effieAwards": "Premios Effie",
+      "effieWon": "Effies Ganados",
+      "effieParticipated": "Participaciones en Effie"
+    },
+    "projects": {
+      "title": "Proyectos Recientes",
+      "subtitle": "Proyectos en los que has trabajado",
+      "projectName": "Nombre del Proyecto",
+      "brand": "Marca",
+      "yearMonth": "Año / Mes",
+      "roleInProject": "Tu Rol",
+      "description": "Descripción",
+      "keyResults": "Resultados Clave",
+      "addProject": "Agregar Proyecto",
+      "removeProject": "Eliminar Proyecto",
+      "noProjects": "Aún no hay proyectos agregados"
+    },
+    "languages": {
+      "title": "Idiomas",
+      "subtitle": "Idiomas que hablas y escribes",
+      "language": "Idioma",
+      "selectLanguage": "Seleccionar idioma",
+      "nativeSpeaker": "Hablante Nativo",
+      "proficiency": "Competencia",
+      "speaking": "Oral",
+      "reading": "Lectura",
+      "writing": "Escritura",
+      "addLanguage": "Agregar Idioma",
+      "removeLanguage": "Eliminar Idioma",
+      "noLanguages": "Aún no hay idiomas agregados"
+    },
+    "awards": {
+      "title": "Premios y Reconocimientos",
+      "subtitle": "Tus premios y logros profesionales",
+      "awardName": "Nombre del Premio",
+      "awardType": "Tipo de Premio",
+      "category": "Categoría",
+      "year": "Año",
+      "won": "Ganado",
+      "participated": "Participado",
+      "description": "Descripción",
+      "addAward": "Agregar Premio",
+      "removeAward": "Eliminar Premio",
+      "noAwards": "Aún no hay premios agregados",
+      "consultingWork": "Trabajo de Consultoría",
+      "consultingPlaceholder": "Describe cualquier trabajo de consultoría..."
+    },
+    "brands": {
+      "title": "Marcas Gestionadas",
+      "subtitle": "Marcas con las que has trabajado",
+      "brandName": "Nombre de la Marca",
+      "yearsManaged": "Años Gestionando",
+      "description": "Descripción",
+      "addBrand": "Agregar Marca",
+      "removeBrand": "Eliminar Marca",
+      "noBrands": "Aún no hay marcas agregadas"
+    },
+    "review": {
+      "title": "Revisa Tu Perfil",
+      "subtitle": "Por favor revisa tu información antes de enviar",
+      "editSection": "Editar"
+    },
+    "steps": {
+      "basicInfo": "Info Básica",
+      "professional": "Profesional",
+      "education": "Educación",
+      "performance": "Desempeño",
+      "brandsProjects": "Marcas y Proyectos",
+      "languages": "Idiomas",
+      "awards": "Premios",
+      "review": "Revisar"
+    },
+    "stats": {
+      "yearsExperience": "Años de Experiencia",
+      "languages": "Idiomas",
+      "brandsManaged": "Marcas Gestionadas",
+      "awardsWon": "Premios Ganados",
+      "pitchWinRate": "Tasa de Éxito"
+    },
+    "tabs": {
+      "overview": "Resumen",
+      "experience": "Experiencia",
+      "skillsLanguages": "Habilidades e Idiomas",
+      "projectsAwards": "Proyectos y Premios",
+      "additionalInfo": "Información Adicional"
+    },
+    "sections": {
+      "professionalSummary": "Resumen Profesional",
+      "keyMetrics": "Métricas Clave de Desempeño",
+      "careerTimeline": "Línea de Carrera",
+      "agencyExperience": "Experiencia en Agencias",
+      "currentPosition": "Puesto Actual",
+      "quickActions": "Acciones Rápidas"
+    }
+  },
+  "directory": {
+    "title": "Directorio de Empleados",
+    "subtitle": "Busca y explora empleados",
+    "search": {
+      "placeholder": "Buscar por nombre, puesto o correo...",
+      "recentSearches": "Búsquedas Recientes",
+      "clearRecent": "Limpiar"
+    },
+    "filters": {
+      "title": "Filtros",
+      "department": "Departamento",
+      "agency": "Agencia",
+      "country": "País",
+      "experience": "Nivel de Experiencia",
+      "clearAll": "Limpiar Todos los Filtros",
+      "apply": "Aplicar Filtros",
+      "activeFilters": "Filtros Activos"
+    },
+    "sorting": {
+      "sortBy": "Ordenar por",
+      "nameAsc": "Nombre (A-Z)",
+      "nameDesc": "Nombre (Z-A)",
+      "experienceHigh": "Experiencia (Mayor a Menor)",
+      "experienceLow": "Experiencia (Menor a Mayor)",
+      "recentlyAdded": "Agregados Recientemente"
+    },
+    "view": {
+      "grid": "Vista de Cuadrícula",
+      "table": "Vista de Tabla"
+    },
+    "results": {
+      "showing": "Mostrando {{count}} de {{total}} empleados",
+      "noResults": "No se encontraron empleados",
+      "tryAdjusting": "Intenta ajustar tus filtros o términos de búsqueda"
+    },
+    "table": {
+      "name": "Nombre",
+      "position": "Puesto",
+      "department": "Departamento",
+      "agency": "Agencia",
+      "experience": "Experiencia",
+      "languages": "Idiomas",
+      "actions": "Acciones"
+    },
+    "card": {
+      "viewProfile": "Ver Perfil",
+      "yearsExp": "{{count}} año exp",
+      "yearsExp_plural": "{{count}} años exp",
+      "languages": "{{count}} idioma",
+      "languages_plural": "{{count}} idiomas",
+      "projects": "{{count}} proyecto",
+      "projects_plural": "{{count}} proyectos",
+      "awards": "{{count}} premio",
+      "awards_plural": "{{count}} premios",
+      "availableForConsulting": "Disponible para Consultoría"
+    }
+  },
+  "admin": {
+    "master": {
+      "title": "Panel de Administrador Principal",
+      "subtitle": "Gestiona usuarios, visualiza analíticas y monitorea actividad del sistema",
+      "stats": {
+        "totalUsers": "Usuarios Totales",
+        "activeProfiles": "Perfiles Activos",
+        "completedProfiles": "Perfiles Completados",
+        "pendingInvitations": "Invitaciones Pendientes"
+      },
+      "users": {
+        "title": "Gestión de Usuarios",
+        "addUser": "Agregar Usuario",
+        "inviteUser": "Invitar Usuario",
+        "editUser": "Editar Usuario",
+        "deleteUser": "Eliminar Usuario",
+        "changeRole": "Cambiar Rol",
+        "table": {
+          "user": "Usuario",
+          "email": "Correo",
+          "role": "Rol",
+          "status": "Estado",
+          "lastLogin": "Último Acceso",
+          "actions": "Acciones"
+        },
+        "confirmDelete": "¿Estás seguro de que deseas eliminar este usuario? Esta acción no se puede deshacer.",
+        "deleteSuccess": "Usuario eliminado exitosamente",
+        "roleChanged": "Rol de usuario actualizado exitosamente"
+      },
+      "invitations": {
+        "title": "Invitaciones Pendientes",
+        "email": "Correo",
+        "role": "Rol",
+        "sentDate": "Enviado",
+        "status": "Estado",
+        "actions": "Acciones",
+        "resend": "Reenviar",
+        "cancel": "Cancelar",
+        "expired": "Expirada",
+        "pending": "Pendiente"
+      },
+      "activity": {
+        "title": "Actividad Reciente",
+        "viewAll": "Ver Toda la Actividad",
+        "noActivity": "Sin actividad reciente"
+      },
+      "charts": {
+        "registrationTrend": "Tendencia de Registros",
+        "departmentDistribution": "Distribución por Departamento",
+        "countryDistribution": "Distribución Geográfica",
+        "roleDistribution": "Distribución de Roles"
+      }
+    },
+    "organizer": {
+      "title": "Panel del Organizador",
+      "subtitle": "Organiza empleados en grupos",
+      "stats": {
+        "totalProfiles": "Perfiles Totales",
+        "groupsCreated": "Grupos Creados",
+        "profilesOrganized": "Perfiles Organizados"
+      },
+      "groups": {
+        "title": "Grupos",
+        "createGroup": "Crear Nuevo Grupo",
+        "editGroup": "Editar Grupo",
+        "deleteGroup": "Eliminar Grupo",
+        "groupName": "Nombre del Grupo",
+        "description": "Descripción",
+        "members": "Miembros",
+        "memberCount": "{{count}} miembro",
+        "memberCount_plural": "{{count}} miembros",
+        "createdBy": "Creado por",
+        "lastUpdated": "Última actualización",
+        "noGroups": "Aún no hay grupos",
+        "createFirst": "Crea tu primer grupo",
+        "searchGroups": "Buscar grupos...",
+        "confirmDelete": "¿Estás seguro de que deseas eliminar este grupo? Todos los miembros serán removidos.",
+        "deleteSuccess": "Grupo eliminado exitosamente",
+        "createSuccess": "Grupo creado exitosamente",
+        "updateSuccess": "Grupo actualizado exitosamente"
+      },
+      "members": {
+        "title": "Miembros del Grupo",
+        "addMembers": "Agregar Miembros",
+        "removeMember": "Quitar Miembro",
+        "searchEmployees": "Buscar empleados para agregar...",
+        "noMembers": "No hay miembros en este grupo",
+        "addFirst": "Agrega tu primer miembro"
+      },
+      "kanban": {
+        "title": "Vista Kanban",
+        "detailsView": "Vista de Detalles",
+        "unassigned": "Sin Asignar",
+        "dragToMove": "Arrastra para mover entre grupos"
+      }
+    },
+    "director": {
+      "title": "Panel del Director de Departamento",
+      "subtitle": "Gestiona tu departamento y equipo",
+      "selectDepartment": "Seleccionar Departamento",
+      "stats": {
+        "teamSize": "Tamaño del Equipo",
+        "avgExperience": "Exp. Promedio",
+        "activeProjects": "Proyectos Activos",
+        "teamPerformance": "Desempeño del Equipo",
+        "completedProfiles": "perfiles completados",
+        "avgYearsExp": "Años promedio de experiencia",
+        "projectsThisQuarter": "Proyectos del equipo este trimestre",
+        "totalAwards": "premios totales"
+      },
+      "team": {
+        "title": "Equipo",
+        "searchTeam": "Buscar miembros del equipo...",
+        "exportTeam": "Exportar Equipo",
+        "noTeamMembers": "No se encontraron miembros del equipo",
+        "viewProfile": "Ver Perfil"
+      },
+      "analytics": {
+        "title": "Analíticas del Equipo",
+        "experienceDistribution": "Distribución de Experiencia",
+        "pitchWinRate": "Tasa de Éxito por Antigüedad",
+        "languagesKnown": "Idiomas Conocidos",
+        "profileCompletion": "Completitud de Perfiles"
+      },
+      "departmentInfo": {
+        "title": "Información del Departamento",
+        "description": "Descripción del Departamento",
+        "descriptionPlaceholder": "Describe tu departamento...",
+        "services": "Servicios Ofrecidos",
+        "servicesPlaceholder": "ej. Estrategia de Marca, Investigación de Mercado",
+        "methodologies": "Metodologías",
+        "methodologiesPlaceholder": "ej. Design Thinking, Agile",
+        "tools": "Herramientas",
+        "toolsPlaceholder": "ej. Miro, Figma, Tableau",
+        "saveChanges": "Guardar Cambios",
+        "saving": "Guardando...",
+        "saved": "Información del departamento guardada exitosamente"
+      },
+      "tabs": {
+        "team": "Equipo",
+        "analytics": "Analíticas",
+        "departmentInfo": "Info Depto"
+      }
+    }
+  },
+  "notifications": {
+    "title": "Notificaciones",
+    "markAllRead": "Marcar todo como leído",
+    "noNotifications": "Sin notificaciones",
+    "viewAll": "Ver todas las notificaciones",
+    "types": {
+      "profileUpdate": "Perfil Actualizado",
+      "newUser": "Nuevo Usuario Unido",
+      "roleChange": "Rol Cambiado",
+      "groupAdded": "Agregado a Grupo",
+      "groupRemoved": "Removido de Grupo",
+      "invitation": "Nueva Invitación"
+    }
+  },
+  "errors": {
+    "generic": "Algo salió mal. Por favor intenta de nuevo.",
+    "notFound": "Página no encontrada",
+    "notFoundMessage": "La página que buscas no existe.",
+    "forbidden": "Acceso Denegado",
+    "forbiddenMessage": "No tienes permiso para acceder a esta página.",
+    "unauthorized": "Por favor inicia sesión para continuar",
+    "networkError": "Error de red. Por favor verifica tu conexión.",
+    "serverError": "Error del servidor. Por favor intenta más tarde.",
+    "validationError": "Por favor verifica tu información e intenta de nuevo.",
+    "sessionExpired": "Tu sesión ha expirado. Por favor inicia sesión de nuevo.",
+    "backToHome": "Volver al Inicio",
+    "backToDashboard": "Volver al Panel"
+  },
+  "settings": {
+    "title": "Configuración",
+    "language": "Idioma",
+    "theme": "Tema",
+    "darkMode": "Modo Oscuro",
+    "lightMode": "Modo Claro",
+    "notifications": "Notificaciones",
+    "emailNotifications": "Notificaciones por Correo",
+    "pushNotifications": "Notificaciones Push"
+  }
+}
