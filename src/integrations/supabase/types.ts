@@ -43,6 +43,39 @@ export type Database = {
           },
         ]
       }
+      audit_log: {
+        Row: {
+          action: string
+          created_at: string | null
+          details: Json | null
+          id: string
+          ip_address: string | null
+          target_id: string | null
+          target_type: string | null
+          user_id: string | null
+        }
+        Insert: {
+          action: string
+          created_at?: string | null
+          details?: Json | null
+          id?: string
+          ip_address?: string | null
+          target_id?: string | null
+          target_type?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          action?: string
+          created_at?: string | null
+          details?: Json | null
+          id?: string
+          ip_address?: string | null
+          target_id?: string | null
+          target_type?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       awards: {
         Row: {
           award_name: string
@@ -348,6 +381,8 @@ export type Database = {
           email: string
           first_name: string | null
           id: string
+          is_active: boolean | null
+          last_login_at: string | null
           last_name: string | null
           phone: string | null
           pitches_participated: number | null
@@ -376,6 +411,8 @@ export type Database = {
           email: string
           first_name?: string | null
           id?: string
+          is_active?: boolean | null
+          last_login_at?: string | null
           last_name?: string | null
           phone?: string | null
           pitches_participated?: number | null
@@ -404,6 +441,8 @@ export type Database = {
           email?: string
           first_name?: string | null
           id?: string
+          is_active?: boolean | null
+          last_login_at?: string | null
           last_name?: string | null
           phone?: string | null
           pitches_participated?: number | null
