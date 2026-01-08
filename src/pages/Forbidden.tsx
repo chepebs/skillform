@@ -30,7 +30,7 @@ const Forbidden: React.FC = () => {
           </Button>
           <Button
             onClick={() => navigate('/dashboard')}
-            className="bg-gradient-orange hover:bg-gradient-orange-hover shadow-orange"
+            className="bg-gradient-primary hover:bg-gradient-primary-hover shadow-primary"
           >
             <Home className="mr-2 h-4 w-4" />
             Go to Dashboard

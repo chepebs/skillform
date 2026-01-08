@@ -49,7 +49,7 @@ const OrganizerDashboard: React.FC = () => {
         </div>
         <Button
           onClick={() => navigate('/admin/organizer/groups')}
-          className="bg-gradient-orange hover:bg-gradient-orange-hover shadow-orange"
+          className="bg-gradient-primary hover:bg-gradient-primary-hover shadow-primary"
         >
           <Plus className="mr-2 h-4 w-4" />
           Create Group
@@ -89,7 +89,7 @@ const OrganizerDashboard: React.FC = () => {
           <Button
             variant="ghost"
             onClick={() => navigate('/admin/organizer/groups')}
-            className="text-primary hover:text-orange-light"
+            className="text-primary hover:text-primary/80"
           >
             View All
             <ArrowRight className="ml-2 h-4 w-4" />
@@ -115,7 +115,7 @@ const OrganizerDashboard: React.FC = () => {
             </p>
             <Button
               onClick={() => navigate('/admin/organizer/groups')}
-              className="bg-gradient-orange hover:bg-gradient-orange-hover shadow-orange"
+              className="bg-gradient-primary hover:bg-gradient-primary-hover shadow-primary"
             >
               <Plus className="mr-2 h-4 w-4" />
               Create First Group
@@ -127,7 +127,7 @@ const OrganizerDashboard: React.FC = () => {
               <div
                 key={group.id}
                 onClick={() => navigate(`/admin/organizer/groups/${group.id}`)}
-                className="glass-card rounded-xl p-6 cursor-pointer hover:border-primary/50 transition-all hover:shadow-orange group"
+                className="glass-card rounded-xl p-6 cursor-pointer hover:border-primary/50 transition-all hover:shadow-primary group"
               >
                 <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
                   <Folder className="h-5 w-5 text-primary" />

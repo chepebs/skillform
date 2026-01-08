@@ -90,7 +90,7 @@ const DirectorDashboard: React.FC = () => {
               <div
                 key={action.title}
                 onClick={() => navigate(action.path)}
-                className="glass-card rounded-xl p-6 cursor-pointer hover:border-primary/50 transition-all hover:shadow-orange group"
+                className="glass-card rounded-xl p-6 cursor-pointer hover:border-primary/50 transition-all hover:shadow-primary group"
               >
                 <div className={`w-12 h-12 rounded-xl ${action.bgColor} flex items-center justify-center mb-4`}>
                   <Icon className={`h-6 w-6 ${action.color}`} />

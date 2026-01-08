@@ -80,8 +80,8 @@ const MasterDashboard: React.FC = () => {
       label: 'Groups', 
       value: stats.groups, 
       icon: TrendingUp, 
-      color: 'text-orange-400',
-      bgColor: 'bg-orange/10'
+      color: 'text-primary',
+      bgColor: 'bg-primary/10'
     },
   ];
 

@@ -81,7 +81,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
       <div className="flex flex-col h-full">
         {/* Logo */}
         <div className="flex items-center gap-3 h-16 px-4 border-b border-sidebar-border">
-          <div className="flex-shrink-0 p-2 rounded-lg bg-gradient-orange">
+          <div className="flex-shrink-0 p-2 rounded-lg bg-gradient-primary">
             <MapPin className="h-5 w-5 text-primary-foreground" />
           </div>
           {!collapsed && (
@@ -106,7 +106,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
                     className={cn(
                       'flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200',
                       active
-                        ? 'bg-gradient-orange text-primary-foreground shadow-orange'
+                        ? 'bg-gradient-primary text-primary-foreground shadow-primary'
                         : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
                     )}
                     title={collapsed ? item.label : undefined}
@@ -126,7 +126,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
         {!collapsed && (
           <div className="p-4 border-t border-sidebar-border">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-gradient-orange flex items-center justify-center text-primary-foreground font-semibold">
+              <div className="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-semibold">
                 {profile?.first_name?.[0] || profile?.email?.[0]?.toUpperCase() || 'U'}
               </div>
               <div className="flex-1 min-w-0">

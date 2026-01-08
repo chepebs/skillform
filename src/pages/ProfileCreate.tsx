@@ -290,7 +290,7 @@ const ProfileCreate: React.FC = () => {
             {currentStep < steps.length ? (
               <Button
                 onClick={handleNext}
-                className="bg-gradient-orange hover:bg-gradient-orange-hover shadow-orange"
+                className="bg-gradient-primary hover:bg-gradient-primary-hover shadow-primary"
               >
                 Next
                 <ChevronRight className="ml-2 h-4 w-4" />
@@ -299,7 +299,7 @@ const ProfileCreate: React.FC = () => {
               <Button
                 onClick={handleSubmit}
                 disabled={isSubmitting}
-                className="bg-gradient-orange hover:bg-gradient-orange-hover shadow-orange"
+                className="bg-gradient-primary hover:bg-gradient-primary-hover shadow-primary"
               >
                 {isSubmitting ? (
                   <>

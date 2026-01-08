@@ -142,7 +142,7 @@ export const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, onMobileMenuTo
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="flex items-center gap-2 pl-2 pr-3">
-                <div className="w-8 h-8 rounded-full bg-gradient-orange flex items-center justify-center text-primary-foreground text-sm font-semibold">
+                <div className="w-8 h-8 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground text-sm font-semibold">
                   {profile?.first_name?.[0] || profile?.email?.[0]?.toUpperCase() || 'U'}
                 </div>
                 <div className="hidden md:block text-left">
