@@ -90,12 +90,31 @@ export const languagesSchema = z.object({
   languages: z.array(languageSchema).min(1, 'At least one language is required'),
 });
 
+// Skills Schema
+export const skillSchema = z.object({
+  id: z.string().optional(),
+  skill_name: z.string().min(1, 'Skill name is required').max(100),
+  skill_category: z.string().min(1, 'Category is required').max(50),
+  proficiency_level: z.number().min(1).max(5),
+  years_experience: z.number().min(0).max(50).optional(),
+});
+
+export const skillsSchema = z.object({
+  skills: z.array(skillSchema)
+    .min(3, 'At least 3 skills are required')
+    .max(20, 'Maximum 20 skills allowed')
+    .refine(
+      (skills) => skills.every(s => s.proficiency_level >= 1),
+      { message: 'All skills must have a proficiency level selected' }
+    ),
+});
+
 export const awardSchema = z.object({
   id: z.string().optional(),
   award_name: z.string().min(1, 'Award name is required'),
   award_type: z.string().optional(),
   category: z.string().optional(),
-  award_year: z.number().min(1990).max(2025).optional(),
+  award_year: z.number().min(1990).max(2026).optional(),
   won: z.boolean(),
   description: z.string().optional(),
 });
@@ -117,6 +136,8 @@ export type Project = z.infer<typeof projectSchema>;
 export type BrandsProjectsData = z.infer<typeof brandsProjectsSchema>;
 export type Language = z.infer<typeof languageSchema>;
 export type LanguagesData = z.infer<typeof languagesSchema>;
+export type Skill = z.infer<typeof skillSchema>;
+export type SkillsData = z.infer<typeof skillsSchema>;
 export type Award = z.infer<typeof awardSchema>;
 export type AwardsData = z.infer<typeof awardsSchema>;
 
@@ -127,6 +148,7 @@ export interface ProfileFormData {
   performance: PerformanceData;
   brandsProjects: BrandsProjectsData;
   languages: LanguagesData;
+  skills: SkillsData;
   awards: AwardsData;
 }
 
@@ -140,5 +162,86 @@ export const AWARD_TYPES = [
   'One Show', 'D&AD', 'Webby Awards', 'Other'
 ];
 
-export const YEARS = Array.from({ length: 3 }, (_, i) => 2025 - i);
+export const YEARS = Array.from({ length: 3 }, (_, i) => 2026 - i);
 export const MONTHS = Array.from({ length: 12 }, (_, i) => i + 1);
+
+// Skills Categories and Options
+export const SKILL_CATEGORIES = [
+  'Strategy & Planning',
+  'Creative & Design',
+  'Advertising & Media',
+  'Digital Marketing',
+  'Production',
+  'Technology & Development',
+  'Data & Analytics',
+  'AI & Emerging Tech',
+  'Storytelling & Content',
+  'Client & Project Management',
+] as const;
+
+export const SKILLS_BY_CATEGORY: Record<string, string[]> = {
+  'Strategy & Planning': [
+    'Brand Strategy', 'Market Research', 'Competitive Analysis', 'Consumer Insights',
+    'Strategic Planning', 'Business Strategy', 'Innovation Strategy', 'Digital Strategy',
+    'Content Strategy', 'Marketing Strategy', 'Go-to-Market Strategy', 'Product Strategy'
+  ],
+  'Creative & Design': [
+    'Art Direction', 'Graphic Design', 'UI/UX Design', 'Copywriting', 'Creative Direction',
+    'Brand Identity', 'Visual Design', 'Motion Graphics', 'Photography', 'Video Editing',
+    'Illustration', 'Typography', 'Layout Design', 'Print Design', 'Package Design'
+  ],
+  'Advertising & Media': [
+    'Media Planning', 'Media Buying', 'Campaign Management', 'Paid Media',
+    'Programmatic Advertising', 'Out-of-Home (OOH)', 'Print Advertising', 'Radio Advertising',
+    'TV Advertising', 'Integrated Campaigns', 'ATL/BTL Marketing'
+  ],
+  'Digital Marketing': [
+    'Social Media Marketing', 'Social Media Management', 'Content Marketing', 'Email Marketing',
+    'SEO (Search Engine Optimization)', 'SEM (Search Engine Marketing)', 'Performance Marketing',
+    'Growth Marketing', 'Influencer Marketing', 'Community Management', 'Affiliate Marketing',
+    'Marketing Automation'
+  ],
+  'Production': [
+    'Video Production', 'Audio Production', 'Photography Production', 'Post-Production',
+    'Production Management', 'Casting', 'Location Scouting', 'Budget Management',
+    'Editing', 'Color Grading', 'Sound Design', 'Live Production'
+  ],
+  'Technology & Development': [
+    'Web Development', 'Mobile App Development', 'Front-end Development', 'Back-end Development',
+    'Full-stack Development', 'CMS Management', 'E-commerce Development', 'HTML/CSS',
+    'JavaScript', 'React', 'WordPress', 'Shopify', 'API Integration'
+  ],
+  'Data & Analytics': [
+    'Data Analysis', 'Google Analytics', 'Data Visualization', 'Marketing Analytics',
+    'Performance Metrics', 'A/B Testing', 'Conversion Optimization', 'Business Intelligence',
+    'SQL', 'Excel/Spreadsheets', 'Tableau', 'Power BI', 'Tag Management', 'Attribution Modeling'
+  ],
+  'AI & Emerging Tech': [
+    'Artificial Intelligence', 'Machine Learning', 'Generative AI', 'ChatGPT/LLMs',
+    'AI Prompt Engineering', 'Midjourney', 'Stable Diffusion', 'DALL-E', 'AI Video Generation',
+    'Marketing Automation', 'Process Automation', 'AI Strategy', 'Chatbots', 'Voice AI'
+  ],
+  'Storytelling & Content': [
+    'Storytelling', 'Narrative Development', 'Scriptwriting', 'Content Creation',
+    'Brand Storytelling', 'Editorial Content', 'Long-form Content', 'Short-form Content',
+    'Podcast Production', 'Documentary Production', 'Video Storytelling', 'Transmedia Storytelling'
+  ],
+  'Client & Project Management': [
+    'Client Management', 'Project Management', 'Account Management', 'Stakeholder Management',
+    'Agile Methodology', 'Scrum', 'Team Leadership', 'Budget Management', 'Timeline Management',
+    'Resource Planning', 'Presentation Skills', 'Negotiation'
+  ],
+};
+
+export const CATEGORY_COLORS: Record<string, string> = {
+  'Strategy & Planning': '#3B82F6',
+  'Creative & Design': '#EC4899',
+  'Advertising & Media': '#8B5CF6',
+  'Digital Marketing': '#10B981',
+  'Production': '#F59E0B',
+  'Technology & Development': '#06B6D4',
+  'Data & Analytics': '#6366F1',
+  'AI & Emerging Tech': '#EF4444',
+  'Storytelling & Content': '#F97316',
+  'Client & Project Management': '#84CC16',
+};

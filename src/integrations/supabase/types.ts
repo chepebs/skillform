@@ -217,6 +217,39 @@ export type Database = {
         }
         Relationships: []
       }
+      employee_skills: {
+        Row: {
+          created_at: string
+          id: string
+          proficiency_level: number
+          skill_category: string
+          skill_name: string
+          updated_at: string
+          user_id: string
+          years_experience: number | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          proficiency_level: number
+          skill_category: string
+          skill_name: string
+          updated_at?: string
+          user_id: string
+          years_experience?: number | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          proficiency_level?: number
+          skill_category?: string
+          skill_name?: string
+          updated_at?: string
+          user_id?: string
+          years_experience?: number | null
+        }
+        Relationships: []
+      }
       group_members: {
         Row: {
           added_at: string | null

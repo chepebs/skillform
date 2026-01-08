@@ -93,7 +93,8 @@
       "total": "Total",
       "average": "Promedio",
       "percentage": "Porcentaje",
-      "count": "Cantidad"
+      "count": "Cantidad",
+      "optional": "Opcional"
     },
     "messages": {
       "loading": "Cargando...",
@@ -296,6 +297,43 @@
       "removeLanguage": "Eliminar Idioma",
       "noLanguages": "Aún no hay idiomas agregados"
     },
+    "skills": {
+      "title": "Habilidades y Experiencia",
+      "subtitle": "Selecciona tus habilidades profesionales y califica tu nivel",
+      "helper": "Agrega al menos 3 habilidades. Puedes agregar hasta 20.",
+      "searchPlaceholder": "Buscar una habilidad...",
+      "addCustom": "Agregar Habilidad Personalizada",
+      "skillName": "Nombre de la Habilidad",
+      "skillNamePlaceholder": "Ingresa el nombre",
+      "category": "Categoría",
+      "selectCategory": "Seleccionar categoría",
+      "yourSkills": "Tus Habilidades Seleccionadas",
+      "skillCount": "{{count}} de {{max}} habilidades agregadas",
+      "noSkills": "Aún no hay habilidades seleccionadas",
+      "noSkillsHint": "Elige de las categorías arriba o busca una habilidad",
+      "proficiency": "Nivel de Competencia",
+      "yearsUsing": "Años usando esta habilidad",
+      "clearAll": "Limpiar Todo",
+      "levels": {
+        "beginner": "Principiante",
+        "intermediate": "Intermedio",
+        "advanced": "Avanzado",
+        "expert": "Experto",
+        "master": "Maestro"
+      },
+      "categories": {
+        "strategyPlanning": "Estrategia y Planificación",
+        "creativeDesign": "Creativo y Diseño",
+        "advertisingMedia": "Publicidad y Medios",
+        "digitalMarketing": "Marketing Digital",
+        "production": "Producción",
+        "technologyDevelopment": "Tecnología y Desarrollo",
+        "dataAnalytics": "Datos y Analítica",
+        "aiEmergingTech": "IA y Tecnología Emergente",
+        "storytellingContent": "Narrativa y Contenido",
+        "clientProjectManagement": "Gestión de Clientes y Proyectos"
+      }
+    },
     "awards": {
       "title": "Premios y Reconocimientos",
       "subtitle": "Tus premios y logros profesionales",
@@ -334,6 +372,7 @@
       "performance": "Desempeño",
       "brandsProjects": "Marcas y Proyectos",
       "languages": "Idiomas",
+      "skills": "Habilidades",
       "awards": "Premios",
       "review": "Revisar"
     },
