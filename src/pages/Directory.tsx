@@ -1,266 +1,324 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { supabase } from '@/integrations/supabase/client';
-import { Input } from '@/components/ui/input';
+import React, { useState } from 'react';
+import { Grid, List, Download, Users, SortAsc } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Search, Filter, Grid, List, User, Mail, Building, Briefcase } from 'lucide-react';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '@/contexts/AuthContext';
 import { cn } from '@/lib/utils';
 
-interface Profile {
-  id: string;
-  user_id: string;
-  email: string;
-  first_name: string | null;
-  last_name: string | null;
-  avatar_url: string | null;
-  department: string | null;
-  position: string | null;
-}
+import { DirectorySearch } from '@/components/directory/DirectorySearch';
+import { DirectoryFiltersPanel, ActiveFiltersDisplay } from '@/components/directory/DirectoryFilters';
+import { ProfileCard } from '@/components/directory/ProfileCard';
+import { ProfileTable } from '@/components/directory/ProfileTable';
+import { DirectoryPagination } from '@/components/directory/DirectoryPagination';
+import { SkeletonCard, SkeletonRow } from '@/components/directory/SkeletonCard';
+import { useDirectoryData, useExportCSV } from '@/hooks/useDirectoryData';
+import {
+  DirectoryFilters,
+  SortOption,
+  ViewMode,
+  SORT_OPTIONS,
+} from '@/components/directory/types';
+
+const DEFAULT_FILTERS: DirectoryFilters = {
+  departments: [],
+  countries: [],
+  agencies: [],
+  experienceLevel: null,
+  languages: [],
+  minLanguageProficiency: 0,
+  minPitchWinRatio: null,
+  maxPitchWinRatio: null,
+  hasEffieAwards: false,
+  hasCannesAwards: false,
+  hasAnyAwards: false,
+  completedOnly: true,
+};
 
 const Directory: React.FC = () => {
-  const [profiles, setProfiles] = useState<Profile[]>([]);
-  const [filteredProfiles, setFilteredProfiles] = useState<Profile[]>([]);
+  const { role } = useAuth();
+  const { toast } = useToast();
+  
   const [searchQuery, setSearchQuery] = useState('');
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
-  const [isLoading, setIsLoading] = useState(true);
-  const [departmentFilter, setDepartmentFilter] = useState<string>('');
-  const navigate = useNavigate();
+  const [filters, setFilters] = useState<DirectoryFilters>(DEFAULT_FILTERS);
+  const [sortBy, setSortBy] = useState<SortOption>('name_asc');
+  const [viewMode, setViewMode] = useState<ViewMode>('grid');
+  const [currentPage, setCurrentPage] = useState(1);
 
-  useEffect(() => {
-    fetchProfiles();
-  }, []);
+  const {
+    profiles,
+    totalCount,
+    totalPages,
+    isLoading,
+    error,
+    countries,
+    agencies,
+    allLanguages,
+    filterCounts,
+  } = useDirectoryData(searchQuery, filters, sortBy, viewMode, currentPage);
 
-  useEffect(() => {
-    filterProfiles();
-  }, [profiles, searchQuery, departmentFilter]);
+  const isAdmin = role === 'master_admin' || role === 'organizer_admin';
+  const { exportToCSV } = useExportCSV(profiles, isAdmin);
 
-  const fetchProfiles = async () => {
-    setIsLoading(true);
-    try {
-      const { data, error } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('profile_completed', true);
-
-      if (error) throw error;
-      setProfiles(data as Profile[] || []);
-    } catch (error) {
-      console.error('Error fetching profiles:', error);
-    } finally {
-      setIsLoading(false);
-    }
+  // Reset to page 1 when filters change
+  const handleFiltersChange = (newFilters: DirectoryFilters) => {
+    setFilters(newFilters);
+    setCurrentPage(1);
   };
 
-  const filterProfiles = () => {
-    let filtered = [...profiles];
-
-    if (searchQuery) {
-      const query = searchQuery.toLowerCase();
-      filtered = filtered.filter(
-        (p) =>
-          p.first_name?.toLowerCase().includes(query) ||
-          p.last_name?.toLowerCase().includes(query) ||
-          p.email.toLowerCase().includes(query) ||
-          p.department?.toLowerCase().includes(query) ||
-          p.position?.toLowerCase().includes(query)
-      );
-    }
-
-    if (departmentFilter) {
-      filtered = filtered.filter((p) => p.department === departmentFilter);
-    }
-
-    setFilteredProfiles(filtered);
+  const handleSearchChange = (query: string) => {
+    setSearchQuery(query);
+    setCurrentPage(1);
   };
 
-  const departments = [...new Set(profiles.map((p) => p.department).filter(Boolean))];
+  const handleRemoveFilter = (filterType: keyof DirectoryFilters, value?: string) => {
+    const newFilters = { ...filters };
 
-  const ProfileCard = ({ profile }: { profile: Profile }) => (
-    <div
-      onClick={() => navigate(`/profile/${profile.user_id}`)}
-      className="glass-card rounded-xl p-6 cursor-pointer hover:border-primary/50 transition-all duration-300 hover:shadow-primary group"
-    >
-      <div className="flex items-start gap-4">
-        <div className="w-14 h-14 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground text-xl font-semibold flex-shrink-0 group-hover:shadow-primary transition-shadow">
-          {profile.avatar_url ? (
-            <img
-              src={profile.avatar_url}
-              alt={profile.first_name || 'User'}
-              className="w-full h-full rounded-full object-cover"
-            />
-          ) : (
-            profile.first_name?.[0] || profile.email[0].toUpperCase()
-          )}
-        </div>
-        <div className="flex-1 min-w-0">
-          <h3 className="font-semibold text-foreground truncate group-hover:text-primary transition-colors">
-            {profile.first_name && profile.last_name
-              ? `${profile.first_name} ${profile.last_name}`
-              : profile.email}
-          </h3>
-          {profile.position && (
-            <div className="flex items-center gap-1.5 text-sm text-muted-foreground mt-1">
-              <Briefcase className="h-3.5 w-3.5" />
-              <span className="truncate">{profile.position}</span>
-            </div>
-          )}
-          {profile.department && (
-            <Badge variant="secondary" className="mt-2 bg-dark-elevated text-muted-foreground">
-              <Building className="h-3 w-3 mr-1" />
-              {profile.department}
-            </Badge>
-          )}
-        </div>
-      </div>
-    </div>
-  );
+    switch (filterType) {
+      case 'departments':
+        newFilters.departments = filters.departments.filter((d) => d !== value);
+        break;
+      case 'countries':
+        newFilters.countries = filters.countries.filter((c) => c !== value);
+        break;
+      case 'agencies':
+        newFilters.agencies = filters.agencies.filter((a) => a !== value);
+        break;
+      case 'experienceLevel':
+        newFilters.experienceLevel = null;
+        break;
+      case 'languages':
+        newFilters.languages = filters.languages.filter((l) => l !== value);
+        break;
+      case 'minPitchWinRatio':
+        newFilters.minPitchWinRatio = null;
+        newFilters.maxPitchWinRatio = null;
+        break;
+      case 'hasEffieAwards':
+        newFilters.hasEffieAwards = false;
+        break;
+      case 'hasCannesAwards':
+        newFilters.hasCannesAwards = false;
+        break;
+      case 'hasAnyAwards':
+        newFilters.hasAnyAwards = false;
+        break;
+      case 'completedOnly':
+        newFilters.completedOnly = true;
+        break;
+    }
 
-  const ProfileRow = ({ profile }: { profile: Profile }) => (
-    <div
-      onClick={() => navigate(`/profile/${profile.user_id}`)}
-      className="glass-card rounded-lg p-4 cursor-pointer hover:border-primary/50 transition-all duration-300 hover:shadow-primary flex items-center gap-4 group"
-    >
-      <div className="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-semibold flex-shrink-0">
-        {profile.avatar_url ? (
-          <img
-            src={profile.avatar_url}
-            alt={profile.first_name || 'User'}
-            className="w-full h-full rounded-full object-cover"
-          />
-        ) : (
-          profile.first_name?.[0] || profile.email[0].toUpperCase()
-        )}
-      </div>
-      <div className="flex-1 min-w-0 grid grid-cols-1 md:grid-cols-4 gap-2 items-center">
-        <h3 className="font-semibold text-foreground truncate group-hover:text-primary transition-colors">
-          {profile.first_name && profile.last_name
-            ? `${profile.first_name} ${profile.last_name}`
-            : profile.email}
-        </h3>
-        <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
-          <Mail className="h-3.5 w-3.5" />
-          <span className="truncate">{profile.email}</span>
-        </div>
-        <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
-          <Briefcase className="h-3.5 w-3.5" />
-          <span className="truncate">{profile.position || 'Not specified'}</span>
-        </div>
-        <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
-          <Building className="h-3.5 w-3.5" />
-          <span className="truncate">{profile.department || 'Not specified'}</span>
-        </div>
-      </div>
-    </div>
-  );
+    handleFiltersChange(newFilters);
+  };
+
+  const handleExport = () => {
+    exportToCSV();
+    toast({
+      title: 'Export Complete',
+      description: 'The CSV file is downloading...',
+    });
+  };
+
+  const handleClearFilters = () => {
+    setFilters(DEFAULT_FILTERS);
+    setSearchQuery('');
+    setCurrentPage(1);
+  };
 
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div>
-        <h1 className="text-3xl font-bold text-foreground">Employee Directory</h1>
-        <p className="text-muted-foreground mt-1">
-          Browse and find talent across the organization
-        </p>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h1 className="text-3xl font-bold text-foreground">Talent Directory</h1>
+          <p className="text-muted-foreground mt-1">
+            Browse and find talent across the organization
+          </p>
+        </div>
+        {isAdmin && (
+          <Button onClick={handleExport} variant="outline" className="gap-2">
+            <Download className="h-4 w-4" />
+            Export to CSV
+          </Button>
+        )}
       </div>
 
-      {/* Filters */}
-      <div className="flex flex-col sm:flex-row gap-4">
-        <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-          <Input
-            placeholder="Search by name, email, department..."
+      {/* Search Bar - Sticky on scroll */}
+      <div className="sticky top-0 z-20 py-4 -mx-4 px-4 bg-background/80 backdrop-blur-sm">
+        <div className="flex flex-col sm:flex-row gap-4">
+          <DirectorySearch
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-10 bg-dark-elevated border-dark-border focus:border-primary"
+            onChange={handleSearchChange}
+            className="flex-1"
           />
-        </div>
-        
-        <div className="flex gap-2">
-          <select
-            value={departmentFilter}
-            onChange={(e) => setDepartmentFilter(e.target.value)}
-            className="px-3 py-2 rounded-lg bg-dark-elevated border border-dark-border text-foreground focus:border-primary focus:outline-none"
-          >
-            <option value="">All Departments</option>
-            {departments.map((dept) => (
-              <option key={dept} value={dept!}>
-                {dept}
-              </option>
-            ))}
-          </select>
+          
+          <div className="flex gap-2">
+            {/* Mobile filters button */}
+            <div className="lg:hidden">
+              <DirectoryFiltersPanel
+                filters={filters}
+                onChange={handleFiltersChange}
+                countries={countries}
+                agencies={agencies}
+                languages={allLanguages}
+                filterCounts={filterCounts}
+                isMobile
+              />
+            </div>
 
-          <div className="flex rounded-lg border border-dark-border overflow-hidden">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setViewMode('grid')}
-              className={cn(
-                'rounded-none',
-                viewMode === 'grid' && 'bg-dark-elevated'
-              )}
-            >
-              <Grid className="h-4 w-4" />
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setViewMode('list')}
-              className={cn(
-                'rounded-none',
-                viewMode === 'list' && 'bg-dark-elevated'
-              )}
-            >
-              <List className="h-4 w-4" />
-            </Button>
+            {/* Sort dropdown */}
+            <Select value={sortBy} onValueChange={(value) => setSortBy(value as SortOption)}>
+              <SelectTrigger className="w-[180px] bg-dark-elevated border-dark-border">
+                <SortAsc className="h-4 w-4 mr-2" />
+                <SelectValue placeholder="Sort by" />
+              </SelectTrigger>
+              <SelectContent>
+                {SORT_OPTIONS.map((option) => (
+                  <SelectItem key={option.value} value={option.value}>
+                    {option.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+
+            {/* View mode toggle - hidden on mobile */}
+            <div className="hidden sm:flex rounded-lg border border-dark-border overflow-hidden">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setViewMode('grid')}
+                className={cn('rounded-none', viewMode === 'grid' && 'bg-dark-elevated')}
+              >
+                <Grid className="h-4 w-4" />
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setViewMode('list')}
+                className={cn('rounded-none', viewMode === 'list' && 'bg-dark-elevated')}
+              >
+                <List className="h-4 w-4" />
+              </Button>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Results count */}
-      <p className="text-sm text-muted-foreground">
-        Showing {filteredProfiles.length} of {profiles.length} employees
-      </p>
+      <div className="flex gap-6">
+        {/* Desktop Filters Sidebar */}
+        <DirectoryFiltersPanel
+          filters={filters}
+          onChange={handleFiltersChange}
+          countries={countries}
+          agencies={agencies}
+          languages={allLanguages}
+          filterCounts={filterCounts}
+        />
 
-      {/* Profiles Grid/List */}
-      {isLoading ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {[...Array(6)].map((_, i) => (
-            <div key={i} className="glass-card rounded-xl p-6">
-              <div className="flex items-start gap-4">
-                <div className="w-14 h-14 rounded-full shimmer" />
-                <div className="flex-1 space-y-2">
-                  <div className="h-5 w-32 shimmer rounded" />
-                  <div className="h-4 w-24 shimmer rounded" />
-                  <div className="h-6 w-20 shimmer rounded" />
-                </div>
-              </div>
+        {/* Main Content */}
+        <div className="flex-1 min-w-0">
+          {/* Active Filters */}
+          <ActiveFiltersDisplay
+            filters={filters}
+            countries={countries}
+            agencies={agencies}
+            onRemove={handleRemoveFilter}
+          />
+
+          {/* Results Counter */}
+          <div className="flex items-center justify-between mb-4">
+            <p className="text-sm text-muted-foreground">
+              Showing {profiles.length} of {totalCount} employees
+            </p>
+          </div>
+
+          {/* Error State */}
+          {error && (
+            <div className="glass-card rounded-xl p-8 text-center">
+              <p className="text-destructive mb-4">{error}</p>
+              <Button onClick={() => window.location.reload()}>Retry</Button>
             </div>
-          ))}
+          )}
+
+          {/* Loading State */}
+          {isLoading && !error && (
+            viewMode === 'grid' ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
+                {[...Array(12)].map((_, i) => (
+                  <SkeletonCard key={i} />
+                ))}
+              </div>
+            ) : (
+              <div className="glass-card rounded-xl overflow-hidden">
+                {[...Array(10)].map((_, i) => (
+                  <SkeletonRow key={i} />
+                ))}
+              </div>
+            )
+          )}
+
+          {/* Empty State */}
+          {!isLoading && !error && profiles.length === 0 && (
+            <div className="glass-card rounded-xl p-12 text-center">
+              <Users className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-foreground mb-2">
+                No employees found
+              </h3>
+              <p className="text-muted-foreground mb-6 max-w-md mx-auto">
+                {searchQuery || Object.values(filters).some((v) => 
+                  Array.isArray(v) ? v.length > 0 : v !== null && v !== true && v !== 0
+                )
+                  ? 'Try different search terms or remove some filters'
+                  : 'No profiles have been created yet'}
+              </p>
+              {(searchQuery || filters !== DEFAULT_FILTERS) && (
+                <Button onClick={handleClearFilters} variant="outline">
+                  Clear All Filters
+                </Button>
+              )}
+            </div>
+          )}
+
+          {/* Results Grid/List */}
+          {!isLoading && !error && profiles.length > 0 && (
+            <>
+              {viewMode === 'grid' ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
+                  {profiles.map((profile) => (
+                    <ProfileCard
+                      key={profile.id}
+                      profile={profile}
+                      searchQuery={searchQuery}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <ProfileTable
+                  profiles={profiles}
+                  sortBy={sortBy}
+                  onSort={setSortBy}
+                  searchQuery={searchQuery}
+                />
+              )}
+
+              {/* Pagination */}
+              <DirectoryPagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                totalItems={totalCount}
+                itemsPerPage={viewMode === 'grid' ? 24 : 50}
+                onPageChange={setCurrentPage}
+              />
+            </>
+          )}
         </div>
-      ) : filteredProfiles.length === 0 ? (
-        <div className="glass-card rounded-xl p-12 text-center">
-          <User className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-          <h3 className="text-lg font-semibold text-foreground mb-2">No employees found</h3>
-          <p className="text-muted-foreground">
-            {searchQuery || departmentFilter
-              ? 'Try adjusting your search or filters'
-              : 'No profiles have been created yet'}
-          </p>
-        </div>
-      ) : viewMode === 'grid' ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filteredProfiles.map((profile) => (
-            <ProfileCard key={profile.id} profile={profile} />
-          ))}
-        </div>
-      ) : (
-        <div className="space-y-2">
-          {filteredProfiles.map((profile) => (
-            <ProfileRow key={profile.id} profile={profile} />
-          ))}
-        </div>
-      )}
+      </div>
     </div>
   );
 };
