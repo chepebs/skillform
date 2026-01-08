@@ -1,0 +1,137 @@
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { useAuth } from '@/contexts/AuthContext';
+import { useAppNavigation } from '@/hooks/useNavigation';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Label } from '@/components/ui/label';
+import { Loader2, Mail, Lock, Eye, EyeOff } from 'lucide-react';
+import { toast } from 'sonner';
+
+const loginSchema = z.object({
+  email: z.string().email('Please enter a valid email address'),
+  password: z.string().min(6, 'Password must be at least 6 characters'),
+  rememberMe: z.boolean().optional(),
+});
+
+type LoginFormData = z.infer<typeof loginSchema>;
+
+export const LoginForm: React.FC = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { signIn } = useAuth();
+  const { navigateToDashboard } = useAppNavigation();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormData>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      rememberMe: false,
+    },
+  });
+
+  const onSubmit = async (data: LoginFormData) => {
+    setIsSubmitting(true);
+    
+    try {
+      const { error } = await signIn(data.email, data.password);
+      
+      if (error) {
+        toast.error(error.message || 'Failed to sign in');
+        return;
+      }
+      
+      toast.success('Welcome back!');
+      navigateToDashboard();
+    } catch (err) {
+      toast.error('An unexpected error occurred');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      <div className="space-y-2">
+        <Label htmlFor="email">Email</Label>
+        <div className="relative">
+          <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Input
+            id="email"
+            type="email"
+            placeholder="you@company.com"
+            className="pl-10 bg-dark-elevated border-dark-border focus:border-primary"
+            {...register('email')}
+          />
+        </div>
+        {errors.email && (
+          <p className="text-sm text-destructive">{errors.email.message}</p>
+        )}
+      </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="password">Password</Label>
+        <div className="relative">
+          <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Input
+            id="password"
+            type={showPassword ? 'text' : 'password'}
+            placeholder="••••••••"
+            className="pl-10 pr-10 bg-dark-elevated border-dark-border focus:border-primary"
+            {...register('password')}
+          />
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+          >
+            {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+          </button>
+        </div>
+        {errors.password && (
+          <p className="text-sm text-destructive">{errors.password.message}</p>
+        )}
+      </div>
+
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <Checkbox id="rememberMe" {...register('rememberMe')} />
+          <Label htmlFor="rememberMe" className="text-sm text-muted-foreground cursor-pointer">
+            Remember me
+          </Label>
+        </div>
+        <a href="#" className="text-sm text-primary hover:text-orange-light transition-colors">
+          Forgot password?
+        </a>
+      </div>
+
+      <Button
+        type="submit"
+        className="w-full bg-gradient-orange hover:bg-gradient-orange-hover shadow-orange transition-all duration-200 hover:shadow-orange-lg"
+        disabled={isSubmitting}
+      >
+        {isSubmitting ? (
+          <>
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            Signing in...
+          </>
+        ) : (
+          'Sign in'
+        )}
+      </Button>
+
+      <p className="text-center text-sm text-muted-foreground">
+        Need help?{' '}
+        <a href="#" className="text-primary hover:text-orange-light transition-colors">
+          Contact support
+        </a>
+      </p>
+    </form>
+  );
+};
