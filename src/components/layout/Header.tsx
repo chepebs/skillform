@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -13,6 +14,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Search, Bell, ChevronRight, LogOut, User, Settings, Menu } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { LanguageSwitcher } from './LanguageSwitcher';
 
 interface HeaderProps {
   sidebarCollapsed: boolean;
@@ -24,30 +26,32 @@ interface Breadcrumb {
   path?: string;
 }
 
-const routeLabels: Record<string, string> = {
-  dashboard: 'Dashboard',
-  profile: 'Profile',
-  me: 'My Profile',
-  create: 'Create Profile',
-  edit: 'Edit',
-  directory: 'Directory',
-  admin: 'Admin',
-  organizer: 'Organizer',
-  director: 'Director',
-  master: 'Master Admin',
-  groups: 'Groups',
-  team: 'My Team',
-  info: 'Department Info',
-  users: 'User Management',
-  analytics: 'Analytics',
-  settings: 'Settings',
-  new: 'Add New',
-};
+const getRouteLabels = (t: (key: string) => string): Record<string, string> => ({
+  dashboard: t('common.navigation.dashboard'),
+  profile: t('profile.title'),
+  me: t('common.navigation.myProfile'),
+  create: t('profile.createProfile'),
+  edit: t('common.buttons.edit'),
+  directory: t('common.navigation.directory'),
+  admin: t('common.navigation.admin'),
+  organizer: t('common.navigation.organizer'),
+  director: t('common.navigation.director'),
+  master: t('common.navigation.masterAdmin'),
+  groups: t('common.navigation.groups'),
+  team: t('common.navigation.myTeam'),
+  info: t('common.navigation.departmentInfo'),
+  users: t('common.navigation.userManagement'),
+  analytics: t('common.navigation.analytics'),
+  settings: t('common.navigation.settings'),
+  new: t('common.actions.addNew'),
+});
 
 export const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, onMobileMenuToggle }) => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const { profile, role, signOut } = useAuth();
+  const routeLabels = getRouteLabels(t);
 
   const generateBreadcrumbs = (): Breadcrumb[] => {
     const pathSegments = location.pathname.split('/').filter(Boolean);
@@ -122,10 +126,14 @@ export const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, onMobileMenuTo
           <div className="relative hidden md:block">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
-              placeholder="Search..."
+              placeholder={t('common.buttons.search') + '...'}
               className="w-64 pl-10 bg-dark-elevated border-dark-border focus:border-primary"
             />
           </div>
+
+          {/* Language Switcher */}
+          <LanguageSwitcher compact className="hidden md:flex" />
+          <LanguageSwitcher compact className="md:hidden" />
 
           {/* Mobile search button */}
           <Button variant="ghost" size="icon" className="md:hidden">
@@ -154,20 +162,20 @@ export const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, onMobileMenuTo
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56 bg-dark-elevated border-dark-border">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuLabel>{t('auth.myAccount')}</DropdownMenuLabel>
               <DropdownMenuSeparator className="bg-dark-border" />
               <DropdownMenuItem onClick={() => navigate('/profile/me')} className="cursor-pointer">
                 <User className="mr-2 h-4 w-4" />
-                View Profile
+                {t('profile.viewProfile')}
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => navigate('/admin/master/settings')} className="cursor-pointer">
                 <Settings className="mr-2 h-4 w-4" />
-                Settings
+                {t('common.navigation.settings')}
               </DropdownMenuItem>
               <DropdownMenuSeparator className="bg-dark-border" />
               <DropdownMenuItem onClick={handleLogout} className="cursor-pointer text-destructive focus:text-destructive">
                 <LogOut className="mr-2 h-4 w-4" />
-                Sign out
+                {t('auth.logout')}
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
