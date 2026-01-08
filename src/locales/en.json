@@ -93,7 +93,8 @@
       "total": "Total",
       "average": "Average",
       "percentage": "Percentage",
-      "count": "Count"
+      "count": "Count",
+      "optional": "Optional"
     },
     "messages": {
       "loading": "Loading...",
@@ -296,6 +297,43 @@
       "removeLanguage": "Remove Language",
       "noLanguages": "No languages added yet"
     },
+    "skills": {
+      "title": "Skills & Expertise",
+      "subtitle": "Select your professional skills and rate your proficiency level",
+      "helper": "Add at least 3 skills. You can add up to 20.",
+      "searchPlaceholder": "Search for a skill...",
+      "addCustom": "Add Custom Skill",
+      "skillName": "Skill Name",
+      "skillNamePlaceholder": "Enter skill name",
+      "category": "Category",
+      "selectCategory": "Select category",
+      "yourSkills": "Your Selected Skills",
+      "skillCount": "{{count}} of {{max}} skills added",
+      "noSkills": "No skills selected yet",
+      "noSkillsHint": "Choose from the categories above or search for a skill",
+      "proficiency": "Proficiency Level",
+      "yearsUsing": "Years using this skill",
+      "clearAll": "Clear All",
+      "levels": {
+        "beginner": "Beginner",
+        "intermediate": "Intermediate",
+        "advanced": "Advanced",
+        "expert": "Expert",
+        "master": "Master"
+      },
+      "categories": {
+        "strategyPlanning": "Strategy & Planning",
+        "creativeDesign": "Creative & Design",
+        "advertisingMedia": "Advertising & Media",
+        "digitalMarketing": "Digital Marketing",
+        "production": "Production",
+        "technologyDevelopment": "Technology & Development",
+        "dataAnalytics": "Data & Analytics",
+        "aiEmergingTech": "AI & Emerging Tech",
+        "storytellingContent": "Storytelling & Content",
+        "clientProjectManagement": "Client & Project Management"
+      }
+    },
     "awards": {
       "title": "Awards & Recognition",
       "subtitle": "Your professional awards and achievements",
@@ -334,6 +372,7 @@
       "performance": "Performance",
       "brandsProjects": "Brands & Projects",
       "languages": "Languages",
+      "skills": "Skills",
       "awards": "Awards",
       "review": "Review"
     },

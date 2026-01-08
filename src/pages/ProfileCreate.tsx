@@ -17,6 +17,7 @@ import EducationStep from '@/components/profile/steps/EducationStep';
 import PerformanceStep from '@/components/profile/steps/PerformanceStep';
 import BrandsProjectsStep from '@/components/profile/steps/BrandsProjectsStep';
 import LanguagesStep from '@/components/profile/steps/LanguagesStep';
+import SkillsStep from '@/components/profile/steps/SkillsStep';
 import AwardsStep from '@/components/profile/steps/AwardsStep';
 import ReviewStep from '@/components/profile/steps/ReviewStep';
 
@@ -27,6 +28,7 @@ import {
   performanceSchema,
   brandsProjectsSchema,
   languagesSchema,
+  skillsSchema,
   awardsSchema,
   ProfileFormData,
   BasicInfoData,
@@ -35,10 +37,11 @@ import {
   PerformanceData,
   BrandsProjectsData,
   LanguagesData,
+  SkillsData,
   AwardsData,
 } from '@/components/profile/types';
 
-const TOTAL_STEPS = 8;
+const TOTAL_STEPS = 9;
 
 const ProfileCreate: React.FC = () => {
   const { user, refreshProfile } = useAuth();
@@ -79,6 +82,11 @@ const ProfileCreate: React.FC = () => {
   const languagesForm = useForm<LanguagesData>({
     resolver: zodResolver(languagesSchema),
     defaultValues: { languages: [{ language: '', speaking_level: 50, reading_level: 50, writing_level: 50, is_native: false }] },
+  });
+
+  const skillsForm = useForm<SkillsData>({
+    resolver: zodResolver(skillsSchema),
+    defaultValues: { skills: [] },
   });
 
   const awardsForm = useForm<AwardsData>({
@@ -123,12 +131,13 @@ const ProfileCreate: React.FC = () => {
       }
 
       // Load related data
-      const [positionsRes, agenciesRes, brandsRes, projectsRes, languagesRes, awardsRes] = await Promise.all([
+      const [positionsRes, agenciesRes, brandsRes, projectsRes, languagesRes, skillsRes, awardsRes] = await Promise.all([
         supabase.from('previous_positions').select('*').eq('user_id', user.id),
         supabase.from('previous_agencies').select('*').eq('user_id', user.id),
         supabase.from('brands_managed').select('*').eq('user_id', user.id),
         supabase.from('recent_projects').select('*').eq('user_id', user.id),
         supabase.from('employee_languages').select('*').eq('user_id', user.id),
+        supabase.from('employee_skills').select('*').eq('user_id', user.id),
         supabase.from('awards').select('*').eq('user_id', user.id),
       ]);
 
@@ -137,6 +146,7 @@ const ProfileCreate: React.FC = () => {
       if (brandsRes.data?.length) brandsProjectsForm.setValue('brands_managed', brandsRes.data);
       if (projectsRes.data?.length) brandsProjectsForm.setValue('recent_projects', projectsRes.data);
       if (languagesRes.data?.length) languagesForm.setValue('languages', languagesRes.data);
+      if (skillsRes.data?.length) skillsForm.setValue('skills', skillsRes.data);
       if (awardsRes.data?.length) awardsForm.setValue('awards', awardsRes.data);
     };
     loadExistingData();
@@ -149,6 +159,7 @@ const ProfileCreate: React.FC = () => {
     performance: performanceForm.getValues(),
     brandsProjects: brandsProjectsForm.getValues(),
     languages: languagesForm.getValues(),
+    skills: skillsForm.getValues(),
     awards: awardsForm.getValues(),
   });
 
@@ -201,7 +212,8 @@ const ProfileCreate: React.FC = () => {
       case 4: return await performanceForm.trigger();
       case 5: return await brandsProjectsForm.trigger();
       case 6: return await languagesForm.trigger();
-      case 7: return true; // Awards optional
+      case 7: return await skillsForm.trigger();
+      case 8: return true; // Awards optional
       default: return true;
     }
   };
@@ -290,6 +302,21 @@ const ProfileCreate: React.FC = () => {
         );
       }
 
+      // Save skills
+      await supabase.from('employee_skills').delete().eq('user_id', user.id);
+      const validSkills = data.skills.skills.filter(s => s.skill_name && s.proficiency_level >= 1);
+      if (validSkills.length > 0) {
+        await supabase.from('employee_skills').insert(
+          validSkills.map((s) => ({ 
+            skill_name: s.skill_name, 
+            skill_category: s.skill_category, 
+            proficiency_level: s.proficiency_level, 
+            years_experience: s.years_experience || null, 
+            user_id: user.id 
+          }))
+        );
+      }
+
       await refreshProfile();
       setShowConfetti(true);
       toast.success('Profile completed successfully!');
@@ -310,8 +337,9 @@ const ProfileCreate: React.FC = () => {
       case 4: return <FormProvider {...performanceForm}><PerformanceStep form={performanceForm} /></FormProvider>;
       case 5: return <FormProvider {...brandsProjectsForm}><BrandsProjectsStep form={brandsProjectsForm} /></FormProvider>;
       case 6: return <FormProvider {...languagesForm}><LanguagesStep form={languagesForm} /></FormProvider>;
-      case 7: return <FormProvider {...awardsForm}><AwardsStep form={awardsForm} onSkip={handleNext} /></FormProvider>;
-      case 8: return <ReviewStep data={getAllFormData()} onEdit={setCurrentStep} />;
+      case 7: return <FormProvider {...skillsForm}><SkillsStep form={skillsForm} /></FormProvider>;
+      case 8: return <FormProvider {...awardsForm}><AwardsStep form={awardsForm} onSkip={handleNext} /></FormProvider>;
+      case 9: return <ReviewStep data={getAllFormData()} onEdit={setCurrentStep} />;
       default: return null;
     }
   };
