@@ -13,12 +13,12 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
       {/* Left Side - Branding */}
       <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
         {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-orange opacity-90" />
+        <div className="absolute inset-0 bg-gradient-primary opacity-90" />
         
         {/* Animated background shapes */}
         <div className="absolute inset-0">
-          <div className="absolute top-20 left-10 w-64 h-64 bg-orange-light/20 rounded-full blur-3xl animate-float" />
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-orange-dark/30 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
+          <div className="absolute top-20 left-10 w-64 h-64 bg-primary/20 rounded-full blur-3xl animate-float" />
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary/30 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
           <div className="absolute top-1/2 left-1/2 w-48 h-48 bg-foreground/10 rounded-full blur-2xl animate-float" style={{ animationDelay: '2s' }} />
         </div>
         
@@ -76,10 +76,10 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
         <div className="w-full max-w-md animate-fade-in">
           {/* Mobile Logo */}
           <div className="lg:hidden flex items-center justify-center gap-3 mb-8">
-            <div className="p-2 rounded-lg bg-gradient-orange">
+            <div className="p-2 rounded-lg bg-gradient-primary">
               <MapPin className="h-6 w-6 text-primary-foreground" />
             </div>
-            <span className="text-xl font-bold gradient-orange-text">Grupo Garnier Talent Map</span>
+            <span className="text-xl font-bold gradient-primary-text">Grupo Garnier Talent Map</span>
           </div>
           
           <div className="glass-card rounded-2xl p-8">

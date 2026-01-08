@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useAuth } from '@/contexts/AuthContext';
@@ -54,6 +54,7 @@ export const RegisterForm: React.FC = () => {
     register,
     handleSubmit,
     watch,
+    control,
     formState: { errors },
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
@@ -216,14 +217,25 @@ export const RegisterForm: React.FC = () => {
       </div>
 
       <div className="flex items-start gap-2">
-        <Checkbox id="acceptTerms" className="mt-1" {...register('acceptTerms')} />
+        <Controller
+          name="acceptTerms"
+          control={control}
+          render={({ field }) => (
+            <Checkbox 
+              id="acceptTerms" 
+              className="mt-1" 
+              checked={field.value}
+              onCheckedChange={field.onChange}
+            />
+          )}
+        />
         <Label htmlFor="acceptTerms" className="text-sm text-muted-foreground cursor-pointer leading-relaxed">
           I agree to the{' '}
-          <a href="#" className="text-primary hover:text-orange-light transition-colors">
+          <a href="#" className="text-primary hover:text-primary/80 transition-colors">
             Terms of Service
           </a>{' '}
           and{' '}
-          <a href="#" className="text-primary hover:text-orange-light transition-colors">
+          <a href="#" className="text-primary hover:text-primary/80 transition-colors">
             Privacy Policy
           </a>
         </Label>
@@ -234,7 +246,7 @@ export const RegisterForm: React.FC = () => {
 
       <Button
         type="submit"
-        className="w-full bg-gradient-orange hover:bg-gradient-orange-hover shadow-orange transition-all duration-200 hover:shadow-orange-lg"
+        className="w-full bg-gradient-primary hover:bg-gradient-primary-hover shadow-primary transition-all duration-200 hover:shadow-primary-lg"
         disabled={isSubmitting}
       >
         {isSubmitting ? (

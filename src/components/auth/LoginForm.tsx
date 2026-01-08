@@ -106,14 +106,14 @@ export const LoginForm: React.FC = () => {
             Remember me
           </Label>
         </div>
-        <a href="#" className="text-sm text-primary hover:text-orange-light transition-colors">
+        <a href="#" className="text-sm text-primary hover:text-primary/80 transition-colors">
           Forgot password?
         </a>
       </div>
 
       <Button
         type="submit"
-        className="w-full bg-gradient-orange hover:bg-gradient-orange-hover shadow-orange transition-all duration-200 hover:shadow-orange-lg"
+        className="w-full bg-gradient-primary hover:bg-gradient-primary-hover shadow-primary transition-all duration-200 hover:shadow-primary-lg"
         disabled={isSubmitting}
       >
         {isSubmitting ? (
@@ -128,7 +128,7 @@ export const LoginForm: React.FC = () => {
 
       <p className="text-center text-sm text-muted-foreground">
         Need help?{' '}
-        <a href="#" className="text-primary hover:text-orange-light transition-colors">
+        <a href="#" className="text-primary hover:text-primary/80 transition-colors">
           Contact support
         </a>
       </p>

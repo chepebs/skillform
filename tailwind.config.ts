@@ -21,11 +21,9 @@ export default {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         
-        // Orange brand colors
-        orange: {
-          DEFAULT: "hsl(var(--orange-primary))",
-          light: "hsl(var(--orange-light))",
-          dark: "hsl(var(--orange-dark))",
+        // Brand red color
+        brand: {
+          DEFAULT: "hsl(var(--brand-red))",
         },
         
         // Dark theme colors
@@ -85,13 +83,13 @@ export default {
         'md': 'var(--shadow-md)',
         'lg': 'var(--shadow-lg)',
         'xl': 'var(--shadow-xl)',
-        'orange': 'var(--shadow-orange)',
-        'orange-lg': 'var(--shadow-orange-lg)',
+        'primary': 'var(--shadow-primary)',
+        'primary-lg': 'var(--shadow-primary-lg)',
         'glass': 'var(--glass-shadow)',
       },
       backgroundImage: {
-        'gradient-orange': 'var(--gradient-orange)',
-        'gradient-orange-hover': 'var(--gradient-orange-hover)',
+        'gradient-primary': 'var(--gradient-primary)',
+        'gradient-primary-hover': 'var(--gradient-primary-hover)',
         'gradient-dark': 'var(--gradient-dark)',
         'gradient-glass': 'var(--gradient-glass)',
       },

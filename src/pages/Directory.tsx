@@ -79,10 +79,10 @@ const Directory: React.FC = () => {
   const ProfileCard = ({ profile }: { profile: Profile }) => (
     <div
       onClick={() => navigate(`/profile/${profile.user_id}`)}
-      className="glass-card rounded-xl p-6 cursor-pointer hover:border-primary/50 transition-all duration-300 hover:shadow-orange group"
+      className="glass-card rounded-xl p-6 cursor-pointer hover:border-primary/50 transition-all duration-300 hover:shadow-primary group"
     >
       <div className="flex items-start gap-4">
-        <div className="w-14 h-14 rounded-full bg-gradient-orange flex items-center justify-center text-primary-foreground text-xl font-semibold flex-shrink-0 group-hover:shadow-orange transition-shadow">
+        <div className="w-14 h-14 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground text-xl font-semibold flex-shrink-0 group-hover:shadow-primary transition-shadow">
           {profile.avatar_url ? (
             <img
               src={profile.avatar_url}
@@ -119,9 +119,9 @@ const Directory: React.FC = () => {
   const ProfileRow = ({ profile }: { profile: Profile }) => (
     <div
       onClick={() => navigate(`/profile/${profile.user_id}`)}
-      className="glass-card rounded-lg p-4 cursor-pointer hover:border-primary/50 transition-all duration-300 hover:shadow-orange flex items-center gap-4 group"
+      className="glass-card rounded-lg p-4 cursor-pointer hover:border-primary/50 transition-all duration-300 hover:shadow-primary flex items-center gap-4 group"
     >
-      <div className="w-10 h-10 rounded-full bg-gradient-orange flex items-center justify-center text-primary-foreground font-semibold flex-shrink-0">
+      <div className="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-semibold flex-shrink-0">
         {profile.avatar_url ? (
           <img
             src={profile.avatar_url}
