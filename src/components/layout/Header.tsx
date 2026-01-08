@@ -1,0 +1,178 @@
+import React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useAuth } from '@/contexts/AuthContext';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { Search, Bell, ChevronRight, LogOut, User, Settings, Menu } from 'lucide-react';
+import { cn } from '@/lib/utils';
+
+interface HeaderProps {
+  sidebarCollapsed: boolean;
+  onMobileMenuToggle: () => void;
+}
+
+interface Breadcrumb {
+  label: string;
+  path?: string;
+}
+
+const routeLabels: Record<string, string> = {
+  dashboard: 'Dashboard',
+  profile: 'Profile',
+  me: 'My Profile',
+  create: 'Create Profile',
+  edit: 'Edit',
+  directory: 'Directory',
+  admin: 'Admin',
+  organizer: 'Organizer',
+  director: 'Director',
+  master: 'Master Admin',
+  groups: 'Groups',
+  team: 'My Team',
+  info: 'Department Info',
+  users: 'User Management',
+  analytics: 'Analytics',
+  settings: 'Settings',
+  new: 'Add New',
+};
+
+export const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, onMobileMenuToggle }) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { profile, role, signOut } = useAuth();
+
+  const generateBreadcrumbs = (): Breadcrumb[] => {
+    const pathSegments = location.pathname.split('/').filter(Boolean);
+    const breadcrumbs: Breadcrumb[] = [];
+    
+    let currentPath = '';
+    pathSegments.forEach((segment, index) => {
+      currentPath += `/${segment}`;
+      const label = routeLabels[segment] || segment.charAt(0).toUpperCase() + segment.slice(1);
+      
+      breadcrumbs.push({
+        label,
+        path: index < pathSegments.length - 1 ? currentPath : undefined,
+      });
+    });
+    
+    return breadcrumbs;
+  };
+
+  const breadcrumbs = generateBreadcrumbs();
+
+  const handleLogout = async () => {
+    await signOut();
+    navigate('/login');
+  };
+
+  const formatRole = (userRole: string | null) => {
+    if (!userRole) return 'User';
+    return userRole.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+  };
+
+  return (
+    <header
+      className={cn(
+        'fixed top-0 right-0 z-30 h-16 bg-dark-surface/80 backdrop-blur-lg border-b border-dark-border transition-all duration-300',
+        sidebarCollapsed ? 'left-16' : 'left-64',
+        'max-md:left-0'
+      )}
+    >
+      <div className="flex items-center justify-between h-full px-4 md:px-6">
+        {/* Left side - Mobile menu & Breadcrumbs */}
+        <div className="flex items-center gap-4">
+          <button
+            onClick={onMobileMenuToggle}
+            className="md:hidden p-2 rounded-lg hover:bg-dark-elevated transition-colors"
+          >
+            <Menu className="h-5 w-5 text-muted-foreground" />
+          </button>
+          
+          <nav className="hidden sm:flex items-center gap-1 text-sm">
+            {breadcrumbs.map((crumb, index) => (
+              <React.Fragment key={index}>
+                {index > 0 && <ChevronRight className="h-4 w-4 text-muted-foreground" />}
+                {crumb.path ? (
+                  <button
+                    onClick={() => navigate(crumb.path!)}
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {crumb.label}
+                  </button>
+                ) : (
+                  <span className="text-foreground font-medium">{crumb.label}</span>
+                )}
+              </React.Fragment>
+            ))}
+          </nav>
+        </div>
+
+        {/* Right side - Search, Notifications, Profile */}
+        <div className="flex items-center gap-3">
+          {/* Search */}
+          <div className="relative hidden md:block">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Input
+              placeholder="Search..."
+              className="w-64 pl-10 bg-dark-elevated border-dark-border focus:border-primary"
+            />
+          </div>
+
+          {/* Mobile search button */}
+          <Button variant="ghost" size="icon" className="md:hidden">
+            <Search className="h-5 w-5 text-muted-foreground" />
+          </Button>
+
+          {/* Notifications */}
+          <Button variant="ghost" size="icon" className="relative">
+            <Bell className="h-5 w-5 text-muted-foreground" />
+            <span className="absolute top-1 right-1 w-2 h-2 bg-primary rounded-full" />
+          </Button>
+
+          {/* User Menu */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="flex items-center gap-2 pl-2 pr-3">
+                <div className="w-8 h-8 rounded-full bg-gradient-orange flex items-center justify-center text-primary-foreground text-sm font-semibold">
+                  {profile?.first_name?.[0] || profile?.email?.[0]?.toUpperCase() || 'U'}
+                </div>
+                <div className="hidden md:block text-left">
+                  <p className="text-sm font-medium text-foreground">
+                    {profile?.first_name || 'User'}
+                  </p>
+                  <p className="text-xs text-muted-foreground">{formatRole(role)}</p>
+                </div>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-56 bg-dark-elevated border-dark-border">
+              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuSeparator className="bg-dark-border" />
+              <DropdownMenuItem onClick={() => navigate('/profile/me')} className="cursor-pointer">
+                <User className="mr-2 h-4 w-4" />
+                View Profile
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate('/admin/master/settings')} className="cursor-pointer">
+                <Settings className="mr-2 h-4 w-4" />
+                Settings
+              </DropdownMenuItem>
+              <DropdownMenuSeparator className="bg-dark-border" />
+              <DropdownMenuItem onClick={handleLogout} className="cursor-pointer text-destructive focus:text-destructive">
+                <LogOut className="mr-2 h-4 w-4" />
+                Sign out
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+      </div>
+    </header>
+  );
+};
