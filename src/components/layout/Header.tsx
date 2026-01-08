@@ -15,6 +15,7 @@ import {
 import { Search, Bell, ChevronRight, LogOut, User, Settings, Menu } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { LanguageSwitcher } from './LanguageSwitcher';
+import { ThemeToggle } from './ThemeToggle';
 
 interface HeaderProps {
   sidebarCollapsed: boolean;
@@ -86,7 +87,7 @@ export const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, onMobileMenuTo
   return (
     <header
       className={cn(
-        'fixed top-0 right-0 z-30 h-16 bg-dark-surface/80 backdrop-blur-lg border-b border-dark-border transition-all duration-300',
+        'fixed top-0 right-0 z-30 h-16 bg-card/80 backdrop-blur-lg border-b border-border transition-all duration-300',
         sidebarCollapsed ? 'left-16' : 'left-64',
         'max-md:left-0'
       )}
@@ -96,7 +97,7 @@ export const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, onMobileMenuTo
         <div className="flex items-center gap-4">
           <button
             onClick={onMobileMenuToggle}
-            className="md:hidden p-2 rounded-lg hover:bg-dark-elevated transition-colors"
+            className="md:hidden p-2 rounded-lg hover:bg-secondary transition-colors"
           >
             <Menu className="h-5 w-5 text-muted-foreground" />
           </button>
@@ -127,13 +128,16 @@ export const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, onMobileMenuTo
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
               placeholder={t('common.buttons.search') + '...'}
-              className="w-64 pl-10 bg-dark-elevated border-dark-border focus:border-primary"
+              className="w-64 pl-10 bg-secondary border-border focus:border-primary"
             />
           </div>
 
           {/* Language Switcher */}
           <LanguageSwitcher compact className="hidden md:flex" />
           <LanguageSwitcher compact className="md:hidden" />
+
+          {/* Theme Toggle */}
+          <ThemeToggle />
 
           {/* Mobile search button */}
           <Button variant="ghost" size="icon" className="md:hidden">
@@ -161,9 +165,9 @@ export const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, onMobileMenuTo
                 </div>
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-56 bg-dark-elevated border-dark-border">
+            <DropdownMenuContent align="end" className="w-56 bg-card border-border">
               <DropdownMenuLabel>{t('auth.myAccount')}</DropdownMenuLabel>
-              <DropdownMenuSeparator className="bg-dark-border" />
+              <DropdownMenuSeparator className="bg-border" />
               <DropdownMenuItem onClick={() => navigate('/profile/me')} className="cursor-pointer">
                 <User className="mr-2 h-4 w-4" />
                 {t('profile.viewProfile')}
@@ -172,7 +176,7 @@ export const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, onMobileMenuTo
                 <Settings className="mr-2 h-4 w-4" />
                 {t('common.navigation.settings')}
               </DropdownMenuItem>
-              <DropdownMenuSeparator className="bg-dark-border" />
+              <DropdownMenuSeparator className="bg-border" />
               <DropdownMenuItem onClick={handleLogout} className="cursor-pointer text-destructive focus:text-destructive">
                 <LogOut className="mr-2 h-4 w-4" />
                 {t('auth.logout')}

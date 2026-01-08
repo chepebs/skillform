@@ -144,7 +144,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
         {/* Toggle Button */}
         <button
           onClick={onToggle}
-          className="absolute -right-3 top-20 p-1.5 rounded-full bg-dark-elevated border border-dark-border hover:border-primary transition-colors"
+          className="absolute -right-3 top-20 p-1.5 rounded-full bg-card border border-border hover:border-primary transition-colors"
         >
           {collapsed ? (
             <ChevronRight className="h-4 w-4 text-muted-foreground" />
