@@ -14,6 +14,119 @@ export type Database = {
   }
   public: {
     Tables: {
+      agencies: {
+        Row: {
+          country_id: string | null
+          created_at: string | null
+          id: string
+          name: string
+        }
+        Insert: {
+          country_id?: string | null
+          created_at?: string | null
+          id?: string
+          name: string
+        }
+        Update: {
+          country_id?: string | null
+          created_at?: string | null
+          id?: string
+          name?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "agencies_country_id_fkey"
+            columns: ["country_id"]
+            isOneToOne: false
+            referencedRelation: "countries"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      awards: {
+        Row: {
+          award_name: string
+          award_type: string | null
+          award_year: number | null
+          category: string | null
+          created_at: string | null
+          description: string | null
+          id: string
+          user_id: string
+          won: boolean | null
+        }
+        Insert: {
+          award_name: string
+          award_type?: string | null
+          award_year?: number | null
+          category?: string | null
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          user_id: string
+          won?: boolean | null
+        }
+        Update: {
+          award_name?: string
+          award_type?: string | null
+          award_year?: number | null
+          category?: string | null
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          user_id?: string
+          won?: boolean | null
+        }
+        Relationships: []
+      }
+      brands_managed: {
+        Row: {
+          brand_name: string
+          created_at: string | null
+          description: string | null
+          id: string
+          user_id: string
+          years_managed: number | null
+        }
+        Insert: {
+          brand_name: string
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          user_id: string
+          years_managed?: number | null
+        }
+        Update: {
+          brand_name?: string
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          user_id?: string
+          years_managed?: number | null
+        }
+        Relationships: []
+      }
+      countries: {
+        Row: {
+          code: string
+          created_at: string | null
+          id: string
+          name: string
+        }
+        Insert: {
+          code: string
+          created_at?: string | null
+          id?: string
+          name: string
+        }
+        Update: {
+          code?: string
+          created_at?: string | null
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
       departments: {
         Row: {
           created_at: string | null
@@ -35,6 +148,39 @@ export type Database = {
           director_id?: string | null
           id?: string
           name?: string
+        }
+        Relationships: []
+      }
+      employee_languages: {
+        Row: {
+          created_at: string | null
+          id: string
+          is_native: boolean | null
+          language: string
+          reading_level: number | null
+          speaking_level: number | null
+          user_id: string
+          writing_level: number | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          is_native?: boolean | null
+          language: string
+          reading_level?: number | null
+          speaking_level?: number | null
+          user_id: string
+          writing_level?: number | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          is_native?: boolean | null
+          language?: string
+          reading_level?: number | null
+          speaking_level?: number | null
+          user_id?: string
+          writing_level?: number | null
         }
         Relationships: []
       }
@@ -121,50 +267,206 @@ export type Database = {
         }
         Relationships: []
       }
+      previous_agencies: {
+        Row: {
+          agency_name: string
+          created_at: string | null
+          end_date: string | null
+          id: string
+          role: string
+          start_date: string | null
+          user_id: string
+        }
+        Insert: {
+          agency_name: string
+          created_at?: string | null
+          end_date?: string | null
+          id?: string
+          role: string
+          start_date?: string | null
+          user_id: string
+        }
+        Update: {
+          agency_name?: string
+          created_at?: string | null
+          end_date?: string | null
+          id?: string
+          role?: string
+          start_date?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      previous_positions: {
+        Row: {
+          company: string
+          created_at: string | null
+          description: string | null
+          end_date: string | null
+          id: string
+          position_title: string
+          start_date: string | null
+          user_id: string
+        }
+        Insert: {
+          company: string
+          created_at?: string | null
+          description?: string | null
+          end_date?: string | null
+          id?: string
+          position_title: string
+          start_date?: string | null
+          user_id: string
+        }
+        Update: {
+          company?: string
+          created_at?: string | null
+          description?: string | null
+          end_date?: string | null
+          id?: string
+          position_title?: string
+          start_date?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
+          academic_degree: string | null
+          agency_id: string | null
           avatar_url: string | null
           bio: string | null
+          brand_creations: number | null
+          brand_refreshes: number | null
+          consulting_work: string | null
+          country_id: string | null
           created_at: string | null
+          current_position: string | null
           department: string | null
+          effie_awards_participated: number | null
+          effie_awards_won: number | null
           email: string
           first_name: string | null
           id: string
           last_name: string | null
           phone: string | null
+          pitches_participated: number | null
+          pitches_won: number | null
           position: string | null
           profile_completed: boolean | null
+          profile_completed_at: string | null
           updated_at: string | null
           user_id: string
+          years_of_experience: number | null
         }
         Insert: {
+          academic_degree?: string | null
+          agency_id?: string | null
           avatar_url?: string | null
           bio?: string | null
+          brand_creations?: number | null
+          brand_refreshes?: number | null
+          consulting_work?: string | null
+          country_id?: string | null
           created_at?: string | null
+          current_position?: string | null
           department?: string | null
+          effie_awards_participated?: number | null
+          effie_awards_won?: number | null
           email: string
           first_name?: string | null
           id?: string
           last_name?: string | null
           phone?: string | null
+          pitches_participated?: number | null
+          pitches_won?: number | null
           position?: string | null
           profile_completed?: boolean | null
+          profile_completed_at?: string | null
           updated_at?: string | null
           user_id: string
+          years_of_experience?: number | null
         }
         Update: {
+          academic_degree?: string | null
+          agency_id?: string | null
           avatar_url?: string | null
           bio?: string | null
+          brand_creations?: number | null
+          brand_refreshes?: number | null
+          consulting_work?: string | null
+          country_id?: string | null
           created_at?: string | null
+          current_position?: string | null
           department?: string | null
+          effie_awards_participated?: number | null
+          effie_awards_won?: number | null
           email?: string
           first_name?: string | null
           id?: string
           last_name?: string | null
           phone?: string | null
+          pitches_participated?: number | null
+          pitches_won?: number | null
           position?: string | null
           profile_completed?: boolean | null
+          profile_completed_at?: string | null
           updated_at?: string | null
+          user_id?: string
+          years_of_experience?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "profiles_agency_id_fkey"
+            columns: ["agency_id"]
+            isOneToOne: false
+            referencedRelation: "agencies"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "profiles_country_id_fkey"
+            columns: ["country_id"]
+            isOneToOne: false
+            referencedRelation: "countries"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      recent_projects: {
+        Row: {
+          brand: string | null
+          created_at: string | null
+          description: string | null
+          id: string
+          key_results: string | null
+          project_month: number | null
+          project_name: string
+          project_year: number | null
+          role_in_project: string | null
+          user_id: string
+        }
+        Insert: {
+          brand?: string | null
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          key_results?: string | null
+          project_month?: number | null
+          project_name: string
+          project_year?: number | null
+          role_in_project?: string | null
+          user_id: string
+        }
+        Update: {
+          brand?: string | null
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          key_results?: string | null
+          project_month?: number | null
+          project_name?: string
+          project_year?: number | null
+          role_in_project?: string | null
           user_id?: string
         }
         Relationships: []
