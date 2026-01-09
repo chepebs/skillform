@@ -1,5 +1,4 @@
-import React from 'react';
-import { MapPin } from 'lucide-react';
+import React, { useState } from 'react';
 
 interface AuthLayoutProps {
   children: React.ReactNode;
@@ -7,7 +6,11 @@ interface AuthLayoutProps {
   subtitle?: string;
 }
 
+const LOGO_URL = 'https://arbolcg.com/Logo-Garnier-2025-small-white.png';
+
 export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitle }) => {
+  const [imageError, setImageError] = useState(false);
+
   return (
     <div className="min-h-screen flex bg-background pattern-bg">
       {/* Left Side - Branding */}
@@ -25,15 +28,27 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
         {/* Content */}
         <div className="relative z-10 flex flex-col justify-center px-16 text-primary-foreground">
           <div className="mb-8">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="p-3 rounded-xl bg-foreground/20 backdrop-blur-sm">
-                <MapPin className="h-8 w-8" />
+            {/* Logo with company branding */}
+            <div className="flex items-center gap-4 mb-8">
+              {!imageError ? (
+                <img 
+                  src={LOGO_URL}
+                  alt="Grupo Garnier Logo"
+                  className="h-20 w-auto object-contain"
+                  onError={() => setImageError(true)}
+                />
+              ) : (
+                <div className="h-20 w-20 bg-foreground/20 backdrop-blur-sm rounded-xl flex items-center justify-center text-primary-foreground font-bold text-2xl">
+                  GG
+                </div>
+              )}
+              <div>
+                <span className="text-lg font-semibold text-primary-foreground/80">Grupo Garnier</span>
+                <h1 className="text-4xl font-bold leading-tight">
+                  Talent Map
+                </h1>
               </div>
-              <span className="text-2xl font-bold">Grupo Garnier</span>
             </div>
-            <h1 className="text-5xl font-bold leading-tight mb-4">
-              Talent Map
-            </h1>
             <p className="text-xl text-primary-foreground/80 max-w-md">
               Discover, connect, and grow with our comprehensive talent management platform.
             </p>
@@ -76,10 +91,22 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
         <div className="w-full max-w-md animate-fade-in">
           {/* Mobile Logo */}
           <div className="lg:hidden flex items-center justify-center gap-3 mb-8">
-            <div className="p-2 rounded-lg bg-gradient-primary">
-              <MapPin className="h-6 w-6 text-primary-foreground" />
+            {!imageError ? (
+              <img 
+                src={LOGO_URL}
+                alt="Grupo Garnier Logo"
+                className="h-12 w-auto object-contain"
+                onError={() => setImageError(true)}
+              />
+            ) : (
+              <div className="h-12 w-12 bg-primary rounded-xl flex items-center justify-center text-primary-foreground font-bold text-lg">
+                GG
+              </div>
+            )}
+            <div className="flex flex-col">
+              <span className="text-xs font-semibold text-muted-foreground">Grupo Garnier</span>
+              <span className="text-lg font-bold text-foreground">Talent Map</span>
             </div>
-            <span className="text-xl font-bold gradient-primary-text">Grupo Garnier Talent Map</span>
           </div>
           
           <div className="glass-card rounded-2xl p-8">
@@ -94,7 +121,7 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
           </div>
           
           <p className="text-center text-xs text-muted-foreground mt-8">
-            © 2024 Grupo Garnier. All rights reserved.
+            © 2025 Grupo Garnier. All rights reserved.
           </p>
         </div>
       </div>
