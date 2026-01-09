@@ -56,17 +56,26 @@ export const LoginForm: React.FC = () => {
     }
   };
 
+  const onSubmitWithDebug = (data: LoginFormData) => {
+    console.log('🔍 Login attempt with:', { email: data.email, passwordLength: data.password?.length });
+    onSubmit(data);
+  };
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+    <form onSubmit={handleSubmit(onSubmitWithDebug)} className="space-y-6" autoComplete="off">
       <div className="space-y-2">
-        <Label htmlFor="email">Email</Label>
+        <Label htmlFor="login-email">Email</Label>
         <div className="relative">
           <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
-            id="email"
+            id="login-email"
             type="email"
             placeholder="you@company.com"
             className="pl-10 bg-dark-elevated border-dark-border focus:border-primary"
+            autoComplete="off"
+            autoCorrect="off"
+            autoCapitalize="off"
+            spellCheck={false}
             {...register('email')}
           />
         </div>
@@ -76,14 +85,15 @@ export const LoginForm: React.FC = () => {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="password">Password</Label>
+        <Label htmlFor="login-password">Password</Label>
         <div className="relative">
           <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
-            id="password"
+            id="login-password"
             type={showPassword ? 'text' : 'password'}
             placeholder="••••••••"
             className="pl-10 pr-10 bg-dark-elevated border-dark-border focus:border-primary"
+            autoComplete="new-password"
             {...register('password')}
           />
           <button
