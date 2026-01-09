@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Briefcase, Building, Globe, Clock, Languages, Trophy, Mail, Phone } from 'lucide-react';
+import { Clock, Languages, Trophy, Mail, Phone } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -39,32 +39,10 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ profile, searchQuery }
 
   return (
     <div
-      className="glass-card rounded-xl p-5 cursor-pointer group transition-all duration-300 hover:border-primary/50 hover:shadow-primary hover:-translate-y-2 relative overflow-hidden"
+      className="glass-card rounded-xl p-5 cursor-pointer group transition-all duration-300 hover:border-primary/50 hover:shadow-[0_8px_30px_-8px_hsl(var(--primary)/0.4)] hover:-translate-y-2 flex flex-col"
       onClick={() => navigate(`/profile/${profile.user_id}`)}
     >
-      {/* Quick contact icons on hover */}
-      <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-        {profile.email && (
-          <a
-            href={`mailto:${profile.email}`}
-            onClick={(e) => e.stopPropagation()}
-            className="p-1.5 rounded-full bg-dark-elevated hover:bg-primary/20 transition-colors"
-          >
-            <Mail className="h-4 w-4 text-muted-foreground hover:text-primary" />
-          </a>
-        )}
-        {profile.phone && (
-          <a
-            href={`tel:${profile.phone}`}
-            onClick={(e) => e.stopPropagation()}
-            className="p-1.5 rounded-full bg-dark-elevated hover:bg-primary/20 transition-colors"
-          >
-            <Phone className="h-4 w-4 text-muted-foreground hover:text-primary" />
-          </a>
-        )}
-      </div>
-
-      {/* Avatar */}
+      {/* Avatar and main info */}
       <div className="flex items-start gap-4">
         <div className="w-20 h-20 rounded-full border-2 border-dark-border group-hover:border-primary/50 transition-colors flex-shrink-0 overflow-hidden bg-gradient-primary">
           {profile.avatar_url ? (
@@ -144,26 +122,39 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ profile, searchQuery }
         )}
       </div>
 
-      {/* Hover overlay with additional info */}
-      <div className="absolute inset-0 bg-dark-card/95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-4 pointer-events-none">
-        <div className="text-center space-y-2">
-          {profile.projects_count !== undefined && profile.projects_count > 0 && (
-            <p className="text-sm text-muted-foreground">
-              <span className="text-foreground font-medium">{profile.projects_count}</span> Recent Projects
-            </p>
+      {/* Contact icons and View Profile button - always visible */}
+      <div className="flex items-center justify-between mt-4 pt-4 border-t border-dark-border">
+        <div className="flex gap-2">
+          {profile.email && (
+            <a
+              href={`mailto:${profile.email}`}
+              onClick={(e) => e.stopPropagation()}
+              className="p-2 rounded-full bg-dark-elevated hover:bg-primary/20 transition-colors"
+              aria-label="Send email"
+            >
+              <Mail className="h-4 w-4 text-muted-foreground hover:text-primary" />
+            </a>
           )}
-          {profile.awards_count !== undefined && profile.awards_count > 0 && (
-            <p className="text-sm text-muted-foreground">
-              <span className="text-foreground font-medium">{profile.awards_count}</span> Awards
-            </p>
-          )}
-          {profile.consulting_work && (
-            <Badge className="bg-primary/20 text-primary border-primary/30">
-              Available for Consulting
-            </Badge>
+          {profile.phone && (
+            <a
+              href={`tel:${profile.phone}`}
+              onClick={(e) => e.stopPropagation()}
+              className="p-2 rounded-full bg-dark-elevated hover:bg-primary/20 transition-colors"
+              aria-label="Call"
+            >
+              <Phone className="h-4 w-4 text-muted-foreground hover:text-primary" />
+            </a>
           )}
         </div>
-        <Button className="mt-4 bg-gradient-primary pointer-events-auto">
+        
+        <Button 
+          size="sm" 
+          className="bg-gradient-primary text-primary-foreground hover:opacity-90 transition-opacity"
+          onClick={(e) => {
+            e.stopPropagation();
+            navigate(`/profile/${profile.user_id}`);
+          }}
+        >
           View Profile
         </Button>
       </div>
