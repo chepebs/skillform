@@ -22,6 +22,7 @@ import NotFound from "./pages/NotFound";
 import MasterDashboard from "./pages/admin/MasterDashboard";
 import OrganizerDashboard from "./pages/admin/OrganizerDashboard";
 import DirectorDashboard from "./pages/admin/DirectorDashboard";
+import AdminSettings from "./pages/admin/AdminSettings";
 
 const queryClient = new QueryClient();
 
@@ -101,9 +102,11 @@ const App = () => (
                   <MasterDashboard />
                 </ProtectedRoute>
               } />
-              <Route path="/admin/master/settings" element={
+
+              {/* Admin Settings (accessible to all admin roles) */}
+              <Route path="/admin/settings" element={
                 <ProtectedRoute allowedRoles={['master_admin']}>
-                  <MasterDashboard />
+                  <AdminSettings />
                 </ProtectedRoute>
               } />
             </Route>
