@@ -172,7 +172,7 @@ export const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, onMobileMenuTo
                 <User className="mr-2 h-4 w-4" />
                 {t('profile.viewProfile')}
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => navigate('/admin/master/settings')} className="cursor-pointer">
+              <DropdownMenuItem onClick={() => navigate('/admin/settings')} className="cursor-pointer">
                 <Settings className="mr-2 h-4 w-4" />
                 {t('common.navigation.settings')}
               </DropdownMenuItem>

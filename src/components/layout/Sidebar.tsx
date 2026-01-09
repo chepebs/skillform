@@ -37,7 +37,7 @@ const navItems: NavItem[] = [
   { label: 'Department Info', icon: Building, path: '/admin/director/info', roles: ['department_director', 'master_admin'] },
   { label: 'User Management', icon: Shield, path: '/admin/master/users', roles: ['master_admin'] },
   { label: 'Analytics', icon: BarChart3, path: '/admin/master/analytics', roles: ['master_admin'] },
-  { label: 'Settings', icon: Settings, path: '/admin/master/settings', roles: ['master_admin'] },
+  { label: 'Settings', icon: Settings, path: '/admin/settings', roles: ['master_admin'] },
 ];
 
 export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
