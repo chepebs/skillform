@@ -1,5 +1,5 @@
-import React from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth, AppRole } from '@/contexts/AuthContext';
 import { cn } from '@/lib/utils';
 import {
@@ -13,8 +13,9 @@ import {
   Settings,
   ChevronLeft,
   ChevronRight,
-  MapPin,
 } from 'lucide-react';
+
+const LOGO_URL = 'https://arbolcg.com/Logo-Garnier-2025-small-white.png';
 
 interface SidebarProps {
   collapsed: boolean;
@@ -43,6 +44,8 @@ const navItems: NavItem[] = [
 export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
   const { role, profile } = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
+  const [imageError, setImageError] = useState(false);
 
   const filteredItems = navItems.filter(item => {
     if (!item.roles) return true;
@@ -80,18 +83,37 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
     >
       <div className="flex flex-col h-full">
         {/* Logo */}
-        <div className="flex items-center gap-3 h-16 px-4 border-b border-sidebar-border">
-          <div className="flex-shrink-0 p-2 rounded-lg bg-gradient-primary">
-            <MapPin className="h-5 w-5 text-primary-foreground" />
-          </div>
-          {!collapsed && (
-            <div className="flex-1 min-w-0">
-              <h1 className="font-bold text-foreground truncate">Talent Map</h1>
-              <p className="text-xs text-muted-foreground truncate">Grupo Garnier</p>
-            </div>
-          )}
+        <div className={cn(
+          'flex items-center h-16 border-b border-sidebar-border',
+          collapsed ? 'justify-center px-2' : 'gap-3 px-4'
+        )}>
+          <button 
+            onClick={() => navigate('/dashboard')}
+            className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+          >
+            {!imageError ? (
+              <img 
+                src={LOGO_URL}
+                alt="Grupo Garnier Logo"
+                className={cn(collapsed ? 'h-8' : 'h-10', 'w-auto object-contain')}
+                onError={() => setImageError(true)}
+              />
+            ) : (
+              <div className={cn(
+                collapsed ? 'h-8 w-8 text-sm' : 'h-10 w-10 text-base',
+                'bg-primary rounded-lg flex items-center justify-center text-primary-foreground font-bold'
+              )}>
+                GG
+              </div>
+            )}
+            {!collapsed && (
+              <div className="flex-1 min-w-0">
+                <p className="text-xs font-semibold text-muted-foreground">Grupo Garnier</p>
+                <h1 className="font-bold text-foreground truncate">Talent Map</h1>
+              </div>
+            )}
+          </button>
         </div>
-
         {/* Navigation */}
         <nav className="flex-1 overflow-y-auto py-4 px-3">
           <ul className="space-y-1">

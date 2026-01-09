@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '@/contexts/AuthContext';
@@ -16,6 +16,8 @@ import { Search, Bell, ChevronRight, LogOut, User, Settings, Menu } from 'lucide
 import { cn } from '@/lib/utils';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { ThemeToggle } from './ThemeToggle';
+
+const LOGO_URL = 'https://arbolcg.com/Logo-Garnier-2025-small-white.png';
 
 interface HeaderProps {
   sidebarCollapsed: boolean;
@@ -53,6 +55,7 @@ export const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, onMobileMenuTo
   const { t } = useTranslation();
   const { profile, role, signOut } = useAuth();
   const routeLabels = getRouteLabels(t);
+  const [imageError, setImageError] = useState(false);
 
   const generateBreadcrumbs = (): Breadcrumb[] => {
     const pathSegments = location.pathname.split('/').filter(Boolean);
@@ -93,7 +96,7 @@ export const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, onMobileMenuTo
       )}
     >
       <div className="flex items-center justify-between h-full px-4 md:px-6">
-        {/* Left side - Mobile menu & Breadcrumbs */}
+        {/* Left side - Mobile menu, Logo & Breadcrumbs */}
         <div className="flex items-center gap-4">
           <button
             onClick={onMobileMenuToggle}
@@ -102,7 +105,28 @@ export const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, onMobileMenuTo
             <Menu className="h-5 w-5 text-muted-foreground" />
           </button>
           
-          <nav className="hidden sm:flex items-center gap-1 text-sm">
+          {/* Mobile Logo - only visible on mobile */}
+          <button 
+            onClick={() => navigate('/dashboard')}
+            className="md:hidden flex items-center gap-2 hover:opacity-80 transition-opacity"
+          >
+            {!imageError ? (
+              <img 
+                src={LOGO_URL}
+                alt="Grupo Garnier Logo"
+                className="h-8 w-auto object-contain"
+                onError={() => setImageError(true)}
+              />
+            ) : (
+              <div className="h-8 w-8 bg-primary rounded-lg flex items-center justify-center text-primary-foreground font-bold text-sm">
+                GG
+              </div>
+            )}
+            <span className="font-semibold text-sm text-foreground">Talent Map</span>
+          </button>
+          
+          {/* Breadcrumbs - Desktop only */}
+          <nav className="hidden md:flex items-center gap-1 text-sm">
             {breadcrumbs.map((crumb, index) => (
               <React.Fragment key={index}>
                 {index > 0 && <ChevronRight className="h-4 w-4 text-muted-foreground" />}
@@ -120,7 +144,6 @@ export const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, onMobileMenuTo
             ))}
           </nav>
         </div>
-
         {/* Right side - Search, Notifications, Profile */}
         <div className="flex items-center gap-3">
           {/* Search */}
