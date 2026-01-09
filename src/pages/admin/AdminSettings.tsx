@@ -65,9 +65,7 @@ const AdminSettings: React.FC = () => {
 
   const lastLoginAt = useMemo(() => {
     // Supabase provides last_sign_in_at on the auth user object.
-    // (May be null depending on provider and history.)
-    // @ts-expect-error - last_sign_in_at exists on Supabase User
-    const lastSignIn = (user as any)?.last_sign_in_at as string | null;
+    const lastSignIn = user?.last_sign_in_at as string | undefined;
     if (!lastSignIn) return null;
     return new Date(lastSignIn).toLocaleString();
   }, [user]);
