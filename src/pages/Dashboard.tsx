@@ -10,26 +10,27 @@ const Dashboard: React.FC = () => {
   useEffect(() => {
     if (isLoading) return;
 
-    // Check if profile is complete
-    if (profile && !profile.profile_completed) {
-      navigate('/profile/create');
+    // Admin roles go straight to their dashboards (no profile required)
+    if (role === 'master_admin') {
+      navigate('/admin/master', { replace: true });
+      return;
+    }
+    if (role === 'organizer_admin') {
+      navigate('/admin/organizer', { replace: true });
+      return;
+    }
+    if (role === 'department_director') {
+      navigate('/admin/director', { replace: true });
       return;
     }
 
-    // Redirect based on role
-    const dashboardRoutes: Record<AppRole, string> = {
-      employee: '/profile/me',
-      organizer_admin: '/admin/organizer',
-      department_director: '/admin/director',
-      master_admin: '/admin/master',
-    };
-
-    if (role) {
-      navigate(dashboardRoutes[role], { replace: true });
-    } else {
-      // Default to profile if no role found
-      navigate('/profile/me', { replace: true });
+    // Employee (or unknown role): require a completed profile
+    if (!profile || !profile.profile_completed) {
+      navigate('/profile/create', { replace: true });
+      return;
     }
+
+    navigate('/profile/me', { replace: true });
   }, [role, isLoading, profile, navigate]);
 
   return (

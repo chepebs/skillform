@@ -46,67 +46,77 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchUserData = async (userId: string) => {
-    try {
-      // Fetch profile
-      const { data: profileData } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('user_id', userId)
-        .single();
+    // Profile is optional (e.g. admin users may not have one)
+    const { data: profileData } = await supabase
+      .from('profiles')
+      .select('*')
+      .eq('user_id', userId)
+      .maybeSingle();
 
-      if (profileData) {
-        setProfile(profileData as Profile);
-      }
+    setProfile((profileData as Profile) ?? null);
 
-      // Fetch role
-      const { data: roleData } = await supabase
-        .from('user_roles')
-        .select('role')
-        .eq('user_id', userId)
-        .single();
+    // Role is mandatory for admin access
+    const { data: roleData, error: roleError } = await supabase.rpc('get_user_role', {
+      _user_id: userId,
+    });
 
-      if (roleData) {
-        setRole(roleData.role as AppRole);
-      }
-    } catch (error) {
-      console.error('Error fetching user data:', error);
+    if (!roleError && roleData) {
+      setRole(roleData as AppRole);
+    } else {
+      setRole(null);
     }
   };
 
   useEffect(() => {
-    // Set up auth state listener FIRST
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        setSession(session);
-        setUser(session?.user ?? null);
-        
-        // Defer data fetching with setTimeout
-        if (session?.user) {
-          setTimeout(() => {
-            fetchUserData(session.user.id);
-          }, 0);
-        } else {
-          setProfile(null);
-          setRole(null);
-        }
-        
-        setIsLoading(false);
-      }
-    );
+    let cancelled = false;
 
-    // THEN check for existing session
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    // Set up auth state listener FIRST
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((event, session) => {
       setSession(session);
       setUser(session?.user ?? null);
-      
-      if (session?.user) {
-        fetchUserData(session.user.id);
+
+      if (!session?.user) {
+        setProfile(null);
+        setRole(null);
+        setIsLoading(false);
+        return;
       }
-      
-      setIsLoading(false);
+
+      // Keep the app in a loading state until role/profile are fetched,
+      // so route guards and redirects don't run with role=null.
+      setIsLoading(true);
+      setTimeout(async () => {
+        if (cancelled) return;
+        await fetchUserData(session.user.id);
+        if (!cancelled) setIsLoading(false);
+      }, 0);
     });
 
-    return () => subscription.unsubscribe();
+    // THEN check for existing session
+    setIsLoading(true);
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
+      if (cancelled) return;
+
+      setSession(session);
+      setUser(session?.user ?? null);
+
+      if (!session?.user) {
+        setProfile(null);
+        setRole(null);
+        setIsLoading(false);
+        return;
+      }
+
+      await fetchUserData(session.user.id);
+      if (!cancelled) setIsLoading(false);
+    });
+
+    return () => {
+      cancelled = true;
+      subscription.unsubscribe();
+    };
   }, []);
 
   const signIn = async (email: string, password: string) => {
