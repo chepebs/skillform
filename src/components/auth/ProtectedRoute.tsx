@@ -15,6 +15,7 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
   const { user, role, isLoading } = useAuth();
   const location = useLocation();
 
+  // Show loading spinner while checking authentication & role
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
@@ -26,15 +27,32 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
     );
   }
 
+  // Not authenticated → redirect to login
   if (!user) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
-  if (allowedRoles) {
-    if (!role || !allowedRoles.includes(role)) {
+  // Check role permissions only if allowedRoles is specified
+  // For admin routes, we ONLY check role - no profile requirement
+  if (allowedRoles && allowedRoles.length > 0) {
+    // If role hasn't loaded yet but user exists, show loading
+    // This prevents premature 403 redirects
+    if (role === null) {
+      return (
+        <div className="min-h-screen flex items-center justify-center bg-background">
+          <div className="flex flex-col items-center gap-4">
+            <Loader2 className="h-8 w-8 animate-spin text-primary" />
+            <p className="text-muted-foreground">Verifying access...</p>
+          </div>
+        </div>
+      );
+    }
+
+    if (!allowedRoles.includes(role)) {
       return <Navigate to="/403" replace />;
     }
   }
 
+  // All checks passed → render children
   return <>{children}</>;
 };
