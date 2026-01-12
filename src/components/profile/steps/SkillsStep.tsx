@@ -325,18 +325,30 @@ const SkillsStep: React.FC<SkillsStepProps> = ({ form }) => {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Sparkles className="h-5 w-5 text-primary" />
-            <Label className="text-lg">{t('profile.skills.selectedSkills')}</Label>
+            <Label className="text-lg font-semibold">{t('profile.skills.selectedSkills')}</Label>
           </div>
           <span className={cn(
-            'text-sm',
-            fields.length < 3 ? 'text-destructive' : 'text-muted-foreground'
+            'text-sm font-medium',
+            fields.length < 3 ? 'text-destructive' : fields.length >= 3 ? 'text-green-500' : 'text-muted-foreground'
           )}>
-            {t('profile.skills.skillsCounter', { count: fields.length })}
+            {fields.length} / 20 {t('profile.skills.skillsAdded', { defaultValue: 'skills added' })}
           </span>
         </div>
 
+        {/* Validation Messages */}
         {form.formState.errors.skills?.root && (
           <p className="text-sm text-destructive">{form.formState.errors.skills.root.message}</p>
+        )}
+        {form.formState.errors.skills?.message && (
+          <p className="text-sm text-destructive">{form.formState.errors.skills.message}</p>
+        )}
+        
+        {/* Helpful validation hints */}
+        {fields.length > 0 && fields.length < 3 && (
+          <div className="flex items-center gap-2 text-sm text-amber-500 bg-amber-500/10 p-3 rounded-lg">
+            <span>⚠️</span>
+            <span>{t('profile.skills.minSkillsRequired')}</span>
+          </div>
         )}
 
         {fields.length === 0 ? (
