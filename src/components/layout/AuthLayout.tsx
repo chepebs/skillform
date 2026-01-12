@@ -1,5 +1,7 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import garnierLogo from '@/assets/logo-garnier-small.png';
+import { LanguageSwitcher } from './LanguageSwitcher';
 
 interface AuthLayoutProps {
   children: React.ReactNode;
@@ -8,9 +10,15 @@ interface AuthLayoutProps {
 }
 
 export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitle }) => {
+  const { t } = useTranslation();
 
   return (
-    <div className="min-h-screen flex bg-background pattern-bg">
+    <div className="min-h-screen flex bg-background pattern-bg relative">
+      {/* Language Selector - Top Right */}
+      <div className="absolute top-4 right-4 z-20">
+        <LanguageSwitcher />
+      </div>
+
       {/* Left Side - Branding */}
       <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
         {/* Gradient overlay */}
@@ -41,7 +49,7 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
               </div>
             </div>
             <p className="text-xl text-primary-foreground/80 max-w-md">
-              Discover, connect, and grow with our comprehensive talent management platform.
+              {t('auth.login.subtitle')}
             </p>
           </div>
           
@@ -51,8 +59,8 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
                 <span className="text-2xl">📊</span>
               </div>
               <div>
-                <h3 className="font-semibold">Complete Profiles</h3>
-                <p className="text-sm text-primary-foreground/70">Build comprehensive talent profiles</p>
+                <h3 className="font-semibold">{t('auth.features.profiles')}</h3>
+                <p className="text-sm text-primary-foreground/70">{t('auth.features.profilesDesc')}</p>
               </div>
             </div>
             <div className="flex items-center gap-4">
@@ -60,8 +68,8 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
                 <span className="text-2xl">🔍</span>
               </div>
               <div>
-                <h3 className="font-semibold">Smart Directory</h3>
-                <p className="text-sm text-primary-foreground/70">Find the right talent instantly</p>
+                <h3 className="font-semibold">{t('auth.features.directory')}</h3>
+                <p className="text-sm text-primary-foreground/70">{t('auth.features.directoryDesc')}</p>
               </div>
             </div>
             <div className="flex items-center gap-4">
@@ -69,8 +77,8 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
                 <span className="text-2xl">📈</span>
               </div>
               <div>
-                <h3 className="font-semibold">Analytics</h3>
-                <p className="text-sm text-primary-foreground/70">Data-driven insights for growth</p>
+                <h3 className="font-semibold">{t('auth.features.analytics')}</h3>
+                <p className="text-sm text-primary-foreground/70">{t('auth.features.analyticsDesc')}</p>
               </div>
             </div>
           </div>
@@ -105,7 +113,7 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
           </div>
           
           <p className="text-center text-xs text-muted-foreground mt-8">
-            © 2025 Garnier. All rights reserved.
+            © 2025 Garnier. {t('common.labels.allRightsReserved')}
           </p>
         </div>
       </div>

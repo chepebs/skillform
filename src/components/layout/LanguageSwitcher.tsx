@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Select,
@@ -26,8 +26,17 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
 }) => {
   const { i18n } = useTranslation();
 
+  // Load saved language on mount
+  useEffect(() => {
+    const savedLang = localStorage.getItem('preferredLanguage');
+    if (savedLang && savedLang !== i18n.language) {
+      i18n.changeLanguage(savedLang);
+    }
+  }, [i18n]);
+
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
+    localStorage.setItem('preferredLanguage', lng);
   };
 
   const currentLanguage = languages.find((l) => l.code === i18n.language) || languages[0];
@@ -36,7 +45,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
     <Select value={i18n.language} onValueChange={changeLanguage}>
       <SelectTrigger
         className={cn(
-          'bg-dark-elevated border-dark-border focus:border-primary transition-all duration-300',
+          'bg-card border-border focus:border-primary transition-all duration-300 hover:border-primary',
           compact ? 'w-16 px-2' : 'w-32',
           className
         )}
@@ -58,12 +67,12 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
           )}
         </div>
       </SelectTrigger>
-      <SelectContent className="bg-dark-elevated border-dark-border">
+      <SelectContent className="bg-card border-border">
         {languages.map((language) => (
           <SelectItem
             key={language.code}
             value={language.code}
-            className="cursor-pointer focus:bg-dark-surface"
+            className="cursor-pointer focus:bg-accent"
           >
             <span className="flex items-center gap-2">
               <span className="text-base">{language.flag}</span>

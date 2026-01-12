@@ -124,7 +124,8 @@
       "in": "in",
       "at": "at",
       "on": "on",
-      "for": "for"
+      "for": "for",
+      "allRightsReserved": "All rights reserved"
     },
     "time": {
       "today": "Today",
@@ -265,6 +266,14 @@
       "redirecting": "Redirecting to login...",
       "invalidToken": "Invalid or expired reset link",
       "tryAgain": "Please request a new reset link"
+    },
+    "features": {
+      "profiles": "Complete Profiles",
+      "profilesDesc": "Build comprehensive talent profiles",
+      "directory": "Smart Directory",
+      "directoryDesc": "Find the right talent instantly",
+      "analytics": "Analytics",
+      "analyticsDesc": "Data-driven insights for growth"
     }
   },
   "profile": {

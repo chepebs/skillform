@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useAuth } from '@/contexts/AuthContext';
 import { AuthLayout } from '@/components/layout/AuthLayout';
 import { LoginForm } from '@/components/auth/LoginForm';
@@ -7,6 +8,7 @@ import { LoginForm } from '@/components/auth/LoginForm';
 const Login: React.FC = () => {
   const { user, isLoading } = useAuth();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!isLoading && user) {
@@ -20,19 +22,19 @@ const Login: React.FC = () => {
 
   return (
     <AuthLayout 
-      title="Welcome back" 
-      subtitle="Sign in to access your talent profile"
+      title={t('auth.login.title')} 
+      subtitle={t('auth.login.subtitle')}
     >
       <LoginForm />
       
       <div className="mt-6 text-center">
         <p className="text-sm text-muted-foreground">
-          Don't have an account?{' '}
+          {t('auth.login.noAccount')}{' '}
           <Link 
             to="/register/demo" 
             className="text-primary hover:text-orange-light transition-colors font-medium"
           >
-            Sign up
+            {t('auth.register.signIn')}
           </Link>
         </p>
       </div>

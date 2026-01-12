@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { useTranslation } from 'react-i18next';
 import { useAuth } from '@/contexts/AuthContext';
 import { useAppNavigation } from '@/hooks/useNavigation';
 import { Button } from '@/components/ui/button';
@@ -20,6 +21,7 @@ const loginSchema = z.object({
 type LoginFormData = z.infer<typeof loginSchema>;
 
 export const LoginForm: React.FC = () => {
+  const { t } = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { signIn } = useAuth();
@@ -43,14 +45,14 @@ export const LoginForm: React.FC = () => {
       const { error } = await signIn(data.email, data.password);
       
       if (error) {
-        toast.error(error.message || 'Failed to sign in');
+        toast.error(error.message || t('auth.login.invalidCredentials'));
         return;
       }
       
-      toast.success('Welcome back!');
+      toast.success(t('common.messages.success'));
       navigateToDashboard();
     } catch (err) {
-      toast.error('An unexpected error occurred');
+      toast.error(t('common.messages.error'));
     } finally {
       setIsSubmitting(false);
     }
@@ -64,13 +66,13 @@ export const LoginForm: React.FC = () => {
   return (
     <form onSubmit={handleSubmit(onSubmitWithDebug)} className="space-y-6" autoComplete="off">
       <div className="space-y-2">
-        <Label htmlFor="login-email">Email</Label>
+        <Label htmlFor="login-email">{t('auth.login.emailLabel')}</Label>
         <div className="relative">
           <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
             id="login-email"
             type="email"
-            placeholder="you@company.com"
+            placeholder={t('auth.login.emailPlaceholder')}
             className="pl-10 bg-dark-elevated border-dark-border focus:border-primary"
             autoComplete="off"
             autoCorrect="off"
@@ -85,13 +87,13 @@ export const LoginForm: React.FC = () => {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="login-password">Password</Label>
+        <Label htmlFor="login-password">{t('auth.login.passwordLabel')}</Label>
         <div className="relative">
           <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
             id="login-password"
             type={showPassword ? 'text' : 'password'}
-            placeholder="••••••••"
+            placeholder={t('auth.login.passwordPlaceholder')}
             className="pl-10 pr-10 bg-dark-elevated border-dark-border focus:border-primary"
             autoComplete="new-password"
             {...register('password')}
@@ -113,11 +115,11 @@ export const LoginForm: React.FC = () => {
         <div className="flex items-center gap-2">
           <Checkbox id="rememberMe" {...register('rememberMe')} />
           <Label htmlFor="rememberMe" className="text-sm text-muted-foreground cursor-pointer">
-            Remember me
+            {t('auth.login.rememberMe')}
           </Label>
         </div>
         <a href="#" className="text-sm text-primary hover:text-primary/80 transition-colors">
-          Forgot password?
+          {t('auth.login.forgotPassword')}
         </a>
       </div>
 
@@ -129,17 +131,17 @@ export const LoginForm: React.FC = () => {
         {isSubmitting ? (
           <>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            Signing in...
+            {t('common.messages.loading')}
           </>
         ) : (
-          'Sign in'
+          t('auth.login.submitButton')
         )}
       </Button>
 
       <p className="text-center text-sm text-muted-foreground">
-        Need help?{' '}
+        {t('auth.login.noAccount').replace("Don't have an account?", "").trim() || 'Need help?'}{' '}
         <a href="#" className="text-primary hover:text-primary/80 transition-colors">
-          Contact support
+          {t('auth.login.contactSupport')}
         </a>
       </p>
     </form>
