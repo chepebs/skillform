@@ -7,6 +7,9 @@ export const basicInfoSchema = z.object({
   email: z.string().email('Invalid email'),
   phone: z.string().min(1, 'Phone is required').regex(/^\+?[1-9]\d{1,14}$/, 'Invalid phone format'),
   avatar_url: z.string().optional(),
+  linkedin_url: z.string().url('Invalid URL').optional().or(z.literal('')),
+  instagram_url: z.string().url('Invalid URL').optional().or(z.literal('')),
+  behance_url: z.string().url('Invalid URL').optional().or(z.literal('')),
 });
 
 export const previousPositionSchema = z.object({
@@ -124,6 +127,16 @@ export const awardsSchema = z.object({
   consulting_work: z.string().optional(),
 });
 
+// Industries Schema
+export const industrySelectionSchema = z.object({
+  industry_id: z.string().min(1, 'Industry is required'),
+  years_experience: z.number().min(0).max(50),
+});
+
+export const industriesSchema = z.object({
+  industries: z.array(industrySelectionSchema).min(1, 'At least one industry is required'),
+});
+
 // Types
 export type BasicInfoData = z.infer<typeof basicInfoSchema>;
 export type PreviousPosition = z.infer<typeof previousPositionSchema>;
@@ -140,6 +153,8 @@ export type Skill = z.infer<typeof skillSchema>;
 export type SkillsData = z.infer<typeof skillsSchema>;
 export type Award = z.infer<typeof awardSchema>;
 export type AwardsData = z.infer<typeof awardsSchema>;
+export type IndustrySelection = z.infer<typeof industrySelectionSchema>;
+export type IndustriesData = z.infer<typeof industriesSchema>;
 
 export interface ProfileFormData {
   basicInfo: BasicInfoData;
@@ -150,6 +165,7 @@ export interface ProfileFormData {
   languages: LanguagesData;
   skills: SkillsData;
   awards: AwardsData;
+  industries: IndustriesData;
 }
 
 export const LANGUAGES_OPTIONS = [

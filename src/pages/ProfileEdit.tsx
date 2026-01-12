@@ -31,6 +31,7 @@ import {
   languagesSchema,
   skillsSchema,
   awardsSchema,
+  industriesSchema,
   ProfileFormData,
   BasicInfoData,
   ProfessionalInfoData,
@@ -40,9 +41,11 @@ import {
   LanguagesData,
   SkillsData,
   AwardsData,
+  IndustriesData,
 } from '@/components/profile/types';
+import IndustriesStep from '@/components/profile/steps/IndustriesStep';
 
-const TOTAL_STEPS = 9;
+const TOTAL_STEPS = 10;
 
 const ProfileEdit: React.FC = () => {
   const { t } = useTranslation();
@@ -64,7 +67,12 @@ const ProfileEdit: React.FC = () => {
   // Form instances for each step
   const basicInfoForm = useForm<BasicInfoData>({
     resolver: zodResolver(basicInfoSchema),
-    defaultValues: { first_name: '', last_name: '', email: '', phone: '', avatar_url: '' },
+    defaultValues: { first_name: '', last_name: '', email: '', phone: '', avatar_url: '', linkedin_url: '', instagram_url: '', behance_url: '' },
+  });
+
+  const industriesForm = useForm<IndustriesData>({
+    resolver: zodResolver(industriesSchema),
+    defaultValues: { industries: [] },
   });
 
   const professionalForm = useForm<ProfessionalInfoData>({
@@ -131,6 +139,9 @@ const ProfileEdit: React.FC = () => {
           email: profile.email || '',
           phone: profile.phone || '',
           avatar_url: profile.avatar_url || '',
+          linkedin_url: profile.linkedin_url || '',
+          instagram_url: profile.instagram_url || '',
+          behance_url: profile.behance_url || '',
         });
         professionalForm.reset({
           country_id: profile.country_id || '',
@@ -191,6 +202,7 @@ const ProfileEdit: React.FC = () => {
     languages: languagesForm.getValues(),
     skills: skillsForm.getValues(),
     awards: awardsForm.getValues(),
+    industries: industriesForm.getValues(),
   });
 
   const saveDraft = useCallback(async () => {
@@ -369,8 +381,9 @@ const ProfileEdit: React.FC = () => {
       case 5: return <FormProvider {...brandsProjectsForm}><BrandsProjectsStep form={brandsProjectsForm} /></FormProvider>;
       case 6: return <FormProvider {...languagesForm}><LanguagesStep form={languagesForm} /></FormProvider>;
       case 7: return <FormProvider {...skillsForm}><SkillsStep form={skillsForm} /></FormProvider>;
-      case 8: return <FormProvider {...awardsForm}><AwardsStep form={awardsForm} onSkip={handleNext} /></FormProvider>;
-      case 9: return <ReviewStep data={getAllFormData()} onEdit={setCurrentStep} />;
+      case 8: return <FormProvider {...industriesForm}><IndustriesStep form={industriesForm} /></FormProvider>;
+      case 9: return <FormProvider {...awardsForm}><AwardsStep form={awardsForm} onSkip={handleNext} /></FormProvider>;
+      case 10: return <ReviewStep data={getAllFormData()} onEdit={setCurrentStep} />;
       default: return null;
     }
   };

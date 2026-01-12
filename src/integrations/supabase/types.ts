@@ -18,20 +18,29 @@ export type Database = {
         Row: {
           country_id: string | null
           created_at: string | null
+          description: string | null
           id: string
+          is_active: boolean | null
           name: string
+          sort_order: number | null
         }
         Insert: {
           country_id?: string | null
           created_at?: string | null
+          description?: string | null
           id?: string
+          is_active?: boolean | null
           name: string
+          sort_order?: number | null
         }
         Update: {
           country_id?: string | null
           created_at?: string | null
+          description?: string | null
           id?: string
+          is_active?: boolean | null
           name?: string
+          sort_order?: number | null
         }
         Relationships: [
           {
@@ -184,6 +193,38 @@ export type Database = {
         }
         Relationships: []
       }
+      employee_industries: {
+        Row: {
+          created_at: string | null
+          id: string
+          industry_id: string
+          user_id: string
+          years_experience: number | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          industry_id: string
+          user_id: string
+          years_experience?: number | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          industry_id?: string
+          user_id?: string
+          years_experience?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "employee_industries_industry_id_fkey"
+            columns: ["industry_id"]
+            isOneToOne: false
+            referencedRelation: "industries"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       employee_languages: {
         Row: {
           created_at: string | null
@@ -300,6 +341,27 @@ export type Database = {
           description?: string | null
           id?: string
           name?: string
+        }
+        Relationships: []
+      }
+      industries: {
+        Row: {
+          created_at: string | null
+          id: string
+          name: string
+          sort_order: number | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          name: string
+          sort_order?: number | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          name?: string
+          sort_order?: number | null
         }
         Relationships: []
       }

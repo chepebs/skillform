@@ -21,6 +21,7 @@ import BrandsProjectsStep from '@/components/profile/steps/BrandsProjectsStep';
 import LanguagesStep from '@/components/profile/steps/LanguagesStep';
 import SkillsStep from '@/components/profile/steps/SkillsStep';
 import AwardsStep from '@/components/profile/steps/AwardsStep';
+import IndustriesStep from '@/components/profile/steps/IndustriesStep';
 import ReviewStep from '@/components/profile/steps/ReviewStep';
 
 import {
@@ -32,6 +33,7 @@ import {
   languagesSchema,
   skillsSchema,
   awardsSchema,
+  industriesSchema,
   ProfileFormData,
   BasicInfoData,
   ProfessionalInfoData,
@@ -41,9 +43,10 @@ import {
   LanguagesData,
   SkillsData,
   AwardsData,
+  IndustriesData,
 } from '@/components/profile/types';
 
-const TOTAL_STEPS = 9;
+const TOTAL_STEPS = 10;
 
 const ProfileCreate: React.FC = () => {
   const { t } = useTranslation();
@@ -59,7 +62,16 @@ const ProfileCreate: React.FC = () => {
   // Form instances for each step
   const basicInfoForm = useForm<BasicInfoData>({
     resolver: zodResolver(basicInfoSchema),
-    defaultValues: { first_name: '', last_name: '', email: user?.email || '', phone: '', avatar_url: '' },
+    defaultValues: { 
+      first_name: '', 
+      last_name: '', 
+      email: user?.email || '', 
+      phone: '', 
+      avatar_url: '',
+      linkedin_url: '',
+      instagram_url: '',
+      behance_url: '',
+    },
   });
 
   const professionalForm = useForm<ProfessionalInfoData>({
@@ -97,6 +109,11 @@ const ProfileCreate: React.FC = () => {
     defaultValues: { awards: [], consulting_work: '' },
   });
 
+  const industriesForm = useForm<IndustriesData>({
+    resolver: zodResolver(industriesSchema),
+    defaultValues: { industries: [] },
+  });
+
   // Load existing data on mount
   useEffect(() => {
     if (!user) return;
@@ -109,6 +126,9 @@ const ProfileCreate: React.FC = () => {
           email: profile.email || user.email || '',
           phone: profile.phone || '',
           avatar_url: profile.avatar_url || '',
+          linkedin_url: profile.linkedin_url || '',
+          instagram_url: profile.instagram_url || '',
+          behance_url: profile.behance_url || '',
         });
         professionalForm.reset({
           country_id: profile.country_id || '',
@@ -134,7 +154,7 @@ const ProfileCreate: React.FC = () => {
       }
 
       // Load related data
-      const [positionsRes, agenciesRes, brandsRes, projectsRes, languagesRes, skillsRes, awardsRes] = await Promise.all([
+      const [positionsRes, agenciesRes, brandsRes, projectsRes, languagesRes, skillsRes, awardsRes, industriesRes] = await Promise.all([
         supabase.from('previous_positions').select('*').eq('user_id', user.id),
         supabase.from('previous_agencies').select('*').eq('user_id', user.id),
         supabase.from('brands_managed').select('*').eq('user_id', user.id),
@@ -142,6 +162,7 @@ const ProfileCreate: React.FC = () => {
         supabase.from('employee_languages').select('*').eq('user_id', user.id),
         supabase.from('employee_skills').select('*').eq('user_id', user.id),
         supabase.from('awards').select('*').eq('user_id', user.id),
+        supabase.from('employee_industries').select('*').eq('user_id', user.id),
       ]);
 
       if (positionsRes.data?.length) professionalForm.setValue('previous_positions', positionsRes.data);
@@ -151,6 +172,7 @@ const ProfileCreate: React.FC = () => {
       if (languagesRes.data?.length) languagesForm.setValue('languages', languagesRes.data);
       if (skillsRes.data?.length) skillsForm.setValue('skills', skillsRes.data);
       if (awardsRes.data?.length) awardsForm.setValue('awards', awardsRes.data);
+      if (industriesRes.data?.length) industriesForm.setValue('industries', industriesRes.data);
     };
     loadExistingData();
   }, [user]);
@@ -164,6 +186,7 @@ const ProfileCreate: React.FC = () => {
     languages: languagesForm.getValues(),
     skills: skillsForm.getValues(),
     awards: awardsForm.getValues(),
+    industries: industriesForm.getValues(),
   });
 
   const saveDraft = useCallback(async () => {
@@ -176,6 +199,9 @@ const ProfileCreate: React.FC = () => {
         last_name: data.basicInfo.last_name,
         phone: data.basicInfo.phone,
         avatar_url: data.basicInfo.avatar_url,
+        linkedin_url: data.basicInfo.linkedin_url || null,
+        instagram_url: data.basicInfo.instagram_url || null,
+        behance_url: data.basicInfo.behance_url || null,
         country_id: data.professionalInfo.country_id || null,
         agency_id: data.professionalInfo.agency_id || null,
         current_position: data.professionalInfo.current_position,
@@ -216,7 +242,8 @@ const ProfileCreate: React.FC = () => {
       case 5: return await brandsProjectsForm.trigger();
       case 6: return await languagesForm.trigger();
       case 7: return await skillsForm.trigger();
-      case 8: return true; // Awards optional
+      case 8: return await industriesForm.trigger();
+      case 9: return true; // Awards optional
       default: return true;
     }
   };
@@ -240,6 +267,9 @@ const ProfileCreate: React.FC = () => {
         last_name: data.basicInfo.last_name,
         phone: data.basicInfo.phone,
         avatar_url: data.basicInfo.avatar_url,
+        linkedin_url: data.basicInfo.linkedin_url || null,
+        instagram_url: data.basicInfo.instagram_url || null,
+        behance_url: data.basicInfo.behance_url || null,
         country_id: data.professionalInfo.country_id || null,
         agency_id: data.professionalInfo.agency_id || null,
         current_position: data.professionalInfo.current_position,
@@ -320,6 +350,19 @@ const ProfileCreate: React.FC = () => {
         );
       }
 
+      // Save industries
+      await supabase.from('employee_industries').delete().eq('user_id', user.id);
+      const validIndustries = data.industries.industries.filter(i => i.industry_id);
+      if (validIndustries.length > 0) {
+        await supabase.from('employee_industries').insert(
+          validIndustries.map((i) => ({ 
+            industry_id: i.industry_id, 
+            years_experience: i.years_experience || 0, 
+            user_id: user.id 
+          }))
+        );
+      }
+
       await refreshProfile();
       setShowConfetti(true);
       toast.success('Profile completed successfully!');
@@ -341,8 +384,9 @@ const ProfileCreate: React.FC = () => {
       case 5: return <FormProvider {...brandsProjectsForm}><BrandsProjectsStep form={brandsProjectsForm} /></FormProvider>;
       case 6: return <FormProvider {...languagesForm}><LanguagesStep form={languagesForm} /></FormProvider>;
       case 7: return <FormProvider {...skillsForm}><SkillsStep form={skillsForm} /></FormProvider>;
-      case 8: return <FormProvider {...awardsForm}><AwardsStep form={awardsForm} onSkip={handleNext} /></FormProvider>;
-      case 9: return <ReviewStep data={getAllFormData()} onEdit={setCurrentStep} />;
+      case 8: return <FormProvider {...industriesForm}><IndustriesStep form={industriesForm} /></FormProvider>;
+      case 9: return <FormProvider {...awardsForm}><AwardsStep form={awardsForm} onSkip={handleNext} /></FormProvider>;
+      case 10: return <ReviewStep data={getAllFormData()} onEdit={setCurrentStep} />;
       default: return null;
     }
   };
