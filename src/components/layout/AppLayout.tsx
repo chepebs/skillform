@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
 import { Sidebar } from './Sidebar';
 import { Header } from './Header';
 import { cn } from '@/lib/utils';
 import { X } from 'lucide-react';
 
 export const AppLayout: React.FC = () => {
+  const location = useLocation();
   const [sidebarCollapsed, setSidebarCollapsed] = useState(() => {
     const saved = localStorage.getItem('sidebarCollapsed');
     return saved ? JSON.parse(saved) : false;
@@ -16,13 +17,35 @@ export const AppLayout: React.FC = () => {
     localStorage.setItem('sidebarCollapsed', JSON.stringify(sidebarCollapsed));
   }, [sidebarCollapsed]);
 
-  // Close mobile menu on route change or escape key
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
+
+  // Close mobile menu on escape key and prevent body scroll when open
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setMobileMenuOpen(false);
+      if (e.key === 'Escape' && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
     };
-    window.addEventListener('keydown', handleEscape);
-    return () => window.removeEventListener('keydown', handleEscape);
+
+    if (mobileMenuOpen) {
+      document.addEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'hidden';
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
+  // Explicit close handler with event prevention
+  const handleCloseMobileMenu = useCallback((e: React.MouseEvent | React.TouchEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setMobileMenuOpen(false);
   }, []);
 
   return (
@@ -35,18 +58,29 @@ export const AppLayout: React.FC = () => {
       {/* Mobile Sidebar Overlay */}
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-50 md:hidden">
+          {/* Backdrop */}
           <div 
             className="absolute inset-0 bg-background/80 backdrop-blur-sm"
             onClick={() => setMobileMenuOpen(false)}
+            aria-hidden="true"
           />
+          {/* Sidebar panel */}
           <div className="absolute left-0 top-0 h-full w-64 bg-sidebar border-r border-sidebar-border animate-slide-in-left">
+            {/* Close button - positioned ABOVE the sidebar content with high z-index */}
             <button
-              onClick={() => setMobileMenuOpen(false)}
-              className="absolute right-3 top-3 p-2 rounded-lg hover:bg-dark-elevated transition-colors"
+              onClick={handleCloseMobileMenu}
+              onTouchEnd={handleCloseMobileMenu}
+              className="absolute right-3 top-3 z-[60] p-2 rounded-lg bg-sidebar hover:bg-sidebar-accent active:scale-95 transition-all touch-manipulation select-none"
+              style={{ WebkitTapHighlightColor: 'transparent' }}
+              aria-label="Close menu"
+              type="button"
             >
-              <X className="h-5 w-5 text-muted-foreground" />
+              <X className="h-5 w-5 text-foreground" />
             </button>
-            <Sidebar collapsed={false} onToggle={() => {}} />
+            {/* Sidebar content - add top padding to avoid overlap with close button */}
+            <div className="pt-14">
+              <Sidebar collapsed={false} onToggle={() => {}} />
+            </div>
           </div>
         </div>
       )}
