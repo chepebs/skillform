@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '@/contexts/AuthContext';
@@ -16,8 +16,7 @@ import { Search, Bell, ChevronRight, LogOut, User, Settings, Menu } from 'lucide
 import { cn } from '@/lib/utils';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { ThemeToggle } from './ThemeToggle';
-
-const LOGO_URL = 'https://arbolcg.com/Logo-Garnier-2025-small-white.png';
+import arbolLogo from '@/assets/arbol-logo.png';
 
 interface HeaderProps {
   sidebarCollapsed: boolean;
@@ -55,7 +54,6 @@ export const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, onMobileMenuTo
   const { t } = useTranslation();
   const { profile, role, signOut } = useAuth();
   const routeLabels = getRouteLabels(t);
-  const [imageError, setImageError] = useState(false);
 
   const generateBreadcrumbs = (): Breadcrumb[] => {
     const pathSegments = location.pathname.split('/').filter(Boolean);
@@ -110,18 +108,11 @@ export const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, onMobileMenuTo
             onClick={() => navigate('/dashboard')}
             className="md:hidden flex items-center gap-2 hover:opacity-80 transition-opacity"
           >
-            {!imageError ? (
-              <img 
-                src={LOGO_URL}
-                alt="Grupo Garnier Logo"
-                className="h-8 w-auto object-contain"
-                onError={() => setImageError(true)}
-              />
-            ) : (
-              <div className="h-8 w-8 bg-primary rounded-lg flex items-center justify-center text-primary-foreground font-bold text-sm">
-                GG
-              </div>
-            )}
+            <img 
+              src={arbolLogo}
+              alt="Arbol Logo"
+              className="h-8 w-auto object-contain"
+            />
             <span className="font-semibold text-sm text-foreground">Talent Map</span>
           </button>
           

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth, AppRole } from '@/contexts/AuthContext';
 import { cn } from '@/lib/utils';
@@ -14,8 +14,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from 'lucide-react';
-
-const LOGO_URL = 'https://arbolcg.com/Logo-Garnier-2025-small-white.png';
+import arbolLogo from '@/assets/arbol-logo.png';
 
 interface SidebarProps {
   collapsed: boolean;
@@ -45,7 +44,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
   const { role, profile } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
-  const [imageError, setImageError] = useState(false);
 
   const filteredItems = navItems.filter(item => {
     if (!item.roles) return true;
@@ -91,24 +89,14 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
             onClick={() => navigate('/dashboard')}
             className="flex items-center gap-3 hover:opacity-80 transition-opacity"
           >
-            {!imageError ? (
-              <img 
-                src={LOGO_URL}
-                alt="Grupo Garnier Logo"
-                className={cn(collapsed ? 'h-8' : 'h-10', 'w-auto object-contain')}
-                onError={() => setImageError(true)}
-              />
-            ) : (
-              <div className={cn(
-                collapsed ? 'h-8 w-8 text-sm' : 'h-10 w-10 text-base',
-                'bg-primary rounded-lg flex items-center justify-center text-primary-foreground font-bold'
-              )}>
-                GG
-              </div>
-            )}
+            <img 
+              src={arbolLogo}
+              alt="Arbol Logo"
+              className={cn(collapsed ? 'h-8' : 'h-10', 'w-auto object-contain')}
+            />
             {!collapsed && (
               <div className="flex-1 min-w-0">
-                <p className="text-xs font-semibold text-muted-foreground">Grupo Garnier</p>
+                <p className="text-xs font-semibold text-muted-foreground">Arbol</p>
                 <h1 className="font-bold text-foreground truncate">Talent Map</h1>
               </div>
             )}
