@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
+
+// Import distribution builds to avoid heavy TypeScript type-analysis in some toolchains
+import jsPDF from 'jspdf/dist/jspdf.umd.min.js';
+import html2canvas from 'html2canvas/dist/html2canvas.min.js';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
