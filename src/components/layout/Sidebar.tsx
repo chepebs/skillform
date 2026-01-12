@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useAuth, AppRole } from '@/contexts/AuthContext';
 import { cn } from '@/lib/utils';
 import {
@@ -22,26 +23,27 @@ interface SidebarProps {
 }
 
 interface NavItem {
-  label: string;
+  labelKey: string;
   icon: React.ElementType;
   path: string;
   roles?: AppRole[];
 }
 
 const navItems: NavItem[] = [
-  { label: 'Dashboard', icon: Home, path: '/dashboard' },
-  { label: 'My Profile', icon: User, path: '/profile/me' },
-  { label: 'Directory', icon: Users, path: '/directory' },
-  { label: 'Groups', icon: Folder, path: '/admin/organizer/groups', roles: ['organizer_admin', 'master_admin'] },
-  { label: 'My Team', icon: Users, path: '/admin/director/team', roles: ['department_director', 'master_admin'] },
-  { label: 'Department Info', icon: Building, path: '/admin/director/info', roles: ['department_director', 'master_admin'] },
-  { label: 'User Management', icon: Shield, path: '/admin/master/users', roles: ['master_admin'] },
-  { label: 'Analytics', icon: BarChart3, path: '/admin/master/analytics', roles: ['master_admin'] },
-  { label: 'Settings', icon: Settings, path: '/admin/settings', roles: ['master_admin'] },
+  { labelKey: 'common.navigation.dashboard', icon: Home, path: '/dashboard' },
+  { labelKey: 'common.navigation.myProfile', icon: User, path: '/profile/me' },
+  { labelKey: 'common.navigation.directory', icon: Users, path: '/directory' },
+  { labelKey: 'common.navigation.groups', icon: Folder, path: '/admin/organizer/groups', roles: ['organizer_admin', 'master_admin'] },
+  { labelKey: 'common.navigation.myTeam', icon: Users, path: '/admin/director/team', roles: ['department_director', 'master_admin'] },
+  { labelKey: 'common.navigation.departmentInfo', icon: Building, path: '/admin/director/info', roles: ['department_director', 'master_admin'] },
+  { labelKey: 'common.navigation.userManagement', icon: Shield, path: '/admin/master/users', roles: ['master_admin'] },
+  { labelKey: 'common.navigation.analytics', icon: BarChart3, path: '/admin/master/analytics', roles: ['master_admin'] },
+  { labelKey: 'common.navigation.settings', icon: Settings, path: '/admin/settings', roles: ['master_admin'] },
 ];
 
 export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
   const { role, profile } = useAuth();
+  const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -68,7 +70,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
   };
 
   const formatRole = (userRole: AppRole | null) => {
-    if (!userRole) return 'User';
+    if (!userRole) return t('common.labels.role');
     return userRole.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
   };
 
@@ -108,6 +110,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
             {filteredItems.map((item) => {
               const Icon = item.icon;
               const active = isActive(item.path);
+              const label = t(item.labelKey);
               
               return (
                 <li key={item.path}>
@@ -119,11 +122,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
                         ? 'bg-gradient-primary text-primary-foreground shadow-primary'
                         : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
                     )}
-                    title={collapsed ? item.label : undefined}
+                    title={collapsed ? label : undefined}
                   >
                     <Icon className="h-5 w-5 flex-shrink-0" />
                     {!collapsed && (
-                      <span className="font-medium truncate">{item.label}</span>
+                      <span className="font-medium truncate">{label}</span>
                     )}
                   </NavLink>
                 </li>
