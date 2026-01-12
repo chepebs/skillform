@@ -13,30 +13,17 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
   const { t } = useTranslation();
 
   return (
-    <div className="min-h-screen flex bg-black relative overflow-hidden">
-      {/* Animated background with black and red */}
-      <div className="fixed inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-black via-[#0a0000] to-black" />
-        <div className="absolute top-[20%] left-[20%] w-96 h-96 bg-red-600/10 rounded-full blur-[120px] animate-float" />
-        <div className="absolute bottom-[20%] right-[20%] w-[500px] h-[500px] bg-red-800/10 rounded-full blur-[150px] animate-float" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-[60%] left-[60%] w-72 h-72 bg-red-500/5 rounded-full blur-[100px] animate-float" style={{ animationDelay: '2s' }} />
-      </div>
-
-      {/* Language Selector - Top Right */}
-      <div className="absolute top-4 right-4 z-20">
-        <LanguageSwitcher variant="dark" />
-      </div>
-
-      {/* Left Side - Branding */}
-      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
-        {/* Dark gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-red-700/90 via-red-800/80 to-black/90 z-10" />
+    <div className="min-h-screen flex bg-background relative overflow-hidden">
+      {/* Left Side - Branding (Black with red accents) */}
+      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-black">
+        {/* Subtle gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-[#0a0000] to-black z-0" />
         
-        {/* Animated background shapes */}
+        {/* Animated background shapes - red accents */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute top-20 left-10 w-64 h-64 bg-red-500/20 rounded-full blur-3xl animate-float" />
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-red-600/30 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
-          <div className="absolute top-1/2 left-1/2 w-48 h-48 bg-white/5 rounded-full blur-2xl animate-float" style={{ animationDelay: '2s' }} />
+          <div className="absolute top-20 left-10 w-64 h-64 bg-red-600/15 rounded-full blur-3xl animate-float" />
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-red-700/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
+          <div className="absolute top-1/2 left-1/2 w-48 h-48 bg-red-500/10 rounded-full blur-2xl animate-float" style={{ animationDelay: '2s' }} />
         </div>
         
         {/* Content */}
@@ -63,7 +50,7 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
           
           <div className="space-y-6 mt-12">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-lg bg-white/10 backdrop-blur-sm flex items-center justify-center">
+              <div className="w-12 h-12 rounded-lg bg-red-600/20 backdrop-blur-sm flex items-center justify-center border border-red-500/20">
                 <span className="text-2xl">📊</span>
               </div>
               <div>
@@ -72,7 +59,7 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-lg bg-white/10 backdrop-blur-sm flex items-center justify-center">
+              <div className="w-12 h-12 rounded-lg bg-red-600/20 backdrop-blur-sm flex items-center justify-center border border-red-500/20">
                 <span className="text-2xl">🔍</span>
               </div>
               <div>
@@ -81,7 +68,7 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-lg bg-white/10 backdrop-blur-sm flex items-center justify-center">
+              <div className="w-12 h-12 rounded-lg bg-red-600/20 backdrop-blur-sm flex items-center justify-center border border-red-500/20">
                 <span className="text-2xl">📈</span>
               </div>
               <div>
@@ -93,38 +80,43 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
         </div>
       </div>
       
-      {/* Right Side - Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-8 relative z-10">
+      {/* Right Side - Form (White/Light card) */}
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-8 relative z-10 bg-muted/30">
+        {/* Language Selector - Top Right */}
+        <div className="absolute top-4 right-4 z-20">
+          <LanguageSwitcher />
+        </div>
+
         <div className="w-full max-w-md animate-fade-in">
           {/* Mobile Logo - stacked layout */}
           <div className="lg:hidden flex flex-col items-center gap-2 mb-8">
             <img 
               src={garnierLogo}
               alt="Garnier Logo"
-              className="h-[60px] w-auto object-contain logo-white"
+              className="h-[60px] w-auto object-contain"
             />
             <div className="flex flex-col items-center">
-              <span className="text-xs font-semibold text-white/60">Garnier</span>
-              <span className="text-lg font-bold text-white">Talent Map</span>
+              <span className="text-xs font-semibold text-muted-foreground">Garnier</span>
+              <span className="text-lg font-bold text-foreground">Talent Map</span>
             </div>
           </div>
           
-          {/* Login Card */}
-          <div className="bg-[#0a0a0a]/95 backdrop-blur-xl border border-red-500/20 rounded-2xl p-8 shadow-[0_20px_60px_rgba(0,0,0,0.8),0_0_80px_rgba(255,0,0,0.1)] relative overflow-hidden transition-all duration-400 hover:border-red-500/40 hover:shadow-[0_30px_80px_rgba(0,0,0,0.9),0_0_100px_rgba(255,0,0,0.2)]">
-            {/* Top accent line */}
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-red-600/80 to-transparent" />
+          {/* Login Card - White/Light theme */}
+          <div className="bg-card backdrop-blur-xl border border-border rounded-2xl p-8 shadow-lg relative overflow-hidden transition-all duration-300 hover:shadow-xl">
+            {/* Top accent line - red */}
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-red-600 to-transparent" />
             
             <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold mb-2 text-white">{title}</h2>
+              <h2 className="text-2xl font-bold mb-2 text-card-foreground">{title}</h2>
               {subtitle && (
-                <p className="text-white/60">{subtitle}</p>
+                <p className="text-muted-foreground">{subtitle}</p>
               )}
             </div>
             
             {children}
           </div>
           
-          <p className="text-center text-xs text-white/50 mt-8">
+          <p className="text-center text-xs text-muted-foreground mt-8">
             © 2025 Garnier. {t('common.labels.allRightsReserved')}
           </p>
         </div>
