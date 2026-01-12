@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -12,6 +13,7 @@ import { CreateGroupModal } from '@/components/admin/organizer/CreateGroupModal'
 import { DeleteGroupDialog } from '@/components/admin/organizer/DeleteGroupDialog';
 
 const OrganizerDashboard: React.FC = () => {
+  const { t } = useTranslation();
   const [selectedGroupId, setSelectedGroupId] = useState<string | null>(null);
   const [groupSearchQuery, setGroupSearchQuery] = useState('');
   const [viewMode, setViewMode] = useState<'details' | 'kanban'>('details');
@@ -90,14 +92,14 @@ const OrganizerDashboard: React.FC = () => {
         <div>
           <div className="flex items-center gap-3">
             <h1 className="text-2xl sm:text-3xl font-bold text-foreground">
-              Organizer Dashboard
+              {t('admin.organizer.title')}
             </h1>
             <Badge className="bg-blue-500 hover:bg-blue-600 text-white">
-              Organizer
+              {t('admin.organizer.badge')}
             </Badge>
           </div>
           <p className="text-muted-foreground mt-1">
-            Organize employees into groups
+            {t('admin.organizer.subtitle')}
           </p>
         </div>
 
@@ -106,11 +108,11 @@ const OrganizerDashboard: React.FC = () => {
             <TabsList className="grid grid-cols-2 w-[200px]">
               <TabsTrigger value="details" className="gap-2">
                 <List className="h-4 w-4" />
-                Details
+                {t('admin.organizer.viewModes.details')}
               </TabsTrigger>
               <TabsTrigger value="kanban" className="gap-2">
                 <LayoutGrid className="h-4 w-4" />
-                Kanban
+                {t('admin.organizer.viewModes.kanban')}
               </TabsTrigger>
             </TabsList>
           </Tabs>
@@ -162,17 +164,16 @@ const OrganizerDashboard: React.FC = () => {
                 <div className="text-center">
                   <Folder className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
                   <h3 className="text-lg font-semibold text-foreground mb-2">
-                    Select a Group
+                    {t('admin.organizer.groups.selectGroup')}
                   </h3>
                   <p className="text-muted-foreground max-w-sm">
-                    Select a group from the list to view and manage its members, or
-                    create a new group to get started.
+                    {t('admin.organizer.groups.selectGroupDescription')}
                   </p>
                   <Button
                     onClick={() => setCreateModalOpen(true)}
                     className="mt-6 bg-gradient-to-r from-primary to-primary/80"
                   >
-                    Create New Group
+                    {t('admin.organizer.groups.createNewGroup')}
                   </Button>
                 </div>
               </div>

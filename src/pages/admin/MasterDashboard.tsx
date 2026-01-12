@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -48,6 +49,7 @@ interface User {
 }
 
 const MasterDashboard: React.FC = () => {
+  const { t } = useTranslation();
   const { user } = useAuth();
   const [dateRange, setDateRange] = useState('30');
   const [addUserOpen, setAddUserOpen] = useState(false);
@@ -74,9 +76,9 @@ const MasterDashboard: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <h1 className="text-2xl font-bold text-foreground">Master Admin Dashboard</h1>
+          <h1 className="text-2xl font-bold text-foreground">{t('admin.master.title')}</h1>
           <Badge className="bg-purple-500/20 text-purple-400 border-purple-500/30">
-            Master Admin
+            {t('admin.master.badge')}
           </Badge>
         </div>
         <div className="flex items-center gap-3">
@@ -85,9 +87,9 @@ const MasterDashboard: React.FC = () => {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="7">Last 7 days</SelectItem>
-              <SelectItem value="30">Last 30 days</SelectItem>
-              <SelectItem value="90">Last 90 days</SelectItem>
+              <SelectItem value="7">{t('admin.master.dateRange.last7Days')}</SelectItem>
+              <SelectItem value="30">{t('admin.master.dateRange.last30Days')}</SelectItem>
+              <SelectItem value="90">{t('admin.master.dateRange.last90Days')}</SelectItem>
             </SelectContent>
           </Select>
           <Button variant="outline" size="icon" onClick={refresh} disabled={refreshing}>
@@ -95,7 +97,7 @@ const MasterDashboard: React.FC = () => {
           </Button>
           <Button onClick={() => setAddUserOpen(true)}>
             <UserPlus className="h-4 w-4 mr-2" />
-            Add User
+            {t('admin.master.addUser')}
           </Button>
         </div>
       </div>
@@ -103,7 +105,7 @@ const MasterDashboard: React.FC = () => {
       {/* Stats Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <StatsCard
-          title="Total Users"
+          title={t('admin.master.stats.totalUsers')}
           value={stats.totalUsers}
           icon={Users}
           iconColor="text-blue-400"
@@ -114,27 +116,27 @@ const MasterDashboard: React.FC = () => {
         </StatsCard>
 
         <StatsCard
-          title="Profile Completion"
+          title={t('admin.master.stats.profileCompletion')}
           value={completionRate}
           icon={CheckCircle}
           iconColor={completionRate > 80 ? 'text-green-400' : completionRate > 50 ? 'text-yellow-400' : 'text-red-400'}
           iconBgColor={completionRate > 80 ? 'bg-green-500/10' : completionRate > 50 ? 'bg-yellow-500/10' : 'bg-red-500/10'}
-          subtitle={`${stats.completedProfiles} of ${stats.totalUsers} completed`}
+          subtitle={t('admin.master.stats.completionRate', { count: stats.completedProfiles, total: stats.totalUsers })}
           loading={loading}
         />
 
         <StatsCard
-          title="Active This Month"
+          title={t('admin.master.stats.activeThisMonth')}
           value={stats.activeThisMonth}
           icon={Activity}
           iconColor="text-green-400"
           iconBgColor="bg-green-500/10"
-          subtitle={stats.totalUsers > 0 ? `${Math.round((stats.activeThisMonth / stats.totalUsers) * 100)}% engagement` : '0% engagement'}
+          subtitle={stats.totalUsers > 0 ? t('admin.master.stats.engagementRate', { percent: Math.round((stats.activeThisMonth / stats.totalUsers) * 100) }) : t('admin.master.stats.engagementRate', { percent: 0 })}
           loading={loading}
         />
 
         <StatsCard
-          title="System Status"
+          title={t('admin.master.stats.systemStatus')}
           value={0}
           icon={Server}
           iconColor="text-green-400"
@@ -143,7 +145,7 @@ const MasterDashboard: React.FC = () => {
         >
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-            <span className="text-sm text-green-500">Online</span>
+            <span className="text-sm text-green-500">{t('admin.master.stats.online')}</span>
           </div>
         </StatsCard>
       </div>
@@ -166,7 +168,7 @@ const MasterDashboard: React.FC = () => {
 
       {/* User Management */}
       <div className="glass-card rounded-xl p-6">
-        <h2 className="text-xl font-semibold text-foreground mb-4">User Management</h2>
+        <h2 className="text-xl font-semibold text-foreground mb-4">{t('admin.master.userManagement')}</h2>
         <UserManagementTable
           users={users}
           loading={loading}

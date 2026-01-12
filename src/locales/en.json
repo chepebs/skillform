@@ -658,6 +658,9 @@
     "master": {
       "title": "Master Admin Dashboard",
       "subtitle": "System overview and user management",
+      "badge": "Master Admin",
+      "addUser": "Add User",
+      "userManagement": "User Management",
       "dateRange": {
         "last7Days": "Last 7 days",
         "last30Days": "Last 30 days",
@@ -669,9 +672,10 @@
         "totalUsers": "Total Users",
         "profileCompletion": "Profile Completion",
         "activeThisMonth": "Active This Month",
+        "systemStatus": "System Status",
         "systemHealth": "System Health",
         "breakdown": "Breakdown by role",
-        "completionRate": "{{percent}}% completion rate",
+        "completionRate": "{{count}} of {{total}} completed",
         "averageTime": "Avg. {{time}} to complete",
         "engagementRate": "{{percent}}% engagement",
         "compareLastMonth": "vs. last month",
@@ -679,16 +683,163 @@
         "responseTime": "{{ms}}ms response time",
         "online": "Online",
         "warning": "Warning",
-        "error": "Error"
+        "error": "Error",
+        "fromLastPeriod": "{{percent}}% from last period"
+      },
+      "users": {
+        "searchPlaceholder": "Search users...",
+        "filterByRole": "Filter by role",
+        "filterByStatus": "Filter by status",
+        "filterByCompletion": "Filter by completion",
+        "allRoles": "All Roles",
+        "allStatuses": "All Statuses",
+        "allProfiles": "All Profiles",
+        "completed": "Completed",
+        "incomplete": "Incomplete",
+        "viewProfile": "View Profile",
+        "editUser": "Edit User",
+        "changeRole": "Change Role",
+        "sendEmail": "Send Email",
+        "deleteUser": "Delete User",
+        "toggleActive": "Toggle Active Status",
+        "lastLogin": "Last Login",
+        "never": "Never",
+        "bulkActions": "Bulk Actions",
+        "selectedUsers": "{{count}} user selected",
+        "selectedUsers_plural": "{{count}} users selected"
+      },
+      "invitations": {
+        "title": "Pending Invitations",
+        "noInvitations": "No pending invitations",
+        "expiresIn": "Expires in {{days}} days",
+        "expired": "Expired",
+        "copyLink": "Copy Link",
+        "resend": "Resend",
+        "cancel": "Cancel Invitation"
+      },
+      "addUserModal": {
+        "title": "Add New User",
+        "description": "Send an invitation to add a new user to the system.",
+        "email": "Email",
+        "emailPlaceholder": "user@example.com",
+        "role": "Role",
+        "rolePlaceholder": "Select a role",
+        "department": "Department (Optional)",
+        "departmentPlaceholder": "Select a department",
+        "sendInvitation": "Send invitation email immediately",
+        "sendInvitationHelper": "If unchecked, you'll receive a link to share manually",
+        "customMessage": "Custom Message (Optional)",
+        "customMessagePlaceholder": "Add a personal message to the invitation...",
+        "createInvitation": "Create Invitation",
+        "creating": "Creating...",
+        "invitationCreated": "Invitation created successfully!",
+        "shareLink": "Share this link with the user to complete their registration:",
+        "expiresInDays": "This link expires in 7 days.",
+        "done": "Done"
+      },
+      "changeRoleModal": {
+        "title": "Change User Role",
+        "currentRole": "Current Role",
+        "newRole": "New Role",
+        "selectRole": "Select new role",
+        "confirm": "Change Role",
+        "changing": "Changing..."
+      },
+      "deleteUserDialog": {
+        "title": "Delete User",
+        "description": "Are you sure you want to delete this user? This action cannot be undone.",
+        "warning": "All user data including profile, projects, and awards will be permanently deleted.",
+        "confirm": "Delete User",
+        "deleting": "Deleting..."
       }
     },
     "organizer": {
       "title": "Organizer Dashboard",
-      "subtitle": "Organize employees into groups"
+      "subtitle": "Organize employees into groups",
+      "badge": "Organizer",
+      "viewModes": {
+        "details": "Details",
+        "kanban": "Kanban"
+      },
+      "stats": {
+        "totalProfiles": "Total Profiles",
+        "totalGroups": "Total Groups",
+        "organizationRate": "Organization Rate"
+      },
+      "groups": {
+        "title": "Groups",
+        "searchPlaceholder": "Search groups...",
+        "createGroup": "Create Group",
+        "editGroup": "Edit Group",
+        "deleteGroup": "Delete Group",
+        "noGroups": "No groups created yet",
+        "selectGroup": "Select a Group",
+        "selectGroupDescription": "Select a group from the list to view and manage its members, or create a new group to get started.",
+        "createNewGroup": "Create New Group",
+        "members": "{{count}} member",
+        "members_plural": "{{count}} members"
+      },
+      "groupDetails": {
+        "title": "Group Details",
+        "addMembers": "Add Members",
+        "removeMember": "Remove Member",
+        "searchMembers": "Search for employees to add...",
+        "noMembers": "No members in this group yet",
+        "addMembersHint": "Search and add employees to this group"
+      },
+      "createGroupModal": {
+        "title": "Create New Group",
+        "name": "Group Name",
+        "namePlaceholder": "Enter group name",
+        "description": "Description (Optional)",
+        "descriptionPlaceholder": "Describe the purpose of this group...",
+        "create": "Create Group",
+        "creating": "Creating..."
+      },
+      "deleteGroupDialog": {
+        "title": "Delete Group",
+        "description": "Are you sure you want to delete \"{{name}}\"? This will remove all member associations but won't delete the members themselves.",
+        "confirm": "Delete Group",
+        "deleting": "Deleting..."
+      },
+      "kanban": {
+        "unassigned": "Unassigned",
+        "dragHint": "Drag employees to organize them into groups"
+      }
     },
     "director": {
       "title": "Department Director Dashboard",
-      "subtitle": "Manage your team and department information"
+      "subtitle": "Manage your team and department information",
+      "badge": "Director",
+      "selectDepartment": "Select department",
+      "noDepartments": "No Departments Assigned",
+      "noDepartmentsDescription": "You don't have any departments assigned to you yet. Contact a master admin to be assigned as a department director.",
+      "tabs": {
+        "team": "Team",
+        "analytics": "Analytics",
+        "departmentInfo": "Dept Info"
+      },
+      "stats": {
+        "teamSize": "Team Size",
+        "avgExperience": "Avg. Experience",
+        "years": "{{years}} years",
+        "pitchWinRate": "Pitch Win Rate",
+        "completedProfiles": "Completed Profiles"
+      },
+      "team": {
+        "title": "Team Roster",
+        "searchPlaceholder": "Search team members...",
+        "noMembers": "No team members found",
+        "viewProfile": "View Profile"
+      },
+      "departmentInfo": {
+        "title": "Department Information",
+        "name": "Department Name",
+        "description": "Description",
+        "descriptionPlaceholder": "Enter department description...",
+        "save": "Save Changes",
+        "saving": "Saving..."
+      }
     }
   },
   "roles": {
