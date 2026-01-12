@@ -26,6 +26,9 @@ export interface ProfileData {
   profile_completed: boolean | null;
   country_id: string | null;
   agency_id: string | null;
+  linkedin_url: string | null;
+  instagram_url: string | null;
+  behance_url: string | null;
   country?: { id: string; name: string; code: string } | null;
   agency?: { id: string; name: string } | null;
 }

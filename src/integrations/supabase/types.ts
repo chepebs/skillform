@@ -333,6 +333,72 @@ export type Database = {
         }
         Relationships: []
       }
+      messages: {
+        Row: {
+          created_at: string | null
+          from_user_id: string
+          id: string
+          message: string
+          read: boolean | null
+          read_at: string | null
+          subject: string
+          to_user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          from_user_id: string
+          id?: string
+          message: string
+          read?: boolean | null
+          read_at?: string | null
+          subject: string
+          to_user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          from_user_id?: string
+          id?: string
+          message?: string
+          read?: boolean | null
+          read_at?: string | null
+          subject?: string
+          to_user_id?: string
+        }
+        Relationships: []
+      }
+      notifications: {
+        Row: {
+          created_at: string | null
+          id: string
+          link: string | null
+          message: string
+          read: boolean | null
+          title: string
+          type: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          link?: string | null
+          message: string
+          read?: boolean | null
+          title: string
+          type?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          link?: string | null
+          message?: string
+          read?: boolean | null
+          title?: string
+          type?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       previous_agencies: {
         Row: {
           agency_name: string
@@ -401,6 +467,7 @@ export type Database = {
           academic_degree: string | null
           agency_id: string | null
           avatar_url: string | null
+          behance_url: string | null
           bio: string | null
           brand_creations: number | null
           brand_refreshes: number | null
@@ -414,9 +481,11 @@ export type Database = {
           email: string
           first_name: string | null
           id: string
+          instagram_url: string | null
           is_active: boolean | null
           last_login_at: string | null
           last_name: string | null
+          linkedin_url: string | null
           phone: string | null
           pitches_participated: number | null
           pitches_won: number | null
@@ -431,6 +500,7 @@ export type Database = {
           academic_degree?: string | null
           agency_id?: string | null
           avatar_url?: string | null
+          behance_url?: string | null
           bio?: string | null
           brand_creations?: number | null
           brand_refreshes?: number | null
@@ -444,9 +514,11 @@ export type Database = {
           email: string
           first_name?: string | null
           id?: string
+          instagram_url?: string | null
           is_active?: boolean | null
           last_login_at?: string | null
           last_name?: string | null
+          linkedin_url?: string | null
           phone?: string | null
           pitches_participated?: number | null
           pitches_won?: number | null
@@ -461,6 +533,7 @@ export type Database = {
           academic_degree?: string | null
           agency_id?: string | null
           avatar_url?: string | null
+          behance_url?: string | null
           bio?: string | null
           brand_creations?: number | null
           brand_refreshes?: number | null
@@ -474,9 +547,11 @@ export type Database = {
           email?: string
           first_name?: string | null
           id?: string
+          instagram_url?: string | null
           is_active?: boolean | null
           last_login_at?: string | null
           last_name?: string | null
+          linkedin_url?: string | null
           phone?: string | null
           pitches_participated?: number | null
           pitches_won?: number | null

@@ -27,6 +27,8 @@ import {
 } from '@/components/ui/dropdown-menu';
 import type { ProfileData } from '@/hooks/useProfileData';
 import { getCountryFlag } from '@/utils/countryFlags';
+import { MessageButton } from '@/components/messaging/MessageButton';
+import { SocialMediaLinks } from '@/components/profile/SocialMediaLinks';
 
 interface ProfileHeaderProps {
   profile: ProfileData;
@@ -286,6 +288,15 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({
             )}
           </div>
 
+          {/* Social Media Links */}
+          <SocialMediaLinks
+            linkedinUrl={(profile as any).linkedin_url}
+            instagramUrl={(profile as any).instagram_url}
+            behanceUrl={(profile as any).behance_url}
+            className="mb-4"
+            size="md"
+          />
+
           {/* Contact buttons - simplified without copy buttons */}
           <div className="flex flex-wrap justify-center gap-3">
             <Button
@@ -308,6 +319,11 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({
                 </a>
               </Button>
             )}
+            <MessageButton
+              recipientId={profile.user_id}
+              recipientName={fullName}
+              variant="outline"
+            />
           </div>
         </div>
       </div>
