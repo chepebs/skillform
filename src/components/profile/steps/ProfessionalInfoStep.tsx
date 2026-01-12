@@ -47,12 +47,16 @@ const ProfessionalInfoStep: React.FC<ProfessionalInfoStepProps> = ({ form }) => 
     const fetchData = async () => {
       const [countriesRes, agenciesRes, departmentsRes] = await Promise.all([
         supabase.from('countries').select('*').order('name'),
-        supabase.from('agencies').select('*').order('name'),
+        supabase.from('agencies').select('*').eq('is_active', true).order('sort_order', { ascending: true }),
         supabase.from('departments').select('*').order('name'),
       ]);
 
+      console.log('Agencies fetched:', agenciesRes.data, agenciesRes.error);
       if (countriesRes.data) setCountries(countriesRes.data);
-      if (agenciesRes.data) setAgencies(agenciesRes.data);
+      if (agenciesRes.data) {
+        setAgencies(agenciesRes.data);
+        setFilteredAgencies(agenciesRes.data); // Show all agencies by default
+      }
       if (departmentsRes.data) setDepartments(departmentsRes.data);
     };
 
@@ -62,10 +66,12 @@ const ProfessionalInfoStep: React.FC<ProfessionalInfoStepProps> = ({ form }) => 
   const selectedCountry = form.watch('country_id');
 
   useEffect(() => {
+    // Filter agencies by country if selected, otherwise show all
     if (selectedCountry) {
-      setFilteredAgencies(agencies.filter((a) => a.country_id === selectedCountry));
+      const filtered = agencies.filter((a) => a.country_id === selectedCountry || !a.country_id);
+      setFilteredAgencies(filtered.length > 0 ? filtered : agencies); // Fall back to all if none match
     } else {
-      setFilteredAgencies([]);
+      setFilteredAgencies(agencies);
     }
   }, [selectedCountry, agencies]);
 
@@ -119,19 +125,25 @@ const ProfessionalInfoStep: React.FC<ProfessionalInfoStepProps> = ({ form }) => 
           name="agency_id"
           render={({ field }) => (
             <FormItem>
-              <Label>Agency</Label>
-              <Select onValueChange={field.onChange} value={field.value} disabled={!selectedCountry}>
+              <Label>Agency <span className="text-destructive">*</span></Label>
+              <Select onValueChange={field.onChange} value={field.value}>
                 <FormControl>
                   <SelectTrigger className="bg-dark-elevated border-dark-border">
-                    <SelectValue placeholder={selectedCountry ? "Select agency" : "Select country first"} />
+                    <SelectValue placeholder="Select agency" />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  {filteredAgencies.map((agency) => (
-                    <SelectItem key={agency.id} value={agency.id}>
-                      {agency.name}
-                    </SelectItem>
-                  ))}
+                  {filteredAgencies.length === 0 ? (
+                    <div className="p-2 text-sm text-muted-foreground text-center">
+                      No agencies available
+                    </div>
+                  ) : (
+                    filteredAgencies.map((agency) => (
+                      <SelectItem key={agency.id} value={agency.id}>
+                        {agency.name}
+                      </SelectItem>
+                    ))
+                  )}
                 </SelectContent>
               </Select>
               <FormMessage />

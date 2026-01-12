@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { UseFormReturn } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { FormField, FormItem, FormControl, FormMessage } from '@/components/ui/form';
@@ -8,6 +9,7 @@ import { BasicInfoData } from '../types';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import ImageCropper from '../ImageCropper';
+import { SocialMediaFields } from './SocialMediaFields';
 import { cn } from '@/lib/utils';
 
 interface BasicInfoStepProps {
@@ -240,6 +242,17 @@ const BasicInfoStep: React.FC<BasicInfoStepProps> = ({ form, userId }) => {
         open={showCropper}
         onClose={() => setShowCropper(false)}
         onCropComplete={handleCropComplete}
+      />
+
+      {/* Social Media Fields */}
+      <SocialMediaFields
+        linkedinUrl={form.watch('linkedin_url') || ''}
+        instagramUrl={form.watch('instagram_url') || ''}
+        behanceUrl={form.watch('behance_url') || ''}
+        onLinkedinChange={(value) => form.setValue('linkedin_url', value)}
+        onInstagramChange={(value) => form.setValue('instagram_url', value)}
+        onBehanceChange={(value) => form.setValue('behance_url', value)}
+        className="mt-6 pt-6 border-t border-border"
       />
     </div>
   );
