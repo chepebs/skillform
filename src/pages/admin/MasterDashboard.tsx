@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
   Select,
   SelectContent,
@@ -17,6 +18,8 @@ import {
   Server,
   RefreshCw,
   UserPlus,
+  Building2,
+  LayoutDashboard,
 } from 'lucide-react';
 import { StatsCard } from '@/components/admin/master/StatsCard';
 import { UserManagementTable } from '@/components/admin/master/UserManagementTable';
@@ -32,6 +35,7 @@ import { ChangeRoleModal } from '@/components/admin/master/ChangeRoleModal';
 import { DeleteUserDialog } from '@/components/admin/master/DeleteUserDialog';
 import { PendingInvitations } from '@/components/admin/master/PendingInvitations';
 import { ExportPDFButton } from '@/components/admin/master/ExportPDFButton';
+import { AgencyManagement } from '@/components/admin/master/AgencyManagement';
 import { useMasterDashboardData } from '@/hooks/useMasterDashboardData';
 
 interface User {
@@ -53,6 +57,7 @@ const MasterDashboard: React.FC = () => {
   const { t } = useTranslation();
   const { user } = useAuth();
   const [dateRange, setDateRange] = useState('30');
+  const [activeTab, setActiveTab] = useState('dashboard');
   const [addUserOpen, setAddUserOpen] = useState(false);
   const [changeRoleUser, setChangeRoleUser] = useState<User | null>(null);
   const [deleteUser, setDeleteUser] = useState<User | null>(null);
@@ -73,7 +78,7 @@ const MasterDashboard: React.FC = () => {
     : 0;
 
   return (
-    <div id="analytics-dashboard" className="space-y-6 pdf-exportable">
+    <div id="analytics-dashboard" className="space-y-6 pdf-exportable animate-fade-in">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 no-print">
         <div className="flex items-center gap-3">
@@ -83,26 +88,45 @@ const MasterDashboard: React.FC = () => {
           </Badge>
         </div>
         <div className="flex items-center gap-3">
-          <ExportPDFButton targetId="analytics-dashboard" filename="Grupo-Garnier-Analytics" />
-          <Select value={dateRange} onValueChange={setDateRange}>
-            <SelectTrigger className="w-[140px]">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="7">{t('admin.master.dateRange.last7Days')}</SelectItem>
-              <SelectItem value="30">{t('admin.master.dateRange.last30Days')}</SelectItem>
-              <SelectItem value="90">{t('admin.master.dateRange.last90Days')}</SelectItem>
-            </SelectContent>
-          </Select>
-          <Button variant="outline" size="icon" onClick={refresh} disabled={refreshing}>
-            <RefreshCw className={`h-4 w-4 ${refreshing ? 'animate-spin' : ''}`} />
-          </Button>
-          <Button onClick={() => setAddUserOpen(true)}>
-            <UserPlus className="h-4 w-4 mr-2" />
-            {t('admin.master.addUser')}
-          </Button>
+          {activeTab === 'dashboard' && (
+            <>
+              <ExportPDFButton targetId="analytics-dashboard" filename="Grupo-Garnier-Analytics" />
+              <Select value={dateRange} onValueChange={setDateRange}>
+                <SelectTrigger className="w-[140px]">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="7">{t('admin.master.dateRange.last7Days')}</SelectItem>
+                  <SelectItem value="30">{t('admin.master.dateRange.last30Days')}</SelectItem>
+                  <SelectItem value="90">{t('admin.master.dateRange.last90Days')}</SelectItem>
+                </SelectContent>
+              </Select>
+              <Button variant="outline" size="icon" onClick={refresh} disabled={refreshing}>
+                <RefreshCw className={`h-4 w-4 ${refreshing ? 'animate-spin' : ''}`} />
+              </Button>
+              <Button onClick={() => setAddUserOpen(true)}>
+                <UserPlus className="h-4 w-4 mr-2" />
+                {t('admin.master.addUser')}
+              </Button>
+            </>
+          )}
         </div>
       </div>
+
+      {/* Tabs */}
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+        <TabsList className="grid w-full max-w-md grid-cols-2 mb-6">
+          <TabsTrigger value="dashboard" className="flex items-center gap-2">
+            <LayoutDashboard className="h-4 w-4" />
+            {t('admin.master.tabs.dashboard')}
+          </TabsTrigger>
+          <TabsTrigger value="agencies" className="flex items-center gap-2">
+            <Building2 className="h-4 w-4" />
+            {t('admin.master.tabs.agencies')}
+          </TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="dashboard" className="space-y-6 tab-content">
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -168,19 +192,25 @@ const MasterDashboard: React.FC = () => {
       {/* Pending Invitations */}
       <PendingInvitations />
 
-      {/* User Management */}
-      <div className="glass-card rounded-xl p-6">
-        <h2 className="text-xl font-semibold text-foreground mb-4">{t('admin.master.userManagement')}</h2>
-        <UserManagementTable
-          users={users}
-          loading={loading}
-          onRefresh={refresh}
-          onEditUser={(u) => setChangeRoleUser(u)}
-          onChangeRole={(u) => setChangeRoleUser(u)}
-          onDeleteUser={(u) => setDeleteUser(u)}
-          currentUserId={user?.id || ''}
-        />
-      </div>
+          {/* User Management */}
+          <div className="glass-card rounded-xl p-6">
+            <h2 className="text-xl font-semibold text-foreground mb-4">{t('admin.master.userManagement')}</h2>
+            <UserManagementTable
+              users={users}
+              loading={loading}
+              onRefresh={refresh}
+              onEditUser={(u) => setChangeRoleUser(u)}
+              onChangeRole={(u) => setChangeRoleUser(u)}
+              onDeleteUser={(u) => setDeleteUser(u)}
+              currentUserId={user?.id || ''}
+            />
+          </div>
+        </TabsContent>
+
+        <TabsContent value="agencies" className="tab-content">
+          <AgencyManagement />
+        </TabsContent>
+      </Tabs>
 
       {/* Modals */}
       <AddUserModal

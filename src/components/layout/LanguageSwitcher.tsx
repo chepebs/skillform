@@ -13,6 +13,7 @@ import { cn } from '@/lib/utils';
 interface LanguageSwitcherProps {
   className?: string;
   compact?: boolean;
+  variant?: 'default' | 'dark';
 }
 
 const languages = [
@@ -23,6 +24,7 @@ const languages = [
 export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
   className,
   compact = false,
+  variant = 'default',
 }) => {
   const { i18n } = useTranslation();
 
@@ -41,11 +43,16 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
 
   const currentLanguage = languages.find((l) => l.code === i18n.language) || languages[0];
 
+  const isDark = variant === 'dark';
+
   return (
     <Select value={i18n.language} onValueChange={changeLanguage}>
       <SelectTrigger
         className={cn(
-          'bg-card border-border focus:border-primary transition-all duration-300 hover:border-primary',
+          'transition-all duration-300',
+          isDark 
+            ? 'bg-black/80 border-white/20 text-white hover:border-red-500 focus:border-red-500 focus:ring-red-500/20'
+            : 'bg-card border-border focus:border-primary hover:border-primary',
           compact ? 'w-16 px-2' : 'w-32',
           className
         )}
@@ -56,7 +63,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
             <span className="text-base">{currentLanguage.flag}</span>
           ) : (
             <>
-              <Globe className="h-4 w-4 text-muted-foreground" />
+              <Globe className={cn("h-4 w-4", isDark ? "text-white/60" : "text-muted-foreground")} />
               <SelectValue>
                 <span className="flex items-center gap-2">
                   <span>{currentLanguage.flag}</span>
@@ -67,12 +74,17 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
           )}
         </div>
       </SelectTrigger>
-      <SelectContent className="bg-card border-border">
+      <SelectContent className={cn(
+        isDark ? "bg-[#0a0a0a] border-white/20" : "bg-card border-border"
+      )}>
         {languages.map((language) => (
           <SelectItem
             key={language.code}
             value={language.code}
-            className="cursor-pointer focus:bg-accent"
+            className={cn(
+              "cursor-pointer",
+              isDark ? "focus:bg-red-500/20 text-white" : "focus:bg-accent"
+            )}
           >
             <span className="flex items-center gap-2">
               <span className="text-base">{language.flag}</span>
