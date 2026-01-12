@@ -577,6 +577,18 @@ export type Database = {
         }
         Returns: boolean
       }
+      use_invitation_token: {
+        Args: { p_email: string; p_token: string }
+        Returns: boolean
+      }
+      validate_invitation_token: {
+        Args: { p_token: string }
+        Returns: {
+          email: string
+          is_valid: boolean
+          role: Database["public"]["Enums"]["app_role"]
+        }[]
+      }
     }
     Enums: {
       app_role:
