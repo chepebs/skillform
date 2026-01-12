@@ -31,7 +31,7 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
               <img 
                 src={arbolLogo}
                 alt="Arbol Logo"
-                className="h-20 w-auto object-contain"
+                className="h-[60px] w-auto object-contain logo-white"
               />
               <div>
                 <span className="text-lg font-semibold text-primary-foreground/80">Arbol</span>
@@ -85,7 +85,7 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
             <img 
               src={arbolLogo}
               alt="Arbol Logo"
-              className="h-12 w-auto object-contain"
+              className="h-[60px] w-auto object-contain"
             />
             <div className="flex flex-col">
               <span className="text-xs font-semibold text-muted-foreground">Arbol</span>
