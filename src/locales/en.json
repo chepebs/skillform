@@ -751,6 +751,17 @@
         "warning": "All user data including profile, projects, and awards will be permanently deleted.",
         "confirm": "Delete User",
         "deleting": "Deleting..."
+      },
+      "export": {
+        "exportPDF": "Export as PDF",
+        "exportCSV": "Export as CSV",
+        "exporting": "Exporting...",
+        "pdfSuccess": "PDF exported successfully!",
+        "pdfError": "Failed to export PDF. Please try again.",
+        "csvSuccess": "CSV exported successfully!",
+        "csvError": "Failed to export CSV. Please try again.",
+        "noData": "No data to export",
+        "generatedOn": "Generated on"
       }
     },
     "organizer": {

@@ -751,6 +751,17 @@
         "warning": "Todos los datos del usuario incluyendo perfil, proyectos y premios serán eliminados permanentemente.",
         "confirm": "Eliminar Usuario",
         "deleting": "Eliminando..."
+      },
+      "export": {
+        "exportPDF": "Exportar como PDF",
+        "exportCSV": "Exportar como CSV",
+        "exporting": "Exportando...",
+        "pdfSuccess": "¡PDF exportado exitosamente!",
+        "pdfError": "Error al exportar PDF. Por favor intente de nuevo.",
+        "csvSuccess": "¡CSV exportado exitosamente!",
+        "csvError": "Error al exportar CSV. Por favor intente de nuevo.",
+        "noData": "No hay datos para exportar",
+        "generatedOn": "Generado el"
       }
     },
     "organizer": {

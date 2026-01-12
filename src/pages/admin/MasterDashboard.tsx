@@ -31,6 +31,7 @@ import { AddUserModal } from '@/components/admin/master/AddUserModal';
 import { ChangeRoleModal } from '@/components/admin/master/ChangeRoleModal';
 import { DeleteUserDialog } from '@/components/admin/master/DeleteUserDialog';
 import { PendingInvitations } from '@/components/admin/master/PendingInvitations';
+import { ExportPDFButton } from '@/components/admin/master/ExportPDFButton';
 import { useMasterDashboardData } from '@/hooks/useMasterDashboardData';
 
 interface User {
@@ -72,9 +73,9 @@ const MasterDashboard: React.FC = () => {
     : 0;
 
   return (
-    <div className="space-y-6">
+    <div id="analytics-dashboard" className="space-y-6 pdf-exportable">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 no-print">
         <div className="flex items-center gap-3">
           <h1 className="text-2xl font-bold text-foreground">{t('admin.master.title')}</h1>
           <Badge className="bg-purple-500/20 text-purple-400 border-purple-500/30">
@@ -82,6 +83,7 @@ const MasterDashboard: React.FC = () => {
           </Badge>
         </div>
         <div className="flex items-center gap-3">
+          <ExportPDFButton targetId="analytics-dashboard" filename="Grupo-Garnier-Analytics" />
           <Select value={dateRange} onValueChange={setDateRange}>
             <SelectTrigger className="w-[140px]">
               <SelectValue />
