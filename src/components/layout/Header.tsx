@@ -12,10 +12,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Search, Bell, ChevronRight, LogOut, User, Settings, Menu } from 'lucide-react';
+import { Search, ChevronRight, LogOut, User, Settings, Menu } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { ThemeToggle } from './ThemeToggle';
+import { NotificationsDropdown } from './NotificationsDropdown';
 import garnierLogo from '@/assets/logo-garnier-small.png';
 
 interface HeaderProps {
@@ -158,11 +159,8 @@ export const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, onMobileMenuTo
             <Search className="h-5 w-5 text-muted-foreground" />
           </Button>
 
-          {/* Notifications */}
-          <Button variant="ghost" size="icon" className="relative">
-            <Bell className="h-5 w-5 text-muted-foreground" />
-            <span className="absolute top-1 right-1 w-2 h-2 bg-primary rounded-full" />
-          </Button>
+          {/* Notifications Dropdown */}
+          <NotificationsDropdown />
 
           {/* User Menu */}
           <DropdownMenu>

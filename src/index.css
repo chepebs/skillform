@@ -336,13 +336,29 @@
 
 /* Print Styles */
 @media print {
-  .no-print {
+  /* Hide elements that shouldn't print */
+  .no-print,
+  .sidebar,
+  header,
+  nav,
+  button,
+  .action-buttons {
     display: none !important;
   }
 
-  .pdf-exportable {
+  /* Optimize profile content for print */
+  body {
+    background: white !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .pdf-exportable,
+  .profile-content {
     background: white !important;
     color: black !important;
+    box-shadow: none !important;
+    border: none !important;
   }
 
   .pdf-exportable .glass-card {
@@ -357,9 +373,19 @@
     page-break-inside: avoid;
   }
 
-  body {
-    background: white !important;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
+  /* Full width for print */
+  .max-w-5xl {
+    max-width: 100% !important;
+  }
+
+  /* Ensure text is readable */
+  .text-foreground,
+  .text-muted-foreground {
+    color: #111827 !important;
+  }
+
+  /* Page breaks */
+  .profile-section {
+    page-break-inside: avoid;
   }
 }
