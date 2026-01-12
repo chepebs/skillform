@@ -26,8 +26,8 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
         {/* Content */}
         <div className="relative z-10 flex flex-col justify-center px-16 text-primary-foreground">
           <div className="mb-8">
-            {/* Logo with company branding */}
-            <div className="flex items-center gap-4 mb-8">
+            {/* Logo with company branding - stacked layout */}
+            <div className="flex flex-col items-start gap-4 mb-8">
               <img 
                 src={garnierLogo}
                 alt="Garnier Logo"
@@ -80,14 +80,14 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
       {/* Right Side - Form */}
       <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
         <div className="w-full max-w-md animate-fade-in">
-          {/* Mobile Logo */}
-          <div className="lg:hidden flex items-center justify-center gap-3 mb-8">
+          {/* Mobile Logo - stacked layout */}
+          <div className="lg:hidden flex flex-col items-center gap-2 mb-8">
             <img 
               src={garnierLogo}
               alt="Garnier Logo"
               className="h-[60px] w-auto object-contain"
             />
-            <div className="flex flex-col">
+            <div className="flex flex-col items-center">
               <span className="text-xs font-semibold text-muted-foreground">Garnier</span>
               <span className="text-lg font-bold text-foreground">Talent Map</span>
             </div>
