@@ -16,7 +16,7 @@ import { Search, Bell, ChevronRight, LogOut, User, Settings, Menu } from 'lucide
 import { cn } from '@/lib/utils';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { ThemeToggle } from './ThemeToggle';
-import arbolLogo from '@/assets/arbol-logo.png';
+import garnierLogo from '@/assets/logo-garnier-small.png';
 
 interface HeaderProps {
   sidebarCollapsed: boolean;
@@ -109,8 +109,8 @@ export const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, onMobileMenuTo
             className="md:hidden flex items-center gap-2 hover:opacity-80 transition-opacity"
           >
             <img 
-              src={arbolLogo}
-              alt="Arbol Logo"
+              src={garnierLogo}
+              alt="Garnier Logo"
               className="h-8 w-auto object-contain logo-white"
             />
             <span className="font-semibold text-sm text-foreground">Talent Map</span>

@@ -1,5 +1,5 @@
 import React from 'react';
-import arbolLogo from '@/assets/arbol-logo.png';
+import garnierLogo from '@/assets/logo-garnier-small.png';
 
 interface AuthLayoutProps {
   children: React.ReactNode;
@@ -29,12 +29,12 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
             {/* Logo with company branding */}
             <div className="flex items-center gap-4 mb-8">
               <img 
-                src={arbolLogo}
-                alt="Arbol Logo"
+                src={garnierLogo}
+                alt="Garnier Logo"
                 className="h-[60px] w-auto object-contain logo-white"
               />
               <div>
-                <span className="text-lg font-semibold text-primary-foreground/80">Arbol</span>
+                <span className="text-lg font-semibold text-primary-foreground/80">Garnier</span>
                 <h1 className="text-4xl font-bold leading-tight">
                   Talent Map
                 </h1>
@@ -83,12 +83,12 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
           {/* Mobile Logo */}
           <div className="lg:hidden flex items-center justify-center gap-3 mb-8">
             <img 
-              src={arbolLogo}
-              alt="Arbol Logo"
+              src={garnierLogo}
+              alt="Garnier Logo"
               className="h-[60px] w-auto object-contain"
             />
             <div className="flex flex-col">
-              <span className="text-xs font-semibold text-muted-foreground">Arbol</span>
+              <span className="text-xs font-semibold text-muted-foreground">Garnier</span>
               <span className="text-lg font-bold text-foreground">Talent Map</span>
             </div>
           </div>
@@ -105,7 +105,7 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
           </div>
           
           <p className="text-center text-xs text-muted-foreground mt-8">
-            © 2025 Arbol. All rights reserved.
+            © 2025 Garnier. All rights reserved.
           </p>
         </div>
       </div>

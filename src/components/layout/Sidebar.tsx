@@ -14,7 +14,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from 'lucide-react';
-import arbolLogo from '@/assets/arbol-logo.png';
+import garnierLogo from '@/assets/logo-garnier-small.png';
 
 interface SidebarProps {
   collapsed: boolean;
@@ -90,13 +90,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
             className="flex items-center gap-3 hover:opacity-80 transition-opacity"
           >
             <img 
-              src={arbolLogo}
-              alt="Arbol Logo"
+              src={garnierLogo}
+              alt="Garnier Logo"
               className={cn(collapsed ? 'h-8' : 'h-10', 'w-auto object-contain logo-white')}
             />
             {!collapsed && (
               <div className="flex-1 min-w-0">
-                <p className="text-xs font-semibold text-muted-foreground">Arbol</p>
+                <p className="text-xs font-semibold text-muted-foreground">Garnier</p>
                 <h1 className="font-bold text-foreground truncate">Talent Map</h1>
               </div>
             )}
