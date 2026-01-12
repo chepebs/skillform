@@ -15,6 +15,7 @@ import Dashboard from "./pages/Dashboard";
 import Directory from "./pages/Directory";
 import ProfileCreate from "./pages/ProfileCreate";
 import ProfileView from "./pages/ProfileView";
+import ProfileEdit from "./pages/ProfileEdit";
 import Forbidden from "./pages/Forbidden";
 import NotFound from "./pages/NotFound";
 
@@ -115,6 +116,13 @@ const App = () => (
             <Route path="/profile/create" element={
               <ProtectedRoute>
                 <ProfileCreate />
+              </ProtectedRoute>
+            } />
+
+            {/* Profile Edit (outside AppLayout for full-screen wizard) */}
+            <Route path="/profile/:id/edit" element={
+              <ProtectedRoute>
+                <ProfileEdit />
               </ProtectedRoute>
             } />
 
