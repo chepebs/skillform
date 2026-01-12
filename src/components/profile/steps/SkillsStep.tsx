@@ -22,11 +22,11 @@ const StarRating: React.FC<{
 }> = ({ value, onChange, readonly = false }) => {
   const { t } = useTranslation();
   const levels = [
-    { level: 1, label: t('profile.skills.levels.beginner') },
-    { level: 2, label: t('profile.skills.levels.intermediate') },
-    { level: 3, label: t('profile.skills.levels.advanced') },
-    { level: 4, label: t('profile.skills.levels.expert') },
-    { level: 5, label: t('profile.skills.levels.master') },
+    { level: 1, label: t('profile.skills.proficiencyLevels.1') },
+    { level: 2, label: t('profile.skills.proficiencyLevels.2') },
+    { level: 3, label: t('profile.skills.proficiencyLevels.3') },
+    { level: 4, label: t('profile.skills.proficiencyLevels.4') },
+    { level: 5, label: t('profile.skills.proficiencyLevels.5') },
   ];
 
   const currentLabel = levels.find(l => l.level === value)?.label || '';
@@ -278,27 +278,27 @@ const SkillsStep: React.FC<SkillsStepProps> = ({ form }) => {
         <DialogTrigger asChild>
           <Button variant="outline" className="w-full border-dashed">
             <Plus className="mr-2 h-4 w-4" />
-            {t('profile.skills.addCustom')}
+            {t('profile.skills.addCustomSkill')}
           </Button>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>{t('profile.skills.addCustom')}</DialogTitle>
+            <DialogTitle>{t('profile.skills.addCustomSkill')}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4 pt-4">
             <div className="space-y-2">
-              <Label>{t('profile.skills.skillName')}</Label>
+              <Label>{t('profile.skills.customSkillName')}</Label>
               <Input
                 value={customSkillName}
                 onChange={(e) => setCustomSkillName(e.target.value)}
-                placeholder={t('profile.skills.skillNamePlaceholder')}
+                placeholder={t('profile.skills.customSkillNamePlaceholder')}
               />
             </div>
             <div className="space-y-2">
-              <Label>{t('profile.skills.category')}</Label>
+              <Label>{t('profile.skills.customSkillCategory')}</Label>
               <Select value={customSkillCategory} onValueChange={setCustomSkillCategory}>
                 <SelectTrigger>
-                  <SelectValue placeholder={t('profile.skills.selectCategory')} />
+                  <SelectValue placeholder={t('profile.skills.customSkillCategoryPlaceholder')} />
                 </SelectTrigger>
                 <SelectContent>
                   {SKILL_CATEGORIES.map((cat) => (
@@ -314,7 +314,7 @@ const SkillsStep: React.FC<SkillsStepProps> = ({ form }) => {
               className="w-full bg-gradient-primary"
               disabled={!customSkillName.trim() || !customSkillCategory}
             >
-              {t('common.buttons.add')}
+              {t('profile.skills.addSkill')}
             </Button>
           </div>
         </DialogContent>
@@ -325,13 +325,13 @@ const SkillsStep: React.FC<SkillsStepProps> = ({ form }) => {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Sparkles className="h-5 w-5 text-primary" />
-            <Label className="text-lg">{t('profile.skills.yourSkills')}</Label>
+            <Label className="text-lg">{t('profile.skills.selectedSkills')}</Label>
           </div>
           <span className={cn(
             'text-sm',
             fields.length < 3 ? 'text-destructive' : 'text-muted-foreground'
           )}>
-            {t('profile.skills.skillCount', { count: fields.length, max: 20 })}
+            {t('profile.skills.skillsCounter', { count: fields.length })}
           </span>
         </div>
 
@@ -342,8 +342,7 @@ const SkillsStep: React.FC<SkillsStepProps> = ({ form }) => {
         {fields.length === 0 ? (
           <div className="text-center py-8 border border-dashed border-border rounded-lg">
             <Sparkles className="h-10 w-10 text-muted-foreground mx-auto mb-2" />
-            <p className="text-muted-foreground">{t('profile.skills.noSkills')}</p>
-            <p className="text-xs text-muted-foreground mt-1">{t('profile.skills.noSkillsHint')}</p>
+            <p className="text-muted-foreground">{t('profile.skills.noSkillsSelected')}</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -382,7 +381,7 @@ const SkillsStep: React.FC<SkillsStepProps> = ({ form }) => {
                 <div className="space-y-3">
                   <div>
                     <Label className="text-xs text-muted-foreground">
-                      {t('profile.skills.proficiency')} <span className="text-destructive">*</span>
+                      {t('profile.skills.proficiencyLevel')} <span className="text-destructive">*</span>
                     </Label>
                     <StarRating
                       value={field.proficiency_level}
@@ -392,7 +391,7 @@ const SkillsStep: React.FC<SkillsStepProps> = ({ form }) => {
 
                   <div>
                     <Label className="text-xs text-muted-foreground">
-                      {t('profile.skills.yearsUsing')} <span className="text-muted-foreground">({t('common.labels.optional')})</span>
+                      {t('profile.skills.yearsExperience')} <span className="text-muted-foreground">({t('profile.skills.yearsExperienceOptional')})</span>
                     </Label>
                     <Input
                       type="number"
@@ -418,7 +417,7 @@ const SkillsStep: React.FC<SkillsStepProps> = ({ form }) => {
             onClick={() => fields.forEach((_, i) => remove(i))}
             className="text-muted-foreground hover:text-destructive"
           >
-            {t('profile.skills.clearAll')}
+            {t('profile.skills.clearAllSkills')}
           </Button>
         )}
       </div>
