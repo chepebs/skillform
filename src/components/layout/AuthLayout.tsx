@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import arbolLogo from '@/assets/arbol-logo.png';
 
 interface AuthLayoutProps {
   children: React.ReactNode;
@@ -6,10 +7,7 @@ interface AuthLayoutProps {
   subtitle?: string;
 }
 
-const LOGO_URL = 'https://arbolcg.com/Logo-Garnier-2025-small-white.png';
-
 export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitle }) => {
-  const [imageError, setImageError] = useState(false);
 
   return (
     <div className="min-h-screen flex bg-background pattern-bg">
@@ -30,20 +28,13 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
           <div className="mb-8">
             {/* Logo with company branding */}
             <div className="flex items-center gap-4 mb-8">
-              {!imageError ? (
-                <img 
-                  src={LOGO_URL}
-                  alt="Grupo Garnier Logo"
-                  className="h-20 w-auto object-contain"
-                  onError={() => setImageError(true)}
-                />
-              ) : (
-                <div className="h-20 w-20 bg-foreground/20 backdrop-blur-sm rounded-xl flex items-center justify-center text-primary-foreground font-bold text-2xl">
-                  GG
-                </div>
-              )}
+              <img 
+                src={arbolLogo}
+                alt="Arbol Logo"
+                className="h-20 w-auto object-contain"
+              />
               <div>
-                <span className="text-lg font-semibold text-primary-foreground/80">Grupo Garnier</span>
+                <span className="text-lg font-semibold text-primary-foreground/80">Arbol</span>
                 <h1 className="text-4xl font-bold leading-tight">
                   Talent Map
                 </h1>
@@ -91,20 +82,13 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
         <div className="w-full max-w-md animate-fade-in">
           {/* Mobile Logo */}
           <div className="lg:hidden flex items-center justify-center gap-3 mb-8">
-            {!imageError ? (
-              <img 
-                src={LOGO_URL}
-                alt="Grupo Garnier Logo"
-                className="h-12 w-auto object-contain"
-                onError={() => setImageError(true)}
-              />
-            ) : (
-              <div className="h-12 w-12 bg-primary rounded-xl flex items-center justify-center text-primary-foreground font-bold text-lg">
-                GG
-              </div>
-            )}
+            <img 
+              src={arbolLogo}
+              alt="Arbol Logo"
+              className="h-12 w-auto object-contain"
+            />
             <div className="flex flex-col">
-              <span className="text-xs font-semibold text-muted-foreground">Grupo Garnier</span>
+              <span className="text-xs font-semibold text-muted-foreground">Arbol</span>
               <span className="text-lg font-bold text-foreground">Talent Map</span>
             </div>
           </div>
@@ -121,7 +105,7 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
           </div>
           
           <p className="text-center text-xs text-muted-foreground mt-8">
-            © 2025 Grupo Garnier. All rights reserved.
+            © 2025 Arbol. All rights reserved.
           </p>
         </div>
       </div>
