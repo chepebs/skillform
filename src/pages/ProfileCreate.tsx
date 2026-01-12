@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm, FormProvider } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useTranslation } from 'react-i18next';
 import Confetti from 'react-confetti';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/integrations/supabase/client';
@@ -9,6 +10,7 @@ import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import { ChevronRight, ChevronLeft, Check, Loader2, Save } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { LanguageSwitcher } from '@/components/layout/LanguageSwitcher';
 
 import StepIndicator from '@/components/profile/StepIndicator';
 import BasicInfoStep from '@/components/profile/steps/BasicInfoStep';
@@ -44,6 +46,7 @@ import {
 const TOTAL_STEPS = 9;
 
 const ProfileCreate: React.FC = () => {
+  const { t } = useTranslation();
   const { user, refreshProfile } = useAuth();
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
@@ -345,18 +348,23 @@ const ProfileCreate: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background pattern-bg flex items-center justify-center p-4">
+    <div className="min-h-screen bg-background pattern-bg flex items-center justify-center p-4 relative">
+      {/* Language Selector - Fixed top right */}
+      <div className="fixed top-4 right-4 z-50">
+        <LanguageSwitcher compact />
+      </div>
+      
       {showConfetti && <Confetti recycle={false} numberOfPieces={500} />}
       
       <div className="w-full max-w-3xl">
         {/* Header with save indicator */}
         <div className="flex items-center justify-between mb-4">
-          <h1 className="text-2xl font-bold text-foreground">Complete Your Profile</h1>
+          <h1 className="text-2xl font-bold text-foreground">{t('profile.creation.title')}</h1>
           <div className="flex items-center gap-2 text-xs text-muted-foreground">
             {isSaving ? (
-              <><Loader2 className="h-3 w-3 animate-spin" /> Saving...</>
+              <><Loader2 className="h-3 w-3 animate-spin" /> {t('profile.creation.savingDraft')}</>
             ) : lastSaved ? (
-              <><Save className="h-3 w-3" /> Saved</>
+              <><Save className="h-3 w-3" /> {t('profile.creation.draftSaved')}</>
             ) : null}
           </div>
         </div>
@@ -367,26 +375,26 @@ const ProfileCreate: React.FC = () => {
           {renderStep()}
 
           {/* Navigation */}
-          <div className="flex items-center justify-between mt-8 pt-6 border-t border-dark-border">
+          <div className="flex items-center justify-between mt-8 pt-6 border-t border-border">
             <div className="flex gap-2">
               {currentStep > 1 && (
-                <Button variant="outline" onClick={handlePrevious} className="border-dark-border">
-                  <ChevronLeft className="mr-2 h-4 w-4" /> Back
+                <Button variant="outline" onClick={handlePrevious} className="border-border">
+                  <ChevronLeft className="mr-2 h-4 w-4" /> {t('common.buttons.back')}
                 </Button>
               )}
               <Button variant="ghost" onClick={saveDraft} disabled={isSaving} className="text-muted-foreground">
                 {isSaving ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Save className="mr-2 h-4 w-4" />}
-                Save Draft
+                {t('common.buttons.saveDraft')}
               </Button>
             </div>
 
             {currentStep < TOTAL_STEPS ? (
               <Button onClick={handleNext} className="bg-gradient-primary shadow-primary">
-                Next <ChevronRight className="ml-2 h-4 w-4" />
+                {t('common.buttons.next')} <ChevronRight className="ml-2 h-4 w-4" />
               </Button>
             ) : (
               <Button onClick={handleSubmit} disabled={isSubmitting} className="bg-gradient-primary shadow-primary">
-                {isSubmitting ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Submitting...</> : <><Check className="mr-2 h-4 w-4" /> Complete Profile</>}
+                {isSubmitting ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> {t('profile.creation.completing')}</> : <><Check className="mr-2 h-4 w-4" /> {t('profile.creation.completeProfile')}</>}
               </Button>
             )}
           </div>

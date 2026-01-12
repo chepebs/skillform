@@ -1,17 +1,10 @@
 import React from 'react';
-import { Check, User, Briefcase, GraduationCap, BarChart3, FolderOpen, Languages, Award } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { Check, User, Briefcase, GraduationCap, BarChart3, FolderOpen, Languages, Sparkles, Award, ClipboardList } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Progress } from '@/components/ui/progress';
 
-const STEPS = [
-  { id: 1, title: 'Basic Info', icon: User },
-  { id: 2, title: 'Professional', icon: Briefcase },
-  { id: 3, title: 'Education', icon: GraduationCap },
-  { id: 4, title: 'Performance', icon: BarChart3 },
-  { id: 5, title: 'Brands', icon: FolderOpen },
-  { id: 6, title: 'Languages', icon: Languages },
-  { id: 7, title: 'Awards', icon: Award },
-];
+const STEP_ICONS = [User, Briefcase, GraduationCap, BarChart3, FolderOpen, Languages, Sparkles, Award, ClipboardList];
 
 interface StepIndicatorProps {
   currentStep: number;
@@ -19,25 +12,43 @@ interface StepIndicatorProps {
 }
 
 const StepIndicator: React.FC<StepIndicatorProps> = ({ currentStep, totalSteps }) => {
+  const { t } = useTranslation();
   const progress = ((currentStep - 1) / (totalSteps - 1)) * 100;
+
+  const stepTitles = [
+    t('profile.basicInfo.title'),
+    t('profile.professional.title'),
+    t('profile.education.title'),
+    t('profile.performance.title'),
+    t('profile.projects.title'),
+    t('profile.languages.title'),
+    t('profile.skills.title'),
+    t('profile.awards.title'),
+    t('profile.review.title'),
+  ];
 
   return (
     <div className="mb-8">
       <div className="flex items-center justify-between mb-2">
-        <span className="text-sm font-medium text-foreground">Step {currentStep} of {totalSteps}</span>
-        <span className="text-sm text-muted-foreground">{Math.round(progress)}% Complete</span>
+        <span className="text-sm font-medium text-foreground">
+          {t('profile.creation.stepIndicator', { current: currentStep, total: totalSteps })}
+        </span>
+        <span className="text-sm text-muted-foreground">
+          {t('profile.creation.progressLabel', { percent: Math.round(progress) })}
+        </span>
       </div>
       <Progress value={progress} className="h-2 mb-6" />
       
       <div className="hidden md:flex justify-between">
-        {STEPS.map((step) => {
-          const Icon = step.icon;
-          const isActive = currentStep === step.id;
-          const isCompleted = currentStep > step.id;
+        {stepTitles.slice(0, totalSteps).map((title, index) => {
+          const stepNumber = index + 1;
+          const Icon = STEP_ICONS[index] || ClipboardList;
+          const isActive = currentStep === stepNumber;
+          const isCompleted = currentStep > stepNumber;
 
           return (
             <div
-              key={step.id}
+              key={stepNumber}
               className={cn(
                 'flex flex-col items-center gap-2 transition-colors',
                 isActive && 'text-primary',
@@ -55,7 +66,7 @@ const StepIndicator: React.FC<StepIndicatorProps> = ({ currentStep, totalSteps }
               >
                 {isCompleted ? <Check className="h-5 w-5" /> : <Icon className="h-5 w-5" />}
               </div>
-              <span className="text-xs font-medium text-center">{step.title}</span>
+              <span className="text-xs font-medium text-center max-w-[80px] truncate">{title}</span>
             </div>
           );
         })}
@@ -63,17 +74,20 @@ const StepIndicator: React.FC<StepIndicatorProps> = ({ currentStep, totalSteps }
 
       {/* Mobile view */}
       <div className="md:hidden flex items-center justify-center gap-1">
-        {STEPS.map((step) => (
-          <div
-            key={step.id}
-            className={cn(
-              'w-2 h-2 rounded-full transition-all',
-              currentStep === step.id && 'w-4 bg-primary',
-              currentStep > step.id && 'bg-green-500',
-              currentStep < step.id && 'bg-muted'
-            )}
-          />
-        ))}
+        {stepTitles.slice(0, totalSteps).map((_, index) => {
+          const stepNumber = index + 1;
+          return (
+            <div
+              key={stepNumber}
+              className={cn(
+                'w-2 h-2 rounded-full transition-all',
+                currentStep === stepNumber && 'w-4 bg-primary',
+                currentStep > stepNumber && 'bg-green-500',
+                currentStep < stepNumber && 'bg-muted'
+              )}
+            />
+          );
+        })}
       </div>
     </div>
   );
