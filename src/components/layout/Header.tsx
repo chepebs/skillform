@@ -111,7 +111,7 @@ export const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, onMobileMenuTo
             <img 
               src={arbolLogo}
               alt="Arbol Logo"
-              className="h-8 w-auto object-contain"
+              className="h-8 w-auto object-contain logo-white"
             />
             <span className="font-semibold text-sm text-foreground">Talent Map</span>
           </button>

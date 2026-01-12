@@ -92,7 +92,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
             <img 
               src={arbolLogo}
               alt="Arbol Logo"
-              className={cn(collapsed ? 'h-8' : 'h-10', 'w-auto object-contain')}
+              className={cn(collapsed ? 'h-8' : 'h-10', 'w-auto object-contain logo-white')}
             />
             {!collapsed && (
               <div className="flex-1 min-w-0">

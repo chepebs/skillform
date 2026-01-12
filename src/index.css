@@ -310,4 +310,9 @@
   .text-gradient {
     @apply bg-clip-text text-transparent;
   }
+
+  /* White logo filter - makes any logo white */
+  .logo-white {
+    filter: brightness(0) invert(1);
+  }
 }
