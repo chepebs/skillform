@@ -475,6 +475,7 @@
       "addSkill": "Agregar Habilidad",
       "selectedSkills": "Sus Habilidades Seleccionadas",
       "skillsCounter": "{{count}} de 20 habilidades agregadas",
+      "skillsAdded": "habilidades agregadas",
       "clearAllSkills": "Limpiar Todo",
       "noSkillsSelected": "No se han seleccionado habilidades aún. Elija de las categorías arriba o busque una habilidad.",
       "skillAdded": "Habilidad agregada",

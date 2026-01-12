@@ -475,6 +475,7 @@
       "addSkill": "Add Skill",
       "selectedSkills": "Your Selected Skills",
       "skillsCounter": "{{count}} of 20 skills added",
+      "skillsAdded": "skills added",
       "clearAllSkills": "Clear All",
       "noSkillsSelected": "No skills selected yet. Choose from the categories above or search for a skill.",
       "skillAdded": "Skill added",
