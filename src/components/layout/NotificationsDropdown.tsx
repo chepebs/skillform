@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Bell, Check, Trash2, Info, UserPlus, Award, MessageSquare } from 'lucide-react';
+import { Bell, Check, Trash2, Info, UserPlus, Award, MessageSquare, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -10,37 +10,20 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { cn } from '@/lib/utils';
+import { supabase } from '@/integrations/supabase/client';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface Notification {
   id: string;
-  type: 'info' | 'success' | 'message' | 'user' | 'award';
+  type: string;
   title: string;
   message: string;
   read: boolean;
-  createdAt: Date;
+  link: string | null;
+  created_at: string;
 }
 
-// Mock notifications for now - in production, these would come from the database
-const mockNotifications: Notification[] = [
-  {
-    id: '1',
-    type: 'info',
-    title: 'Welcome to Talent Map',
-    message: 'Your account has been created successfully.',
-    read: false,
-    createdAt: new Date(Date.now() - 1000 * 60 * 30), // 30 mins ago
-  },
-  {
-    id: '2',
-    type: 'user',
-    title: 'Profile Update',
-    message: 'Your profile has been reviewed and approved.',
-    read: true,
-    createdAt: new Date(Date.now() - 1000 * 60 * 60 * 2), // 2 hours ago
-  },
-];
-
-const getNotificationIcon = (type: Notification['type']) => {
+const getNotificationIcon = (type: string) => {
   switch (type) {
     case 'info':
       return <Info className="h-4 w-4 text-blue-500" />;
@@ -52,13 +35,16 @@ const getNotificationIcon = (type: Notification['type']) => {
       return <UserPlus className="h-4 w-4 text-purple-500" />;
     case 'award':
       return <Award className="h-4 w-4 text-yellow-500" />;
+    case 'email':
+      return <Mail className="h-4 w-4 text-primary" />;
     default:
       return <Info className="h-4 w-4 text-muted-foreground" />;
   }
 };
 
-const formatTimeAgo = (date: Date): string => {
+const formatTimeAgo = (dateString: string): string => {
   const now = new Date();
+  const date = new Date(dateString);
   const diffMs = now.getTime() - date.getTime();
   const diffMins = Math.floor(diffMs / (1000 * 60));
   const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
@@ -72,27 +58,128 @@ const formatTimeAgo = (date: Date): string => {
 
 export const NotificationsDropdown: React.FC = () => {
   const { t } = useTranslation();
-  const [notifications, setNotifications] = useState<Notification[]>(mockNotifications);
+  const { user } = useAuth();
+  const [notifications, setNotifications] = useState<Notification[]>([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  // Fetch notifications from database
+  const fetchNotifications = async () => {
+    if (!user?.id) return;
+    
+    setIsLoading(true);
+    try {
+      const { data, error } = await supabase
+        .from('notifications')
+        .select('*')
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false })
+        .limit(20);
+
+      if (error) throw error;
+      setNotifications(data || []);
+    } catch (error) {
+      console.error('Error fetching notifications:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Initial fetch and subscribe to realtime updates
+  useEffect(() => {
+    if (!user?.id) return;
+
+    fetchNotifications();
+
+    // Subscribe to new notifications
+    const channel = supabase
+      .channel('notifications-realtime')
+      .on(
+        'postgres_changes',
+        {
+          event: 'INSERT',
+          schema: 'public',
+          table: 'notifications',
+          filter: `user_id=eq.${user.id}`
+        },
+        (payload) => {
+          setNotifications(prev => [payload.new as Notification, ...prev]);
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [user?.id]);
 
   const unreadCount = notifications.filter(n => !n.read).length;
 
-  const markAsRead = (id: string) => {
-    setNotifications(notifications.map(n => 
-      n.id === id ? { ...n, read: true } : n
-    ));
+  const markAsRead = async (id: string) => {
+    try {
+      const { error } = await supabase
+        .from('notifications')
+        .update({ read: true })
+        .eq('id', id);
+
+      if (error) throw error;
+      
+      setNotifications(notifications.map(n => 
+        n.id === id ? { ...n, read: true } : n
+      ));
+    } catch (error) {
+      console.error('Error marking notification as read:', error);
+    }
   };
 
-  const markAllAsRead = () => {
-    setNotifications(notifications.map(n => ({ ...n, read: true })));
+  const markAllAsRead = async () => {
+    if (!user?.id) return;
+    
+    try {
+      const { error } = await supabase
+        .from('notifications')
+        .update({ read: true })
+        .eq('user_id', user.id)
+        .eq('read', false);
+
+      if (error) throw error;
+      
+      setNotifications(notifications.map(n => ({ ...n, read: true })));
+    } catch (error) {
+      console.error('Error marking all as read:', error);
+    }
   };
 
-  const clearNotification = (id: string) => {
-    setNotifications(notifications.filter(n => n.id !== id));
+  const clearNotification = async (id: string) => {
+    try {
+      const { error } = await supabase
+        .from('notifications')
+        .delete()
+        .eq('id', id);
+
+      if (error) throw error;
+      
+      setNotifications(notifications.filter(n => n.id !== id));
+    } catch (error) {
+      console.error('Error deleting notification:', error);
+    }
   };
 
-  const clearAll = () => {
-    setNotifications([]);
+  const clearAll = async () => {
+    if (!user?.id) return;
+    
+    try {
+      const { error } = await supabase
+        .from('notifications')
+        .delete()
+        .eq('user_id', user.id);
+
+      if (error) throw error;
+      
+      setNotifications([]);
+    } catch (error) {
+      console.error('Error clearing notifications:', error);
+    }
   };
 
   return (
@@ -121,7 +208,11 @@ export const NotificationsDropdown: React.FC = () => {
         </div>
 
         <ScrollArea className="h-[300px]">
-          {notifications.length === 0 ? (
+          {isLoading ? (
+            <div className="flex items-center justify-center py-8">
+              <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary" />
+            </div>
+          ) : notifications.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-8 text-muted-foreground">
               <Bell className="h-8 w-8 mb-2 opacity-50" />
               <p className="text-sm">{t('notifications.noNew', 'No notifications')}</p>
@@ -132,7 +223,7 @@ export const NotificationsDropdown: React.FC = () => {
                 <div
                   key={notification.id}
                   className={cn(
-                    "flex gap-3 p-3 hover:bg-secondary/50 cursor-pointer transition-colors border-b border-border/50 last:border-0",
+                    "flex gap-3 p-3 hover:bg-secondary/50 cursor-pointer transition-colors border-b border-border/50 last:border-0 group",
                     !notification.read && "bg-primary/5"
                   )}
                   onClick={() => markAsRead(notification.id)}
@@ -165,7 +256,7 @@ export const NotificationsDropdown: React.FC = () => {
                       {notification.message}
                     </p>
                     <p className="text-xs text-muted-foreground/70 mt-1">
-                      {formatTimeAgo(notification.createdAt)}
+                      {formatTimeAgo(notification.created_at)}
                     </p>
                   </div>
                   {!notification.read && (

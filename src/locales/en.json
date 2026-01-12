@@ -557,7 +557,37 @@
       "allLooksGood": "Everything looks good!",
       "submitProfile": "Submit Profile",
       "submitting": "Submitting your profile..."
+    },
+    "socialMedia": {
+      "title": "Social Media",
+      "subtitle": "Add your professional social media profiles (optional)",
+      "linkedin": "LinkedIn",
+      "instagram": "Instagram",
+      "behance": "Behance"
     }
+  },
+  "messages": {
+    "title": "Messages",
+    "sendMessage": "Message",
+    "sendTo": "Send message to {{name}}",
+    "subject": "Subject",
+    "subjectPlaceholder": "Enter subject...",
+    "message": "Message",
+    "messagePlaceholder": "Type your message here...",
+    "send": "Send",
+    "sending": "Sending...",
+    "sent": "Message sent successfully",
+    "sendFailed": "Failed to send message",
+    "fillAllFields": "Please fill in all fields",
+    "notAuthenticated": "You must be logged in to send messages",
+    "newMessage": "New Message",
+    "noMessages": "No messages yet"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "markAllRead": "Mark all read",
+    "noNew": "No notifications",
+    "clearAll": "Clear all"
   },
   "directory": {
     "title": "Talent Directory",

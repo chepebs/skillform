@@ -557,7 +557,37 @@
       "allLooksGood": "¡Todo se ve bien!",
       "submitProfile": "Enviar Perfil",
       "submitting": "Enviando su perfil..."
+    },
+    "socialMedia": {
+      "title": "Redes Sociales",
+      "subtitle": "Agregue sus perfiles de redes sociales profesionales (opcional)",
+      "linkedin": "LinkedIn",
+      "instagram": "Instagram",
+      "behance": "Behance"
     }
+  },
+  "messages": {
+    "title": "Mensajes",
+    "sendMessage": "Mensaje",
+    "sendTo": "Enviar mensaje a {{name}}",
+    "subject": "Asunto",
+    "subjectPlaceholder": "Ingrese asunto...",
+    "message": "Mensaje",
+    "messagePlaceholder": "Escriba su mensaje aquí...",
+    "send": "Enviar",
+    "sending": "Enviando...",
+    "sent": "Mensaje enviado exitosamente",
+    "sendFailed": "Error al enviar mensaje",
+    "fillAllFields": "Por favor complete todos los campos",
+    "notAuthenticated": "Debe iniciar sesión para enviar mensajes",
+    "newMessage": "Nuevo Mensaje",
+    "noMessages": "No hay mensajes aún"
+  },
+  "notifications": {
+    "title": "Notificaciones",
+    "markAllRead": "Marcar todo como leído",
+    "noNew": "Sin notificaciones",
+    "clearAll": "Limpiar todo"
   },
   "directory": {
     "title": "Directorio de Talento",
