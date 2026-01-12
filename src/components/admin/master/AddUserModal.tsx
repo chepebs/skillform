@@ -64,6 +64,7 @@ export const AddUserModal: React.FC<AddUserModalProps> = ({
 }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [departments, setDepartments] = useState<Department[]>([]);
+  const [isLoadingDepartments, setIsLoadingDepartments] = useState(false);
   const [invitationLink, setInvitationLink] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
@@ -80,8 +81,21 @@ export const AddUserModal: React.FC<AddUserModalProps> = ({
 
   useEffect(() => {
     const fetchDepartments = async () => {
-      const { data } = await supabase.from('departments').select('id, name');
-      if (data) setDepartments(data);
+      setIsLoadingDepartments(true);
+      try {
+        const { data, error } = await supabase
+          .from('departments')
+          .select('id, name')
+          .order('name');
+        if (error) {
+          console.error('Error fetching departments:', error);
+        }
+        if (data) setDepartments(data);
+      } catch (err) {
+        console.error('Error fetching departments:', err);
+      } finally {
+        setIsLoadingDepartments(false);
+      }
     };
     if (open) fetchDepartments();
   }, [open]);
@@ -266,20 +280,24 @@ export const AddUserModal: React.FC<AddUserModalProps> = ({
                 control={form.control}
                 name="department"
                 render={({ field }) => (
-                  <FormItem>
+              <FormItem>
                     <FormLabel>Department (Optional)</FormLabel>
-                    <Select onValueChange={field.onChange} value={field.value}>
+                    <Select onValueChange={field.onChange} value={field.value} disabled={isLoadingDepartments}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select a department" />
+                          <SelectValue placeholder={isLoadingDepartments ? "Loading departments..." : "Select a department"} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {departments.map((dept) => (
-                          <SelectItem key={dept.id} value={dept.name}>
-                            {dept.name}
-                          </SelectItem>
-                        ))}
+                        {departments.length === 0 && !isLoadingDepartments ? (
+                          <div className="px-2 py-1.5 text-sm text-muted-foreground">No departments available</div>
+                        ) : (
+                          departments.map((dept) => (
+                            <SelectItem key={dept.id} value={dept.name}>
+                              {dept.name}
+                            </SelectItem>
+                          ))
+                        )}
                       </SelectContent>
                     </Select>
                     <FormMessage />
