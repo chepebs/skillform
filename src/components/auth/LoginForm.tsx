@@ -66,14 +66,14 @@ export const LoginForm: React.FC = () => {
   return (
     <form onSubmit={handleSubmit(onSubmitWithDebug)} className="space-y-6" autoComplete="off">
       <div className="space-y-2">
-        <Label htmlFor="login-email">{t('auth.login.emailLabel')}</Label>
+        <Label htmlFor="login-email" className="text-white/80">{t('auth.login.emailLabel')}</Label>
         <div className="relative">
-          <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/40" />
           <Input
             id="login-email"
             type="email"
             placeholder={t('auth.login.emailPlaceholder')}
-            className="pl-10 bg-dark-elevated border-dark-border focus:border-primary"
+            className="pl-10 bg-black border-white/10 text-white placeholder:text-white/30 focus:border-red-500 focus:ring-red-500/20 transition-all"
             autoComplete="off"
             autoCorrect="off"
             autoCapitalize="off"
@@ -82,52 +82,54 @@ export const LoginForm: React.FC = () => {
           />
         </div>
         {errors.email && (
-          <p className="text-sm text-destructive">{errors.email.message}</p>
+          <p className="text-sm text-red-400">{errors.email.message}</p>
         )}
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="login-password">{t('auth.login.passwordLabel')}</Label>
+        <Label htmlFor="login-password" className="text-white/80">{t('auth.login.passwordLabel')}</Label>
         <div className="relative">
-          <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/40" />
           <Input
             id="login-password"
             type={showPassword ? 'text' : 'password'}
             placeholder={t('auth.login.passwordPlaceholder')}
-            className="pl-10 pr-10 bg-dark-elevated border-dark-border focus:border-primary"
+            className="pl-10 pr-10 bg-black border-white/10 text-white placeholder:text-white/30 focus:border-red-500 focus:ring-red-500/20 transition-all"
             autoComplete="new-password"
             {...register('password')}
           />
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 hover:text-white transition-colors"
           >
             {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
           </button>
         </div>
         {errors.password && (
-          <p className="text-sm text-destructive">{errors.password.message}</p>
+          <p className="text-sm text-red-400">{errors.password.message}</p>
         )}
       </div>
 
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Checkbox id="rememberMe" {...register('rememberMe')} />
-          <Label htmlFor="rememberMe" className="text-sm text-muted-foreground cursor-pointer">
+          <Checkbox id="rememberMe" className="border-white/20 data-[state=checked]:bg-red-600 data-[state=checked]:border-red-600" {...register('rememberMe')} />
+          <Label htmlFor="rememberMe" className="text-sm text-white/60 cursor-pointer">
             {t('auth.login.rememberMe')}
           </Label>
         </div>
-        <a href="#" className="text-sm text-primary hover:text-primary/80 transition-colors">
+        <a href="#" className="text-sm text-red-500 hover:text-red-400 transition-colors">
           {t('auth.login.forgotPassword')}
         </a>
       </div>
 
       <Button
         type="submit"
-        className="w-full bg-gradient-primary hover:bg-gradient-primary-hover shadow-primary transition-all duration-200 hover:shadow-primary-lg"
+        className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white shadow-[0_8px_25px_rgba(255,0,0,0.3)] hover:shadow-[0_8px_30px_rgba(255,0,0,0.4)] transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 relative overflow-hidden group"
         disabled={isSubmitting}
       >
+        {/* Shine effect */}
+        <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
         {isSubmitting ? (
           <>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -138,9 +140,9 @@ export const LoginForm: React.FC = () => {
         )}
       </Button>
 
-      <p className="text-center text-sm text-muted-foreground">
+      <p className="text-center text-sm text-white/50">
         {t('auth.login.noAccount').replace("Don't have an account?", "").trim() || 'Need help?'}{' '}
-        <a href="#" className="text-primary hover:text-primary/80 transition-colors">
+        <a href="#" className="text-red-500 hover:text-red-400 transition-colors">
           {t('auth.login.contactSupport')}
         </a>
       </p>
