@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useTheme } from 'next-themes';
 import { useAuth, AppRole } from '@/contexts/AuthContext';
 import { cn } from '@/lib/utils';
 import {
@@ -44,6 +45,7 @@ const navItems: NavItem[] = [
 export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
   const { role, profile } = useAuth();
   const { t } = useTranslation();
+  const { resolvedTheme } = useTheme();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -74,6 +76,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
     return userRole.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
   };
 
+  // Theme-aware logo filter: white in dark mode, black in light mode
+  const logoFilter = resolvedTheme === 'dark' 
+    ? 'brightness(0) invert(1)' 
+    : 'brightness(0)';
+
   return (
     <aside
       className={cn(
@@ -82,24 +89,35 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
       )}
     >
       <div className="flex flex-col h-full">
-        {/* Logo */}
+        {/* Logo Header */}
         <div className={cn(
           'flex items-center h-16 border-b border-sidebar-border',
           collapsed ? 'justify-center px-2' : 'gap-3 px-4'
         )}>
           <button 
             onClick={() => navigate('/dashboard')}
-            className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+            className={cn(
+              'flex items-center gap-3 hover:opacity-80 transition-opacity',
+              collapsed ? 'justify-center' : ''
+            )}
           >
             <img 
               src={garnierLogo}
-              alt="Garnier Logo"
-              className={cn(collapsed ? 'h-8' : 'h-10', 'w-auto object-contain logo-white')}
+              alt="Grupo Garnier Logo"
+              className={cn(
+                'object-contain flex-shrink-0',
+                collapsed ? 'h-8 w-8' : 'h-10 w-auto'
+              )}
+              style={{ filter: logoFilter }}
             />
             {!collapsed && (
-              <div className="flex-1 min-w-0">
-                <p className="text-xs font-semibold text-muted-foreground">Garnier</p>
-                <h1 className="font-bold text-foreground truncate">Talent Map</h1>
+              <div className="flex-1 min-w-0 overflow-hidden">
+                <h2 className="text-base font-bold text-foreground whitespace-nowrap overflow-hidden text-ellipsis">
+                  Grupo Garnier
+                </h2>
+                <p className="text-xs text-muted-foreground whitespace-nowrap overflow-hidden text-ellipsis">
+                  Talent Map
+                </p>
               </div>
             )}
           </button>
