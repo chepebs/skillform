@@ -124,7 +124,8 @@
       "in": "en",
       "at": "en",
       "on": "el",
-      "for": "para"
+      "for": "para",
+      "allRightsReserved": "Todos los derechos reservados"
     },
     "time": {
       "today": "Hoy",
@@ -265,6 +266,14 @@
       "redirecting": "Redirigiendo a inicio de sesión...",
       "invalidToken": "Enlace de restablecimiento inválido o expirado",
       "tryAgain": "Por favor solicite un nuevo enlace de restablecimiento"
+    },
+    "features": {
+      "profiles": "Perfiles Completos",
+      "profilesDesc": "Construya perfiles de talento integrales",
+      "directory": "Directorio Inteligente",
+      "directoryDesc": "Encuentre el talento adecuado al instante",
+      "analytics": "Analíticas",
+      "analyticsDesc": "Insights basados en datos para el crecimiento"
     }
   },
   "profile": {
