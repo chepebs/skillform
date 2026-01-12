@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Grid, List, Download, Users, SortAsc } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -42,6 +43,7 @@ const DEFAULT_FILTERS: DirectoryFilters = {
 };
 
 const Directory: React.FC = () => {
+  const { t } = useTranslation();
   const { role } = useAuth();
   const { toast } = useToast();
   
@@ -120,8 +122,8 @@ const Directory: React.FC = () => {
   const handleExport = () => {
     exportToCSV();
     toast({
-      title: 'Export Complete',
-      description: 'The CSV file is downloading...',
+      title: t('directory.export.exportComplete'),
+      description: t('common.messages.processing'),
     });
   };
 
@@ -136,15 +138,15 @@ const Directory: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-foreground">Talent Directory</h1>
+          <h1 className="text-3xl font-bold text-foreground">{t('directory.title')}</h1>
           <p className="text-muted-foreground mt-1">
-            Browse and find talent across the organization
+            {t('directory.subtitle')}
           </p>
         </div>
         {isAdmin && (
           <Button onClick={handleExport} variant="outline" className="gap-2">
             <Download className="h-4 w-4" />
-            Export to CSV
+            {t('directory.export.exportButton')}
           </Button>
         )}
       </div>
@@ -234,7 +236,7 @@ const Directory: React.FC = () => {
           {/* Results Counter */}
           <div className="flex items-center justify-between mb-4">
             <p className="text-sm text-muted-foreground">
-              Showing {profiles.length} of {totalCount} employees
+              {t('directory.search.resultsCount', { count: profiles.length, total: totalCount })}
             </p>
           </div>
 
@@ -242,7 +244,7 @@ const Directory: React.FC = () => {
           {error && (
             <div className="glass-card rounded-xl p-8 text-center">
               <p className="text-destructive mb-4">{error}</p>
-              <Button onClick={() => window.location.reload()}>Retry</Button>
+              <Button onClick={() => window.location.reload()}>{t('common.buttons.retry')}</Button>
             </div>
           )}
 
@@ -268,18 +270,18 @@ const Directory: React.FC = () => {
             <div className="glass-card rounded-xl p-12 text-center">
               <Users className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
               <h3 className="text-xl font-semibold text-foreground mb-2">
-                No employees found
+                {t('directory.empty.title')}
               </h3>
               <p className="text-muted-foreground mb-6 max-w-md mx-auto">
                 {searchQuery || Object.values(filters).some((v) => 
                   Array.isArray(v) ? v.length > 0 : v !== null && v !== true && v !== 0
                 )
-                  ? 'Try different search terms or remove some filters'
-                  : 'No profiles have been created yet'}
+                  ? t('directory.empty.subtitle')
+                  : t('common.messages.noData')}
               </p>
               {(searchQuery || filters !== DEFAULT_FILTERS) && (
                 <Button onClick={handleClearFilters} variant="outline">
-                  Clear All Filters
+                  {t('directory.empty.clearFilters')}
                 </Button>
               )}
             </div>

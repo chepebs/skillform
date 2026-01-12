@@ -658,6 +658,9 @@
     "master": {
       "title": "Panel de Administrador Principal",
       "subtitle": "Visión general del sistema y gestión de usuarios",
+      "badge": "Administrador Principal",
+      "addUser": "Agregar Usuario",
+      "userManagement": "Gestión de Usuarios",
       "dateRange": {
         "last7Days": "Últimos 7 días",
         "last30Days": "Últimos 30 días",
@@ -669,9 +672,10 @@
         "totalUsers": "Usuarios Totales",
         "profileCompletion": "Completitud de Perfiles",
         "activeThisMonth": "Activos Este Mes",
+        "systemStatus": "Estado del Sistema",
         "systemHealth": "Salud del Sistema",
         "breakdown": "Desglose por rol",
-        "completionRate": "{{percent}}% tasa de completitud",
+        "completionRate": "{{count}} de {{total}} completados",
         "averageTime": "Promedio {{time}} para completar",
         "engagementRate": "{{percent}}% compromiso",
         "compareLastMonth": "vs. mes pasado",
@@ -679,16 +683,163 @@
         "responseTime": "{{ms}}ms tiempo de respuesta",
         "online": "En Línea",
         "warning": "Advertencia",
-        "error": "Error"
+        "error": "Error",
+        "fromLastPeriod": "{{percent}}% del período anterior"
+      },
+      "users": {
+        "searchPlaceholder": "Buscar usuarios...",
+        "filterByRole": "Filtrar por rol",
+        "filterByStatus": "Filtrar por estado",
+        "filterByCompletion": "Filtrar por completitud",
+        "allRoles": "Todos los Roles",
+        "allStatuses": "Todos los Estados",
+        "allProfiles": "Todos los Perfiles",
+        "completed": "Completados",
+        "incomplete": "Incompletos",
+        "viewProfile": "Ver Perfil",
+        "editUser": "Editar Usuario",
+        "changeRole": "Cambiar Rol",
+        "sendEmail": "Enviar Correo",
+        "deleteUser": "Eliminar Usuario",
+        "toggleActive": "Cambiar Estado Activo",
+        "lastLogin": "Último Acceso",
+        "never": "Nunca",
+        "bulkActions": "Acciones Masivas",
+        "selectedUsers": "{{count}} usuario seleccionado",
+        "selectedUsers_plural": "{{count}} usuarios seleccionados"
+      },
+      "invitations": {
+        "title": "Invitaciones Pendientes",
+        "noInvitations": "Sin invitaciones pendientes",
+        "expiresIn": "Expira en {{days}} días",
+        "expired": "Expirada",
+        "copyLink": "Copiar Enlace",
+        "resend": "Reenviar",
+        "cancel": "Cancelar Invitación"
+      },
+      "addUserModal": {
+        "title": "Agregar Nuevo Usuario",
+        "description": "Envíe una invitación para agregar un nuevo usuario al sistema.",
+        "email": "Correo Electrónico",
+        "emailPlaceholder": "usuario@ejemplo.com",
+        "role": "Rol",
+        "rolePlaceholder": "Seleccione un rol",
+        "department": "Departamento (Opcional)",
+        "departmentPlaceholder": "Seleccione un departamento",
+        "sendInvitation": "Enviar correo de invitación inmediatamente",
+        "sendInvitationHelper": "Si no está marcado, recibirá un enlace para compartir manualmente",
+        "customMessage": "Mensaje Personalizado (Opcional)",
+        "customMessagePlaceholder": "Agregue un mensaje personal a la invitación...",
+        "createInvitation": "Crear Invitación",
+        "creating": "Creando...",
+        "invitationCreated": "¡Invitación creada exitosamente!",
+        "shareLink": "Comparta este enlace con el usuario para completar su registro:",
+        "expiresInDays": "Este enlace expira en 7 días.",
+        "done": "Listo"
+      },
+      "changeRoleModal": {
+        "title": "Cambiar Rol de Usuario",
+        "currentRole": "Rol Actual",
+        "newRole": "Nuevo Rol",
+        "selectRole": "Seleccione nuevo rol",
+        "confirm": "Cambiar Rol",
+        "changing": "Cambiando..."
+      },
+      "deleteUserDialog": {
+        "title": "Eliminar Usuario",
+        "description": "¿Está seguro de que desea eliminar este usuario? Esta acción no se puede deshacer.",
+        "warning": "Todos los datos del usuario incluyendo perfil, proyectos y premios serán eliminados permanentemente.",
+        "confirm": "Eliminar Usuario",
+        "deleting": "Eliminando..."
       }
     },
     "organizer": {
       "title": "Panel de Organizador",
-      "subtitle": "Organice empleados en grupos"
+      "subtitle": "Organice empleados en grupos",
+      "badge": "Organizador",
+      "viewModes": {
+        "details": "Detalles",
+        "kanban": "Kanban"
+      },
+      "stats": {
+        "totalProfiles": "Perfiles Totales",
+        "totalGroups": "Grupos Totales",
+        "organizationRate": "Tasa de Organización"
+      },
+      "groups": {
+        "title": "Grupos",
+        "searchPlaceholder": "Buscar grupos...",
+        "createGroup": "Crear Grupo",
+        "editGroup": "Editar Grupo",
+        "deleteGroup": "Eliminar Grupo",
+        "noGroups": "No hay grupos creados aún",
+        "selectGroup": "Seleccione un Grupo",
+        "selectGroupDescription": "Seleccione un grupo de la lista para ver y gestionar sus miembros, o cree un nuevo grupo para comenzar.",
+        "createNewGroup": "Crear Nuevo Grupo",
+        "members": "{{count}} miembro",
+        "members_plural": "{{count}} miembros"
+      },
+      "groupDetails": {
+        "title": "Detalles del Grupo",
+        "addMembers": "Agregar Miembros",
+        "removeMember": "Eliminar Miembro",
+        "searchMembers": "Buscar empleados para agregar...",
+        "noMembers": "No hay miembros en este grupo aún",
+        "addMembersHint": "Busque y agregue empleados a este grupo"
+      },
+      "createGroupModal": {
+        "title": "Crear Nuevo Grupo",
+        "name": "Nombre del Grupo",
+        "namePlaceholder": "Ingrese nombre del grupo",
+        "description": "Descripción (Opcional)",
+        "descriptionPlaceholder": "Describa el propósito de este grupo...",
+        "create": "Crear Grupo",
+        "creating": "Creando..."
+      },
+      "deleteGroupDialog": {
+        "title": "Eliminar Grupo",
+        "description": "¿Está seguro de que desea eliminar \"{{name}}\"? Esto eliminará todas las asociaciones de miembros pero no eliminará a los miembros.",
+        "confirm": "Eliminar Grupo",
+        "deleting": "Eliminando..."
+      },
+      "kanban": {
+        "unassigned": "Sin Asignar",
+        "dragHint": "Arrastre empleados para organizarlos en grupos"
+      }
     },
     "director": {
       "title": "Panel de Director de Departamento",
-      "subtitle": "Gestione su equipo e información del departamento"
+      "subtitle": "Gestione su equipo e información del departamento",
+      "badge": "Director",
+      "selectDepartment": "Seleccionar departamento",
+      "noDepartments": "Sin Departamentos Asignados",
+      "noDepartmentsDescription": "No tiene ningún departamento asignado todavía. Contacte a un administrador principal para ser asignado como director de departamento.",
+      "tabs": {
+        "team": "Equipo",
+        "analytics": "Analíticas",
+        "departmentInfo": "Info. Dept."
+      },
+      "stats": {
+        "teamSize": "Tamaño del Equipo",
+        "avgExperience": "Experiencia Prom.",
+        "years": "{{years}} años",
+        "pitchWinRate": "Tasa de Éxito en Pitches",
+        "completedProfiles": "Perfiles Completados"
+      },
+      "team": {
+        "title": "Equipo",
+        "searchPlaceholder": "Buscar miembros del equipo...",
+        "noMembers": "No se encontraron miembros del equipo",
+        "viewProfile": "Ver Perfil"
+      },
+      "departmentInfo": {
+        "title": "Información del Departamento",
+        "name": "Nombre del Departamento",
+        "description": "Descripción",
+        "descriptionPlaceholder": "Ingrese descripción del departamento...",
+        "save": "Guardar Cambios",
+        "saving": "Guardando..."
+      }
     }
   },
   "roles": {
