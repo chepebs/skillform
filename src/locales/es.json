@@ -69,7 +69,11 @@
       "analytics": "Analíticas",
       "settings": "Configuración",
       "help": "Ayuda",
-      "logout": "Cerrar Sesión"
+      "logout": "Cerrar Sesión",
+      "admin": "Administración",
+      "organizer": "Organizador",
+      "director": "Director",
+      "masterAdmin": "Administrador Principal"
     },
     "status": {
       "active": "Activo",
@@ -191,6 +195,8 @@
     }
   },
   "auth": {
+    "myAccount": "Mi Cuenta",
+    "logout": "Cerrar Sesión",
     "login": {
       "title": "Iniciar Sesión",
       "subtitle": "Bienvenido de nuevo al Mapa de Talento Grupo Garnier",
@@ -262,6 +268,9 @@
     }
   },
   "profile": {
+    "title": "Perfil",
+    "viewProfile": "Ver Perfil",
+    "createProfile": "Crear Perfil",
     "creation": {
       "title": "Cree Su Perfil",
       "subtitle": "Cuéntenos sobre usted y su experiencia",

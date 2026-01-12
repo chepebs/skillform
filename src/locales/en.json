@@ -69,7 +69,11 @@
       "analytics": "Analytics",
       "settings": "Settings",
       "help": "Help",
-      "logout": "Logout"
+      "logout": "Logout",
+      "admin": "Admin",
+      "organizer": "Organizer",
+      "director": "Director",
+      "masterAdmin": "Master Admin"
     },
     "status": {
       "active": "Active",
@@ -191,6 +195,8 @@
     }
   },
   "auth": {
+    "myAccount": "My Account",
+    "logout": "Log Out",
     "login": {
       "title": "Sign In",
       "subtitle": "Welcome back to Grupo Garnier Talent Map",
@@ -262,6 +268,9 @@
     }
   },
   "profile": {
+    "title": "Profile",
+    "viewProfile": "View Profile",
+    "createProfile": "Create Profile",
     "creation": {
       "title": "Create Your Profile",
       "subtitle": "Tell us about yourself and your expertise",
