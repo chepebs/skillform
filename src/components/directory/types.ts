@@ -39,6 +39,14 @@ export interface DirectoryFilters {
   hasCannesAwards: boolean;
   hasAnyAwards: boolean;
   completedOnly: boolean;
+  skills: string[];
+  industries: string[];
+}
+
+export interface Industry {
+  id: string;
+  name: string;
+  sort_order: number | null;
 }
 
 export interface Country {

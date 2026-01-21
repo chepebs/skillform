@@ -26,6 +26,7 @@ import {
   DirectoryFilters as Filters,
   Country,
   Agency,
+  Industry,
   FilterCounts,
   DEPARTMENTS,
   EXPERIENCE_LEVELS,
@@ -37,6 +38,8 @@ interface DirectoryFiltersProps {
   countries: Country[];
   agencies: Agency[];
   languages: string[];
+  skills: string[];
+  industries: Industry[];
   filterCounts: FilterCounts;
   isMobile?: boolean;
 }
@@ -47,6 +50,8 @@ export const DirectoryFiltersPanel: React.FC<DirectoryFiltersProps> = ({
   countries,
   agencies,
   languages,
+  skills,
+  industries,
   filterCounts,
   isMobile = false,
 }) => {
@@ -94,7 +99,23 @@ export const DirectoryFiltersPanel: React.FC<DirectoryFiltersProps> = ({
       hasCannesAwards: false,
       hasAnyAwards: false,
       completedOnly: true,
+      skills: [],
+      industries: [],
     });
+  };
+
+  const handleSkillToggle = (skill: string) => {
+    const newSkills = filters.skills.includes(skill)
+      ? filters.skills.filter((s) => s !== skill)
+      : [...filters.skills, skill];
+    onChange({ ...filters, skills: newSkills });
+  };
+
+  const handleIndustryToggle = (industryId: string) => {
+    const newIndustries = filters.industries.includes(industryId)
+      ? filters.industries.filter((i) => i !== industryId)
+      : [...filters.industries, industryId];
+    onChange({ ...filters, industries: newIndustries });
   };
 
   const filteredAgencies = filters.countries.length > 0
@@ -345,6 +366,60 @@ export const DirectoryFiltersPanel: React.FC<DirectoryFiltersProps> = ({
             </AccordionContent>
           </AccordionItem>
 
+          {/* Skills Filter */}
+          <AccordionItem value="skills" className="border border-dark-border rounded-lg overflow-hidden">
+            <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-dark-elevated">
+              <span className="text-sm font-medium">Skills</span>
+            </AccordionTrigger>
+            <AccordionContent className="px-4 pb-4">
+              <div className="space-y-2 max-h-48 overflow-y-auto">
+                {skills.length === 0 ? (
+                  <p className="text-sm text-muted-foreground">No skills available</p>
+                ) : (
+                  skills.slice(0, 30).map((skill) => (
+                    <div key={skill} className="flex items-center gap-2">
+                      <Checkbox
+                        id={`skill-${skill}`}
+                        checked={filters.skills.includes(skill)}
+                        onCheckedChange={() => handleSkillToggle(skill)}
+                      />
+                      <Label htmlFor={`skill-${skill}`} className="text-sm cursor-pointer">
+                        {skill}
+                      </Label>
+                    </div>
+                  ))
+                )}
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+
+          {/* Industries Filter */}
+          <AccordionItem value="industries" className="border border-dark-border rounded-lg overflow-hidden">
+            <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-dark-elevated">
+              <span className="text-sm font-medium">Industries</span>
+            </AccordionTrigger>
+            <AccordionContent className="px-4 pb-4">
+              <div className="space-y-2 max-h-48 overflow-y-auto">
+                {industries.length === 0 ? (
+                  <p className="text-sm text-muted-foreground">No industries available</p>
+                ) : (
+                  industries.map((industry) => (
+                    <div key={industry.id} className="flex items-center gap-2">
+                      <Checkbox
+                        id={`industry-${industry.id}`}
+                        checked={filters.industries.includes(industry.id)}
+                        onCheckedChange={() => handleIndustryToggle(industry.id)}
+                      />
+                      <Label htmlFor={`industry-${industry.id}`} className="text-sm cursor-pointer">
+                        {industry.name}
+                      </Label>
+                    </div>
+                  ))
+                )}
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+
           {/* Profile Status Filter */}
           <AccordionItem value="status" className="border border-dark-border rounded-lg overflow-hidden">
             <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-dark-elevated">
@@ -435,6 +510,8 @@ function countActiveFilters(filters: Filters): number {
   if (filters.hasCannesAwards) count++;
   if (filters.hasAnyAwards) count++;
   if (!filters.completedOnly) count++;
+  if (filters.skills.length > 0) count++;
+  if (filters.industries.length > 0) count++;
   return count;
 }
 

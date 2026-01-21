@@ -6,6 +6,7 @@ import {
   DirectoryFilters,
   Country,
   Agency,
+  Industry,
   FilterCounts,
   SortOption,
   EXPERIENCE_LEVELS,
@@ -28,6 +29,8 @@ export function useDirectoryData(
   const [countries, setCountries] = useState<Country[]>([]);
   const [agencies, setAgencies] = useState<Agency[]>([]);
   const [allLanguages, setAllLanguages] = useState<string[]>([]);
+  const [allSkills, setAllSkills] = useState<string[]>([]);
+  const [allIndustries, setAllIndustries] = useState<Industry[]>([]);
   const [filterCounts, setFilterCounts] = useState<FilterCounts>({
     departments: {},
     countries: {},
@@ -40,10 +43,12 @@ export function useDirectoryData(
   // Fetch reference data on mount
   useEffect(() => {
     const fetchReferenceData = async () => {
-      const [countriesRes, agenciesRes, languagesRes] = await Promise.all([
+      const [countriesRes, agenciesRes, languagesRes, skillsRes, industriesRes] = await Promise.all([
         supabase.from('countries').select('*').order('name'),
         supabase.from('agencies').select('*').order('name'),
         supabase.from('employee_languages').select('language'),
+        supabase.from('employee_skills').select('skill_name'),
+        supabase.from('industries').select('*').order('sort_order'),
       ]);
 
       if (countriesRes.data) setCountries(countriesRes.data);
@@ -51,6 +56,13 @@ export function useDirectoryData(
       if (languagesRes.data) {
         const uniqueLangs = [...new Set(languagesRes.data.map((l) => l.language))];
         setAllLanguages(uniqueLangs.sort());
+      }
+      if (skillsRes.data) {
+        const uniqueSkills = [...new Set(skillsRes.data.map((s) => s.skill_name))];
+        setAllSkills(uniqueSkills.sort());
+      }
+      if (industriesRes.data) {
+        setAllIndustries(industriesRes.data);
       }
     };
 
@@ -241,6 +253,8 @@ export function useDirectoryData(
     countries,
     agencies,
     allLanguages,
+    allSkills,
+    allIndustries,
     filterCounts,
     pageSize,
   };

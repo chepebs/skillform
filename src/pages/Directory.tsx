@@ -40,6 +40,8 @@ const DEFAULT_FILTERS: DirectoryFilters = {
   hasCannesAwards: false,
   hasAnyAwards: false,
   completedOnly: true,
+  skills: [],
+  industries: [],
 };
 
 const Directory: React.FC = () => {
@@ -62,6 +64,8 @@ const Directory: React.FC = () => {
     countries,
     agencies,
     allLanguages,
+    allSkills,
+    allIndustries,
     filterCounts,
   } = useDirectoryData(searchQuery, filters, sortBy, viewMode, currentPage);
 
@@ -110,6 +114,12 @@ const Directory: React.FC = () => {
         break;
       case 'hasAnyAwards':
         newFilters.hasAnyAwards = false;
+        break;
+      case 'skills':
+        newFilters.skills = filters.skills.filter((s) => s !== value);
+        break;
+      case 'industries':
+        newFilters.industries = filters.industries.filter((i) => i !== value);
         break;
       case 'completedOnly':
         newFilters.completedOnly = true;
@@ -169,6 +179,8 @@ const Directory: React.FC = () => {
                 countries={countries}
                 agencies={agencies}
                 languages={allLanguages}
+                skills={allSkills}
+                industries={allIndustries}
                 filterCounts={filterCounts}
                 isMobile
               />
@@ -220,6 +232,8 @@ const Directory: React.FC = () => {
           countries={countries}
           agencies={agencies}
           languages={allLanguages}
+          skills={allSkills}
+          industries={allIndustries}
           filterCounts={filterCounts}
         />
 

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Edit2, User, Briefcase, GraduationCap, BarChart3, FolderOpen, Languages, Award } from 'lucide-react';
+import { Edit2, User, Briefcase, GraduationCap, BarChart3, FolderOpen, Languages, Award, Factory } from 'lucide-react';
 import { ProfileFormData } from '../types';
 import { cn } from '@/lib/utils';
+import { supabase } from '@/integrations/supabase/client';
 
 interface ReviewStepProps {
   data: ProfileFormData;
@@ -46,6 +47,20 @@ const InfoRow: React.FC<{ label: string; value?: string | number | null }> = ({ 
 );
 
 const ReviewStep: React.FC<ReviewStepProps> = ({ data, onEdit }) => {
+  const [industriesMap, setIndustriesMap] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    const loadIndustries = async () => {
+      const { data: industries } = await supabase.from('industries').select('id, name');
+      if (industries) {
+        const map: Record<string, string> = {};
+        industries.forEach(i => { map[i.id] = i.name; });
+        setIndustriesMap(map);
+      }
+    };
+    loadIndustries();
+  }, []);
+
   return (
     <div className="space-y-6 animate-fade-in">
       <div className="text-center mb-6">
@@ -159,8 +174,28 @@ const ReviewStep: React.FC<ReviewStepProps> = ({ data, onEdit }) => {
         </div>
       </Section>
 
+      {/* Industries */}
+      <Section title="Industries" icon={Factory} step={8} onEdit={onEdit}>
+        <div className="space-y-2">
+          <div className="flex items-center gap-2">
+            <span className="text-sm text-muted-foreground">Industries:</span>
+            <span className="text-sm font-medium">{data.industries?.industries?.length || 0}</span>
+          </div>
+          {data.industries?.industries?.length > 0 && (
+            <div className="flex flex-wrap gap-1">
+              {data.industries.industries.map((ind, i) => (
+                <Badge key={i} variant="secondary" className="text-xs">
+                  {industriesMap[ind.industry_id] || ind.industry_id}
+                  {ind.years_experience > 0 && ` (${ind.years_experience}y)`}
+                </Badge>
+              ))}
+            </div>
+          )}
+        </div>
+      </Section>
+
       {/* Awards */}
-      <Section title="Awards & Recognition" icon={Award} step={7} onEdit={onEdit}>
+      <Section title="Awards & Recognition" icon={Award} step={9} onEdit={onEdit}>
         <div className="space-y-2">
           <div className="flex items-center gap-2">
             <span className="text-sm text-muted-foreground">Awards:</span>

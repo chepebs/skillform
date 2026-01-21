@@ -540,6 +540,16 @@
         "other": "Otro"
       }
     },
+    "industries": {
+      "title": "Experiencia en Industrias",
+      "subtitle": "Seleccione las industrias donde tiene experiencia profesional",
+      "instructions": "Seleccione al menos 1 industria. Puede especificar años de experiencia para cada una.",
+      "yearsExperience": "Años de experiencia",
+      "selectedCount": "{{count}} industria seleccionada",
+      "selectedCount_plural": "{{count}} industrias seleccionadas",
+      "minimumRequired": "Por favor seleccione al menos 1 industria para continuar",
+      "noIndustriesYet": "No se han agregado industrias aún"
+    },
     "review": {
       "title": "Revise Su Perfil",
       "subtitle": "Tómese un momento para revisar toda su información",
@@ -551,6 +561,7 @@
         "projects": "Marcas y Proyectos",
         "languages": "Idiomas",
         "skills": "Habilidades y Experiencia",
+        "industries": "Industrias",
         "awards": "Premios y Reconocimientos"
       },
       "editSection": "Editar Sección",
@@ -636,9 +647,12 @@
       "hasAnyAwards": "Tiene algún premio",
       "skills": "Habilidades",
       "skillsPlaceholder": "Seleccione habilidades",
+      "searchSkills": "Buscar habilidades...",
       "skillsLogic": "Coincidir",
       "skillsAnd": "Todas las habilidades seleccionadas",
       "skillsOr": "Cualquier habilidad seleccionada",
+      "industries": "Industrias",
+      "industriesPlaceholder": "Seleccione industrias",
       "profileStatus": "Estado del Perfil",
       "completedOnly": "Solo perfiles completados",
       "includeIncomplete": "Incluir perfiles incompletos"

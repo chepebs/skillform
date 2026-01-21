@@ -540,6 +540,16 @@
         "other": "Other"
       }
     },
+    "industries": {
+      "title": "Industry Experience",
+      "subtitle": "Select the industries where you have professional experience",
+      "instructions": "Select at least 1 industry. You can specify years of experience for each.",
+      "yearsExperience": "Years of experience",
+      "selectedCount": "{{count}} industry selected",
+      "selectedCount_plural": "{{count}} industries selected",
+      "minimumRequired": "Please select at least 1 industry to continue",
+      "noIndustriesYet": "No industries added yet"
+    },
     "review": {
       "title": "Review Your Profile",
       "subtitle": "Take a moment to review all your information",
@@ -551,6 +561,7 @@
         "projects": "Brands & Projects",
         "languages": "Languages",
         "skills": "Skills & Expertise",
+        "industries": "Industries",
         "awards": "Awards & Recognition"
       },
       "editSection": "Edit Section",
@@ -636,9 +647,12 @@
       "hasAnyAwards": "Has any awards",
       "skills": "Skills",
       "skillsPlaceholder": "Select skills",
+      "searchSkills": "Search skills...",
       "skillsLogic": "Match",
       "skillsAnd": "All selected skills",
       "skillsOr": "Any selected skill",
+      "industries": "Industries",
+      "industriesPlaceholder": "Select industries",
       "profileStatus": "Profile Status",
       "completedOnly": "Completed profiles only",
       "includeIncomplete": "Include incomplete profiles"

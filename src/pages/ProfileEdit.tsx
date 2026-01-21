@@ -166,7 +166,7 @@ const ProfileEdit: React.FC = () => {
         awardsForm.setValue('consulting_work', profile.consulting_work || '');
 
         // Load related data
-        const [positionsRes, agenciesRes, brandsRes, projectsRes, languagesRes, skillsRes, awardsRes] = await Promise.all([
+        const [positionsRes, agenciesRes, brandsRes, projectsRes, languagesRes, skillsRes, awardsRes, industriesRes] = await Promise.all([
           supabase.from('previous_positions').select('*').eq('user_id', profileUserId),
           supabase.from('previous_agencies').select('*').eq('user_id', profileUserId),
           supabase.from('brands_managed').select('*').eq('user_id', profileUserId),
@@ -174,6 +174,7 @@ const ProfileEdit: React.FC = () => {
           supabase.from('employee_languages').select('*').eq('user_id', profileUserId),
           supabase.from('employee_skills').select('*').eq('user_id', profileUserId),
           supabase.from('awards').select('*').eq('user_id', profileUserId),
+          supabase.from('employee_industries').select('*, industry:industries(*)').eq('user_id', profileUserId),
         ]);
 
         if (positionsRes.data?.length) professionalForm.setValue('previous_positions', positionsRes.data);
@@ -183,6 +184,12 @@ const ProfileEdit: React.FC = () => {
         if (languagesRes.data?.length) languagesForm.setValue('languages', languagesRes.data);
         if (skillsRes.data?.length) skillsForm.setValue('skills', skillsRes.data);
         if (awardsRes.data?.length) awardsForm.setValue('awards', awardsRes.data);
+        if (industriesRes.data?.length) {
+          industriesForm.setValue('industries', industriesRes.data.map(ind => ({
+            industry_id: ind.industry_id,
+            years_experience: ind.years_experience || 0,
+          })));
+        }
       } catch (error) {
         console.error('Error loading profile:', error);
         toast.error(t('common.messages.error'));
@@ -215,6 +222,9 @@ const ProfileEdit: React.FC = () => {
         last_name: data.basicInfo.last_name,
         phone: data.basicInfo.phone,
         avatar_url: data.basicInfo.avatar_url,
+        linkedin_url: data.basicInfo.linkedin_url || null,
+        instagram_url: data.basicInfo.instagram_url || null,
+        behance_url: data.basicInfo.behance_url || null,
         country_id: data.professionalInfo.country_id || null,
         agency_id: data.professionalInfo.agency_id || null,
         current_position: data.professionalInfo.current_position,
@@ -280,6 +290,9 @@ const ProfileEdit: React.FC = () => {
         last_name: data.basicInfo.last_name,
         phone: data.basicInfo.phone,
         avatar_url: data.basicInfo.avatar_url,
+        linkedin_url: data.basicInfo.linkedin_url || null,
+        instagram_url: data.basicInfo.instagram_url || null,
+        behance_url: data.basicInfo.behance_url || null,
         country_id: data.professionalInfo.country_id || null,
         agency_id: data.professionalInfo.agency_id || null,
         current_position: data.professionalInfo.current_position,
@@ -354,6 +367,19 @@ const ProfileEdit: React.FC = () => {
             proficiency_level: s.proficiency_level, 
             years_experience: s.years_experience || null, 
             user_id: profileUserId 
+          }))
+        );
+      }
+
+      // Save industries
+      await supabase.from('employee_industries').delete().eq('user_id', profileUserId);
+      const validIndustries = data.industries.industries.filter(i => i.industry_id);
+      if (validIndustries.length > 0) {
+        await supabase.from('employee_industries').insert(
+          validIndustries.map((i) => ({
+            industry_id: i.industry_id,
+            years_experience: i.years_experience || 0,
+            user_id: profileUserId
           }))
         );
       }
