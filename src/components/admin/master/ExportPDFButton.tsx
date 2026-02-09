@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-// Import distribution builds to avoid heavy TypeScript type-analysis in some toolchains
 import jsPDF from 'jspdf/dist/jspdf.umd.min.js';
 import html2canvas from 'html2canvas/dist/html2canvas.min.js';
 import { Button } from '@/components/ui/button';
@@ -13,6 +12,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Download, FileText, Loader2, FileSpreadsheet } from 'lucide-react';
 import { toast } from 'sonner';
+import garnierLogo from '@/assets/logo-garnier-small.png';
 
 interface ExportPDFButtonProps {
   targetId: string;
@@ -26,6 +26,23 @@ export const ExportPDFButton: React.FC<ExportPDFButtonProps> = ({
   const { t } = useTranslation();
   const [exporting, setExporting] = useState(false);
 
+  const loadLogo = (): Promise<{ base64: string; w: number; h: number }> => {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = () => {
+        const c = document.createElement('canvas');
+        c.width = img.naturalWidth;
+        c.height = img.naturalHeight;
+        const ctx = c.getContext('2d')!;
+        ctx.drawImage(img, 0, 0);
+        resolve({ base64: c.toDataURL('image/png'), w: img.naturalWidth, h: img.naturalHeight });
+      };
+      img.onerror = () => resolve({ base64: '', w: 0, h: 0 });
+      img.src = garnierLogo;
+    });
+  };
+
   const exportToPDF = async () => {
     setExporting(true);
 
@@ -36,76 +53,91 @@ export const ExportPDFButton: React.FC<ExportPDFButtonProps> = ({
         throw new Error('Dashboard element not found');
       }
 
-      // Add a temporary class to optimize for PDF
       dashboardElement.classList.add('pdf-export-mode');
 
-      // Convert to canvas with higher quality
       const canvas = await html2canvas(dashboardElement, {
         scale: 2,
         useCORS: true,
         logging: false,
         backgroundColor: '#ffffff',
-        windowWidth: dashboardElement.scrollWidth,
-        windowHeight: dashboardElement.scrollHeight,
+        windowWidth: 1024,
       });
 
-      // Remove temporary class
       dashboardElement.classList.remove('pdf-export-mode');
 
-      // Convert canvas to image
       const imgData = canvas.toDataURL('image/png');
 
-      // Create PDF
       const pdf = new jsPDF({
         orientation: 'portrait',
         unit: 'mm',
         format: 'a4',
       });
 
-      // Set PDF metadata
       pdf.setProperties({
         title: 'Grupo Garnier Analytics Dashboard',
         subject: 'Analytics Report',
         author: 'Grupo Garnier Talent Map',
-        keywords: 'analytics, dashboard, report',
         creator: 'Grupo Garnier',
       });
 
-      const imgWidth = 210; // A4 width in mm
-      const pageHeight = 297; // A4 height in mm
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      let heightLeft = imgHeight;
-      let position = 0;
+      const pageWidth = 210;
+      const pageHeight = 297;
+      const margin = 10;
+      const contentWidth = pageWidth - margin * 2;
+      const headerHeight = 20;
 
-      // Add header to first page
-      pdf.setFontSize(16);
-      pdf.setTextColor(102, 51, 153); // Purple color
-      pdf.text('Grupo Garnier - Analytics Dashboard', 10, 15);
-      
-      pdf.setFontSize(10);
-      pdf.setTextColor(128, 128, 128);
-      const date = new Date().toLocaleDateString();
-      pdf.text(`${t('admin.master.export.generatedOn')}: ${date}`, 10, 22);
+      const imgHeight = (canvas.height * contentWidth) / canvas.width;
 
-      // Add first page image (with offset for header)
-      const headerOffset = 30;
-      pdf.addImage(imgData, 'PNG', 0, headerOffset, imgWidth, imgHeight);
-      heightLeft -= (pageHeight - headerOffset);
+      // Load logo
+      const logo = await loadLogo();
 
-      // Add additional pages if needed
-      while (heightLeft > 0) {
-        position = heightLeft - imgHeight;
-        pdf.addPage();
-        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
+      // --- First page header ---
+      if (logo.base64) {
+        const logoW = 30;
+        const logoH = (logo.h / logo.w) * logoW;
+        pdf.addImage(logo.base64, 'PNG', pageWidth - margin - logoW, margin, logoW, logoH);
       }
 
-      // Generate filename with date
-      const dateStr = new Date().toISOString().split('T')[0];
-      const fullFilename = `${filename}-${dateStr}.pdf`;
+      pdf.setFontSize(14);
+      pdf.setTextColor(0, 0, 0);
+      pdf.text('Analytics Dashboard', margin, margin + 8);
+      pdf.setFontSize(9);
+      pdf.setTextColor(120, 120, 120);
+      const date = new Date().toLocaleDateString();
+      pdf.text(`TALENT MAP  •  ${t('admin.master.export.generatedOn')}: ${date}`, margin, margin + 14);
 
-      // Download PDF
-      pdf.save(fullFilename);
+      // Content
+      const firstPageStart = margin + headerHeight;
+      pdf.addImage(imgData, 'PNG', margin, firstPageStart, contentWidth, imgHeight, undefined, 'FAST', 0);
+
+      let remainingHeight = imgHeight - (pageHeight - firstPageStart);
+
+      while (remainingHeight > 0) {
+        pdf.addPage();
+        const yOffset = -(imgHeight - remainingHeight) + 5;
+        pdf.addImage(imgData, 'PNG', margin, yOffset, contentWidth, imgHeight, undefined, 'FAST', 0);
+        remainingHeight -= (pageHeight - 10);
+      }
+
+      // Footer logo on last page
+      const totalPages = pdf.getNumberOfPages();
+      if (logo.base64) {
+        pdf.setPage(totalPages);
+        const footerLogoW = 20;
+        const footerLogoH = (logo.h / logo.w) * footerLogoW;
+        pdf.addImage(logo.base64, 'PNG', (pageWidth - footerLogoW) / 2, pageHeight - margin - footerLogoH, footerLogoW, footerLogoH);
+      }
+
+      // Page numbers
+      for (let i = 1; i <= totalPages; i++) {
+        pdf.setPage(i);
+        pdf.setFontSize(8);
+        pdf.setTextColor(180, 180, 180);
+        pdf.text(`${i} / ${totalPages}`, pageWidth - margin, pageHeight - 5, { align: 'right' });
+      }
+
+      const dateStr = new Date().toISOString().split('T')[0];
+      pdf.save(`${filename}-${dateStr}.pdf`);
 
       toast.success(t('admin.master.export.pdfSuccess'));
     } catch (error) {
@@ -117,10 +149,8 @@ export const ExportPDFButton: React.FC<ExportPDFButtonProps> = ({
   };
 
   const exportToCSV = () => {
-    // Get data from stats cards and tables
     const statsData: Record<string, string | number>[] = [];
     
-    // Extract visible data from the dashboard
     const statCards = document.querySelectorAll('[data-stat-card]');
     statCards.forEach((card) => {
       const title = card.querySelector('[data-stat-title]')?.textContent || '';
@@ -135,12 +165,10 @@ export const ExportPDFButton: React.FC<ExportPDFButtonProps> = ({
       return;
     }
 
-    // Convert to CSV
     const headers = Object.keys(statsData[0]).join(',');
     const rows = statsData.map(row => Object.values(row).join(','));
     const csv = [headers, ...rows].join('\n');
 
-    // Download
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     const link = document.createElement('a');
     const dateStr = new Date().toISOString().split('T')[0];

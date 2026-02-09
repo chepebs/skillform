@@ -505,6 +505,15 @@
 .pdf-export-mode {
   background: white !important;
   color: black !important;
+  max-width: 1024px !important;
+  overflow: visible !important;
+}
+
+.pdf-export-mode * {
+  overflow: visible !important;
+  text-overflow: clip !important;
+  white-space: normal !important;
+  word-break: break-word !important;
 }
 
 .pdf-export-mode .glass-card {
@@ -516,6 +525,16 @@
 .pdf-export-mode .text-foreground,
 .pdf-export-mode .text-muted-foreground {
   color: #111827 !important;
+}
+
+.pdf-export-mode .no-print {
+  display: none !important;
+}
+
+.pdf-export-mode .truncate {
+  overflow: visible !important;
+  text-overflow: clip !important;
+  white-space: normal !important;
 }
 
 /* Print Styles */
