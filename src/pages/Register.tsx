@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useAuth } from '@/contexts/AuthContext';
 import { AuthLayout } from '@/components/layout/AuthLayout';
 import { RegisterForm } from '@/components/auth/RegisterForm';
@@ -8,6 +9,7 @@ const Register: React.FC = () => {
   const { token } = useParams<{ token: string }>();
   const { user, isLoading } = useAuth();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!isLoading && user) {
@@ -24,19 +26,19 @@ const Register: React.FC = () => {
 
   return (
     <AuthLayout 
-      title="Create your account" 
-      subtitle="Join the Grupo Garnier talent network"
+      title={t('auth.register.title')} 
+      subtitle={t('auth.register.subtitle')}
     >
       <RegisterForm />
       
       <div className="mt-6 text-center">
         <p className="text-sm text-muted-foreground">
-          Already have an account?{' '}
+          {t('auth.register.alreadyRegistered')}{' '}
           <Link 
             to="/login" 
             className="text-primary hover:text-orange-light transition-colors font-medium"
           >
-            Sign in
+            {t('auth.register.signIn')}
           </Link>
         </p>
       </div>

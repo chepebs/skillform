@@ -39,7 +39,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ profile, searchQuery }
 
   return (
     <div
-      className="glass-card p-5 cursor-pointer group transition-all duration-300 hover:border-primary/50 hover:-translate-y-1 flex flex-col"
+      className="glass-card p-6 cursor-pointer group transition-all duration-300 hover:border-primary/50 hover:-translate-y-1 flex flex-col"
       onClick={() => navigate(`/profile/${profile.user_id}`)}
     >
       {/* Avatar and main info */}
@@ -59,12 +59,12 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ profile, searchQuery }
         </div>
 
         <div className="flex-1 min-w-0">
-          <h3 className="font-semibold text-lg text-foreground group-hover:text-primary transition-colors break-words">
+          <h3 className="font-semibold text-lg text-foreground group-hover:text-primary transition-colors leading-snug">
             {highlightText(fullName)}
           </h3>
           
           {(profile.current_position || profile.position) && (
-            <p className="text-sm text-muted-foreground break-words mt-0.5">
+            <p className="text-sm text-muted-foreground mt-1 leading-snug">
               {highlightText(profile.current_position || profile.position || '')}
             </p>
           )}

@@ -575,7 +575,16 @@
       "linkedin": "LinkedIn",
       "instagram": "Instagram",
       "behance": "Behance"
-    }
+    },
+    "tabs": {
+      "overview": "Overview",
+      "experience": "Experience",
+      "skills": "Skills & Languages",
+      "projects": "Projects & Awards",
+      "additional": "Additional Info"
+    },
+    "notFound": "Profile not found",
+    "notFoundDescription": "This profile doesn't exist or you don't have permission to view it."
   },
   "messages": {
     "title": "Messages",

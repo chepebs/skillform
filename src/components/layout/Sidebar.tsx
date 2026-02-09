@@ -112,11 +112,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
             {!collapsed && (
               <div className="flex-1 min-w-0 overflow-hidden">
                 <h2 className="text-base font-bold text-foreground whitespace-nowrap overflow-hidden text-ellipsis">
-                  Grupo Garnier
+                  TALENT MAP
                 </h2>
-                <p className="text-xs text-muted-foreground whitespace-nowrap overflow-hidden text-ellipsis">
-                  Talent Map
-                </p>
               </div>
             )}
           </button>

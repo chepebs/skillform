@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { useTranslation } from 'react-i18next';
 import { ArrowLeft, User } from 'lucide-react';
 import { useProfileData } from '@/hooks/useProfileData';
 import { ProfileHeader } from '@/components/profile/view/ProfileHeader';
@@ -18,6 +19,7 @@ const ProfileView: React.FC = () => {
   const { id } = useParams<{ id?: string }>();
   const { user, role } = useAuth();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState('overview');
 
   const isMe = !id || id === 'me';
@@ -94,13 +96,13 @@ const ProfileView: React.FC = () => {
       <div className="max-w-2xl mx-auto p-6">
         <div className="glass-card rounded-xl p-12 text-center">
           <User className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-          <h3 className="text-lg font-semibold text-foreground mb-2">Profile not found</h3>
+          <h3 className="text-lg font-semibold text-foreground mb-2">{t('profile.notFound', 'Profile not found')}</h3>
           <p className="text-muted-foreground mb-6">
-            This profile doesn't exist or you don't have permission to view it.
+            {t('profile.notFoundDescription', "This profile doesn't exist or you don't have permission to view it.")}
           </p>
           <Button onClick={() => navigate(-1)} variant="outline">
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Go Back
+            {t('common.actions.goBack')}
           </Button>
         </div>
       </div>
@@ -116,7 +118,7 @@ const ProfileView: React.FC = () => {
         className="text-muted-foreground hover:text-foreground"
       >
         <ArrowLeft className="mr-2 h-4 w-4" />
-        Back
+        {t('common.buttons.back')}
       </Button>
 
       {/* Profile Header */}
@@ -138,20 +140,20 @@ const ProfileView: React.FC = () => {
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
         <TabsList className="w-full justify-start bg-card/50 border border-border/50 p-1 h-auto flex-wrap">
           <TabsTrigger value="overview" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-            Overview
+            {t('profile.tabs.overview', 'Overview')}
           </TabsTrigger>
           <TabsTrigger value="experience" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-            Experience
+            {t('profile.tabs.experience', 'Experience')}
           </TabsTrigger>
           <TabsTrigger value="skills" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-            Skills & Languages
+            {t('profile.tabs.skills', 'Skills & Languages')}
           </TabsTrigger>
           <TabsTrigger value="projects" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-            Projects & Awards
+            {t('profile.tabs.projects', 'Projects & Awards')}
           </TabsTrigger>
           {showAdditionalTab && (
             <TabsTrigger value="additional" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-              Additional Info
+              {t('profile.tabs.additional', 'Additional Info')}
             </TabsTrigger>
           )}
         </TabsList>
