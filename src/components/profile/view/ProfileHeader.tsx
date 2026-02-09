@@ -15,7 +15,6 @@ import {
   UserPlus,
   FileDown,
   MoreHorizontal,
-  Share2,
   Printer,
   Loader2,
 } from 'lucide-react';
@@ -29,6 +28,7 @@ import type { ProfileData } from '@/hooks/useProfileData';
 import { getCountryFlag } from '@/utils/countryFlags';
 import { MessageButton } from '@/components/messaging/MessageButton';
 import { SocialMediaLinks } from '@/components/profile/SocialMediaLinks';
+import garnierLogo from '@/assets/logo-garnier-small.png';
 
 interface ProfileHeaderProps {
   profile: ProfileData;
@@ -53,28 +53,6 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({
   const countryCode = profile.country?.code || '';
   const countryFlag = getCountryFlag(countryCode);
 
-  const shareProfile = async () => {
-    try {
-      // Generate public profile URL
-      const publicUrl = `${window.location.origin}/profile/${profile.user_id}`;
-      
-      // Copy to clipboard
-      await navigator.clipboard.writeText(publicUrl);
-      
-      toast.success(t('profile.linkCopied', 'Profile link copied to clipboard'));
-    } catch (error) {
-      // Fallback for older browsers
-      const textArea = document.createElement('textarea');
-      textArea.value = `${window.location.origin}/profile/${profile.user_id}`;
-      document.body.appendChild(textArea);
-      textArea.select();
-      document.execCommand('copy');
-      document.body.removeChild(textArea);
-      
-      toast.success(t('profile.linkCopied', 'Profile link copied to clipboard'));
-    }
-  };
-
   const printProfile = () => {
     window.print();
   };
@@ -90,77 +68,131 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({
         throw new Error('Profile element not found');
       }
 
-      // Add class to optimize for PDF
+      // Temporarily apply PDF-friendly styles
       profileElement.classList.add('pdf-export-mode');
 
-      // Convert to canvas with higher quality
+      // Capture the entire profile area
       const canvas = await html2canvas(profileElement, {
         scale: 2,
         useCORS: true,
         logging: false,
         backgroundColor: '#ffffff',
-        windowWidth: profileElement.scrollWidth,
-        windowHeight: profileElement.scrollHeight,
+        width: profileElement.scrollWidth,
+        windowWidth: 1024,
       });
 
-      // Remove temporary class
       profileElement.classList.remove('pdf-export-mode');
 
-      // Convert canvas to image
       const imgData = canvas.toDataURL('image/png');
 
-      // Create PDF
       const pdf = new jsPDF({
         orientation: 'portrait',
         unit: 'mm',
         format: 'a4',
       });
 
-      // Set PDF metadata
       pdf.setProperties({
         title: `${fullName} - Profile`,
         subject: 'Employee Profile',
         author: 'Grupo Garnier Talent Map',
-        keywords: 'profile, employee, garnier',
         creator: 'Grupo Garnier',
       });
 
-      const imgWidth = 210; // A4 width in mm
-      const pageHeight = 297; // A4 height in mm
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      let heightLeft = imgHeight;
-      let position = 0;
+      const pageWidth = 210;
+      const pageHeight = 297;
+      const margin = 10;
+      const contentWidth = pageWidth - margin * 2;
+      const headerHeight = 20;
+      const footerHeight = 15;
 
-      // Add header to first page
-      pdf.setFontSize(16);
-      pdf.setTextColor(193, 37, 31); // Brand red
-      pdf.text(`${fullName} - Profile`, 10, 15);
+      // Scale image to fit page width with margins
+      const imgHeight = (canvas.height * contentWidth) / canvas.width;
+
+      // Load logo as base64 for embedding
+      const logoImg = new Image();
+      logoImg.crossOrigin = 'anonymous';
       
-      pdf.setFontSize(10);
-      pdf.setTextColor(128, 128, 128);
-      const date = new Date().toLocaleDateString();
-      pdf.text(`Generated: ${date}`, 10, 22);
+      const logoLoaded = new Promise<string>((resolve) => {
+        logoImg.onload = () => {
+          const c = document.createElement('canvas');
+          c.width = logoImg.naturalWidth;
+          c.height = logoImg.naturalHeight;
+          const ctx = c.getContext('2d')!;
+          ctx.drawImage(logoImg, 0, 0);
+          resolve(c.toDataURL('image/png'));
+        };
+        logoImg.onerror = () => resolve('');
+        logoImg.src = garnierLogo;
+      });
 
-      // Add first page image (with offset for header)
-      const headerOffset = 30;
-      pdf.addImage(imgData, 'PNG', 0, headerOffset, imgWidth, imgHeight);
-      heightLeft -= (pageHeight - headerOffset);
+      const logoBase64 = await logoLoaded;
 
-      // Add additional pages if needed
-      while (heightLeft > 0) {
-        position = heightLeft - imgHeight;
-        pdf.addPage();
-        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
+      // --- First page ---
+      // Logo top-right
+      if (logoBase64) {
+        const logoW = 30;
+        const logoH = (logoImg.naturalHeight / logoImg.naturalWidth) * logoW;
+        pdf.addImage(logoBase64, 'PNG', pageWidth - margin - logoW, margin, logoW, logoH);
       }
 
-      // Generate filename
+      // Title top-left
+      pdf.setFontSize(14);
+      pdf.setTextColor(0, 0, 0);
+      pdf.text(fullName, margin, margin + 8);
+      pdf.setFontSize(9);
+      pdf.setTextColor(120, 120, 120);
+      pdf.text(`TALENT MAP  •  ${new Date().toLocaleDateString()}`, margin, margin + 14);
+
+      // Content start after header
+      const firstPageContentStart = margin + headerHeight;
+      const usableFirstPage = pageHeight - firstPageContentStart - 5;
+      
+      // Draw content across pages
+      let remainingHeight = imgHeight;
+      let sourceY = 0;
+
+      // First page content
+      const firstChunk = Math.min(usableFirstPage, remainingHeight);
+      if (firstChunk > 0) {
+        // We add the full image but clip it via positioning
+        pdf.addImage(imgData, 'PNG', margin, firstPageContentStart, contentWidth, imgHeight, undefined, 'FAST', 0);
+        // The image will overflow, but jsPDF clips to page naturally
+      }
+      remainingHeight -= usableFirstPage;
+
+      // Additional pages
+      let pageNum = 1;
+      while (remainingHeight > 0) {
+        pdf.addPage();
+        pageNum++;
+        const yOffset = -(imgHeight - remainingHeight) + 5; // 5mm top margin on subsequent pages
+        pdf.addImage(imgData, 'PNG', margin, yOffset, contentWidth, imgHeight, undefined, 'FAST', 0);
+        remainingHeight -= (pageHeight - 10);
+      }
+
+      // Add footer with logo on the last page
+      const totalPages = pdf.getNumberOfPages();
+      if (logoBase64) {
+        pdf.setPage(totalPages);
+        const footerLogoW = 20;
+        const footerLogoH = (logoImg.naturalHeight / logoImg.naturalWidth) * footerLogoW;
+        const footerX = (pageWidth - footerLogoW) / 2;
+        const footerY = pageHeight - margin - footerLogoH;
+        pdf.addImage(logoBase64, 'PNG', footerX, footerY, footerLogoW, footerLogoH);
+      }
+
+      // Add page numbers
+      for (let i = 1; i <= totalPages; i++) {
+        pdf.setPage(i);
+        pdf.setFontSize(8);
+        pdf.setTextColor(180, 180, 180);
+        pdf.text(`${i} / ${totalPages}`, pageWidth - margin, pageHeight - 5, { align: 'right' });
+      }
+
+      // Download
       const safeName = fullName.replace(/[^a-zA-Z0-9]/g, '_');
       const dateStr = new Date().toISOString().split('T')[0];
-      const fileName = `${safeName}_Profile_${dateStr}.pdf`;
-
-      // Download PDF
-      pdf.save(fileName);
+      pdf.save(`${safeName}_Profile_${dateStr}.pdf`);
 
       toast.success(t('profile.pdfExported', 'Profile exported to PDF'));
     } catch (error) {
@@ -207,10 +239,6 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={shareProfile}>
-                <Share2 className="mr-2 h-4 w-4" />
-                {t('profile.shareLink', 'Share Profile Link')}
-              </DropdownMenuItem>
               <DropdownMenuItem onClick={printProfile}>
                 <Printer className="mr-2 h-4 w-4" />
                 {t('common.buttons.print')}
@@ -297,7 +325,7 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({
             size="md"
           />
 
-          {/* Contact buttons - simplified without copy buttons */}
+          {/* Contact buttons */}
           <div className="flex flex-wrap justify-center gap-3">
             <Button
               variant="outline"
