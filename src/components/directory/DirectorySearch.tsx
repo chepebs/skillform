@@ -86,7 +86,7 @@ export const DirectorySearch: React.FC<DirectorySearchProps> = ({
       </div>
 
       {showDropdown && (
-        <div className="absolute z-50 top-full left-0 right-0 mt-1 py-2 bg-dark-card border border-dark-border rounded-lg shadow-lg">
+        <div className="absolute z-50 top-full left-0 right-0 mt-1 py-2 bg-card border border-border">
           <div className="px-3 py-1.5 text-xs text-muted-foreground font-medium">
             Recent Searches
           </div>
