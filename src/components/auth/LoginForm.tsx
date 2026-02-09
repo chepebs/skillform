@@ -73,7 +73,7 @@ export const LoginForm: React.FC = () => {
             id="login-email"
             type="email"
             placeholder={t('auth.login.emailPlaceholder')}
-            className="pl-10 bg-background border-input text-foreground placeholder:text-muted-foreground focus:border-red-500 focus:ring-red-500/20 transition-all"
+            className="pl-10 bg-background border-input text-foreground placeholder:text-muted-foreground focus:border-foreground focus:ring-foreground/20 transition-all"
             autoComplete="off"
             autoCorrect="off"
             autoCapitalize="off"
@@ -94,7 +94,7 @@ export const LoginForm: React.FC = () => {
             id="login-password"
             type={showPassword ? 'text' : 'password'}
             placeholder={t('auth.login.passwordPlaceholder')}
-            className="pl-10 pr-10 bg-background border-input text-foreground placeholder:text-muted-foreground focus:border-red-500 focus:ring-red-500/20 transition-all"
+            className="pl-10 pr-10 bg-background border-input text-foreground placeholder:text-muted-foreground focus:border-foreground focus:ring-foreground/20 transition-all"
             autoComplete="new-password"
             {...register('password')}
           />
@@ -113,12 +113,12 @@ export const LoginForm: React.FC = () => {
 
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Checkbox id="rememberMe" className="border-input data-[state=checked]:bg-red-600 data-[state=checked]:border-red-600" {...register('rememberMe')} />
+          <Checkbox id="rememberMe" className="border-input data-[state=checked]:bg-foreground data-[state=checked]:border-foreground" {...register('rememberMe')} />
           <Label htmlFor="rememberMe" className="text-sm text-muted-foreground cursor-pointer">
             {t('auth.login.rememberMe')}
           </Label>
         </div>
-        <a href="#" className="text-sm text-red-600 hover:text-red-500 transition-colors">
+        <a href="#" className="text-sm text-foreground hover:text-foreground/70 transition-colors underline">
           {t('auth.login.forgotPassword')}
         </a>
       </div>
@@ -128,7 +128,6 @@ export const LoginForm: React.FC = () => {
         className="w-full bg-foreground hover:bg-foreground/90 text-background transition-all duration-300 active:translate-y-0 relative overflow-hidden group"
         disabled={isSubmitting}
       >
-        {/* Shine effect */}
         <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
         {isSubmitting ? (
           <>
@@ -142,7 +141,7 @@ export const LoginForm: React.FC = () => {
 
       <p className="text-center text-sm text-muted-foreground">
         {t('auth.login.noAccount').replace("Don't have an account?", "").trim() || 'Need help?'}{' '}
-        <a href="#" className="text-red-600 hover:text-red-500 transition-colors">
+        <a href="#" className="text-foreground hover:text-foreground/70 transition-colors underline">
           {t('auth.login.contactSupport')}
         </a>
       </p>

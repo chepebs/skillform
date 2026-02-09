@@ -16,7 +16,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from 'lucide-react';
-import garnierLogo from '@/assets/logo-garnier-small.png';
+import garnierLogoSvg from '@/assets/logo-garnier.svg';
 
 interface SidebarProps {
   collapsed: boolean;
@@ -61,7 +61,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
   const getRoleBadgeColor = (userRole: AppRole | null) => {
     switch (userRole) {
       case 'master_admin':
-        return 'bg-red-500/20 text-red-400';
+        return 'bg-foreground/20 text-foreground';
       case 'department_director':
         return 'bg-blue-500/20 text-blue-400';
       case 'organizer_admin':
@@ -102,13 +102,12 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
             )}
           >
             <img 
-              src={garnierLogo}
+              src={garnierLogoSvg}
               alt="Grupo Garnier Logo"
               className={cn(
-                'object-contain flex-shrink-0',
+                'object-contain flex-shrink-0 dark:invert',
                 collapsed ? 'h-8 w-8' : 'h-10 w-auto'
               )}
-              style={{ filter: logoFilter }}
             />
             {!collapsed && (
               <div className="flex-1 min-w-0 overflow-hidden">

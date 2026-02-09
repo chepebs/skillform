@@ -7,8 +7,8 @@
 
 @layer base {
   :root {
-    /* Brand Red */
-    --brand-red: 2 77% 44%; /* #C1251F */
+    /* Brand */
+    --brand-red: 220 13% 9%; /* Using dark foreground as primary */
     
     /* ============ LIGHT MODE (Default) ============ */
     
@@ -22,8 +22,8 @@
     --popover: 0 0% 100%;
     --popover-foreground: 220 13% 9%;
     
-    /* Primary Orange/Red */
-    --primary: 2 77% 44%; /* #C1251F */
+    /* Primary - Black */
+    --primary: 220 13% 9%; /* #111827 */
     --primary-foreground: 0 0% 100%;
     
     /* Secondary */
@@ -45,19 +45,19 @@
     /* Borders */
     --border: 220 13% 91%; /* #E5E7EB */
     --input: 220 13% 83%; /* #D1D5DB */
-    --ring: 2 77% 44%;
+    --ring: 220 13% 9%;
     
     --radius: 0px;
 
     /* Sidebar */
     --sidebar-background: 210 20% 98%; /* #F9FAFB */
     --sidebar-foreground: 215 16% 47%;
-    --sidebar-primary: 2 77% 44%;
+    --sidebar-primary: 220 13% 9%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 220 14% 96%;
     --sidebar-accent-foreground: 220 13% 9%;
     --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 2 77% 44%;
+    --sidebar-ring: 220 13% 9%;
 
     /* Dark palette tokens (for components that need them) */
     --dark-bg: 0 0% 100%;
@@ -66,8 +66,8 @@
     --dark-border: 220 13% 91%;
     
     /* Custom Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(2 77% 44%) 0%, hsl(2 77% 54%) 100%);
-    --gradient-primary-hover: linear-gradient(135deg, hsl(2 77% 50%) 0%, hsl(2 77% 60%) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(220 13% 9%) 0%, hsl(220 13% 20%) 100%);
+    --gradient-primary-hover: linear-gradient(135deg, hsl(220 13% 15%) 0%, hsl(220 13% 25%) 100%);
     --gradient-dark: linear-gradient(180deg, hsl(210 20% 98%) 0%, hsl(0 0% 100%) 100%);
     --gradient-glass: linear-gradient(135deg, hsla(0 0% 100% / 0.8) 0%, hsla(0 0% 100% / 0.6) 100%);
     
@@ -103,8 +103,8 @@
     --popover-foreground: 0 0% 100%;
     
     /* Primary stays the same */
-    --primary: 2 77% 44%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 4%;
     
     /* Secondary */
     --secondary: 300 1% 20%;
@@ -115,23 +115,23 @@
     --muted-foreground: 0 0% 60%;
     
     /* Accent */
-    --accent: 2 77% 44%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 0 0% 100%;
+    --accent-foreground: 0 0% 4%;
     
     /* Borders */
     --border: 300 1% 25%;
     --input: 300 1% 25%;
-    --ring: 2 77% 44%;
+    --ring: 0 0% 100%;
 
     /* Sidebar */
     --sidebar-background: 300 2% 12%;
     --sidebar-foreground: 0 0% 60%;
-    --sidebar-primary: 2 77% 44%;
-    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 0 0% 4%;
     --sidebar-accent: 300 1% 20%;
     --sidebar-accent-foreground: 0 0% 100%;
     --sidebar-border: 300 1% 25%;
-    --sidebar-ring: 2 77% 44%;
+    --sidebar-ring: 0 0% 100%;
     
     /* Dark palette tokens */
     --dark-bg: 0 0% 4%;
@@ -249,9 +249,9 @@
   /* Animated background pattern */
   .pattern-bg {
     background-image: 
-      radial-gradient(circle at 20% 50%, hsla(2 77% 44% / 0.08) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, hsla(2 77% 50% / 0.05) 0%, transparent 50%),
-      radial-gradient(circle at 40% 80%, hsla(2 77% 44% / 0.06) 0%, transparent 50%);
+      radial-gradient(circle at 20% 50%, hsla(220 13% 9% / 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, hsla(220 13% 9% / 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 40% 80%, hsla(220 13% 9% / 0.04) 0%, transparent 50%);
   }
 
   /* Shimmer effect for loading states */
@@ -295,8 +295,8 @@
 
   /* Pulse glow */
   @keyframes pulse-glow {
-    0%, 100% { box-shadow: 0 0 20px hsla(2 77% 44% / 0.3); }
-    50% { box-shadow: 0 0 40px hsla(2 77% 44% / 0.5); }
+    0%, 100% { box-shadow: 0 0 20px hsla(220 13% 9% / 0.2); }
+    50% { box-shadow: 0 0 40px hsla(220 13% 9% / 0.3); }
   }
 
   .animate-pulse-glow {
