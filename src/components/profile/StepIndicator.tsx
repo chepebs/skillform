@@ -66,7 +66,7 @@ const StepIndicator: React.FC<StepIndicatorProps> = ({ currentStep, totalSteps }
                   >
                     <div
                       className={cn(
-                        'w-10 h-10 rounded-full flex items-center justify-center border-2 transition-all',
+                        'w-10 h-10 flex items-center justify-center border-2 transition-all',
                         isActive && 'border-primary bg-primary/10',
                         isCompleted && 'border-green-500 bg-green-500/10',
                         !isActive && !isCompleted && 'border-muted bg-muted/10'
@@ -95,7 +95,7 @@ const StepIndicator: React.FC<StepIndicatorProps> = ({ currentStep, totalSteps }
               <div
                 key={stepNumber}
                 className={cn(
-                  'w-2 h-2 rounded-full transition-all',
+                  'w-2 h-2 transition-all',
                   currentStep === stepNumber && 'w-4 bg-primary',
                   currentStep > stepNumber && 'bg-green-500',
                   currentStep < stepNumber && 'bg-muted'

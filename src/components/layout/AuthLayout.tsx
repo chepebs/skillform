@@ -21,9 +21,9 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
         
         {/* Animated background shapes - red accents */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute top-20 left-10 w-64 h-64 bg-red-600/15 rounded-full blur-3xl animate-float" />
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-red-700/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
-          <div className="absolute top-1/2 left-1/2 w-48 h-48 bg-red-500/10 rounded-full blur-2xl animate-float" style={{ animationDelay: '2s' }} />
+          <div className="absolute top-20 left-10 w-64 h-64 bg-red-600/15 blur-3xl animate-float" />
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-red-700/20 blur-3xl animate-float" style={{ animationDelay: '1s' }} />
+          <div className="absolute top-1/2 left-1/2 w-48 h-48 bg-red-500/10 blur-2xl animate-float" style={{ animationDelay: '2s' }} />
         </div>
         
         {/* Content */}
@@ -50,7 +50,7 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
           
           <div className="space-y-6 mt-12">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-lg bg-red-600/20 backdrop-blur-sm flex items-center justify-center border border-red-500/20">
+              <div className="w-12 h-12 bg-red-600/20 backdrop-blur-sm flex items-center justify-center border border-red-500/20">
                 <span className="text-2xl">📊</span>
               </div>
               <div>
@@ -59,7 +59,7 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-lg bg-red-600/20 backdrop-blur-sm flex items-center justify-center border border-red-500/20">
+              <div className="w-12 h-12 bg-red-600/20 backdrop-blur-sm flex items-center justify-center border border-red-500/20">
                 <span className="text-2xl">🔍</span>
               </div>
               <div>
@@ -68,7 +68,7 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-lg bg-red-600/20 backdrop-blur-sm flex items-center justify-center border border-red-500/20">
+              <div className="w-12 h-12 bg-red-600/20 backdrop-blur-sm flex items-center justify-center border border-red-500/20">
                 <span className="text-2xl">📈</span>
               </div>
               <div>
@@ -102,7 +102,7 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
           </div>
           
           {/* Login Card - White/Light theme */}
-          <div className="bg-card backdrop-blur-xl border border-border rounded-2xl p-8 shadow-lg relative overflow-hidden transition-all duration-300 hover:shadow-xl">
+          <div className="bg-card backdrop-blur-xl border border-border p-8 shadow-lg relative overflow-hidden transition-all duration-300 hover:shadow-xl">
             {/* Top accent line - red */}
             <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-red-600 to-transparent" />
             
