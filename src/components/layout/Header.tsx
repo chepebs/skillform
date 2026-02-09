@@ -17,7 +17,7 @@ import { cn } from '@/lib/utils';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { ThemeToggle } from './ThemeToggle';
 import { NotificationsDropdown } from './NotificationsDropdown';
-import garnierLogoSvg from '@/assets/logo-garnier.svg';
+
 
 interface HeaderProps {
   sidebarCollapsed: boolean;
@@ -95,7 +95,7 @@ export const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, onMobileMenuTo
       )}
     >
       <div className="flex items-center justify-between h-full px-4 md:px-6">
-        {/* Left side - Mobile menu, Logo & Breadcrumbs */}
+        {/* Left side - Mobile menu & Breadcrumbs */}
         <div className="flex items-center gap-4">
           <button
             onClick={onMobileMenuToggle}
@@ -103,22 +103,6 @@ export const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, onMobileMenuTo
           >
             <Menu className="h-5 w-5 text-muted-foreground" />
           </button>
-          
-          {/* Logo - always visible */}
-          <button 
-            onClick={() => navigate('/dashboard')}
-            className="flex items-center gap-2 hover:opacity-80 transition-opacity"
-          >
-            <img 
-              src={garnierLogoSvg}
-              alt="Garnier Logo"
-              className="h-14 w-auto object-contain dark:invert"
-            />
-            <span className="font-bold text-base text-foreground tracking-wide">TALENT MAP</span>
-          </button>
-
-          {/* Separator */}
-          <div className="hidden md:block w-px h-8 bg-border" />
           
           {/* Breadcrumbs - Desktop only */}
           <nav className="hidden md:flex items-center gap-1 text-base">

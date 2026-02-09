@@ -575,7 +575,16 @@
       "linkedin": "LinkedIn",
       "instagram": "Instagram",
       "behance": "Behance"
-    }
+    },
+    "tabs": {
+      "overview": "Resumen",
+      "experience": "Experiencia",
+      "skills": "Habilidades e Idiomas",
+      "projects": "Proyectos y Premios",
+      "additional": "Info. Adicional"
+    },
+    "notFound": "Perfil no encontrado",
+    "notFoundDescription": "Este perfil no existe o no tiene permiso para verlo."
   },
   "messages": {
     "title": "Mensajes",
@@ -941,5 +950,27 @@
       "description": "Verifique su conexión a internet e intente de nuevo.",
       "retry": "Reintentar"
     }
+  },
+  "agencies": {
+    "title": "Gestión de Agencias",
+    "subtitle": "Gestione las agencias para perfiles de empleados",
+    "addNew": "Agregar Agencia",
+    "edit": "Editar Agencia",
+    "name": "Nombre de Agencia",
+    "namePlaceholder": "Ingrese nombre de agencia",
+    "nameRequired": "El nombre de la agencia es requerido",
+    "duplicateName": "Ya existe una agencia con este nombre",
+    "country": "País",
+    "description": "Descripción",
+    "descriptionPlaceholder": "Descripción opcional",
+    "active": "Activa",
+    "created": "Agencia creada exitosamente",
+    "updated": "Agencia actualizada exitosamente",
+    "deleted": "Agencia eliminada exitosamente",
+    "saveFailed": "Error al guardar agencia",
+    "deleteFailed": "Error al eliminar agencia",
+    "deleteTitle": "Eliminar Agencia",
+    "deleteConfirm": "¿Está seguro de que desea eliminar \"{{name}}\"? Esta acción no se puede deshacer.",
+    "noAgencies": "No se encontraron agencias"
   }
 }

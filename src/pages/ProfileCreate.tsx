@@ -404,7 +404,7 @@ const ProfileCreate: React.FC = () => {
       {/* Top bar with logo, theme toggle, language */}
       <div className="fixed top-0 left-0 right-0 z-50 h-20 bg-card/80 backdrop-blur-lg border-b border-border flex items-center justify-between px-6">
         <div className="flex items-center gap-2">
-          <img src={garnierLogoSvg} alt="Garnier Logo" className="h-14 w-auto object-contain dark:invert" />
+          <img src={garnierLogoSvg} alt="Logo" className="h-14 w-auto object-contain dark:invert" />
           <span className="font-bold text-base text-foreground tracking-wide">TALENT MAP</span>
         </div>
         <div className="flex items-center gap-3">
@@ -482,7 +482,7 @@ const ProfileCreate: React.FC = () => {
 
       {/* Copyright Footer */}
       <footer className="py-6 text-center text-sm text-muted-foreground border-t border-border">
-        © Grupo Garnier. All rights reserved.
+        © Grupo Garnier. {t('common.labels.allRightsReserved')}
       </footer>
     </div>
   );

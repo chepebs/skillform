@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Sidebar } from './Sidebar';
 import { Header } from './Header';
 import { cn } from '@/lib/utils';
 import { X } from 'lucide-react';
 
 export const AppLayout: React.FC = () => {
+  const { t } = useTranslation();
   const location = useLocation();
   const [sidebarCollapsed, setSidebarCollapsed] = useState(() => {
     const saved = localStorage.getItem('sidebarCollapsed');
@@ -110,7 +112,7 @@ export const AppLayout: React.FC = () => {
           sidebarCollapsed ? 'md:pl-16' : 'md:pl-72'
         )}
       >
-        © Grupo Garnier. All rights reserved.
+        © Grupo Garnier. {t('common.labels.allRightsReserved')}
       </footer>
     </div>
   );
