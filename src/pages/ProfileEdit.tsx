@@ -10,6 +10,8 @@ import { toast } from 'sonner';
 import { ChevronRight, ChevronLeft, Check, Loader2, Save, ArrowLeft } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { LanguageSwitcher } from '@/components/layout/LanguageSwitcher';
+import { ThemeToggle } from '@/components/layout/ThemeToggle';
+import garnierLogoSvg from '@/assets/logo-garnier.svg';
 
 import StepIndicator from '@/components/profile/StepIndicator';
 import BasicInfoStep from '@/components/profile/steps/BasicInfoStep';
@@ -423,12 +425,20 @@ const ProfileEdit: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background pattern-bg flex items-center justify-center p-4 relative">
-      {/* Language Selector - Fixed top right */}
-      <div className="fixed top-4 right-4 z-50">
-        <LanguageSwitcher compact />
+    <div className="min-h-screen bg-background pattern-bg flex flex-col relative">
+      {/* Top bar with logo, theme toggle, language */}
+      <div className="fixed top-0 left-0 right-0 z-50 h-20 bg-card/80 backdrop-blur-lg border-b border-border flex items-center justify-between px-6">
+        <div className="flex items-center gap-2">
+          <img src={garnierLogoSvg} alt="Garnier Logo" className="h-14 w-auto object-contain dark:invert" />
+          <span className="font-bold text-base text-foreground tracking-wide">TALENT MAP</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <LanguageSwitcher compact />
+        </div>
       </div>
       
+      <div className="flex-1 flex items-center justify-center p-6 pt-24">
       <div className="w-full max-w-3xl">
         {/* Header with save indicator */}
         <div className="flex items-center justify-between mb-4">
@@ -483,6 +493,12 @@ const ProfileEdit: React.FC = () => {
           </div>
         </div>
       </div>
+      </div>
+
+      {/* Copyright Footer */}
+      <footer className="py-6 text-center text-sm text-muted-foreground border-t border-border">
+        © Grupo Garnier. All rights reserved.
+      </footer>
     </div>
   );
 };
