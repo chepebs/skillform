@@ -32,7 +32,7 @@ const Login: React.FC = () => {
           {t('auth.login.noAccount')}{' '}
           <Link 
             to="/register/demo" 
-            className="text-primary hover:text-orange-light transition-colors font-medium"
+            className="text-foreground hover:text-foreground/70 transition-colors font-medium underline"
           >
             {t('auth.register.signIn')}
           </Link>

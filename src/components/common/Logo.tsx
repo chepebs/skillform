@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
+import garnierLogoSvg from '@/assets/logo-garnier.svg';
 
 interface LogoProps {
   size?: 'sm' | 'md' | 'lg';
@@ -9,27 +10,18 @@ interface LogoProps {
   clickable?: boolean;
 }
 
-const LOGO_URL = 'https://arbolcg.com/Logo-Garnier-2025-small-white.png';
-
 export const Logo: React.FC<LogoProps> = ({ 
   size = 'md', 
   showText = true, 
   className = '',
   clickable = true
 }) => {
-  const [imageError, setImageError] = useState(false);
   const navigate = useNavigate();
   
   const sizes = {
     sm: 'h-8',
     md: 'h-10',
     lg: 'h-16'
-  };
-
-  const fallbackSizes = {
-    sm: 'h-8 w-8 text-sm',
-    md: 'h-10 w-10 text-base',
-    lg: 'h-16 w-16 text-xl'
   };
 
   const textSizes = {
@@ -46,21 +38,11 @@ export const Logo: React.FC<LogoProps> = ({
 
   const content = (
     <>
-      {!imageError ? (
-        <img 
-          src={LOGO_URL}
-          alt="Grupo Garnier Logo"
-          className={cn(sizes[size], 'w-auto object-contain')}
-          onError={() => setImageError(true)}
-        />
-      ) : (
-        <div className={cn(
-          fallbackSizes[size], 
-          'bg-primary rounded-lg flex items-center justify-center text-primary-foreground font-bold'
-        )}>
-          GG
-        </div>
-      )}
+      <img 
+        src={garnierLogoSvg}
+        alt="Grupo Garnier Logo"
+        className={cn(sizes[size], 'w-auto object-contain dark:invert')}
+      />
       
       {showText && (
         <div className="flex flex-col">
@@ -96,25 +78,17 @@ export const Logo: React.FC<LogoProps> = ({
   );
 };
 
-// Light variant for use on dark/gradient backgrounds
+// Light variant for use on dark backgrounds
 export const LogoLight: React.FC<Omit<LogoProps, 'showText'> & { showText?: boolean }> = ({ 
   size = 'md', 
   showText = true, 
   className = '',
   clickable = false
 }) => {
-  const [imageError, setImageError] = useState(false);
-  
   const sizes = {
     sm: 'h-8',
     md: 'h-10',
     lg: 'h-16'
-  };
-
-  const fallbackSizes = {
-    sm: 'h-8 w-8 text-sm',
-    md: 'h-10 w-10 text-base',
-    lg: 'h-16 w-16 text-xl'
   };
 
   const textSizes = {
@@ -125,21 +99,11 @@ export const LogoLight: React.FC<Omit<LogoProps, 'showText'> & { showText?: bool
 
   const content = (
     <>
-      {!imageError ? (
-        <img 
-          src={LOGO_URL}
-          alt="Grupo Garnier Logo"
-          className={cn(sizes[size], 'w-auto object-contain')}
-          onError={() => setImageError(true)}
-        />
-      ) : (
-        <div className={cn(
-          fallbackSizes[size], 
-          'bg-foreground/20 backdrop-blur-sm rounded-lg flex items-center justify-center text-primary-foreground font-bold'
-        )}>
-          GG
-        </div>
-      )}
+      <img 
+        src={garnierLogoSvg}
+        alt="Grupo Garnier Logo"
+        className={cn(sizes[size], 'w-auto object-contain invert')}
+      />
       
       {showText && (
         <div className="flex flex-col">

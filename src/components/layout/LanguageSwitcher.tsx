@@ -51,8 +51,8 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
         className={cn(
           'transition-all duration-300',
           isDark 
-            ? 'bg-black/80 border-white/20 text-white hover:border-red-500 focus:border-red-500 focus:ring-red-500/20'
-            : 'bg-card border-border focus:border-primary hover:border-primary',
+            ? 'bg-black/80 border-white/20 text-white hover:border-foreground focus:border-foreground focus:ring-foreground/20'
+            : 'bg-card border-border focus:border-foreground hover:border-foreground',
           compact ? 'w-16 px-2' : 'w-32',
           className
         )}
@@ -83,7 +83,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
             value={language.code}
             className={cn(
               "cursor-pointer",
-              isDark ? "focus:bg-red-500/20 text-white" : "focus:bg-accent"
+              isDark ? "focus:bg-foreground/20 text-white" : "focus:bg-accent"
             )}
           >
             <span className="flex items-center gap-2">

@@ -17,7 +17,7 @@ import { cn } from '@/lib/utils';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { ThemeToggle } from './ThemeToggle';
 import { NotificationsDropdown } from './NotificationsDropdown';
-import garnierLogo from '@/assets/logo-garnier-small.png';
+import garnierLogoSvg from '@/assets/logo-garnier.svg';
 
 interface HeaderProps {
   sidebarCollapsed: boolean;
@@ -110,9 +110,9 @@ export const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, onMobileMenuTo
             className="md:hidden flex items-center gap-2 hover:opacity-80 transition-opacity"
           >
             <img 
-              src={garnierLogo}
+              src={garnierLogoSvg}
               alt="Garnier Logo"
-              className="h-8 w-auto object-contain logo-white"
+              className="h-8 w-auto object-contain dark:invert"
             />
             <span className="font-semibold text-sm text-foreground">Talent Map</span>
           </button>
