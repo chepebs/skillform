@@ -112,7 +112,7 @@ export const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, onMobileMenuTo
             <img 
               src={garnierLogoSvg}
               alt="Garnier Logo"
-              className="h-8 w-auto object-contain dark:invert"
+              className="h-16 w-auto object-contain dark:invert"
             />
             <span className="font-semibold text-sm text-foreground">Talent Map</span>
           </button>
