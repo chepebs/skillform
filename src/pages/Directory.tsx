@@ -24,7 +24,6 @@ import {
   DirectoryFilters,
   SortOption,
   ViewMode,
-  SORT_OPTIONS,
 } from '@/components/directory/types';
 
 const DEFAULT_FILTERS: DirectoryFilters = {
@@ -188,12 +187,22 @@ const Directory: React.FC = () => {
 
             {/* Sort dropdown */}
             <Select value={sortBy} onValueChange={(value) => setSortBy(value as SortOption)}>
-              <SelectTrigger className="w-[180px] bg-dark-elevated border-dark-border">
+              <SelectTrigger className="w-[180px] bg-secondary border-border">
                 <SortAsc className="h-4 w-4 mr-2" />
-                <SelectValue placeholder="Sort by" />
+                <SelectValue placeholder={t('directory.sorting.sortBy')} />
               </SelectTrigger>
               <SelectContent>
-                {SORT_OPTIONS.map((option) => (
+                {[
+                  { value: 'name_asc', label: t('directory.sorting.nameAsc') },
+                  { value: 'name_desc', label: t('directory.sorting.nameDesc') },
+                  { value: 'experience_desc', label: t('directory.sorting.experienceDesc') },
+                  { value: 'experience_asc', label: t('directory.sorting.experienceAsc') },
+                  { value: 'pitch_win_desc', label: t('directory.sorting.pitchWinDesc') },
+                  { value: 'pitch_win_asc', label: t('directory.sorting.pitchWinAsc') },
+                  { value: 'department_asc', label: t('directory.sorting.departmentAsc') },
+                  { value: 'created_desc', label: t('directory.sorting.recentlyAdded') },
+                  { value: 'updated_desc', label: t('directory.sorting.recentlyUpdated') },
+                ].map((option) => (
                   <SelectItem key={option.value} value={option.value}>
                     {option.label}
                   </SelectItem>
@@ -305,7 +314,7 @@ const Directory: React.FC = () => {
           {!isLoading && !error && profiles.length > 0 && (
             <>
               {viewMode === 'grid' ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {profiles.map((profile) => (
                     <ProfileCard
                       key={profile.id}

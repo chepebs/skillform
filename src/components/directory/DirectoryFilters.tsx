@@ -1,5 +1,6 @@
 import React from 'react';
 import { X, Filter, ChevronDown } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
@@ -55,6 +56,7 @@ export const DirectoryFiltersPanel: React.FC<DirectoryFiltersProps> = ({
   filterCounts,
   isMobile = false,
 }) => {
+  const { t } = useTranslation();
   const activeFilterCount = countActiveFilters(filters);
 
   const handleDepartmentToggle = (dept: string) => {
@@ -122,14 +124,22 @@ export const DirectoryFiltersPanel: React.FC<DirectoryFiltersProps> = ({
     ? agencies.filter((a) => a.country_id && filters.countries.includes(a.country_id))
     : agencies;
 
+  const experienceLevelLabels: Record<string, string> = {
+    junior: t('directory.filters.experienceLevels.junior'),
+    mid: t('directory.filters.experienceLevels.midLevel'),
+    senior: t('directory.filters.experienceLevels.senior'),
+    lead: t('directory.filters.experienceLevels.lead'),
+    executive: t('directory.filters.experienceLevels.executive'),
+  };
+
   const content = (
     <ScrollArea className="h-full">
       <div className="p-4 space-y-2">
         <Accordion type="multiple" defaultValue={['department', 'experience']} className="space-y-2">
           {/* Department Filter */}
-          <AccordionItem value="department" className="border border-dark-border rounded-lg overflow-hidden">
-            <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-dark-elevated">
-              <span className="text-sm font-medium">Department</span>
+          <AccordionItem value="department" className="border border-border rounded-lg overflow-hidden">
+            <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-secondary">
+              <span className="text-sm font-medium">{t('directory.filters.department')}</span>
             </AccordionTrigger>
             <AccordionContent className="px-4 pb-4">
               <div className="space-y-2">
@@ -155,9 +165,9 @@ export const DirectoryFiltersPanel: React.FC<DirectoryFiltersProps> = ({
           </AccordionItem>
 
           {/* Country Filter */}
-          <AccordionItem value="country" className="border border-dark-border rounded-lg overflow-hidden">
-            <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-dark-elevated">
-              <span className="text-sm font-medium">Country</span>
+          <AccordionItem value="country" className="border border-border rounded-lg overflow-hidden">
+            <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-secondary">
+              <span className="text-sm font-medium">{t('directory.filters.country')}</span>
             </AccordionTrigger>
             <AccordionContent className="px-4 pb-4">
               <div className="space-y-2 max-h-48 overflow-y-auto">
@@ -181,14 +191,14 @@ export const DirectoryFiltersPanel: React.FC<DirectoryFiltersProps> = ({
           </AccordionItem>
 
           {/* Agency Filter */}
-          <AccordionItem value="agency" className="border border-dark-border rounded-lg overflow-hidden">
-            <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-dark-elevated">
-              <span className="text-sm font-medium">Agency</span>
+          <AccordionItem value="agency" className="border border-border rounded-lg overflow-hidden">
+            <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-secondary">
+              <span className="text-sm font-medium">{t('directory.filters.agency')}</span>
             </AccordionTrigger>
             <AccordionContent className="px-4 pb-4">
               <div className="space-y-2 max-h-48 overflow-y-auto">
                 {filteredAgencies.length === 0 ? (
-                  <p className="text-sm text-muted-foreground">No agencies available</p>
+                  <p className="text-sm text-muted-foreground">{t('agencies.noAgencies')}</p>
                 ) : (
                   filteredAgencies.map((agency) => (
                     <div key={agency.id} className="flex items-center gap-2">
@@ -208,9 +218,9 @@ export const DirectoryFiltersPanel: React.FC<DirectoryFiltersProps> = ({
           </AccordionItem>
 
           {/* Experience Level Filter */}
-          <AccordionItem value="experience" className="border border-dark-border rounded-lg overflow-hidden">
-            <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-dark-elevated">
-              <span className="text-sm font-medium">Experience Level</span>
+          <AccordionItem value="experience" className="border border-border rounded-lg overflow-hidden">
+            <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-secondary">
+              <span className="text-sm font-medium">{t('directory.filters.experienceLevel')}</span>
             </AccordionTrigger>
             <AccordionContent className="px-4 pb-4">
               <RadioGroup
@@ -222,7 +232,7 @@ export const DirectoryFiltersPanel: React.FC<DirectoryFiltersProps> = ({
                     <div key={level.value} className="flex items-center gap-2">
                       <RadioGroupItem value={level.value} id={`exp-${level.value}`} />
                       <Label htmlFor={`exp-${level.value}`} className="text-sm cursor-pointer">
-                        {level.label} ({level.min}-{level.max === 100 ? '20+' : level.max} years)
+                        {experienceLevelLabels[level.value] || level.label}
                       </Label>
                     </div>
                   ))}
@@ -235,16 +245,16 @@ export const DirectoryFiltersPanel: React.FC<DirectoryFiltersProps> = ({
                   onClick={() => onChange({ ...filters, experienceLevel: null })}
                   className="mt-2 text-xs"
                 >
-                  Clear
+                  {t('common.buttons.clear')}
                 </Button>
               )}
             </AccordionContent>
           </AccordionItem>
 
           {/* Languages Filter */}
-          <AccordionItem value="languages" className="border border-dark-border rounded-lg overflow-hidden">
-            <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-dark-elevated">
-              <span className="text-sm font-medium">Languages</span>
+          <AccordionItem value="languages" className="border border-border rounded-lg overflow-hidden">
+            <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-secondary">
+              <span className="text-sm font-medium">{t('directory.filters.languages')}</span>
             </AccordionTrigger>
             <AccordionContent className="px-4 pb-4">
               <div className="space-y-4">
@@ -265,7 +275,7 @@ export const DirectoryFiltersPanel: React.FC<DirectoryFiltersProps> = ({
                 {filters.languages.length > 0 && (
                   <div className="space-y-2">
                     <Label className="text-xs text-muted-foreground">
-                      Min Proficiency: {filters.minLanguageProficiency}%
+                      {t('directory.filters.minProficiency')}: {filters.minLanguageProficiency}%
                     </Label>
                     <Slider
                       value={[filters.minLanguageProficiency]}
@@ -283,9 +293,9 @@ export const DirectoryFiltersPanel: React.FC<DirectoryFiltersProps> = ({
           </AccordionItem>
 
           {/* Pitch Win Ratio Filter */}
-          <AccordionItem value="pitch" className="border border-dark-border rounded-lg overflow-hidden">
-            <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-dark-elevated">
-              <span className="text-sm font-medium">Pitch Win Ratio</span>
+          <AccordionItem value="pitch" className="border border-border rounded-lg overflow-hidden">
+            <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-secondary">
+              <span className="text-sm font-medium">{t('directory.filters.pitchWinRatio')}</span>
             </AccordionTrigger>
             <AccordionContent className="px-4 pb-4">
               <div className="flex flex-wrap gap-2">
@@ -320,9 +330,9 @@ export const DirectoryFiltersPanel: React.FC<DirectoryFiltersProps> = ({
           </AccordionItem>
 
           {/* Awards Filter */}
-          <AccordionItem value="awards" className="border border-dark-border rounded-lg overflow-hidden">
-            <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-dark-elevated">
-              <span className="text-sm font-medium">Awards</span>
+          <AccordionItem value="awards" className="border border-border rounded-lg overflow-hidden">
+            <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-secondary">
+              <span className="text-sm font-medium">{t('directory.filters.awards')}</span>
             </AccordionTrigger>
             <AccordionContent className="px-4 pb-4">
               <div className="space-y-2">
@@ -335,7 +345,7 @@ export const DirectoryFiltersPanel: React.FC<DirectoryFiltersProps> = ({
                     }
                   />
                   <Label htmlFor="hasEffie" className="text-sm cursor-pointer">
-                    Has Effie Awards
+                    {t('directory.filters.hasEffieAwards')}
                   </Label>
                 </div>
                 <div className="flex items-center gap-2">
@@ -347,7 +357,7 @@ export const DirectoryFiltersPanel: React.FC<DirectoryFiltersProps> = ({
                     }
                   />
                   <Label htmlFor="hasCannes" className="text-sm cursor-pointer">
-                    Has Cannes Awards
+                    {t('directory.filters.hasCannesAwards')}
                   </Label>
                 </div>
                 <div className="flex items-center gap-2">
@@ -359,7 +369,7 @@ export const DirectoryFiltersPanel: React.FC<DirectoryFiltersProps> = ({
                     }
                   />
                   <Label htmlFor="hasAnyAwards" className="text-sm cursor-pointer">
-                    Has any awards
+                    {t('directory.filters.hasAnyAwards')}
                   </Label>
                 </div>
               </div>
@@ -367,14 +377,14 @@ export const DirectoryFiltersPanel: React.FC<DirectoryFiltersProps> = ({
           </AccordionItem>
 
           {/* Skills Filter */}
-          <AccordionItem value="skills" className="border border-dark-border rounded-lg overflow-hidden">
-            <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-dark-elevated">
-              <span className="text-sm font-medium">Skills</span>
+          <AccordionItem value="skills" className="border border-border rounded-lg overflow-hidden">
+            <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-secondary">
+              <span className="text-sm font-medium">{t('directory.filters.skills')}</span>
             </AccordionTrigger>
             <AccordionContent className="px-4 pb-4">
               <div className="space-y-2 max-h-48 overflow-y-auto">
                 {skills.length === 0 ? (
-                  <p className="text-sm text-muted-foreground">No skills available</p>
+                  <p className="text-sm text-muted-foreground">{t('common.messages.noData')}</p>
                 ) : (
                   skills.slice(0, 30).map((skill) => (
                     <div key={skill} className="flex items-center gap-2">
@@ -394,14 +404,14 @@ export const DirectoryFiltersPanel: React.FC<DirectoryFiltersProps> = ({
           </AccordionItem>
 
           {/* Industries Filter */}
-          <AccordionItem value="industries" className="border border-dark-border rounded-lg overflow-hidden">
-            <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-dark-elevated">
-              <span className="text-sm font-medium">Industries</span>
+          <AccordionItem value="industries" className="border border-border rounded-lg overflow-hidden">
+            <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-secondary">
+              <span className="text-sm font-medium">{t('directory.filters.industries')}</span>
             </AccordionTrigger>
             <AccordionContent className="px-4 pb-4">
               <div className="space-y-2 max-h-48 overflow-y-auto">
                 {industries.length === 0 ? (
-                  <p className="text-sm text-muted-foreground">No industries available</p>
+                  <p className="text-sm text-muted-foreground">{t('common.messages.noData')}</p>
                 ) : (
                   industries.map((industry) => (
                     <div key={industry.id} className="flex items-center gap-2">
@@ -421,9 +431,9 @@ export const DirectoryFiltersPanel: React.FC<DirectoryFiltersProps> = ({
           </AccordionItem>
 
           {/* Profile Status Filter */}
-          <AccordionItem value="status" className="border border-dark-border rounded-lg overflow-hidden">
-            <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-dark-elevated">
-              <span className="text-sm font-medium">Profile Status</span>
+          <AccordionItem value="status" className="border border-border rounded-lg overflow-hidden">
+            <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-secondary">
+              <span className="text-sm font-medium">{t('directory.filters.profileStatus')}</span>
             </AccordionTrigger>
             <AccordionContent className="px-4 pb-4">
               <div className="flex items-center gap-2">
@@ -435,7 +445,7 @@ export const DirectoryFiltersPanel: React.FC<DirectoryFiltersProps> = ({
                   }
                 />
                 <Label htmlFor="completedOnly" className="text-sm cursor-pointer">
-                  Completed profiles only
+                  {t('directory.filters.completedOnly')}
                 </Label>
               </div>
             </AccordionContent>
@@ -451,7 +461,7 @@ export const DirectoryFiltersPanel: React.FC<DirectoryFiltersProps> = ({
         <SheetTrigger asChild>
           <Button variant="outline" className="gap-2">
             <Filter className="h-4 w-4" />
-            Filters
+            {t('directory.filters.title')}
             {activeFilterCount > 0 && (
               <Badge className="ml-1 h-5 w-5 p-0 flex items-center justify-center bg-primary text-primary-foreground">
                 {activeFilterCount}
@@ -459,21 +469,21 @@ export const DirectoryFiltersPanel: React.FC<DirectoryFiltersProps> = ({
             )}
           </Button>
         </SheetTrigger>
-        <SheetContent side="bottom" className="h-[85vh] bg-dark-card">
-          <SheetHeader className="pb-4 border-b border-dark-border">
+        <SheetContent side="bottom" className="h-[85vh] bg-card">
+          <SheetHeader className="pb-4 border-b border-border">
             <SheetTitle className="flex items-center justify-between">
-              <span>Filters</span>
+              <span>{t('directory.filters.title')}</span>
               {activeFilterCount > 0 && (
                 <Button variant="ghost" size="sm" onClick={handleClearAll}>
-                  Clear All
+                  {t('common.actions.clearAll')}
                 </Button>
               )}
             </SheetTitle>
           </SheetHeader>
           <div className="h-[calc(100%-120px)]">{content}</div>
-          <SheetFooter className="pt-4 border-t border-dark-border">
+          <SheetFooter className="pt-4 border-t border-border">
             <SheetTrigger asChild>
-              <Button className="w-full bg-gradient-primary">Apply Filters</Button>
+              <Button className="w-full bg-gradient-primary">{t('directory.filters.applyFilters')}</Button>
             </SheetTrigger>
           </SheetFooter>
         </SheetContent>
@@ -484,11 +494,11 @@ export const DirectoryFiltersPanel: React.FC<DirectoryFiltersProps> = ({
   return (
     <div className="w-72 flex-shrink-0 hidden lg:block">
       <div className="glass-card rounded-xl overflow-hidden sticky top-4">
-        <div className="p-4 border-b border-dark-border flex items-center justify-between">
-          <h3 className="font-semibold text-foreground">Filters</h3>
+        <div className="p-4 border-b border-border flex items-center justify-between">
+          <h3 className="font-semibold text-foreground">{t('directory.filters.title')}</h3>
           {activeFilterCount > 0 && (
             <Button variant="ghost" size="sm" onClick={handleClearAll} className="text-xs">
-              Clear All ({activeFilterCount})
+              {t('common.actions.clearAll')} ({activeFilterCount})
             </Button>
           )}
         </div>
@@ -529,58 +539,59 @@ export const ActiveFiltersDisplay: React.FC<{
   agencies: Agency[];
   onRemove: (filterType: keyof Filters, value?: string) => void;
 }> = ({ filters, countries, agencies, onRemove }) => {
+  const { t } = useTranslation();
   const chips: { label: string; key: keyof Filters; value?: string }[] = [];
 
   filters.departments.forEach((dept) => {
-    chips.push({ label: `Department: ${dept}`, key: 'departments', value: dept });
+    chips.push({ label: `${t('directory.filters.department')}: ${dept}`, key: 'departments', value: dept });
   });
 
   filters.countries.forEach((countryId) => {
     const country = countries.find((c) => c.id === countryId);
     if (country) {
-      chips.push({ label: `Country: ${country.name}`, key: 'countries', value: countryId });
+      chips.push({ label: `${t('directory.filters.country')}: ${country.name}`, key: 'countries', value: countryId });
     }
   });
 
   filters.agencies.forEach((agencyId) => {
     const agency = agencies.find((a) => a.id === agencyId);
     if (agency) {
-      chips.push({ label: `Agency: ${agency.name}`, key: 'agencies', value: agencyId });
+      chips.push({ label: `${t('directory.filters.agency')}: ${agency.name}`, key: 'agencies', value: agencyId });
     }
   });
 
   if (filters.experienceLevel) {
     const level = EXPERIENCE_LEVELS.find((l) => l.value === filters.experienceLevel);
     if (level) {
-      chips.push({ label: `Experience: ${level.label}`, key: 'experienceLevel' });
+      chips.push({ label: `${t('directory.filters.experienceLevel')}: ${level.label}`, key: 'experienceLevel' });
     }
   }
 
   filters.languages.forEach((lang) => {
-    chips.push({ label: `Language: ${lang}`, key: 'languages', value: lang });
+    chips.push({ label: `${t('directory.filters.languages')}: ${lang}`, key: 'languages', value: lang });
   });
 
   if (filters.minPitchWinRatio !== null) {
     chips.push({
-      label: `Pitch Win: ${filters.minPitchWinRatio}-${filters.maxPitchWinRatio}%`,
+      label: `${t('directory.filters.pitchWinRatio')}: ${filters.minPitchWinRatio}-${filters.maxPitchWinRatio}%`,
       key: 'minPitchWinRatio',
     });
   }
 
   if (filters.hasEffieAwards) {
-    chips.push({ label: 'Has Effie Awards', key: 'hasEffieAwards' });
+    chips.push({ label: t('directory.filters.hasEffieAwards'), key: 'hasEffieAwards' });
   }
 
   if (filters.hasCannesAwards) {
-    chips.push({ label: 'Has Cannes Awards', key: 'hasCannesAwards' });
+    chips.push({ label: t('directory.filters.hasCannesAwards'), key: 'hasCannesAwards' });
   }
 
   if (filters.hasAnyAwards) {
-    chips.push({ label: 'Has Awards', key: 'hasAnyAwards' });
+    chips.push({ label: t('directory.filters.hasAnyAwards'), key: 'hasAnyAwards' });
   }
 
   if (!filters.completedOnly) {
-    chips.push({ label: 'Include Incomplete', key: 'completedOnly' });
+    chips.push({ label: t('directory.filters.includeIncomplete'), key: 'completedOnly' });
   }
 
   if (chips.length === 0) return null;
