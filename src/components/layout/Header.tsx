@@ -89,8 +89,8 @@ export const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, onMobileMenuTo
   return (
     <header
       className={cn(
-        'fixed top-0 right-0 z-30 h-16 bg-card/80 backdrop-blur-lg border-b border-border transition-all duration-300',
-        sidebarCollapsed ? 'left-16' : 'left-64',
+        'fixed top-0 right-0 z-30 h-20 bg-card/80 backdrop-blur-lg border-b border-border transition-all duration-300',
+        sidebarCollapsed ? 'left-16' : 'left-72',
         'max-md:left-0'
       )}
     >
@@ -104,21 +104,24 @@ export const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, onMobileMenuTo
             <Menu className="h-5 w-5 text-muted-foreground" />
           </button>
           
-          {/* Mobile Logo - only visible on mobile */}
+          {/* Logo - always visible */}
           <button 
             onClick={() => navigate('/dashboard')}
-            className="md:hidden flex items-center gap-2 hover:opacity-80 transition-opacity"
+            className="flex items-center gap-2 hover:opacity-80 transition-opacity"
           >
             <img 
               src={garnierLogoSvg}
               alt="Garnier Logo"
-              className="h-16 w-auto object-contain dark:invert"
+              className="h-14 w-auto object-contain dark:invert"
             />
-            <span className="font-semibold text-sm text-foreground">Talent Map</span>
+            <span className="font-bold text-base text-foreground tracking-wide">TALENT MAP</span>
           </button>
+
+          {/* Separator */}
+          <div className="hidden md:block w-px h-8 bg-border" />
           
           {/* Breadcrumbs - Desktop only */}
-          <nav className="hidden md:flex items-center gap-1 text-sm">
+          <nav className="hidden md:flex items-center gap-1 text-base">
             {breadcrumbs.map((crumb, index) => (
               <React.Fragment key={index}>
                 {index > 0 && <ChevronRight className="h-4 w-4 text-muted-foreground" />}
