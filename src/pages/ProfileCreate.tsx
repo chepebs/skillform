@@ -8,11 +8,17 @@ import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
-import { ChevronRight, ChevronLeft, Check, Loader2, Save } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Check, Loader2, Save, User, LogOut } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { LanguageSwitcher } from '@/components/layout/LanguageSwitcher';
 import { ThemeToggle } from '@/components/layout/ThemeToggle';
 import garnierLogoSvg from '@/assets/logo-garnier.svg';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 import StepIndicator from '@/components/profile/StepIndicator';
 import BasicInfoStep from '@/components/profile/steps/BasicInfoStep';
@@ -52,7 +58,7 @@ const TOTAL_STEPS = 10;
 
 const ProfileCreate: React.FC = () => {
   const { t } = useTranslation();
-  const { user, refreshProfile } = useAuth();
+  const { user, refreshProfile, signOut } = useAuth();
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -401,9 +407,27 @@ const ProfileCreate: React.FC = () => {
           <img src={garnierLogoSvg} alt="Garnier Logo" className="h-14 w-auto object-contain dark:invert" />
           <span className="font-bold text-base text-foreground tracking-wide">TALENT MAP</span>
         </div>
-        <div className="flex items-center gap-2">
-          <ThemeToggle />
+        <div className="flex items-center gap-3">
           <LanguageSwitcher compact />
+          <ThemeToggle />
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" className="gap-2 border-border">
+                <User className="h-4 w-4" />
+                <span className="hidden sm:inline">{t('auth.myAccount')}</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-48 bg-card border-border z-50">
+              <DropdownMenuItem onClick={() => navigate('/profile/me')} className="cursor-pointer">
+                <User className="mr-2 h-4 w-4" />
+                {t('profile.viewProfile')}
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={async () => { await signOut(); navigate('/login'); }} className="cursor-pointer text-destructive focus:text-destructive">
+                <LogOut className="mr-2 h-4 w-4" />
+                {t('auth.logout')}
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
       
