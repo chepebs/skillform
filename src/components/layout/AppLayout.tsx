@@ -70,7 +70,7 @@ export const AppLayout: React.FC = () => {
             <button
               onClick={handleCloseMobileMenu}
               onTouchEnd={handleCloseMobileMenu}
-              className="absolute right-3 top-3 z-[60] p-2 rounded-lg bg-sidebar hover:bg-sidebar-accent active:scale-95 transition-all touch-manipulation select-none"
+              className="absolute right-3 top-3 z-[60] p-2 bg-sidebar hover:bg-sidebar-accent active:scale-95 transition-all touch-manipulation select-none"
               style={{ WebkitTapHighlightColor: 'transparent' }}
               aria-label="Close menu"
               type="button"

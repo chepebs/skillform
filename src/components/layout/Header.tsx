@@ -99,7 +99,7 @@ export const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, onMobileMenuTo
         <div className="flex items-center gap-4">
           <button
             onClick={onMobileMenuToggle}
-            className="md:hidden p-2 rounded-lg hover:bg-secondary transition-colors"
+            className="md:hidden p-2 hover:bg-secondary transition-colors"
           >
             <Menu className="h-5 w-5 text-muted-foreground" />
           </button>
@@ -166,7 +166,7 @@ export const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, onMobileMenuTo
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="flex items-center gap-2 pl-2 pr-3">
-                <div className="w-8 h-8 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground text-sm font-semibold">
+                <div className="w-8 h-8 bg-foreground flex items-center justify-center text-background text-sm font-semibold">
                   {profile?.first_name?.[0] || profile?.email?.[0]?.toUpperCase() || 'U'}
                 </div>
                 <div className="hidden md:block text-left">

@@ -135,9 +135,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
                   <NavLink
                     to={item.path}
                     className={cn(
-                      'flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200',
+                      'flex items-center gap-3 px-3 py-2.5 transition-all duration-200',
                       active
-                        ? 'bg-gradient-primary text-primary-foreground shadow-primary'
+                        ? 'bg-foreground text-background font-semibold'
                         : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
                     )}
                     title={collapsed ? label : undefined}
@@ -157,14 +157,14 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
         {!collapsed && (
           <div className="p-4 border-t border-sidebar-border">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-semibold">
+              <div className="w-10 h-10 bg-foreground flex items-center justify-center text-background font-semibold">
                 {profile?.first_name?.[0] || profile?.email?.[0]?.toUpperCase() || 'U'}
               </div>
               <div className="flex-1 min-w-0">
                 <p className="font-medium text-foreground truncate text-sm">
                   {profile?.first_name ? `${profile.first_name} ${profile.last_name || ''}` : profile?.email}
                 </p>
-                <span className={cn('text-xs px-2 py-0.5 rounded-full', getRoleBadgeColor(role))}>
+                <span className={cn('text-xs px-2 py-0.5', getRoleBadgeColor(role))}>
                   {formatRole(role)}
                 </span>
               </div>
@@ -175,7 +175,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
         {/* Toggle Button */}
         <button
           onClick={onToggle}
-          className="absolute -right-3 top-20 p-1.5 rounded-full bg-card border border-border hover:border-primary transition-colors"
+          className="absolute -right-3 top-20 p-1.5 bg-card border border-border hover:border-primary transition-colors"
         >
           {collapsed ? (
             <ChevronRight className="h-4 w-4 text-muted-foreground" />
