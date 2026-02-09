@@ -53,25 +53,15 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
           isDark 
             ? 'bg-black/80 border-white/20 text-white hover:border-foreground focus:border-foreground focus:ring-foreground/20'
             : 'bg-card border-border focus:border-foreground hover:border-foreground',
-          compact ? 'w-16 px-2' : 'w-32',
+          compact ? 'w-auto min-w-[100px] px-2' : 'w-40',
           className
         )}
         aria-label="Select language"
       >
         <div className="flex items-center gap-2">
-          {compact ? (
-            <span className="text-base">{currentLanguage.flag}</span>
-          ) : (
-            <>
-              <Globe className={cn("h-4 w-4", isDark ? "text-white/60" : "text-muted-foreground")} />
-              <SelectValue>
-                <span className="flex items-center gap-2">
-                  <span>{currentLanguage.flag}</span>
-                  <span className="hidden sm:inline">{currentLanguage.code.toUpperCase()}</span>
-                </span>
-              </SelectValue>
-            </>
-          )}
+          <Globe className={cn("h-4 w-4 flex-shrink-0", isDark ? "text-white/60" : "text-muted-foreground")} />
+          <span className="text-base">{currentLanguage.flag}</span>
+          <span className="text-sm">{currentLanguage.label}</span>
         </div>
       </SelectTrigger>
       <SelectContent className={cn(
