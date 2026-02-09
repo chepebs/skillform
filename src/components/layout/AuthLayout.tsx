@@ -27,7 +27,7 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
           <img 
             src={garnierLogoSvg}
             alt="Grupo Garnier Logo"
-            className="h-16 w-auto object-contain dark:invert"
+            className="h-32 w-auto object-contain dark:invert"
           />
           <span className="text-sm font-medium tracking-widest uppercase text-muted-foreground">
             Talent Map

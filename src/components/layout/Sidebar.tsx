@@ -106,7 +106,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
               alt="Grupo Garnier Logo"
               className={cn(
                 'object-contain flex-shrink-0 dark:invert',
-                collapsed ? 'h-8 w-8' : 'h-10 w-auto'
+                collapsed ? 'h-16 w-16' : 'h-20 w-auto'
               )}
             />
             {!collapsed && (

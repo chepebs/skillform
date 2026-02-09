@@ -19,9 +19,9 @@ export const Logo: React.FC<LogoProps> = ({
   const navigate = useNavigate();
   
   const sizes = {
-    sm: 'h-8',
-    md: 'h-10',
-    lg: 'h-16'
+    sm: 'h-16',
+    md: 'h-20',
+    lg: 'h-32'
   };
 
   const textSizes = {
@@ -86,9 +86,9 @@ export const LogoLight: React.FC<Omit<LogoProps, 'showText'> & { showText?: bool
   clickable = false
 }) => {
   const sizes = {
-    sm: 'h-8',
-    md: 'h-10',
-    lg: 'h-16'
+    sm: 'h-16',
+    md: 'h-20',
+    lg: 'h-32'
   };
 
   const textSizes = {
