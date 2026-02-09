@@ -59,12 +59,12 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ profile, searchQuery }
         </div>
 
         <div className="flex-1 min-w-0">
-          <h3 className="font-semibold text-lg text-foreground truncate group-hover:text-primary transition-colors">
+          <h3 className="font-semibold text-lg text-foreground group-hover:text-primary transition-colors break-words">
             {highlightText(fullName)}
           </h3>
           
           {(profile.current_position || profile.position) && (
-            <p className="text-sm text-muted-foreground truncate mt-0.5">
+            <p className="text-sm text-muted-foreground break-words mt-0.5">
               {highlightText(profile.current_position || profile.position || '')}
             </p>
           )}

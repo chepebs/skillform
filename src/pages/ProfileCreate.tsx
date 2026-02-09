@@ -403,7 +403,7 @@ const ProfileCreate: React.FC = () => {
       <div className="w-full max-w-3xl">
         {/* Header with save indicator */}
         <div className="flex items-center justify-between mb-4">
-          <h1 className="text-2xl font-bold text-foreground">{t('profile.creation.title')}</h1>
+          <h1 className="text-3xl font-bold text-foreground">{t('profile.creation.title')}</h1>
           <div className="flex items-center gap-2 text-xs text-muted-foreground">
             {isSaving ? (
               <><Loader2 className="h-3 w-3 animate-spin" /> {t('profile.creation.savingDraft')}</>
@@ -415,7 +415,7 @@ const ProfileCreate: React.FC = () => {
 
         <StepIndicator currentStep={currentStep} totalSteps={TOTAL_STEPS} />
 
-        <div className="glass-card rounded-2xl p-6 sm:p-8">
+        <div className="glass-card rounded-2xl p-8 sm:p-10">
           {renderStep()}
 
           {/* Navigation */}

@@ -85,13 +85,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
     <aside
       className={cn(
         'fixed left-0 top-0 z-40 h-screen bg-sidebar border-r border-sidebar-border transition-all duration-300 ease-smooth',
-        collapsed ? 'w-16' : 'w-64'
+        collapsed ? 'w-16' : 'w-72'
       )}
     >
       <div className="flex flex-col h-full">
         {/* Logo Header */}
         <div className={cn(
-          'flex items-center h-16 border-b border-sidebar-border',
+          'flex items-center h-20 border-b border-sidebar-border',
           collapsed ? 'justify-center px-2' : 'gap-3 px-4'
         )}>
           <button 
@@ -134,7 +134,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
                   <NavLink
                     to={item.path}
                     className={cn(
-                      'flex items-center gap-3 px-3 py-2.5 transition-all duration-200',
+                      'flex items-center gap-3 px-3 py-3 transition-all duration-200',
                       active
                         ? 'bg-foreground text-background font-semibold'
                         : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'

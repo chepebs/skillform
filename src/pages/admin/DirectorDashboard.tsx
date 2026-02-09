@@ -73,12 +73,12 @@ const DirectorDashboard: React.FC = () => {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-3">
-            <h1 className="text-2xl sm:text-3xl font-bold text-foreground">
+            <h1 className="text-3xl sm:text-4xl font-bold text-foreground">
               Department Director
             </h1>
             <Badge className="bg-yellow-500 hover:bg-yellow-600 text-white">

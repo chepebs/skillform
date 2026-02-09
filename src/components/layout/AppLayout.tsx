@@ -65,7 +65,7 @@ export const AppLayout: React.FC = () => {
             aria-hidden="true"
           />
           {/* Sidebar panel */}
-          <div className="absolute left-0 top-0 h-full w-64 bg-sidebar border-r border-sidebar-border animate-slide-in-left">
+          <div className="absolute left-0 top-0 h-full w-72 bg-sidebar border-r border-sidebar-border animate-slide-in-left">
             {/* Close button - positioned ABOVE the sidebar content with high z-index */}
             <button
               onClick={handleCloseMobileMenu}
@@ -94,14 +94,24 @@ export const AppLayout: React.FC = () => {
       {/* Main Content */}
       <main
         className={cn(
-          'pt-16 min-h-screen transition-all duration-300',
-          sidebarCollapsed ? 'md:pl-16' : 'md:pl-64'
+          'pt-20 min-h-screen transition-all duration-300',
+          sidebarCollapsed ? 'md:pl-16' : 'md:pl-72'
         )}
       >
-        <div className="p-4 md:p-6 lg:p-8 animate-fade-in">
+        <div className="p-6 md:p-8 lg:p-10 animate-fade-in">
           <Outlet />
         </div>
       </main>
+
+      {/* Copyright Footer */}
+      <footer
+        className={cn(
+          'py-6 text-center text-sm text-muted-foreground border-t border-border transition-all duration-300',
+          sidebarCollapsed ? 'md:pl-16' : 'md:pl-72'
+        )}
+      >
+        © Grupo Garnier. All rights reserved.
+      </footer>
     </div>
   );
 };
