@@ -57,8 +57,8 @@ export const StatsCard: React.FC<StatsCardProps> = ({
   return (
     <div
       className={cn(
-        "glass-card rounded-xl p-6 transition-all duration-300",
-        onClick && "cursor-pointer hover:scale-[1.02] hover:shadow-lg hover:shadow-primary/10"
+        "glass-card p-6 transition-all duration-300",
+        onClick && "cursor-pointer hover:scale-[1.02]"
       )}
       onClick={onClick}
     >

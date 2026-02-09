@@ -125,7 +125,7 @@ export const LoginForm: React.FC = () => {
 
       <Button
         type="submit"
-        className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 relative overflow-hidden group"
+        className="w-full bg-foreground hover:bg-foreground/90 text-background transition-all duration-300 active:translate-y-0 relative overflow-hidden group"
         disabled={isSubmitting}
       >
         {/* Shine effect */}

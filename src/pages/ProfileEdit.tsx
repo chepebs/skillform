@@ -468,11 +468,11 @@ const ProfileEdit: React.FC = () => {
             </div>
 
             {currentStep < TOTAL_STEPS ? (
-              <Button onClick={handleNext} className="bg-gradient-primary shadow-primary">
+              <Button onClick={handleNext} className="bg-primary text-primary-foreground">
                 {t('common.buttons.next')} <ChevronRight className="ml-2 h-4 w-4" />
               </Button>
             ) : (
-              <Button onClick={handleSubmit} disabled={isSubmitting} className="bg-gradient-primary shadow-primary">
+              <Button onClick={handleSubmit} disabled={isSubmitting} className="bg-primary text-primary-foreground">
                 {isSubmitting ? (
                   <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> {t('common.messages.saving')}</>
                 ) : (

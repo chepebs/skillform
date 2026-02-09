@@ -39,7 +39,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ profile, searchQuery }
 
   return (
     <div
-      className="glass-card rounded-xl p-5 cursor-pointer group transition-all duration-300 hover:border-primary/50 hover:shadow-[0_8px_30px_-8px_hsl(var(--primary)/0.4)] hover:-translate-y-2 flex flex-col"
+      className="glass-card p-5 cursor-pointer group transition-all duration-300 hover:border-primary/50 hover:-translate-y-1 flex flex-col"
       onClick={() => navigate(`/profile/${profile.user_id}`)}
     >
       {/* Avatar and main info */}
