@@ -1,5 +1,5 @@
-import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
@@ -17,6 +17,7 @@ import { cn } from '@/lib/utils';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { ThemeToggle } from './ThemeToggle';
 import { NotificationsDropdown } from './NotificationsDropdown';
+import { supabase } from '@/integrations/supabase/client';
 
 
 interface HeaderProps {
@@ -55,19 +56,60 @@ export const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, onMobileMenuTo
   const { t } = useTranslation();
   const { profile, role, signOut } = useAuth();
   const routeLabels = getRouteLabels(t);
+  const [profileName, setProfileName] = useState<string | null>(null);
+
+  // Detect if we're on /profile/:id and fetch the name
+  const pathSegments = location.pathname.split('/').filter(Boolean);
+  const isProfileView = pathSegments[0] === 'profile' && pathSegments.length === 2 && pathSegments[1] !== 'me' && pathSegments[1] !== 'create' && pathSegments[1] !== 'edit';
+  const profileUserId = isProfileView ? pathSegments[1] : null;
+
+  useEffect(() => {
+    if (!profileUserId) {
+      setProfileName(null);
+      return;
+    }
+
+    const fetchName = async () => {
+      const { data } = await supabase
+        .from('profiles')
+        .select('first_name, last_name')
+        .eq('user_id', profileUserId)
+        .single();
+
+      if (data) {
+        const name = [data.first_name, data.last_name].filter(Boolean).join(' ');
+        setProfileName(name || null);
+      }
+    };
+    fetchName();
+  }, [profileUserId]);
 
   const generateBreadcrumbs = (): Breadcrumb[] => {
-    const pathSegments = location.pathname.split('/').filter(Boolean);
     const breadcrumbs: Breadcrumb[] = [];
     
     let currentPath = '';
     pathSegments.forEach((segment, index) => {
       currentPath += `/${segment}`;
+      
+      // If this is a profile user ID segment, show the name instead
+      if (index === 1 && pathSegments[0] === 'profile' && isProfileView) {
+        breadcrumbs.push({
+          label: profileName || t('profile.title'),
+          // Last segment: no path (not clickable)
+          path: index < pathSegments.length - 1 ? currentPath : undefined,
+        });
+        return;
+      }
+
       const label = routeLabels[segment] || segment.charAt(0).toUpperCase() + segment.slice(1);
+      
+      // For the "profile" parent segment when viewing /profile/:id,
+      // don't make it navigable (clicking it would go to /profile which is 404)
+      const isProfileParent = index === 0 && segment === 'profile' && pathSegments.length === 2 && isProfileView;
       
       breadcrumbs.push({
         label,
-        path: index < pathSegments.length - 1 ? currentPath : undefined,
+        path: isProfileParent ? undefined : (index < pathSegments.length - 1 ? currentPath : undefined),
       });
     });
     
