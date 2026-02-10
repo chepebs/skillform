@@ -2,17 +2,10 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Grid, List, Download, Users, SortAsc } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/contexts/AuthContext';
 import { cn } from '@/lib/utils';
-
 import { DirectorySearch } from '@/components/directory/DirectorySearch';
 import { DirectoryFiltersPanel, ActiveFiltersDisplay } from '@/components/directory/DirectoryFilters';
 import { ProfileCard } from '@/components/directory/ProfileCard';
@@ -20,12 +13,7 @@ import { ProfileTable } from '@/components/directory/ProfileTable';
 import { DirectoryPagination } from '@/components/directory/DirectoryPagination';
 import { SkeletonCard, SkeletonRow } from '@/components/directory/SkeletonCard';
 import { useDirectoryData, useExportCSV } from '@/hooks/useDirectoryData';
-import {
-  DirectoryFilters,
-  SortOption,
-  ViewMode,
-} from '@/components/directory/types';
-
+import { DirectoryFilters, SortOption, ViewMode } from '@/components/directory/types';
 const DEFAULT_FILTERS: DirectoryFilters = {
   departments: [],
   countries: [],
@@ -40,20 +28,23 @@ const DEFAULT_FILTERS: DirectoryFilters = {
   hasAnyAwards: false,
   completedOnly: true,
   skills: [],
-  industries: [],
+  industries: []
 };
-
 const Directory: React.FC = () => {
-  const { t } = useTranslation();
-  const { role } = useAuth();
-  const { toast } = useToast();
-  
+  const {
+    t
+  } = useTranslation();
+  const {
+    role
+  } = useAuth();
+  const {
+    toast
+  } = useToast();
   const [searchQuery, setSearchQuery] = useState('');
   const [filters, setFilters] = useState<DirectoryFilters>(DEFAULT_FILTERS);
   const [sortBy, setSortBy] = useState<SortOption>('name_asc');
   const [viewMode, setViewMode] = useState<ViewMode>('grid');
   const [currentPage, setCurrentPage] = useState(1);
-
   const {
     profiles,
     totalCount,
@@ -65,41 +56,41 @@ const Directory: React.FC = () => {
     allLanguages,
     allSkills,
     allIndustries,
-    filterCounts,
+    filterCounts
   } = useDirectoryData(searchQuery, filters, sortBy, viewMode, currentPage);
-
   const isAdmin = role === 'master_admin' || role === 'organizer_admin';
-  const { exportToCSV } = useExportCSV(profiles, isAdmin);
+  const {
+    exportToCSV
+  } = useExportCSV(profiles, isAdmin);
 
   // Reset to page 1 when filters change
   const handleFiltersChange = (newFilters: DirectoryFilters) => {
     setFilters(newFilters);
     setCurrentPage(1);
   };
-
   const handleSearchChange = (query: string) => {
     setSearchQuery(query);
     setCurrentPage(1);
   };
-
   const handleRemoveFilter = (filterType: keyof DirectoryFilters, value?: string) => {
-    const newFilters = { ...filters };
-
+    const newFilters = {
+      ...filters
+    };
     switch (filterType) {
       case 'departments':
-        newFilters.departments = filters.departments.filter((d) => d !== value);
+        newFilters.departments = filters.departments.filter(d => d !== value);
         break;
       case 'countries':
-        newFilters.countries = filters.countries.filter((c) => c !== value);
+        newFilters.countries = filters.countries.filter(c => c !== value);
         break;
       case 'agencies':
-        newFilters.agencies = filters.agencies.filter((a) => a !== value);
+        newFilters.agencies = filters.agencies.filter(a => a !== value);
         break;
       case 'experienceLevel':
         newFilters.experienceLevel = null;
         break;
       case 'languages':
-        newFilters.languages = filters.languages.filter((l) => l !== value);
+        newFilters.languages = filters.languages.filter(l => l !== value);
         break;
       case 'minPitchWinRatio':
         newFilters.minPitchWinRatio = null;
@@ -115,117 +106,101 @@ const Directory: React.FC = () => {
         newFilters.hasAnyAwards = false;
         break;
       case 'skills':
-        newFilters.skills = filters.skills.filter((s) => s !== value);
+        newFilters.skills = filters.skills.filter(s => s !== value);
         break;
       case 'industries':
-        newFilters.industries = filters.industries.filter((i) => i !== value);
+        newFilters.industries = filters.industries.filter(i => i !== value);
         break;
       case 'completedOnly':
         newFilters.completedOnly = true;
         break;
     }
-
     handleFiltersChange(newFilters);
   };
-
   const handleExport = () => {
     exportToCSV();
     toast({
       title: t('directory.export.exportComplete'),
-      description: t('common.messages.processing'),
+      description: t('common.messages.processing')
     });
   };
-
   const handleClearFilters = () => {
     setFilters(DEFAULT_FILTERS);
     setSearchQuery('');
     setCurrentPage(1);
   };
-
-  return (
-    <div className="space-y-8">
+  return <div className="space-y-8">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-4xl font-bold text-foreground">{t('directory.title')}</h1>
+          <h1 className="font-bold text-foreground text-6xl">{t('directory.title')}</h1>
           <p className="text-muted-foreground mt-1">
             {t('directory.subtitle')}
           </p>
         </div>
-        {isAdmin && (
-          <Button onClick={handleExport} variant="outline" className="gap-2">
+        {isAdmin && <Button onClick={handleExport} variant="outline" className="gap-2">
             <Download className="h-4 w-4" />
             {t('directory.export.exportButton')}
-          </Button>
-        )}
+          </Button>}
       </div>
 
       {/* Search Bar - Sticky on scroll */}
       <div className="sticky top-0 z-20 py-4 -mx-4 px-4 bg-background/80 backdrop-blur-sm">
         <div className="flex flex-col sm:flex-row gap-4">
-          <DirectorySearch
-            value={searchQuery}
-            onChange={handleSearchChange}
-            className="flex-1"
-          />
+          <DirectorySearch value={searchQuery} onChange={handleSearchChange} className="flex-1" />
           
           <div className="flex gap-2">
             {/* Mobile filters button */}
             <div className="lg:hidden">
-              <DirectoryFiltersPanel
-                filters={filters}
-                onChange={handleFiltersChange}
-                countries={countries}
-                agencies={agencies}
-                languages={allLanguages}
-                skills={allSkills}
-                industries={allIndustries}
-                filterCounts={filterCounts}
-                isMobile
-              />
+              <DirectoryFiltersPanel filters={filters} onChange={handleFiltersChange} countries={countries} agencies={agencies} languages={allLanguages} skills={allSkills} industries={allIndustries} filterCounts={filterCounts} isMobile />
             </div>
 
             {/* Sort dropdown */}
-            <Select value={sortBy} onValueChange={(value) => setSortBy(value as SortOption)}>
+            <Select value={sortBy} onValueChange={value => setSortBy(value as SortOption)}>
               <SelectTrigger className="w-[180px] bg-secondary border-border">
                 <SortAsc className="h-4 w-4 mr-2" />
                 <SelectValue placeholder={t('directory.sorting.sortBy')} />
               </SelectTrigger>
               <SelectContent>
-                {[
-                  { value: 'name_asc', label: t('directory.sorting.nameAsc') },
-                  { value: 'name_desc', label: t('directory.sorting.nameDesc') },
-                  { value: 'experience_desc', label: t('directory.sorting.experienceDesc') },
-                  { value: 'experience_asc', label: t('directory.sorting.experienceAsc') },
-                  { value: 'pitch_win_desc', label: t('directory.sorting.pitchWinDesc') },
-                  { value: 'pitch_win_asc', label: t('directory.sorting.pitchWinAsc') },
-                  { value: 'department_asc', label: t('directory.sorting.departmentAsc') },
-                  { value: 'created_desc', label: t('directory.sorting.recentlyAdded') },
-                  { value: 'updated_desc', label: t('directory.sorting.recentlyUpdated') },
-                ].map((option) => (
-                  <SelectItem key={option.value} value={option.value}>
+                {[{
+                value: 'name_asc',
+                label: t('directory.sorting.nameAsc')
+              }, {
+                value: 'name_desc',
+                label: t('directory.sorting.nameDesc')
+              }, {
+                value: 'experience_desc',
+                label: t('directory.sorting.experienceDesc')
+              }, {
+                value: 'experience_asc',
+                label: t('directory.sorting.experienceAsc')
+              }, {
+                value: 'pitch_win_desc',
+                label: t('directory.sorting.pitchWinDesc')
+              }, {
+                value: 'pitch_win_asc',
+                label: t('directory.sorting.pitchWinAsc')
+              }, {
+                value: 'department_asc',
+                label: t('directory.sorting.departmentAsc')
+              }, {
+                value: 'created_desc',
+                label: t('directory.sorting.recentlyAdded')
+              }, {
+                value: 'updated_desc',
+                label: t('directory.sorting.recentlyUpdated')
+              }].map(option => <SelectItem key={option.value} value={option.value}>
                     {option.label}
-                  </SelectItem>
-                ))}
+                  </SelectItem>)}
               </SelectContent>
             </Select>
 
             {/* View mode toggle - hidden on mobile */}
             <div className="hidden sm:flex rounded-lg border border-dark-border overflow-hidden">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setViewMode('grid')}
-                className={cn('rounded-none', viewMode === 'grid' && 'bg-dark-elevated')}
-              >
+              <Button variant="ghost" size="icon" onClick={() => setViewMode('grid')} className={cn('rounded-none', viewMode === 'grid' && 'bg-dark-elevated')}>
                 <Grid className="h-4 w-4" />
               </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setViewMode('list')}
-                className={cn('rounded-none', viewMode === 'list' && 'bg-dark-elevated')}
-              >
+              <Button variant="ghost" size="icon" onClick={() => setViewMode('list')} className={cn('rounded-none', viewMode === 'list' && 'bg-dark-elevated')}>
                 <List className="h-4 w-4" />
               </Button>
             </div>
@@ -235,117 +210,61 @@ const Directory: React.FC = () => {
 
       <div className="flex gap-6">
         {/* Desktop Filters Sidebar */}
-        <DirectoryFiltersPanel
-          filters={filters}
-          onChange={handleFiltersChange}
-          countries={countries}
-          agencies={agencies}
-          languages={allLanguages}
-          skills={allSkills}
-          industries={allIndustries}
-          filterCounts={filterCounts}
-        />
+        <DirectoryFiltersPanel filters={filters} onChange={handleFiltersChange} countries={countries} agencies={agencies} languages={allLanguages} skills={allSkills} industries={allIndustries} filterCounts={filterCounts} />
 
         {/* Main Content */}
         <div className="flex-1 min-w-0">
           {/* Active Filters */}
-          <ActiveFiltersDisplay
-            filters={filters}
-            countries={countries}
-            agencies={agencies}
-            onRemove={handleRemoveFilter}
-          />
+          <ActiveFiltersDisplay filters={filters} countries={countries} agencies={agencies} onRemove={handleRemoveFilter} />
 
           {/* Results Counter */}
           <div className="flex items-center justify-between mb-4">
             <p className="text-sm text-muted-foreground">
-              {t('directory.search.resultsCount', { count: profiles.length, total: totalCount })}
+              {t('directory.search.resultsCount', {
+              count: profiles.length,
+              total: totalCount
+            })}
             </p>
           </div>
 
           {/* Error State */}
-          {error && (
-            <div className="glass-card rounded-xl p-8 text-center">
+          {error && <div className="glass-card rounded-xl p-8 text-center">
               <p className="text-destructive mb-4">{error}</p>
               <Button onClick={() => window.location.reload()}>{t('common.buttons.retry')}</Button>
-            </div>
-          )}
+            </div>}
 
           {/* Loading State */}
-          {isLoading && !error && (
-            viewMode === 'grid' ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                {[...Array(12)].map((_, i) => (
-                  <SkeletonCard key={i} />
-                ))}
-              </div>
-            ) : (
-              <div className="glass-card rounded-xl overflow-hidden">
-                {[...Array(10)].map((_, i) => (
-                  <SkeletonRow key={i} />
-                ))}
-              </div>
-            )
-          )}
+          {isLoading && !error && (viewMode === 'grid' ? <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                {[...Array(12)].map((_, i) => <SkeletonCard key={i} />)}
+              </div> : <div className="glass-card rounded-xl overflow-hidden">
+                {[...Array(10)].map((_, i) => <SkeletonRow key={i} />)}
+              </div>)}
 
           {/* Empty State */}
-          {!isLoading && !error && profiles.length === 0 && (
-            <div className="glass-card rounded-xl p-12 text-center">
+          {!isLoading && !error && profiles.length === 0 && <div className="glass-card rounded-xl p-12 text-center">
               <Users className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
               <h3 className="text-xl font-semibold text-foreground mb-2">
                 {t('directory.empty.title')}
               </h3>
               <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-                {searchQuery || Object.values(filters).some((v) => 
-                  Array.isArray(v) ? v.length > 0 : v !== null && v !== true && v !== 0
-                )
-                  ? t('directory.empty.subtitle')
-                  : t('common.messages.noData')}
+                {searchQuery || Object.values(filters).some(v => Array.isArray(v) ? v.length > 0 : v !== null && v !== true && v !== 0) ? t('directory.empty.subtitle') : t('common.messages.noData')}
               </p>
-              {(searchQuery || filters !== DEFAULT_FILTERS) && (
-                <Button onClick={handleClearFilters} variant="outline">
+              {(searchQuery || filters !== DEFAULT_FILTERS) && <Button onClick={handleClearFilters} variant="outline">
                   {t('directory.empty.clearFilters')}
-                </Button>
-              )}
-            </div>
-          )}
+                </Button>}
+            </div>}
 
           {/* Results Grid/List */}
-          {!isLoading && !error && profiles.length > 0 && (
-            <>
-              {viewMode === 'grid' ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {profiles.map((profile) => (
-                    <ProfileCard
-                      key={profile.id}
-                      profile={profile}
-                      searchQuery={searchQuery}
-                    />
-                  ))}
-                </div>
-              ) : (
-                <ProfileTable
-                  profiles={profiles}
-                  sortBy={sortBy}
-                  onSort={setSortBy}
-                  searchQuery={searchQuery}
-                />
-              )}
+          {!isLoading && !error && profiles.length > 0 && <>
+              {viewMode === 'grid' ? <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {profiles.map(profile => <ProfileCard key={profile.id} profile={profile} searchQuery={searchQuery} />)}
+                </div> : <ProfileTable profiles={profiles} sortBy={sortBy} onSort={setSortBy} searchQuery={searchQuery} />}
 
               {/* Pagination */}
-              <DirectoryPagination
-                currentPage={currentPage}
-                totalPages={totalPages}
-                totalItems={totalCount}
-                itemsPerPage={viewMode === 'grid' ? 24 : 50}
-                onPageChange={setCurrentPage}
-              />
-            </>
-          )}
+              <DirectoryPagination currentPage={currentPage} totalPages={totalPages} totalItems={totalCount} itemsPerPage={viewMode === 'grid' ? 24 : 50} onPageChange={setCurrentPage} />
+            </>}
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default Directory;
