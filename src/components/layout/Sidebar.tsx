@@ -31,7 +31,7 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { labelKey: 'common.navigation.dashboard', icon: Home, path: '/dashboard' },
+  { labelKey: 'common.navigation.dashboard', icon: Home, path: '/dashboard', roles: ['master_admin', 'organizer_admin', 'department_director'] },
   { labelKey: 'common.navigation.myProfile', icon: User, path: '/profile/me' },
   { labelKey: 'common.navigation.directory', icon: Users, path: '/directory' },
   { labelKey: 'common.navigation.groups', icon: Folder, path: '/admin/organizer/groups', roles: ['organizer_admin', 'master_admin'] },
@@ -85,19 +85,19 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
     <aside
       className={cn(
         'fixed left-0 top-0 z-40 h-screen bg-sidebar border-r border-sidebar-border transition-all duration-300 ease-smooth',
-        collapsed ? 'w-16' : 'w-72'
+        collapsed ? 'w-14' : 'w-56'
       )}
     >
       <div className="flex flex-col h-full">
         {/* Logo Header */}
         <div className={cn(
           'flex items-center h-14 border-b border-sidebar-border',
-          collapsed ? 'justify-center px-2' : 'gap-3 px-4'
+          collapsed ? 'justify-center px-2' : 'gap-2 px-3'
         )}>
           <button 
             onClick={() => navigate('/dashboard')}
             className={cn(
-              'flex items-center gap-3 hover:opacity-80 transition-opacity',
+              'flex items-center gap-2 hover:opacity-80 transition-opacity',
               collapsed ? 'justify-center' : ''
             )}
           >
@@ -106,20 +106,18 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
               alt="Grupo Garnier Logo"
               className={cn(
                 'object-contain flex-shrink-0 dark:invert',
-                collapsed ? 'h-8 w-8' : 'h-10 w-auto'
+                collapsed ? 'h-7 w-7' : 'h-8 w-auto'
               )}
             />
             {!collapsed && (
-              <div className="flex-1 min-w-0 overflow-hidden">
-                <h2 className="text-base font-bold text-foreground whitespace-nowrap overflow-hidden text-ellipsis">
-                  TALENT MAP
-                </h2>
-              </div>
+              <span className="text-sm font-bold text-foreground whitespace-nowrap">
+                TALENT MAP
+              </span>
             )}
           </button>
         </div>
         {/* Navigation */}
-        <nav className="flex-1 overflow-y-auto py-4 px-3">
+        <nav className="flex-1 overflow-y-auto py-3 px-2">
           <ul className="space-y-1">
             {filteredItems.map((item) => {
               const Icon = item.icon;
@@ -131,14 +129,14 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
                   <NavLink
                     to={item.path}
                     className={cn(
-                      'flex items-center gap-3 px-3 py-3 transition-all duration-200',
+                      'flex items-center gap-2 px-2 py-2.5 transition-all duration-200 text-sm',
                       active
                         ? 'bg-foreground text-background font-semibold'
                         : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
                     )}
                     title={collapsed ? label : undefined}
                   >
-                    <Icon className="h-5 w-5 flex-shrink-0" />
+                    <Icon className="h-4 w-4 flex-shrink-0" />
                     {!collapsed && (
                       <span className="font-medium truncate">{label}</span>
                     )}
