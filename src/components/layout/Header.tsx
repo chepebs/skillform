@@ -4,14 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Search, ChevronRight, LogOut, User, Settings, Menu } from 'lucide-react';
 import garnierLogoSvg from '@/assets/logo-garnier.svg';
 import { cn } from '@/lib/utils';
@@ -19,18 +12,14 @@ import { LanguageSwitcher } from './LanguageSwitcher';
 import { ThemeToggle } from './ThemeToggle';
 import { NotificationsDropdown } from './NotificationsDropdown';
 import { supabase } from '@/integrations/supabase/client';
-
-
 interface HeaderProps {
   sidebarCollapsed: boolean;
   onMobileMenuToggle: () => void;
 }
-
 interface Breadcrumb {
   label: string;
   path?: string;
 }
-
 const getRouteLabels = (t: (key: string) => string): Record<string, string> => ({
   dashboard: t('common.navigation.dashboard'),
   profile: t('profile.title'),
@@ -48,14 +37,22 @@ const getRouteLabels = (t: (key: string) => string): Record<string, string> => (
   users: t('common.navigation.userManagement'),
   analytics: t('common.navigation.analytics'),
   settings: t('common.navigation.settings'),
-  new: t('common.actions.addNew'),
+  new: t('common.actions.addNew')
 });
-
-export const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, onMobileMenuToggle }) => {
+export const Header: React.FC<HeaderProps> = ({
+  sidebarCollapsed,
+  onMobileMenuToggle
+}) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { t } = useTranslation();
-  const { profile, role, signOut } = useAuth();
+  const {
+    t
+  } = useTranslation();
+  const {
+    profile,
+    role,
+    signOut
+  } = useAuth();
   const routeLabels = getRouteLabels(t);
   const [profileName, setProfileName] = useState<string | null>(null);
 
@@ -63,20 +60,15 @@ export const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, onMobileMenuTo
   const pathSegments = location.pathname.split('/').filter(Boolean);
   const isProfileView = pathSegments[0] === 'profile' && pathSegments.length === 2 && pathSegments[1] !== 'me' && pathSegments[1] !== 'create' && pathSegments[1] !== 'edit';
   const profileUserId = isProfileView ? pathSegments[1] : null;
-
   useEffect(() => {
     if (!profileUserId) {
       setProfileName(null);
       return;
     }
-
     const fetchName = async () => {
-      const { data } = await supabase
-        .from('profiles')
-        .select('first_name, last_name')
-        .eq('user_id', profileUserId)
-        .single();
-
+      const {
+        data
+      } = await supabase.from('profiles').select('first_name, last_name').eq('user_id', profileUserId).single();
       if (data) {
         const name = [data.first_name, data.last_name].filter(Boolean).join(' ');
         setProfileName(name || null);
@@ -84,86 +76,58 @@ export const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, onMobileMenuTo
     };
     fetchName();
   }, [profileUserId]);
-
   const generateBreadcrumbs = (): Breadcrumb[] => {
     const breadcrumbs: Breadcrumb[] = [];
-    
     let currentPath = '';
     pathSegments.forEach((segment, index) => {
       currentPath += `/${segment}`;
-      
+
       // If this is a profile user ID segment, show the name instead
       if (index === 1 && pathSegments[0] === 'profile' && isProfileView) {
         breadcrumbs.push({
           label: profileName || t('profile.title'),
           // Last segment: no path (not clickable)
-          path: index < pathSegments.length - 1 ? currentPath : undefined,
+          path: index < pathSegments.length - 1 ? currentPath : undefined
         });
         return;
       }
-
       const label = routeLabels[segment] || segment.charAt(0).toUpperCase() + segment.slice(1);
-      
+
       // For the "profile" parent segment when viewing /profile/:id,
       // don't make it navigable (clicking it would go to /profile which is 404)
       const isProfileParent = index === 0 && segment === 'profile' && pathSegments.length === 2 && isProfileView;
-      
       breadcrumbs.push({
         label,
-        path: isProfileParent ? undefined : (index < pathSegments.length - 1 ? currentPath : undefined),
+        path: isProfileParent ? undefined : index < pathSegments.length - 1 ? currentPath : undefined
       });
     });
-    
     return breadcrumbs;
   };
-
   const breadcrumbs = generateBreadcrumbs();
-
   const handleLogout = async () => {
     await signOut();
     navigate('/login');
   };
-
   const formatRole = (userRole: string | null) => {
     if (!userRole) return 'User';
     return userRole.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
   };
-
-  return (
-    <header
-      className={cn(
-        'fixed top-0 right-0 z-30 h-14 bg-card/80 backdrop-blur-lg border-b border-border transition-all duration-300',
-        sidebarCollapsed ? 'left-14' : 'left-56',
-        'max-md:left-0'
-      )}
-    >
+  return <header className={cn('fixed top-0 right-0 z-30 h-14 bg-card/80 backdrop-blur-lg border-b border-border transition-all duration-300', sidebarCollapsed ? 'left-14' : 'left-56', 'max-md:left-0')}>
       <div className="flex items-center justify-between h-full px-4 md:px-6">
         {/* Left side - Logo, Talent Map & Breadcrumbs */}
         <div className="flex items-center gap-4 min-w-0">
-          <button
-            onClick={onMobileMenuToggle}
-            className="md:hidden p-2 hover:bg-secondary transition-colors shrink-0"
-          >
+          <button onClick={onMobileMenuToggle} className="md:hidden p-2 hover:bg-secondary transition-colors shrink-0">
             <Menu className="h-4 w-4 text-muted-foreground" />
           </button>
           
           {/* Breadcrumbs - Desktop only */}
           <nav className="hidden md:flex items-center gap-1 text-sm min-w-0">
-            {breadcrumbs.map((crumb, index) => (
-              <React.Fragment key={index}>
+            {breadcrumbs.map((crumb, index) => <React.Fragment key={index}>
                 {index > 0 && <ChevronRight className="h-3 w-3 text-muted-foreground shrink-0" />}
-                {crumb.path ? (
-                  <button
-                    onClick={() => navigate(crumb.path!)}
-                    className="text-muted-foreground hover:text-foreground transition-colors truncate max-w-[120px] text-xs"
-                  >
+                {crumb.path ? <button onClick={() => navigate(crumb.path!)} className="text-muted-foreground hover:text-foreground transition-colors truncate max-w-[120px] text-xs">
                     {crumb.label}
-                  </button>
-                ) : (
-                  <span className="text-foreground font-medium truncate max-w-[160px] text-xs">{crumb.label}</span>
-                )}
-              </React.Fragment>
-            ))}
+                  </button> : <span className="text-foreground truncate max-w-[160px] text-xs font-medium">{crumb.label}</span>}
+              </React.Fragment>)}
           </nav>
         </div>
         {/* Right side - Search, Notifications, Profile */}
@@ -171,10 +135,7 @@ export const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, onMobileMenuTo
           {/* Search */}
           <div className="relative hidden md:block">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              placeholder={t('common.buttons.search') + '...'}
-              className="w-64 pl-10 bg-secondary border-border focus:border-primary"
-            />
+            <Input placeholder={t('common.buttons.search') + '...'} className="w-64 pl-10 bg-secondary border-border focus:border-primary" />
           </div>
 
           {/* Language Switcher */}
@@ -227,6 +188,5 @@ export const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, onMobileMenuTo
           </DropdownMenu>
         </div>
       </div>
-    </header>
-  );
+    </header>;
 };

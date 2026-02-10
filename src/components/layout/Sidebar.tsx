@@ -108,7 +108,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <div className={cn('flex items-center h-14 border-b border-sidebar-border', collapsed ? 'justify-center px-2' : 'gap-2 px-3')}>
           <button onClick={() => navigate('/dashboard')} className={cn('flex items-center gap-2 hover:opacity-80 transition-opacity', collapsed ? 'justify-center' : '')}>
             <img src={garnierLogoSvg} alt="Grupo Garnier Logo" className={cn('object-contain flex-shrink-0 dark:invert', collapsed ? 'h-7 w-7' : 'h-8 w-auto')} />
-            {!collapsed && <span className="text-sm font-bold text-foreground whitespace-nowrap">
+            {!collapsed && <span className="text-sm text-foreground whitespace-nowrap font-medium">
                 Talent Map   
               </span>}
           </button>

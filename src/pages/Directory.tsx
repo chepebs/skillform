@@ -133,7 +133,7 @@ const Directory: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="font-bold text-foreground text-6xl">{t('directory.title')}</h1>
+          <h1 className="text-foreground text-6xl font-normal">{t('directory.title')}</h1>
           <p className="text-muted-foreground mt-1">
             {t('directory.subtitle')}
           </p>
