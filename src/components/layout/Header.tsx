@@ -13,6 +13,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Search, ChevronRight, LogOut, User, Settings, Menu } from 'lucide-react';
+import garnierLogoSvg from '@/assets/logo-garnier.svg';
 import { cn } from '@/lib/utils';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { ThemeToggle } from './ThemeToggle';
@@ -132,19 +133,32 @@ export const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, onMobileMenuTo
     <header
       className={cn(
         'fixed top-0 right-0 z-30 h-14 bg-card/80 backdrop-blur-lg border-b border-border transition-all duration-300',
-        sidebarCollapsed ? 'left-16' : 'left-72',
+        sidebarCollapsed ? 'left-14' : 'left-56',
         'max-md:left-0'
       )}
     >
       <div className="flex items-center justify-between h-full px-4 md:px-6">
-        {/* Left side - Mobile menu & Breadcrumbs */}
-        <div className="flex items-center gap-3 min-w-0">
+        {/* Left side - Logo, Talent Map & Breadcrumbs */}
+        <div className="flex items-center gap-4 min-w-0">
           <button
             onClick={onMobileMenuToggle}
             className="md:hidden p-2 hover:bg-secondary transition-colors shrink-0"
           >
             <Menu className="h-4 w-4 text-muted-foreground" />
           </button>
+          
+          {/* Logo + Talent Map text */}
+          <div className="hidden md:flex items-center gap-2 shrink-0">
+            <img 
+              src={garnierLogoSvg}
+              alt="Garnier"
+              className="h-6 w-auto object-contain dark:invert"
+            />
+            <span className="text-sm font-semibold text-foreground">Talent Map</span>
+          </div>
+
+          {/* Separator */}
+          <div className="hidden md:block w-px h-5 bg-border shrink-0" />
           
           {/* Breadcrumbs - Desktop only */}
           <nav className="hidden md:flex items-center gap-1 text-sm min-w-0">
@@ -154,12 +168,12 @@ export const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, onMobileMenuTo
                 {crumb.path ? (
                   <button
                     onClick={() => navigate(crumb.path!)}
-                    className="text-muted-foreground hover:text-foreground transition-colors truncate max-w-[120px]"
+                    className="text-muted-foreground hover:text-foreground transition-colors truncate max-w-[120px] text-xs"
                   >
                     {crumb.label}
                   </button>
                 ) : (
-                  <span className="text-foreground font-medium truncate max-w-[160px]">{crumb.label}</span>
+                  <span className="text-foreground font-medium truncate max-w-[160px] text-xs">{crumb.label}</span>
                 )}
               </React.Fragment>
             ))}
