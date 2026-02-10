@@ -200,7 +200,7 @@
     "logout": "Log Out",
     "login": {
       "title": "Welcome to the Grupo Garnier Talent Map",
-      "subtitle": "Welcome back to Grupo Garnier Talent Map",
+      "subtitle": "Sign-in or create an account",
       "emailLabel": "Email Address",
       "emailPlaceholder": "your.email@company.com",
       "passwordLabel": "Password",
