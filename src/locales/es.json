@@ -200,7 +200,7 @@
     "logout": "Cerrar Sesión",
     "login": {
       "title": "Bienvenido al Mapa de Talento de Grupo Garnier",
-      "subtitle": "Bienvenido de nuevo al Mapa de Talento Grupo Garnier",
+      "subtitle": "Inicia sesión o crea una cuenta",
       "emailLabel": "Correo Electrónico",
       "emailPlaceholder": "tu.correo@empresa.com",
       "passwordLabel": "Contraseña",
