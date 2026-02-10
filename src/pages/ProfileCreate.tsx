@@ -400,19 +400,18 @@ const ProfileCreate: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background pattern-bg flex flex-col relative">
-      {/* Top bar with logo, theme toggle, language */}
-      <div className="fixed top-0 left-0 right-0 z-50 h-20 bg-card/80 backdrop-blur-lg border-b border-border flex items-center justify-between px-6">
+    <div className="min-h-screen bg-background flex flex-col relative">
+      {/* Top bar */}
+      <div className="fixed top-0 left-0 right-0 z-50 h-16 bg-card/80 backdrop-blur-lg border-b border-border flex items-center justify-between px-6 lg:px-10">
         <div className="flex items-center gap-2">
-          <img src={garnierLogoSvg} alt="Logo" className="h-14 w-auto object-contain dark:invert" />
-          <span className="font-bold text-base text-foreground tracking-wide">TALENT MAP</span>
+          <img src={garnierLogoSvg} alt="Logo" className="h-10 w-auto object-contain dark:invert" />
         </div>
         <div className="flex items-center gap-3">
           <LanguageSwitcher compact />
           <ThemeToggle />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="gap-2 border-border">
+              <Button variant="outline" size="sm" className="gap-2 border-border">
                 <User className="h-4 w-4" />
                 <span className="hidden sm:inline">{t('auth.myAccount')}</span>
               </Button>
@@ -433,11 +432,14 @@ const ProfileCreate: React.FC = () => {
       
       {showConfetti && <Confetti recycle={false} numberOfPieces={500} />}
       
-      <div className="flex-1 flex items-center justify-center p-6 pt-24">
-      <div className="w-full max-w-3xl">
-        {/* Header with save indicator */}
-        <div className="flex items-center justify-between mb-4">
-          <h1 className="text-3xl font-bold text-foreground">{t('profile.creation.title')}</h1>
+      <div className="flex-1 pt-24 pb-12 px-6 lg:px-10 max-w-6xl w-full mx-auto">
+        {/* Header - left justified */}
+        <div className="mb-2">
+          <p className="text-xs uppercase tracking-widest text-muted-foreground mb-1">TALENT MAP</p>
+          <h1 className="text-3xl sm:text-4xl font-bold text-foreground">{t('profile.creation.title')}</h1>
+        </div>
+        <div className="flex items-center justify-between mb-6">
+          <p className="text-sm text-muted-foreground">{t('profile.creation.subtitle')}</p>
           <div className="flex items-center gap-2 text-xs text-muted-foreground">
             {isSaving ? (
               <><Loader2 className="h-3 w-3 animate-spin" /> {t('profile.creation.savingDraft')}</>
@@ -449,35 +451,34 @@ const ProfileCreate: React.FC = () => {
 
         <StepIndicator currentStep={currentStep} totalSteps={TOTAL_STEPS} />
 
-        <div className="glass-card rounded-2xl p-8 sm:p-10">
+        <div className="border border-border p-6 sm:p-8 lg:p-10 bg-card">
           {renderStep()}
+        </div>
 
-          {/* Navigation */}
-          <div className="flex items-center justify-between mt-8 pt-6 border-t border-border">
-            <div className="flex gap-2">
-              {currentStep > 1 && (
-                <Button variant="outline" onClick={handlePrevious} className="border-border">
-                  <ChevronLeft className="mr-2 h-4 w-4" /> {t('common.buttons.back')}
-                </Button>
-              )}
-              <Button variant="ghost" onClick={saveDraft} disabled={isSaving} className="text-muted-foreground">
-                {isSaving ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Save className="mr-2 h-4 w-4" />}
-                {t('common.buttons.saveDraft')}
-              </Button>
-            </div>
-
-            {currentStep < TOTAL_STEPS ? (
-              <Button onClick={handleNext} className="bg-gradient-primary shadow-primary">
-                {t('common.buttons.next')} <ChevronRight className="ml-2 h-4 w-4" />
-              </Button>
-            ) : (
-              <Button onClick={handleSubmit} disabled={isSubmitting} className="bg-gradient-primary shadow-primary">
-                {isSubmitting ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> {t('profile.creation.completing')}</> : <><Check className="mr-2 h-4 w-4" /> {t('profile.creation.completeProfile')}</>}
+        {/* Navigation - bottom */}
+        <div className="flex items-center justify-between mt-6">
+          <div className="flex gap-2">
+            {currentStep > 1 && (
+              <Button variant="outline" onClick={handlePrevious} className="border-border">
+                <ChevronLeft className="mr-2 h-4 w-4" /> {t('common.buttons.back')}
               </Button>
             )}
+            <Button variant="ghost" onClick={saveDraft} disabled={isSaving} className="text-muted-foreground">
+              {isSaving ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Save className="mr-2 h-4 w-4" />}
+              {t('common.buttons.saveDraft')}
+            </Button>
           </div>
+
+          {currentStep < TOTAL_STEPS ? (
+            <Button onClick={handleNext} className="bg-gradient-primary shadow-primary">
+              {t('common.buttons.next')} <ChevronRight className="ml-2 h-4 w-4" />
+            </Button>
+          ) : (
+            <Button onClick={handleSubmit} disabled={isSubmitting} className="bg-gradient-primary shadow-primary">
+              {isSubmitting ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> {t('profile.creation.completing')}</> : <><Check className="mr-2 h-4 w-4" /> {t('profile.creation.completeProfile')}</>}
+            </Button>
+          )}
         </div>
-      </div>
       </div>
 
       {/* Copyright Footer */}
