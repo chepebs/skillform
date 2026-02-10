@@ -147,19 +147,6 @@ export const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, onMobileMenuTo
             <Menu className="h-4 w-4 text-muted-foreground" />
           </button>
           
-          {/* Logo + Talent Map text */}
-          <div className="hidden md:flex items-center gap-2 shrink-0">
-            <img 
-              src={garnierLogoSvg}
-              alt="Garnier"
-              className="h-6 w-auto object-contain dark:invert"
-            />
-            <span className="text-sm font-semibold text-foreground">Talent Map</span>
-          </div>
-
-          {/* Separator */}
-          <div className="hidden md:block w-px h-5 bg-border shrink-0" />
-          
           {/* Breadcrumbs - Desktop only */}
           <nav className="hidden md:flex items-center gap-1 text-sm min-w-0">
             {breadcrumbs.map((crumb, index) => (
