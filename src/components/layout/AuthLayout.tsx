@@ -26,6 +26,20 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({
         </div>
       </div>
 
-      
+      <div className="flex-1 flex flex-col px-6 lg:px-10 py-10 max-w-lg">
+        {/* Branding */}
+        <p className="text-xs uppercase tracking-widest text-muted-foreground mb-1">Sign-in or create an account</p>
+        <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-1">{title}</h1>
+        {subtitle && <p className="mb-8 text-brand text-base">{subtitle}</p>}
+        
+        {/* Form Card */}
+        <div className="bg-card border border-border p-6 sm:p-8">
+          {children}
+        </div>
+        
+        <p className="text-xs text-muted-foreground mt-8">
+          © Grupo Garnier. {t('common.labels.allRightsReserved')}
+        </p>
+      </div>
     </div>;
 };
