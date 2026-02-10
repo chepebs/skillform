@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { useTranslation } from 'react-i18next';
 import { useAuth } from '@/contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -38,6 +39,7 @@ interface PasswordStrength {
 }
 
 export const RegisterForm: React.FC = () => {
+  const { t } = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -85,17 +87,17 @@ export const RegisterForm: React.FC = () => {
       
       if (error) {
         if (error.message.includes('already registered')) {
-          toast.error('This email is already registered. Please sign in instead.');
+          toast.error(t('auth.register.alreadyRegistered'));
         } else {
-          toast.error(error.message || 'Failed to create account');
+          toast.error(error.message || t('common.messages.error'));
         }
         return;
       }
       
-      toast.success('Account created successfully!');
+      toast.success(t('auth.register.accountCreated'));
       navigate('/profile/create');
     } catch (err) {
-      toast.error('An unexpected error occurred');
+      toast.error(t('common.messages.error'));
     } finally {
       setIsSubmitting(false);
     }
@@ -112,13 +114,13 @@ export const RegisterForm: React.FC = () => {
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-2">
-          <Label htmlFor="firstName">First Name</Label>
+          <Label htmlFor="firstName">{t('auth.register.firstNameLabel')}</Label>
           <div className="relative">
             <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
               id="firstName"
-              placeholder="John"
-              className="pl-10 bg-dark-elevated border-dark-border focus:border-primary"
+              placeholder={t('auth.register.firstNamePlaceholder')}
+              className="pl-10 bg-background border-input focus:border-foreground"
               {...register('firstName')}
             />
           </div>
@@ -128,11 +130,11 @@ export const RegisterForm: React.FC = () => {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="lastName">Last Name</Label>
+          <Label htmlFor="lastName">{t('auth.register.lastNameLabel')}</Label>
           <Input
             id="lastName"
-            placeholder="Doe"
-            className="bg-dark-elevated border-dark-border focus:border-primary"
+            placeholder={t('auth.register.lastNamePlaceholder')}
+            className="bg-background border-input focus:border-foreground"
             {...register('lastName')}
           />
           {errors.lastName && (
@@ -142,14 +144,14 @@ export const RegisterForm: React.FC = () => {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="email">Email</Label>
+        <Label htmlFor="email">{t('auth.register.emailLabel')}</Label>
         <div className="relative">
           <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
             id="email"
             type="email"
-            placeholder="you@company.com"
-            className="pl-10 bg-dark-elevated border-dark-border focus:border-primary"
+            placeholder={t('auth.login.emailPlaceholder')}
+            className="pl-10 bg-background border-input focus:border-foreground"
             {...register('email')}
           />
         </div>
@@ -159,14 +161,14 @@ export const RegisterForm: React.FC = () => {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="password">Password</Label>
+        <Label htmlFor="password">{t('auth.register.passwordLabel')}</Label>
         <div className="relative">
           <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
             id="password"
             type={showPassword ? 'text' : 'password'}
             placeholder="••••••••"
-            className="pl-10 pr-10 bg-dark-elevated border-dark-border focus:border-primary"
+            className="pl-10 pr-10 bg-background border-input focus:border-foreground"
             {...register('password')}
           />
           <button
@@ -179,11 +181,11 @@ export const RegisterForm: React.FC = () => {
         </div>
         
         {password && (
-          <div className="p-3 rounded-lg bg-dark-elevated space-y-1.5 mt-2">
-            <PasswordRequirement met={passwordStrength.hasMinLength} text="At least 8 characters" />
-            <PasswordRequirement met={passwordStrength.hasUppercase} text="One uppercase letter" />
-            <PasswordRequirement met={passwordStrength.hasLowercase} text="One lowercase letter" />
-            <PasswordRequirement met={passwordStrength.hasNumber} text="One number" />
+          <div className="p-3 bg-muted space-y-1.5 mt-2">
+            <PasswordRequirement met={passwordStrength.hasMinLength} text={t('auth.register.req8Chars')} />
+            <PasswordRequirement met={passwordStrength.hasUppercase} text={t('auth.register.reqUppercase')} />
+            <PasswordRequirement met={passwordStrength.hasLowercase} text={t('auth.register.reqLowercase')} />
+            <PasswordRequirement met={passwordStrength.hasNumber} text={t('auth.register.reqNumber')} />
           </div>
         )}
         
@@ -193,14 +195,14 @@ export const RegisterForm: React.FC = () => {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="confirmPassword">Confirm Password</Label>
+        <Label htmlFor="confirmPassword">{t('auth.register.confirmPasswordLabel')}</Label>
         <div className="relative">
           <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
             id="confirmPassword"
             type={showConfirmPassword ? 'text' : 'password'}
             placeholder="••••••••"
-            className="pl-10 pr-10 bg-dark-elevated border-dark-border focus:border-primary"
+            className="pl-10 pr-10 bg-background border-input focus:border-foreground"
             {...register('confirmPassword')}
           />
           <button
@@ -230,13 +232,13 @@ export const RegisterForm: React.FC = () => {
           )}
         />
         <Label htmlFor="acceptTerms" className="text-sm text-muted-foreground cursor-pointer leading-relaxed">
-          I agree to the{' '}
-          <a href="#" className="text-primary hover:text-primary/80 transition-colors">
-            Terms of Service
+          {t('auth.register.termsAgree')}{' '}
+          <a href="#" className="text-foreground hover:text-foreground/80 transition-colors underline">
+            {t('auth.register.termsOfService')}
           </a>{' '}
-          and{' '}
-          <a href="#" className="text-primary hover:text-primary/80 transition-colors">
-            Privacy Policy
+          {t('auth.register.termsAnd')}{' '}
+          <a href="#" className="text-foreground hover:text-foreground/80 transition-colors underline">
+            {t('auth.register.privacyPolicy')}
           </a>
         </Label>
       </div>
@@ -246,16 +248,16 @@ export const RegisterForm: React.FC = () => {
 
       <Button
         type="submit"
-        className="w-full bg-gradient-primary hover:bg-gradient-primary-hover shadow-primary transition-all duration-200 hover:shadow-primary-lg"
+        className="w-full bg-foreground hover:bg-foreground/90 text-background transition-all duration-200"
         disabled={isSubmitting}
       >
         {isSubmitting ? (
           <>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            Creating account...
+            {t('auth.register.creatingAccount')}
           </>
         ) : (
-          'Create account'
+          t('auth.register.submitButton')
         )}
       </Button>
     </form>

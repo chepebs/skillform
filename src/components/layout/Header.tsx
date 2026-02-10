@@ -131,35 +131,35 @@ export const Header: React.FC<HeaderProps> = ({ sidebarCollapsed, onMobileMenuTo
   return (
     <header
       className={cn(
-        'fixed top-0 right-0 z-30 h-20 bg-card/80 backdrop-blur-lg border-b border-border transition-all duration-300',
+        'fixed top-0 right-0 z-30 h-14 bg-card/80 backdrop-blur-lg border-b border-border transition-all duration-300',
         sidebarCollapsed ? 'left-16' : 'left-72',
         'max-md:left-0'
       )}
     >
       <div className="flex items-center justify-between h-full px-4 md:px-6">
         {/* Left side - Mobile menu & Breadcrumbs */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3 min-w-0">
           <button
             onClick={onMobileMenuToggle}
-            className="md:hidden p-2 hover:bg-secondary transition-colors"
+            className="md:hidden p-2 hover:bg-secondary transition-colors shrink-0"
           >
-            <Menu className="h-5 w-5 text-muted-foreground" />
+            <Menu className="h-4 w-4 text-muted-foreground" />
           </button>
           
           {/* Breadcrumbs - Desktop only */}
-          <nav className="hidden md:flex items-center gap-1 text-base">
+          <nav className="hidden md:flex items-center gap-1 text-sm min-w-0">
             {breadcrumbs.map((crumb, index) => (
               <React.Fragment key={index}>
-                {index > 0 && <ChevronRight className="h-4 w-4 text-muted-foreground" />}
+                {index > 0 && <ChevronRight className="h-3 w-3 text-muted-foreground shrink-0" />}
                 {crumb.path ? (
                   <button
                     onClick={() => navigate(crumb.path!)}
-                    className="text-muted-foreground hover:text-foreground transition-colors"
+                    className="text-muted-foreground hover:text-foreground transition-colors truncate max-w-[120px]"
                   >
                     {crumb.label}
                   </button>
                 ) : (
-                  <span className="text-foreground font-medium">{crumb.label}</span>
+                  <span className="text-foreground font-medium truncate max-w-[160px]">{crumb.label}</span>
                 )}
               </React.Fragment>
             ))}

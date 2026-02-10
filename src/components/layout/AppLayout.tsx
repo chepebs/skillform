@@ -96,7 +96,7 @@ export const AppLayout: React.FC = () => {
       {/* Main Content */}
       <main
         className={cn(
-          'pt-20 min-h-screen transition-all duration-300',
+          'pt-14 min-h-screen transition-all duration-300',
           sidebarCollapsed ? 'md:pl-16' : 'md:pl-72'
         )}
       >
