@@ -91,7 +91,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
       <div className="flex flex-col h-full">
         {/* Logo Header */}
         <div className={cn(
-          'flex items-center h-20 border-b border-sidebar-border',
+          'flex items-center h-14 border-b border-sidebar-border',
           collapsed ? 'justify-center px-2' : 'gap-3 px-4'
         )}>
           <button 
@@ -106,7 +106,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
               alt="Grupo Garnier Logo"
               className={cn(
                 'object-contain flex-shrink-0 dark:invert',
-                collapsed ? 'h-16 w-16' : 'h-20 w-auto'
+                collapsed ? 'h-8 w-8' : 'h-10 w-auto'
               )}
             />
             {!collapsed && (

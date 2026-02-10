@@ -14,39 +14,34 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, title, subtitl
   const { t } = useTranslation();
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-background px-4">
-      {/* Top right controls */}
-      <div className="absolute top-4 right-4 z-20 flex items-center gap-2">
-        <ThemeToggle />
-        <LanguageSwitcher />
+    <div className="min-h-screen flex flex-col bg-background">
+      {/* Top bar */}
+      <div className="h-16 border-b border-border flex items-center justify-between px-6 lg:px-10 shrink-0">
+        <img 
+          src={garnierLogoSvg}
+          alt="Grupo Garnier Logo"
+          className="h-10 w-auto object-contain dark:invert"
+        />
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <LanguageSwitcher compact />
+        </div>
       </div>
 
-      <div className="w-full max-w-md animate-fade-in">
-        {/* Logo */}
-        <div className="flex flex-col items-center gap-3 mb-10">
-          <img 
-            src={garnierLogoSvg}
-            alt="Grupo Garnier Logo"
-            className="h-32 w-auto object-contain dark:invert"
-          />
-          <span className="text-sm font-medium tracking-widest uppercase text-muted-foreground">
-            Talent Map
-          </span>
-        </div>
+      <div className="flex-1 flex flex-col px-6 lg:px-10 py-10 max-w-lg">
+        {/* Branding */}
+        <p className="text-xs uppercase tracking-widest text-muted-foreground mb-1">TALENT MAP</p>
+        <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-1">{title}</h1>
+        {subtitle && (
+          <p className="text-sm text-muted-foreground mb-8">{subtitle}</p>
+        )}
         
-        {/* Login Card */}
-        <div className="bg-card border border-border p-8 transition-all duration-300">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold mb-2 text-card-foreground">{title}</h2>
-            {subtitle && (
-              <p className="text-muted-foreground">{subtitle}</p>
-            )}
-          </div>
-          
+        {/* Form Card */}
+        <div className="bg-card border border-border p-6 sm:p-8">
           {children}
         </div>
         
-        <p className="text-center text-xs text-muted-foreground mt-8">
+        <p className="text-xs text-muted-foreground mt-8">
           © Grupo Garnier. {t('common.labels.allRightsReserved')}
         </p>
       </div>
