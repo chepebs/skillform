@@ -284,6 +284,7 @@
       "title": "Create Your Profile",
       "subtitle": "Tell us about yourself and your expertise",
       "stepIndicator": "Step {{current}} of {{total}}",
+      "sectionLabel": "Section {{number}}",
       "progressLabel": "{{percent}}% Complete",
       "saveDraft": "Save Draft",
       "savingDraft": "Saving...",

@@ -284,6 +284,7 @@
       "title": "Cree Su Perfil",
       "subtitle": "Cuéntenos sobre usted y su experiencia",
       "stepIndicator": "Paso {{current}} de {{total}}",
+      "sectionLabel": "Sección {{number}}",
       "progressLabel": "{{percent}}% Completo",
       "saveDraft": "Guardar Borrador",
       "savingDraft": "Guardando...",
