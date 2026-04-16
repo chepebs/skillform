@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import { AuthProvider } from "@/contexts/AuthContext";
 import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
+import { CompanyGate } from "@/components/auth/CompanyGate";
 import { AppLayout } from "@/components/layout/AppLayout";
 
 // Pages
@@ -19,6 +20,8 @@ import ProfileView from "./pages/ProfileView";
 import ProfileEdit from "./pages/ProfileEdit";
 import Forbidden from "./pages/Forbidden";
 import NotFound from "./pages/NotFound";
+import CompanyCreate from "./pages/company/CompanyCreate";
+import CompanyJoin from "./pages/company/CompanyJoin";
 
 // Admin Pages
 import MasterDashboard from "./pages/admin/MasterDashboard";
