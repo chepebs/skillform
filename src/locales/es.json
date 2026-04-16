@@ -1176,6 +1176,45 @@
       "noNotes": "Sin notas adicionales",
       "createdAt": "Creado",
       "updatedAt": "Última actualización"
+    },
+    "skills": {
+      "required": "Habilidades Requeridas",
+      "add": "Agregar Habilidad",
+      "selectSkill": "Seleccionar Habilidad",
+      "importanceLabel": "Importancia",
+      "minProficiency": "Competencia Mín. (%)",
+      "noSkills": "Sin habilidades definidas. Agrega habilidades para habilitar la coincidencia de talento.",
+      "added": "Habilidad agregada",
+      "addFailed": "Error al agregar habilidad",
+      "deleted": "Habilidad eliminada",
+      "deleteFailed": "Error al eliminar habilidad",
+      "importance": {
+        "required": "Requerida",
+        "preferred": "Preferida",
+        "nice-to-have": "Deseable"
+      }
+    },
+    "matches": {
+      "title": "Talento Coincidente",
+      "subtitle": "Talento interno que coincide con los requisitos de habilidades de este servicio",
+      "minScore": "Puntuación Mín.",
+      "refresh": "Actualizar Coincidencias",
+      "runMatching": "Ejecutar Coincidencia",
+      "noMatches": "Sin coincidencias. Agrega habilidades y ejecuta la coincidencia para descubrir talento.",
+      "matchScore": "Coincidencia",
+      "matchedSkills": "Habilidades Coincidentes",
+      "viewProfile": "Ver",
+      "contact": "Contactar",
+      "remove": "Eliminar",
+      "removed": "Coincidencia eliminada",
+      "removeFailed": "Error al eliminar coincidencia",
+      "refreshed": "Coincidencias actualizadas exitosamente",
+      "refreshFailed": "Error al actualizar coincidencias",
+      "addTalent": "Agregar Talento",
+      "searchEmployees": "Buscar por nombre o email...",
+      "noResults": "No se encontraron empleados",
+      "added": "Talento agregado exitosamente",
+      "addFailed": "Error al agregar talento"
     }
   }
 }
