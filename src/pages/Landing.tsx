@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { FadeIn } from '@/components/animations/FadeIn';
@@ -7,12 +7,47 @@ import { StaggerContainer, StaggerItem } from '@/components/animations/StaggerCo
 import { ThemeToggle } from '@/components/layout/ThemeToggle';
 import { LanguageSwitcher } from '@/components/layout/LanguageSwitcher';
 import { SkillFormLogo } from '@/components/SkillFormLogo';
+import { AuthModal, AuthModalMode } from '@/components/auth/AuthModal';
 import aideaformLogo from '@/assets/aideaform-logo.svg';
-import { Users, Search, Shield, BarChart3, Globe, Folder, Award, Briefcase } from 'lucide-react';
+import {
+  Users, Search, Shield, BarChart3, Globe, Folder, Award, Briefcase,
+  Briefcase as BriefcaseIcon, FileText, Sparkles, Target, ListChecks,
+} from 'lucide-react';
 
 const Landing: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const [authOpen, setAuthOpen] = useState(false);
+  const [authMode, setAuthMode] = useState<AuthModalMode>('login');
+  const [registerToken, setRegisterToken] = useState<string | undefined>(undefined);
+
+  // Open the modal automatically based on ?auth=login|register
+  useEffect(() => {
+    const auth = searchParams.get('auth');
+    if (auth === 'login' || auth === 'register') {
+      setAuthMode(auth);
+      setRegisterToken(searchParams.get('token') || undefined);
+      setAuthOpen(true);
+    }
+  }, [searchParams]);
+
+  const openAuth = (mode: AuthModalMode = 'login') => {
+    setAuthMode(mode);
+    setAuthOpen(true);
+  };
+
+  const handleAuthOpenChange = (open: boolean) => {
+    setAuthOpen(open);
+    if (!open && (searchParams.get('auth') || searchParams.get('token'))) {
+      // Clear query so closing the modal returns the user to a clean landing URL.
+      const next = new URLSearchParams(searchParams);
+      next.delete('auth');
+      next.delete('token');
+      setSearchParams(next, { replace: true });
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background flex flex-col font-body selection:bg-primary selection:text-primary-foreground">
@@ -28,7 +63,7 @@ const Landing: React.FC = () => {
             <LanguageSwitcher compact />
             <div className="hidden sm:block"><ThemeToggle /></div>
             <button
-              onClick={() => navigate('/login')}
+              onClick={() => openAuth('login')}
               className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors hidden sm:block px-3 py-2"
             >
               {t('auth.login.signIn', 'Login')}
@@ -36,7 +71,7 @@ const Landing: React.FC = () => {
             <motion.button
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => navigate('/login')}
+              onClick={() => openAuth('login')}
               className="accent-gradient font-bold py-2 px-6 rounded-full text-white text-sm"
             >
               {t('landing.getStarted', 'Get Started')} →
@@ -67,13 +102,20 @@ const Landing: React.FC = () => {
                 <h1 className="text-display-lg text-foreground mb-8">
                   {t('landing.hero.titlePart1', 'Discover &')}{' '}
                   <span className="text-primary">{t('landing.hero.titlePart2', 'Connect')}</span>{' '}
-                  {t('landing.hero.titlePart3', 'With Your Team\'s Talent')}
+                  {t('landing.hero.titlePart3', "With Your Team's Talent")}
                 </h1>
               </FadeIn>
 
               <FadeIn delay={0.1}>
-                <p className="text-lg sm:text-xl text-on-surface-variant max-w-xl mb-10 leading-relaxed">
+                <p className="text-lg sm:text-xl text-on-surface-variant max-w-xl mb-6 leading-relaxed">
                   {t('landing.hero.description', 'A centralized platform to explore profiles, skills, and expertise across Grupo Garnier. Find the right talent for every project.')}
+                </p>
+                <p className="text-base sm:text-lg text-on-surface-variant/80 max-w-xl mb-10 leading-relaxed">
+                  <span className="inline-flex items-center gap-2 font-semibold text-foreground">
+                    <Sparkles className="h-4 w-4 text-primary" />
+                    {t('landing.hero.servicesEyebrow', 'Now with Services & Talent Matching')}
+                  </span>{' '}
+                  — {t('landing.hero.servicesTagline', 'document external services, define required skills, and auto-match the right internal talent.')}
                 </p>
               </FadeIn>
 
@@ -82,7 +124,7 @@ const Landing: React.FC = () => {
                   <motion.button
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.95 }}
-                    onClick={() => navigate('/login')}
+                    onClick={() => openAuth('login')}
                     className="accent-gradient text-white px-8 sm:px-10 py-4 rounded-full font-bold text-lg shadow-orange transition-all"
                   >
                     {t('landing.getStarted', 'Get Started')} →
@@ -90,7 +132,9 @@ const Landing: React.FC = () => {
                   <motion.button
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.95 }}
-                    onClick={() => navigate('/login')}
+                    onClick={() => {
+                      document.getElementById('services-section')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
                     className="glass-card text-foreground px-8 sm:px-10 py-4 rounded-full font-bold text-lg transition-all"
                   >
                     {t('landing.learnMore', 'Learn More')}
@@ -217,8 +261,30 @@ const Landing: React.FC = () => {
               </div>
             </FadeIn>
 
-            {/* Feature 4: Analytics — 8 cols */}
-            <FadeIn delay={0.2} className="md:col-span-8">
+            {/* NEW Feature 4: Services & Matching — 4 cols */}
+            <FadeIn delay={0.2} className="md:col-span-4">
+              <div className="glass-card p-8 sm:p-12 rounded-xl hover:border-primary/30 transition-all flex flex-col justify-between h-full">
+                <div>
+                  <div className="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+                    <BriefcaseIcon className="text-primary h-7 w-7" />
+                  </div>
+                  <h3 className="font-headline text-2xl sm:text-3xl font-bold mb-4 text-foreground">
+                    {t('landing.features.services.title', 'Services & Matching')}
+                  </h3>
+                  <p className="text-on-surface-variant leading-relaxed">
+                    {t('landing.features.services.desc', 'Document external services, track vendors and budgets, and auto-match the best internal talent for every brief.')}
+                  </p>
+                </div>
+                <div className="pt-6 sm:pt-8 border-t border-outline-variant/10 mt-6 sm:mt-8">
+                  <p className="text-sm font-bold text-primary">
+                    {t('landing.features.services.stat', 'Director access & up')}
+                  </p>
+                </div>
+              </div>
+            </FadeIn>
+
+            {/* Feature 5: Analytics — 8 cols */}
+            <FadeIn delay={0.25} className="md:col-span-8">
               <div className="glass-card p-8 sm:p-12 rounded-xl hover:border-secondary/30 transition-all relative overflow-hidden h-full">
                 <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center">
                   <div className="flex-1">
@@ -229,7 +295,7 @@ const Landing: React.FC = () => {
                       {t('landing.features.analytics.desc', 'Get insights into skill distribution, experience levels, language capabilities, and department composition across your organization.')}
                     </p>
                     <button
-                      onClick={() => navigate('/login')}
+                      onClick={() => openAuth('login')}
                       className="mt-8 text-secondary font-bold flex items-center gap-2 group"
                     >
                       {t('landing.features.analytics.cta', 'Explore Analytics')}
@@ -258,6 +324,101 @@ const Landing: React.FC = () => {
                 </div>
               </div>
             </FadeIn>
+          </div>
+        </section>
+
+        {/* ── SERVICES MODULE SECTION ── */}
+        <section
+          id="services-section"
+          className="py-24 sm:py-32 px-6 sm:px-12 bg-surface-container-low border-y border-border/50"
+        >
+          <div className="max-w-[1440px] mx-auto">
+            <FadeIn>
+              <div className="mb-16 md:mb-20 max-w-3xl">
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest rounded-full mb-6">
+                  <Sparkles className="h-3.5 w-3.5" />
+                  {t('landing.services.eyebrow', 'New Module')}
+                </span>
+                <h2 className="font-headline text-4xl sm:text-5xl font-bold tracking-tight mb-4 text-foreground">
+                  {t('landing.services.title', 'Services &')}{' '}
+                  <span className="text-primary">{t('landing.services.titleAccent', 'Talent Matching')}</span>
+                </h2>
+                <p className="text-on-surface-variant text-lg leading-relaxed">
+                  {t('landing.services.subtitle', 'Director-level employees and admins can document every external service, manage vendors and budgets, and let Skill*form auto-match the best internal talent — based on real skills, experience, and proficiency.')}
+                </p>
+              </div>
+            </FadeIn>
+
+            {/* How it works — 3 steps */}
+            <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-16 md:mb-20">
+              {[
+                {
+                  icon: FileText,
+                  step: '01',
+                  title: t('landing.services.step1.title', 'Document services'),
+                  desc: t('landing.services.step1.desc', 'Capture every external production service — agency, department, budget, vendors, and frequency — in one shared catalog.'),
+                },
+                {
+                  icon: ListChecks,
+                  step: '02',
+                  title: t('landing.services.step2.title', 'Define required skills'),
+                  desc: t('landing.services.step2.desc', 'Set the skills each service needs, mark them as required, preferred, or nice-to-have, and tune minimum proficiency.'),
+                },
+                {
+                  icon: Target,
+                  step: '03',
+                  title: t('landing.services.step3.title', 'Auto-match talent'),
+                  desc: t('landing.services.step3.desc', 'Skill*form scores every employee nightly, surfaces the best internal matches, and lets directors add or remove people manually.'),
+                },
+              ].map((item) => (
+                <StaggerItem key={item.step}>
+                  <div className="glass-card p-8 sm:p-10 rounded-xl h-full flex flex-col">
+                    <div className="flex items-center justify-between mb-6">
+                      <div className="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center">
+                        <item.icon className="text-primary h-7 w-7" />
+                      </div>
+                      <span className="font-headline text-3xl font-bold text-primary/30">{item.step}</span>
+                    </div>
+                    <h3 className="font-headline text-xl sm:text-2xl font-bold mb-3 text-foreground">{item.title}</h3>
+                    <p className="text-on-surface-variant leading-relaxed">{item.desc}</p>
+                  </div>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+
+            {/* Stats strip */}
+            <div className="glass-card rounded-xl p-8 sm:p-12">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+                {[
+                  { value: '29+', label: t('landing.services.stat1', 'Catalog services') },
+                  { value: '100%', label: t('landing.services.stat2', 'Skill-based matching') },
+                  { value: '24/7', label: t('landing.services.stat3', 'Nightly auto-match') },
+                  { value: 'EN / ES', label: t('landing.services.stat4', 'Bilingual interface') },
+                ].map((stat) => (
+                  <div key={stat.label} className="text-center md:text-left">
+                    <p className="font-headline text-4xl sm:text-5xl font-bold text-foreground tracking-tighter">
+                      {stat.value}
+                    </p>
+                    <p className="text-xs sm:text-sm text-on-surface-variant uppercase tracking-widest font-bold mt-2">
+                      {stat.label}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-10 flex flex-wrap gap-4 items-center justify-between">
+                <p className="text-sm text-on-surface-variant max-w-xl">
+                  {t('landing.services.access', 'Available to department directors, organizer admins, master admins, and senior employees (director, VP, C-level).')}
+                </p>
+                <motion.button
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => openAuth('login')}
+                  className="accent-gradient text-white px-8 py-3 rounded-full font-bold text-sm shadow-orange transition-all"
+                >
+                  {t('landing.services.cta', 'Sign in to explore Services')} →
+                </motion.button>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -320,7 +481,7 @@ const Landing: React.FC = () => {
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.97 }}
-                  onClick={() => navigate('/login')}
+                  onClick={() => openAuth('login')}
                   className="w-full mt-12 accent-gradient text-white font-bold py-5 rounded-xl text-lg transition-all"
                 >
                   {t('landing.getStarted', 'Get Started')} →
@@ -388,7 +549,7 @@ const Landing: React.FC = () => {
           </div>
 
           {[
-            { title: t('landing.footer.product', 'Product'), links: [t('landing.footer.features', 'Features'), t('landing.footer.directory', 'Directory'), t('landing.footer.profiles', 'Profiles'), t('landing.footer.analytics', 'Analytics')] },
+            { title: t('landing.footer.product', 'Product'), links: [t('landing.footer.features', 'Features'), t('landing.footer.directory', 'Directory'), t('landing.footer.profiles', 'Profiles'), t('landing.footer.services', 'Services'), t('landing.footer.analytics', 'Analytics')] },
             { title: t('landing.footer.company', 'Company'), links: [t('landing.footer.about', 'About'), t('landing.footer.careers', 'Careers'), t('landing.footer.contact', 'Contact')] },
             { title: t('landing.footer.resources', 'Resources'), links: [t('landing.footer.help', 'Help Center'), t('landing.footer.guides', 'Guides'), t('landing.footer.support', 'Support')] },
           ].map((section) => (
@@ -406,13 +567,20 @@ const Landing: React.FC = () => {
         </div>
 
         <div className="max-w-[1440px] mx-auto mt-16 sm:mt-20 pt-6 sm:pt-8 border-t border-outline-variant/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-on-surface-variant/40">
-          <p>© 2026 aidea*form. {t('common.labels.allRightsReserved', 'All rights reserved.')}</p>
+          <p>© Grupo Garnier. {t('common.labels.allRightsReserved', 'All rights reserved.')}</p>
           <div className="flex gap-6 sm:gap-8">
             <a href="#" className="hover:text-foreground transition-all">{t('landing.footer.privacy', 'Privacy')}</a>
             <a href="#" className="hover:text-foreground transition-all">{t('landing.footer.terms', 'Terms')}</a>
           </div>
         </div>
       </footer>
+
+      <AuthModal
+        open={authOpen}
+        onOpenChange={handleAuthOpenChange}
+        defaultMode={authMode}
+        registerToken={registerToken}
+      />
     </div>
   );
 };
