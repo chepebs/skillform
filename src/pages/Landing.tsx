@@ -194,49 +194,44 @@ const Landing: React.FC = () => {
             </div>
           </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8">
-            {/* Feature 1: Directory — 8 cols */}
-            <FadeIn className="md:col-span-8">
-              <div className="group glass-card p-8 sm:p-12 rounded-xl hover:border-secondary/30 transition-all cursor-default relative overflow-hidden h-full">
-                <div className="flex flex-col h-full justify-between relative z-10">
-                  <div>
-                    <div className="w-14 h-14 bg-secondary/10 rounded-lg flex items-center justify-center mb-6">
-                      <Search className="text-secondary h-7 w-7" />
-                    </div>
-                    <h3 className="font-headline text-2xl sm:text-3xl font-bold mb-4 text-foreground">
-                      {t('landing.features.directory.title', 'Talent Directory')}
-                    </h3>
-                    <p className="text-on-surface-variant text-base sm:text-lg leading-relaxed max-w-md">
-                      {t('landing.features.directory.desc', 'Search and filter through your entire organization. Find people by skills, departments, languages, and expertise areas.')}
-                    </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {/* Feature 1: Directory */}
+            <FadeIn>
+              <div className="glass-card p-8 sm:p-10 rounded-xl hover:border-secondary/30 transition-all flex flex-col justify-between h-full">
+                <div>
+                  <div className="w-14 h-14 bg-secondary/10 rounded-lg flex items-center justify-center mb-6">
+                    <Search className="text-secondary h-7 w-7" />
                   </div>
-                  <div className="mt-8 sm:mt-12 flex gap-3 flex-wrap">
-                    <div className="px-4 py-2 bg-surface-container-high rounded-full text-xs font-bold text-on-surface-variant">
-                      {t('landing.features.directory.tag1', 'Smart Filters')}
-                    </div>
-                    <div className="px-4 py-2 bg-surface-container-high rounded-full text-xs font-bold text-on-surface-variant">
-                      {t('landing.features.directory.tag2', 'Real-time Search')}
-                    </div>
-                  </div>
+                  <h3 className="font-headline text-2xl font-bold mb-4 text-foreground">
+                    {t('landing.features.directory.title', 'Talent Directory')}
+                  </h3>
+                  <p className="text-on-surface-variant leading-relaxed">
+                    {t('landing.features.directory.desc', 'Search and filter through your entire organization. Find people by skills, departments, languages, and expertise areas.')}
+                  </p>
+                </div>
+                <div className="pt-6 border-t border-outline-variant/10 mt-6">
+                  <p className="text-sm font-bold text-secondary">
+                    {t('landing.features.directory.stat', 'Smart filters & real-time search')}
+                  </p>
                 </div>
               </div>
             </FadeIn>
 
-            {/* Feature 2: Profiles — 4 cols */}
-            <FadeIn delay={0.1} className="md:col-span-4">
-              <div className="glass-card p-8 sm:p-12 rounded-xl hover:border-tertiary/30 transition-all flex flex-col justify-between h-full">
+            {/* Feature 2: Profiles */}
+            <FadeIn delay={0.05}>
+              <div className="glass-card p-8 sm:p-10 rounded-xl hover:border-tertiary/30 transition-all flex flex-col justify-between h-full">
                 <div>
                   <div className="w-14 h-14 bg-tertiary/10 rounded-lg flex items-center justify-center mb-6">
                     <Users className="text-tertiary h-7 w-7" />
                   </div>
-                  <h3 className="font-headline text-2xl sm:text-3xl font-bold mb-4 text-foreground">
+                  <h3 className="font-headline text-2xl font-bold mb-4 text-foreground">
                     {t('landing.features.profiles.title', 'Rich Profiles')}
                   </h3>
                   <p className="text-on-surface-variant leading-relaxed">
                     {t('landing.features.profiles.desc', 'Comprehensive talent profiles with skills, experience, awards, and project history.')}
                   </p>
                 </div>
-                <div className="pt-6 sm:pt-8 border-t border-outline-variant/10 mt-6 sm:mt-8">
+                <div className="pt-6 border-t border-outline-variant/10 mt-6">
                   <p className="text-sm font-bold text-tertiary">
                     {t('landing.features.profiles.stat', '10+ profile sections')}
                   </p>
@@ -244,38 +239,43 @@ const Landing: React.FC = () => {
               </div>
             </FadeIn>
 
-            {/* Feature 3: Groups — 4 cols */}
-            <FadeIn delay={0.15} className="md:col-span-4">
-              <div className="glass-card p-8 sm:p-12 rounded-xl hover:border-primary/30 transition-all flex flex-col justify-between h-full">
+            {/* Feature 3: Groups */}
+            <FadeIn delay={0.1}>
+              <div className="glass-card p-8 sm:p-10 rounded-xl hover:border-primary/30 transition-all flex flex-col justify-between h-full">
                 <div>
                   <div className="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
                     <Folder className="text-primary h-7 w-7" />
                   </div>
-                  <h3 className="font-headline text-2xl sm:text-3xl font-bold mb-4 text-foreground">
+                  <h3 className="font-headline text-2xl font-bold mb-4 text-foreground">
                     {t('landing.features.groups.title', 'Team Groups')}
                   </h3>
                   <p className="text-on-surface-variant leading-relaxed">
                     {t('landing.features.groups.desc', 'Organize talent into custom groups for projects, departments, and initiatives.')}
                   </p>
                 </div>
+                <div className="pt-6 border-t border-outline-variant/10 mt-6">
+                  <p className="text-sm font-bold text-primary">
+                    {t('landing.features.groups.stat', 'Custom collections')}
+                  </p>
+                </div>
               </div>
             </FadeIn>
 
-            {/* NEW Feature 4: Services & Matching — 4 cols */}
-            <FadeIn delay={0.2} className="md:col-span-4">
-              <div className="glass-card p-8 sm:p-12 rounded-xl hover:border-primary/30 transition-all flex flex-col justify-between h-full">
+            {/* Feature 4: Services & Matching */}
+            <FadeIn delay={0.15}>
+              <div className="glass-card p-8 sm:p-10 rounded-xl hover:border-primary/30 transition-all flex flex-col justify-between h-full">
                 <div>
                   <div className="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
                     <BriefcaseIcon className="text-primary h-7 w-7" />
                   </div>
-                  <h3 className="font-headline text-2xl sm:text-3xl font-bold mb-4 text-foreground">
+                  <h3 className="font-headline text-2xl font-bold mb-4 text-foreground">
                     {t('landing.features.services.title', 'Services & Matching')}
                   </h3>
                   <p className="text-on-surface-variant leading-relaxed">
                     {t('landing.features.services.desc', 'Document external services, track vendors and budgets, and auto-match the best internal talent for every brief.')}
                   </p>
                 </div>
-                <div className="pt-6 sm:pt-8 border-t border-outline-variant/10 mt-6 sm:mt-8">
+                <div className="pt-6 border-t border-outline-variant/10 mt-6">
                   <p className="text-sm font-bold text-primary">
                     {t('landing.features.services.stat', 'Director access & up')}
                   </p>
@@ -283,44 +283,46 @@ const Landing: React.FC = () => {
               </div>
             </FadeIn>
 
-            {/* Feature 5: Analytics — 8 cols */}
-            <FadeIn delay={0.25} className="md:col-span-8">
-              <div className="glass-card p-8 sm:p-12 rounded-xl hover:border-secondary/30 transition-all relative overflow-hidden h-full">
-                <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center">
-                  <div className="flex-1">
-                    <h3 className="font-headline text-2xl sm:text-3xl font-bold mb-4 text-foreground">
-                      {t('landing.features.analytics.title', 'Talent Analytics')}
-                    </h3>
-                    <p className="text-on-surface-variant leading-relaxed">
-                      {t('landing.features.analytics.desc', 'Get insights into skill distribution, experience levels, language capabilities, and department composition across your organization.')}
-                    </p>
-                    <button
-                      onClick={() => openAuth('login')}
-                      className="mt-8 text-secondary font-bold flex items-center gap-2 group"
-                    >
-                      {t('landing.features.analytics.cta', 'Explore Analytics')}
-                      <span className="material-symbols-outlined transition-transform group-hover:translate-x-2">arrow_forward</span>
-                    </button>
+            {/* Feature 5: Analytics */}
+            <FadeIn delay={0.2}>
+              <div className="glass-card p-8 sm:p-10 rounded-xl hover:border-secondary/30 transition-all flex flex-col justify-between h-full">
+                <div>
+                  <div className="w-14 h-14 bg-secondary/10 rounded-lg flex items-center justify-center mb-6">
+                    <span className="material-symbols-outlined text-secondary text-3xl">insights</span>
                   </div>
-                  <div className="w-full md:w-1/2 bg-surface-container-low p-6 rounded-lg">
-                    <div className="flex items-center gap-3 mb-6">
-                      <div className="w-3 h-3 rounded-full bg-secondary glow-line" />
-                      <span className="text-xs font-bold text-on-surface-variant uppercase tracking-widest">
-                        {t('landing.features.analytics.skillMap', 'Skill Coverage')}
-                      </span>
-                    </div>
-                    <div className="space-y-4">
-                      <div className="w-full h-2 bg-surface-container rounded-full overflow-hidden">
-                        <div className="bg-secondary h-full w-3/4" />
-                      </div>
-                      <div className="w-full h-2 bg-surface-container rounded-full overflow-hidden">
-                        <div className="bg-secondary h-full w-1/2" />
-                      </div>
-                      <div className="w-full h-2 bg-surface-container rounded-full overflow-hidden">
-                        <div className="bg-secondary h-full w-4/5" />
-                      </div>
-                    </div>
+                  <h3 className="font-headline text-2xl font-bold mb-4 text-foreground">
+                    {t('landing.features.analytics.title', 'Talent Analytics')}
+                  </h3>
+                  <p className="text-on-surface-variant leading-relaxed">
+                    {t('landing.features.analytics.desc', 'Get insights into skill distribution, experience levels, language capabilities, and department composition across your organization.')}
+                  </p>
+                </div>
+                <div className="pt-6 border-t border-outline-variant/10 mt-6">
+                  <p className="text-sm font-bold text-secondary">
+                    {t('landing.features.analytics.stat', 'Real-time dashboards')}
+                  </p>
+                </div>
+              </div>
+            </FadeIn>
+
+            {/* Feature 6: Multilingual */}
+            <FadeIn delay={0.25}>
+              <div className="glass-card p-8 sm:p-10 rounded-xl hover:border-tertiary/30 transition-all flex flex-col justify-between h-full">
+                <div>
+                  <div className="w-14 h-14 bg-tertiary/10 rounded-lg flex items-center justify-center mb-6">
+                    <span className="material-symbols-outlined text-tertiary text-3xl">language</span>
                   </div>
+                  <h3 className="font-headline text-2xl font-bold mb-4 text-foreground">
+                    {t('landing.features.multilingual.title', 'Multilingual Ready')}
+                  </h3>
+                  <p className="text-on-surface-variant leading-relaxed">
+                    {t('landing.features.multilingual.desc', 'Full English and Spanish support across the platform, with language preferences saved per user.')}
+                  </p>
+                </div>
+                <div className="pt-6 border-t border-outline-variant/10 mt-6">
+                  <p className="text-sm font-bold text-tertiary">
+                    {t('landing.features.multilingual.stat', 'EN & ES included')}
+                  </p>
                 </div>
               </div>
             </FadeIn>
