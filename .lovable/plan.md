@@ -1,70 +1,73 @@
 
 
-## Design Spacing, Typography, and Layout Improvements
+## Plan: Multi-Tenant Companies + Cleanup + Display Fixes
 
-This plan addresses five key areas: persistent logo + "TALENT MAP" in the header, always-visible dark/light toggle, persistent copyright footer, increased spacing and font sizes, and text visibility review.
+### 1. Companies (full multi-tenancy)
 
-### 1. Header: Logo + "TALENT MAP" always visible on all pages
+**Schema** — new migration:
+- `companies` table: `id`, `name`, `slug` (unique, used in invite URL), `logo_url`, `description`, `website`, `industry`, `country_id`, `subscription_status` (enum: `trialing|active|past_due|canceled`, default `trialing`), `subscription_plan` (text, default `free_testing`), `invite_token` (unique), `created_by`, timestamps.
+- Add `company_id uuid` (nullable to avoid breaking the seed master) to: `profiles`, `services`, `service_vendors`, `service_skills`, `service_talent_matches`, `groups`, `group_members`, `departments`, `agencies`, `awards`, `brands_managed`, `recent_projects`, `previous_agencies`, `previous_positions`, `employee_skills`, `employee_languages`, `employee_industries`, `messages`, `notifications`, `invitation_tokens`.
+- Storage bucket `company-logos` (public), with RLS for company admins to upload.
 
-The desktop Header currently shows breadcrumbs on the left (no logo). The logo only appears on mobile. We will add the Garnier logo + "TALENT MAP" text to the left side of the header on all screen sizes, followed by the breadcrumbs.
+**Security definer functions:**
+- `get_user_company(_user_id uuid) returns uuid` — returns the company_id from the user's profile.
+- `is_company_admin(_user_id uuid, _company_id uuid) returns boolean` — true if user is the company's `created_by` or has `master_admin` role within that company.
+- `is_platform_master(_user_id uuid) returns boolean` — true only when the user has `master_admin` role AND `company_id IS NULL` (the platform-level master like Master@mastertestuse.com).
 
-**File: `src/components/layout/Header.tsx`**
-- Add the logo image (`h-16`, with `dark:invert`) and "TALENT MAP" text as the first element inside the header's left section, visible on all breakpoints (not just mobile)
-- Keep breadcrumbs after the logo on desktop
-- The dark/light mode toggle is already in the header -- no change needed there
+**RLS rewrite** — every tenant-scoped table gets policies of the shape:
+`USING (company_id = get_user_company(auth.uid()) OR is_platform_master(auth.uid()))`.
+Existing role-based admin policies are kept but scoped to the same company. The platform master sees everything.
 
-### 2. Dark/Light Mode Toggle -- already always present
+**Onboarding flow** — new `/company/create` wizard (4 steps): Company info → Logo upload → Admin profile → Billing (placeholder "Free during testing"). On finish:
+- Insert company, set creator's `profiles.company_id`, promote to `master_admin` for that company, mark `profile_completed = true`, generate `invite_token`, show shareable URL `/{slug}/join?token=...`.
 
-The `ThemeToggle` component is already rendered in the `Header` on all internal pages and in `AuthLayout` for login/register. No changes needed.
+**Invite URL** — new route `/:companySlug/join` that pre-resolves company from slug+token, opens the auth modal in register mode, and on signup auto-attaches the new user to that company via the `handle_new_user` trigger (extended to read invite metadata).
 
-### 3. Persistent Copyright Footer on all internal pages
+**Routing** — when a logged-in user has no `company_id`, redirect to `/company/create`. The platform master bypasses this.
 
-**File: `src/components/layout/AppLayout.tsx`**
-- Add a footer element below the `<main>` content area with: `"(c) Grupo Garnier. All rights reserved."` (no year)
-- The footer will respect the sidebar offset (same `pl-16`/`pl-64` logic as `<main>`)
-- Use small muted text, centered
+### 2. Top-bar company logo
 
-### 4. Increase Spacing and Font Sizes by ~30%
+Modify `src/components/layout/Header.tsx` to render, on the left of the breadcrumbs:
+`[aidea*form] | [Skill*form] | [Company logo + name]`
+Logos come from `useAuth().profile.company` (joined). Hidden for the platform master (no company). Both light/dark variants supported via `dark:invert` on aidea*form and existing Skill*form handling.
 
-**File: `src/index.css`** -- Add a global base font-size increase:
-- Set `html { font-size: 18px; }` (up from the default 16px, which is roughly a 12.5% increase at the root) combined with bumping specific text sizes in components. This ensures all `rem`-based sizing scales up.
+### 3. Database cleanup
 
-**File: `src/components/layout/AppLayout.tsx`**
-- Increase main content padding from `p-4 md:p-6 lg:p-8` to `p-6 md:p-8 lg:p-10`
+Delete 12 non-master auth users + cascade their data via an edge function using the service role (auth admin API):
+- Keep only `a4976bed-be57-4006-806d-829ad672d9f6` (Master@mastertestuse.com).
+- Set that user's `company_id = NULL` so they remain a platform-level master.
+- Remove the older `4b3e6055-...` (jose@arbolcg.com) master admin too per your request.
+- Also wipe child rows in: profiles, user_roles, employee_*, awards, brands_managed, recent_projects, previous_*, services, service_*, groups, group_members, messages, notifications, invitation_tokens.
 
-**Key pages to update spacing/font sizes:**
+### 4. Display / dark-light fixes
 
-- **Directory page** (`src/pages/Directory.tsx`): Increase `space-y-6` to `space-y-8`, heading from `text-3xl` to `text-4xl`, grid gap from `gap-4` to `gap-6`
-- **Profile Create** (`src/pages/ProfileCreate.tsx`): Increase step container padding and heading sizes
-- **Profile View** (`src/pages/ProfileView.tsx`): Increase section spacing
-- **Admin dashboards** (`MasterDashboard.tsx`, `OrganizerDashboard.tsx`, `DirectorDashboard.tsx`): Increase heading sizes and card spacing
-- **Sidebar** (`src/components/layout/Sidebar.tsx`): Increase nav item padding from `py-2.5` to `py-3`, text sizes
-- **Header** (`src/components/layout/Header.tsx`): Increase height from `h-16` to `h-20`, header padding
+Audit pass for hard-coded white-on-white inputs and contrast:
+- Replace remaining `bg-white`, `text-white`, `bg-gray-*`, `text-gray-*` outside the dialog overlays with semantic tokens (`bg-background`, `text-foreground`, `text-muted-foreground`, `bg-muted`, `border-border`).
+- Files flagged: `ChangeRoleModal`, `DeleteUserDialog`, `PendingInvitations`, `UserManagementTable`, `GroupsList`, `KanbanView`, `DirectorDashboard`, `OrganizerDashboard`, `BasicInfoStep`, plus any `<Input>`/`<Textarea>` missing the `bg-background` class on white-card forms.
+- Verify the auth modal inputs render with foreground text in light mode (the SkillFormLogo uses `text-primary` which is red — confirm legibility on the modal's white background; switch to `text-foreground` if needed inside the modal header).
+- Re-run the grep after edits to make sure no offenders remain.
 
-### 5. Text Visibility and Truncation Review
+### 5. Translations sweep
 
-- **Sidebar**: The `truncate` class on nav labels and user name can cut text. Will increase sidebar expanded width from `w-64` to `w-72` and ensure `overflow-visible` for key labels.
-- **Header breadcrumbs**: Increase font size from `text-sm` to `text-base`
-- **Profile cards**: Ensure position/department text wraps instead of truncating
-- **Directory search/sort controls**: Increase input/select widths
+Add EN/ES keys for: `company.*` (create wizard, fields, billing placeholder, invite share screen, copy-link toast), header company badge, new routes, and any newly added UI strings. Run a key-diff script to ensure every key in `en.json` exists in `es.json` and vice-versa, then fix gaps. No Spanish strings will be left as English.
 
----
+### Technical notes
 
-### Technical Summary of Files to Edit
+- The `handle_new_user` trigger will be updated to read `raw_user_meta_data->>'company_id'` and `->>'invite_token'` and attach the new profile accordingly. Invite tokens get marked used.
+- `prevent_seniority_self_escalation` trigger is left intact.
+- Company logo uploads use the existing image-cropper component (1:1 ratio, max 2MB).
+- Billing step is purely visual: a single "Free — Testing Phase" plan card with a disabled "Add payment method later" link. No Stripe wiring per your choice.
+- All new RLS policies will use security definer helpers so we don't trigger recursion.
 
-| File | Changes |
-|---|---|
-| `src/index.css` | Set base `font-size: 18px` on `html` |
-| `src/components/layout/Header.tsx` | Add logo+TALENT MAP for all breakpoints, increase height to `h-20`, bigger breadcrumb text |
-| `src/components/layout/AppLayout.tsx` | Add copyright footer, increase main padding, adjust sidebar offset for new header height (`pt-20`) |
-| `src/components/layout/Sidebar.tsx` | Increase width to `w-72`, bigger nav item padding/text, taller logo header to match `h-20` |
-| `src/pages/Directory.tsx` | Increase spacing and heading sizes |
-| `src/pages/ProfileCreate.tsx` | Increase spacing |
-| `src/pages/ProfileView.tsx` | Increase spacing |
-| `src/pages/admin/MasterDashboard.tsx` | Increase heading/spacing |
-| `src/pages/admin/OrganizerDashboard.tsx` | Increase heading/spacing |
-| `src/pages/admin/DirectorDashboard.tsx` | Increase heading/spacing |
-| `src/components/directory/ProfileCard.tsx` | Allow text wrapping |
+### Deliverable order
 
-No functionality, navigation, or logic will be changed -- only visual/layout adjustments.
+```text
+1. Migration: companies table, columns, helper functions, RLS rewrite, storage bucket
+2. Edge function: cleanup-test-users (one-shot, called once then can be deleted)
+3. Company onboarding wizard + routes + invite flow
+4. Header: company logo slot
+5. Display/contrast audit + fixes
+6. EN/ES translation sweep + parity check
+7. Smoke-test checklist for you to verify
+```
 
