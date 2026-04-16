@@ -209,6 +209,7 @@
       "rememberMe": "Recordarme",
       "forgotPassword": "¿Olvidó su contraseña?",
       "submitButton": "Iniciar Sesión",
+      "signIn": "Iniciar sesión",
       "noAccount": "¿No tiene una cuenta?",
       "contactSupport": "Contactar soporte",
       "invalidCredentials": "Correo o contraseña inválidos",
@@ -252,7 +253,8 @@
       "accountCreated": "¡Cuenta creada exitosamente!",
       "redirecting": "Redirigiendo a configuración de perfil...",
       "alreadyRegistered": "¿Ya está registrado?",
-      "signIn": "Inicie sesión aquí"
+      "signIn": "Inicie sesión aquí",
+      "inviteOnly": "Skill*form es solo por invitación. Solicita un enlace de invitación a tu administrador para crear una cuenta."
     },
     "forgotPassword": {
       "title": "Restablecer Contraseña",

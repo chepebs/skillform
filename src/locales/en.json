@@ -209,6 +209,7 @@
       "rememberMe": "Remember me",
       "forgotPassword": "Forgot password?",
       "submitButton": "Sign In",
+      "signIn": "Sign in",
       "noAccount": "Don't have an account?",
       "contactSupport": "Contact support",
       "invalidCredentials": "Invalid email or password",
@@ -252,7 +253,8 @@
       "accountCreated": "Account created successfully!",
       "redirecting": "Redirecting to profile setup...",
       "alreadyRegistered": "Already registered?",
-      "signIn": "Sign in here"
+      "signIn": "Sign in here",
+      "inviteOnly": "Skill*form is invite-only. Ask your administrator for an invitation link to create an account."
     },
     "forgotPassword": {
       "title": "Reset Password",
