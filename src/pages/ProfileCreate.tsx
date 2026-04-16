@@ -84,7 +84,7 @@ const ProfileCreate: React.FC = () => {
 
   const professionalForm = useForm<ProfessionalInfoData>({
     resolver: zodResolver(professionalInfoSchema),
-    defaultValues: { country_id: '', agency_id: '', department_id: '', current_position: '', previous_positions: [] },
+    defaultValues: { country_id: '', agency_id: '', department_id: '', current_position: '', seniority_level: 'mid', previous_positions: [] },
   });
 
   const educationForm = useForm<EducationData>({
@@ -213,6 +213,7 @@ const ProfileCreate: React.FC = () => {
         country_id: data.professionalInfo.country_id || null,
         agency_id: data.professionalInfo.agency_id || null,
         current_position: data.professionalInfo.current_position,
+        seniority_level: data.professionalInfo.seniority_level || 'mid',
         academic_degree: data.education.academic_degree,
         years_of_experience: data.education.years_of_experience,
         pitches_won: data.performance.pitches_won,
@@ -281,6 +282,7 @@ const ProfileCreate: React.FC = () => {
         country_id: data.professionalInfo.country_id || null,
         agency_id: data.professionalInfo.agency_id || null,
         current_position: data.professionalInfo.current_position,
+        seniority_level: data.professionalInfo.seniority_level || 'mid',
         academic_degree: data.education.academic_degree,
         years_of_experience: data.education.years_of_experience,
         pitches_won: data.performance.pitches_won,

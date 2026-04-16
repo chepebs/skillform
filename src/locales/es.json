@@ -1078,5 +1078,24 @@
       "privacy": "Privacidad",
       "terms": "Términos"
     }
+  },
+  "profile": {
+    "seniorityLevel": "Nivel de Antigüedad",
+    "seniorityLevelHint": "Tu nivel profesional actual dentro de la organización",
+    "seniority": {
+      "junior": "Junior",
+      "mid": "Nivel Medio",
+      "senior": "Senior",
+      "director": "Director",
+      "vp": "Vicepresidente / VP",
+      "cLevel": "Ejecutivo C-Level"
+    }
+  },
+  "services": {
+    "title": "Módulo de Servicios",
+    "subtitle": "Administrar servicios de producción y recursos externos",
+    "moduleDescription": "Documenta los servicios que proporciona tu departamento, rastrea presupuestos externos y conecta talento interno con necesidades de servicios.",
+    "noAccess": "El módulo de servicios solo está disponible para Directores y superiores.",
+    "requestAccess": "Si necesitas acceso, contacta a tu director de departamento o administrador."
   }
 }

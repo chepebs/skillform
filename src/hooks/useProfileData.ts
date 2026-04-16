@@ -29,6 +29,7 @@ export interface ProfileData {
   linkedin_url: string | null;
   instagram_url: string | null;
   behance_url: string | null;
+  seniority_level?: 'junior' | 'mid' | 'senior' | 'director' | 'vp' | 'c-level' | null;
   country?: { id: string; name: string; code: string } | null;
   agency?: { id: string; name: string } | null;
 }
