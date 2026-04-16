@@ -52,24 +52,38 @@ const MatchedTalentList: React.FC<Props> = ({ serviceId, canEdit }) => {
     setLoading(true);
     const { data, error } = await supabase
       .from('service_talent_matches')
-      .select(`
-        id, match_score, matched_skills, auto_matched, manually_added,
-        profile:profiles!service_talent_matches_user_id_fkey(
-          user_id, first_name, last_name, current_position, avatar_url, department, email
-        )
-      `)
+      .select('id, user_id, match_score, matched_skills, auto_matched, manually_added')
       .eq('service_id', serviceId)
       .eq('is_active', true)
       .gte('match_score', minScore)
       .order('match_score', { ascending: false });
 
-    if (error) {
+    if (error || !data) {
       console.error('Load matches:', error);
-      // Try without the join filter in case of relationship issues
       setMatches([]);
-    } else {
-      setMatches((data as any) || []);
+      setLoading(false);
+      return;
     }
+
+    const userIds = data.map((m: any) => m.user_id).filter(Boolean);
+    if (userIds.length === 0) {
+      setMatches([]);
+      setLoading(false);
+      return;
+    }
+
+    const { data: profiles } = await supabase
+      .from('profiles')
+      .select('user_id, first_name, last_name, current_position, avatar_url, department, email')
+      .in('user_id', userIds);
+
+    const profileMap = new Map((profiles || []).map(p => [p.user_id, p]));
+    const merged = data.map((m: any) => ({
+      ...m,
+      profile: profileMap.get(m.user_id) || null,
+    })).filter(m => m.profile);
+
+    setMatches(merged as any);
     setLoading(false);
   };
 

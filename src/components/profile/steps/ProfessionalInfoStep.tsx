@@ -11,6 +11,7 @@ import { FormField, FormItem, FormControl, FormMessage } from '@/components/ui/f
 import { Plus, X, Calendar } from 'lucide-react';
 import { ProfessionalInfoData } from '../types';
 import { supabase } from '@/integrations/supabase/client';
+import { useAuth } from '@/contexts/AuthContext';
 import { cn } from '@/lib/utils';
 
 interface Country {
@@ -36,6 +37,8 @@ interface ProfessionalInfoStepProps {
 
 const ProfessionalInfoStep: React.FC<ProfessionalInfoStepProps> = ({ form }) => {
   const { t } = useTranslation();
+  const { role } = useAuth();
+  const isMasterAdmin = role === 'master_admin';
   const [countries, setCountries] = useState<Country[]>([]);
   const [agencies, setAgencies] = useState<Agency[]>([]);
   const [departments, setDepartments] = useState<Department[]>([]);
@@ -207,9 +210,11 @@ const ProfessionalInfoStep: React.FC<ProfessionalInfoStepProps> = ({ form }) => 
               {t('profile.seniorityLevel', 'Seniority Level')} <span className="text-destructive">*</span>
             </Label>
             <p className="text-xs text-muted-foreground -mt-1 mb-1">
-              {t('profile.seniorityLevelHint', 'Your current career level within the organization')}
+              {isMasterAdmin
+                ? t('profile.seniorityLevelHint', 'Your current career level within the organization')
+                : t('profile.seniorityLevelLocked', 'Seniority is set by an administrator and cannot be changed here.')}
             </p>
-            <Select onValueChange={field.onChange} value={field.value || 'mid'}>
+            <Select onValueChange={field.onChange} value={field.value || 'mid'} disabled={!isMasterAdmin}>
               <FormControl>
                 <SelectTrigger className="bg-dark-elevated border-dark-border">
                   <SelectValue />
