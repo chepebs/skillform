@@ -52,20 +52,31 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [profile, setProfile] = useState<Profile | null>(null);
+  const [company, setCompany] = useState<Company | null>(null);
   const [role, setRole] = useState<AppRole | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchUserData = async (userId: string) => {
-    // Profile is optional (e.g. admin users may not have one)
     const { data: profileData } = await supabase
       .from('profiles')
       .select('*')
       .eq('user_id', userId)
       .maybeSingle();
 
-    setProfile((profileData as Profile) ?? null);
+    const profileTyped = (profileData as Profile) ?? null;
+    setProfile(profileTyped);
 
-    // Role is mandatory for admin access
+    if (profileTyped?.company_id) {
+      const { data: companyData } = await supabase
+        .from('companies')
+        .select('id, name, slug, logo_url, invite_token')
+        .eq('id', profileTyped.company_id)
+        .maybeSingle();
+      setCompany((companyData as Company) ?? null);
+    } else {
+      setCompany(null);
+    }
+
     const { data: roleData, error: roleError } = await supabase.rpc('get_user_role', {
       _user_id: userId,
     });
