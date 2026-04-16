@@ -100,6 +100,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
       if (!session?.user) {
         setProfile(null);
+        setCompany(null);
         setRole(null);
         setIsLoading(false);
         return;
@@ -125,6 +126,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
       if (!session?.user) {
         setProfile(null);
+        setCompany(null);
         setRole(null);
         setIsLoading(false);
         return;
