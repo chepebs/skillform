@@ -691,7 +691,9 @@
       "titlePart3": "With Your Team's Talent",
       "description": "A centralized platform to explore profiles, skills, and expertise across Grupo Garnier. Find the right talent for every project.",
       "talentOverview": "Talent Overview",
-      "totalProfiles": "Total Profiles"
+      "totalProfiles": "Total Profiles",
+      "servicesEyebrow": "Now with Services & Talent Matching",
+      "servicesTagline": "document external services, define required skills, and auto-match the right internal talent."
     },
     "features": {
       "title": "Everything You",
@@ -717,6 +719,11 @@
         "desc": "Get insights into skill distribution, experience levels, language capabilities, and department composition across your organization.",
         "cta": "Explore Analytics",
         "skillMap": "Skill Coverage"
+      },
+      "services": {
+        "title": "Services & Matching",
+        "desc": "Document external services, track vendors and budgets, and auto-match the best internal talent for every brief.",
+        "stat": "Director access & up"
       }
     },
     "capabilities": {
@@ -756,12 +763,37 @@
         "role": "HR Manager"
       }
     },
+    "services": {
+      "eyebrow": "New Module",
+      "title": "Services &",
+      "titleAccent": "Talent Matching",
+      "subtitle": "Director-level employees and admins can document every external service, manage vendors and budgets, and let Skill*form auto-match the best internal talent — based on real skills, experience, and proficiency.",
+      "step1": {
+        "title": "Document services",
+        "desc": "Capture every external production service — agency, department, budget, vendors, and frequency — in one shared catalog."
+      },
+      "step2": {
+        "title": "Define required skills",
+        "desc": "Set the skills each service needs, mark them as required, preferred, or nice-to-have, and tune minimum proficiency."
+      },
+      "step3": {
+        "title": "Auto-match talent",
+        "desc": "Skill*form scores every employee nightly, surfaces the best internal matches, and lets directors add or remove people manually."
+      },
+      "stat1": "Catalog services",
+      "stat2": "Skill-based matching",
+      "stat3": "Nightly auto-match",
+      "stat4": "Bilingual interface",
+      "access": "Available to department directors, organizer admins, master admins, and senior employees (director, VP, C-level).",
+      "cta": "Sign in to explore Services"
+    },
     "footer": {
       "tagline": "Discover and connect with talent across your organization.",
       "product": "Product",
       "features": "Features",
       "directory": "Directory",
       "profiles": "Profiles",
+      "services": "Services",
       "analytics": "Analytics",
       "company": "Company",
       "about": "About",
