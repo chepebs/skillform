@@ -52,11 +52,21 @@ const App = () => (
             <Route path="/landing" element={<Landing />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register/:token" element={<Register />} />
+            <Route path="/c/:slug/join" element={<CompanyJoin />} />
 
-            {/* Protected Routes with AppLayout */}
+            {/* Company creation (auth-only, before company gate) */}
+            <Route path="/company/create" element={
+              <ProtectedRoute>
+                <CompanyCreate />
+              </ProtectedRoute>
+            } />
+
+            {/* Protected Routes with AppLayout (require company) */}
             <Route element={
               <ProtectedRoute>
-                <AppLayout />
+                <CompanyGate>
+                  <AppLayout />
+                </CompanyGate>
               </ProtectedRoute>
             }>
               {/* Common Routes */}
