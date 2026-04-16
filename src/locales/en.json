@@ -73,7 +73,8 @@
       "admin": "Admin",
       "organizer": "Organizer",
       "director": "Director",
-      "masterAdmin": "Master Admin"
+      "masterAdmin": "Master Admin",
+      "services": "Services"
     },
     "status": {
       "active": "Active",
