@@ -554,6 +554,7 @@ export type Database = {
           position: string | null
           profile_completed: boolean | null
           profile_completed_at: string | null
+          seniority_level: Database["public"]["Enums"]["seniority_type"]
           updated_at: string | null
           user_id: string
           years_of_experience: number | null
@@ -587,6 +588,7 @@ export type Database = {
           position?: string | null
           profile_completed?: boolean | null
           profile_completed_at?: string | null
+          seniority_level?: Database["public"]["Enums"]["seniority_type"]
           updated_at?: string | null
           user_id: string
           years_of_experience?: number | null
@@ -620,6 +622,7 @@ export type Database = {
           position?: string | null
           profile_completed?: boolean | null
           profile_completed_at?: string | null
+          seniority_level?: Database["public"]["Enums"]["seniority_type"]
           updated_at?: string | null
           user_id?: string
           years_of_experience?: number | null
@@ -680,6 +683,297 @@ export type Database = {
         }
         Relationships: []
       }
+      service_catalog: {
+        Row: {
+          category_id: string | null
+          created_at: string | null
+          description: string | null
+          id: string
+          is_active: boolean | null
+          service_name: string
+          sort_order: number | null
+          subcategory_id: string | null
+          typical_skills: string[] | null
+        }
+        Insert: {
+          category_id?: string | null
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          service_name: string
+          sort_order?: number | null
+          subcategory_id?: string | null
+          typical_skills?: string[] | null
+        }
+        Update: {
+          category_id?: string | null
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          service_name?: string
+          sort_order?: number | null
+          subcategory_id?: string | null
+          typical_skills?: string[] | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "service_catalog_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "service_categories"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "service_catalog_subcategory_id_fkey"
+            columns: ["subcategory_id"]
+            isOneToOne: false
+            referencedRelation: "service_categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      service_categories: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          id: string
+          level: number
+          name: string
+          parent_id: string | null
+          sort_order: number | null
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          level: number
+          name: string
+          parent_id?: string | null
+          sort_order?: number | null
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          level?: number
+          name?: string
+          parent_id?: string | null
+          sort_order?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "service_categories_parent_id_fkey"
+            columns: ["parent_id"]
+            isOneToOne: false
+            referencedRelation: "service_categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      service_skills: {
+        Row: {
+          created_at: string | null
+          id: string
+          importance_level: string | null
+          min_proficiency: number | null
+          service_id: string
+          skill_name: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          importance_level?: string | null
+          min_proficiency?: number | null
+          service_id: string
+          skill_name: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          importance_level?: string | null
+          min_proficiency?: number | null
+          service_id?: string
+          skill_name?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "service_skills_service_id_fkey"
+            columns: ["service_id"]
+            isOneToOne: false
+            referencedRelation: "services"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      service_talent_matches: {
+        Row: {
+          auto_matched: boolean | null
+          id: string
+          last_updated: string | null
+          match_score: number | null
+          matched_skills: string[] | null
+          service_id: string
+          user_id: string
+        }
+        Insert: {
+          auto_matched?: boolean | null
+          id?: string
+          last_updated?: string | null
+          match_score?: number | null
+          matched_skills?: string[] | null
+          service_id: string
+          user_id: string
+        }
+        Update: {
+          auto_matched?: boolean | null
+          id?: string
+          last_updated?: string | null
+          match_score?: number | null
+          matched_skills?: string[] | null
+          service_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "service_talent_matches_service_id_fkey"
+            columns: ["service_id"]
+            isOneToOne: false
+            referencedRelation: "services"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      service_vendors: {
+        Row: {
+          average_project_cost: number | null
+          contact_info: Json | null
+          created_at: string | null
+          id: string
+          is_active: boolean | null
+          notes: string | null
+          projects_per_year: number | null
+          service_id: string
+          vendor_name: string
+          vendor_type: string | null
+        }
+        Insert: {
+          average_project_cost?: number | null
+          contact_info?: Json | null
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          notes?: string | null
+          projects_per_year?: number | null
+          service_id: string
+          vendor_name: string
+          vendor_type?: string | null
+        }
+        Update: {
+          average_project_cost?: number | null
+          contact_info?: Json | null
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          notes?: string | null
+          projects_per_year?: number | null
+          service_id?: string
+          vendor_name?: string
+          vendor_type?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "service_vendors_service_id_fkey"
+            columns: ["service_id"]
+            isOneToOne: false
+            referencedRelation: "services"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      services: {
+        Row: {
+          agency_id: string | null
+          created_at: string | null
+          created_by: string | null
+          department_id: string | null
+          description: string | null
+          external_budget_annual: number | null
+          external_budget_monthly: number | null
+          id: string
+          is_active: boolean | null
+          managed_by: string | null
+          notes: string | null
+          projects_per_month: number | null
+          projects_per_year: number | null
+          service_catalog_id: string
+          typical_duration_days: number | null
+          typical_duration_hours: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          agency_id?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          department_id?: string | null
+          description?: string | null
+          external_budget_annual?: number | null
+          external_budget_monthly?: number | null
+          id?: string
+          is_active?: boolean | null
+          managed_by?: string | null
+          notes?: string | null
+          projects_per_month?: number | null
+          projects_per_year?: number | null
+          service_catalog_id: string
+          typical_duration_days?: number | null
+          typical_duration_hours?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          agency_id?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          department_id?: string | null
+          description?: string | null
+          external_budget_annual?: number | null
+          external_budget_monthly?: number | null
+          id?: string
+          is_active?: boolean | null
+          managed_by?: string | null
+          notes?: string | null
+          projects_per_month?: number | null
+          projects_per_year?: number | null
+          service_catalog_id?: string
+          typical_duration_days?: number | null
+          typical_duration_hours?: number | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "services_agency_id_fkey"
+            columns: ["agency_id"]
+            isOneToOne: false
+            referencedRelation: "agencies"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "services_department_id_fkey"
+            columns: ["department_id"]
+            isOneToOne: false
+            referencedRelation: "departments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "services_service_catalog_id_fkey"
+            columns: ["service_catalog_id"]
+            isOneToOne: false
+            referencedRelation: "service_catalog"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_roles: {
         Row: {
           id: string
@@ -703,6 +997,11 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      can_access_services: { Args: { _user_id: string }; Returns: boolean }
+      can_edit_service: {
+        Args: { _service_id: string; _user_id: string }
+        Returns: boolean
+      }
       get_user_role: {
         Args: { _user_id: string }
         Returns: Database["public"]["Enums"]["app_role"]
@@ -733,6 +1032,13 @@ export type Database = {
         | "organizer_admin"
         | "department_director"
         | "master_admin"
+      seniority_type:
+        | "junior"
+        | "mid"
+        | "senior"
+        | "director"
+        | "vp"
+        | "c-level"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -866,6 +1172,7 @@ export const Constants = {
         "department_director",
         "master_admin",
       ],
+      seniority_type: ["junior", "mid", "senior", "director", "vp", "c-level"],
     },
   },
 } as const
