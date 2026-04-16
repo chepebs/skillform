@@ -94,7 +94,7 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({
       pdf.setProperties({
         title: `${fullName} - Profile`,
         subject: 'Employee Profile',
-        author: 'Grupo Garnier Talent Map',
+        author: 'Grupo Garnier Skill*form',
         creator: 'Grupo Garnier',
       });
 
@@ -141,7 +141,7 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({
       pdf.text(fullName, margin, margin + 8);
       pdf.setFontSize(9);
       pdf.setTextColor(120, 120, 120);
-      pdf.text(`TALENT MAP  •  ${new Date().toLocaleDateString()}`, margin, margin + 14);
+      pdf.text(`SKILL*FORM  •  ${new Date().toLocaleDateString()}`, margin, margin + 14);
 
       // Content start after header
       const firstPageContentStart = margin + headerHeight;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-import garnierLogoSvg from '@/assets/logo-garnier.svg';
+import { SkillFormLogo } from '@/components/SkillFormLogo';
 
 interface LogoProps {
   size?: 'sm' | 'md' | 'lg';
@@ -17,17 +17,17 @@ export const Logo: React.FC<LogoProps> = ({
   clickable = true
 }) => {
   const navigate = useNavigate();
-  
-  const sizes = {
-    sm: 'h-16',
-    md: 'h-20',
-    lg: 'h-32'
+
+  const iconSizes = {
+    sm: 'h-4 w-4',
+    md: 'h-5 w-5',
+    lg: 'h-8 w-8'
   };
 
   const textSizes = {
-    sm: { company: 'text-xs', app: 'text-sm' },
-    md: { company: 'text-xs', app: 'text-base' },
-    lg: { company: 'text-sm', app: 'text-xl' }
+    sm: 'text-sm',
+    md: 'text-base',
+    lg: 'text-xl'
   };
 
   const handleClick = () => {
@@ -36,44 +36,20 @@ export const Logo: React.FC<LogoProps> = ({
     }
   };
 
-  const content = (
-    <>
-      <img 
-        src={garnierLogoSvg}
-        alt="Grupo Garnier Logo"
-        className={cn(sizes[size], 'w-auto object-contain dark:invert')}
-      />
-      
-      {showText && (
-        <div className="flex flex-col">
-          <span className={cn(textSizes[size].company, 'font-semibold text-muted-foreground')}>
-            Grupo Garnier
-          </span>
-          <span className={cn(textSizes[size].app, 'font-bold text-foreground')}>
-            Talent Map
-          </span>
-        </div>
-      )}
-    </>
-  );
-
   if (clickable) {
     return (
       <button 
         onClick={handleClick}
-        className={cn(
-          'flex items-center gap-3 hover:opacity-80 transition-opacity',
-          className
-        )}
+        className={cn('flex items-center gap-3 hover:opacity-80 transition-opacity', className)}
       >
-        {content}
+        <SkillFormLogo iconClassName={iconSizes[size]} textClassName={showText ? textSizes[size] : 'hidden'} />
       </button>
     );
   }
 
   return (
     <div className={cn('flex items-center gap-3', className)}>
-      {content}
+      <SkillFormLogo iconClassName={iconSizes[size]} textClassName={showText ? textSizes[size] : 'hidden'} />
     </div>
   );
 };
@@ -85,42 +61,21 @@ export const LogoLight: React.FC<Omit<LogoProps, 'showText'> & { showText?: bool
   className = '',
   clickable = false
 }) => {
-  const sizes = {
-    sm: 'h-16',
-    md: 'h-20',
-    lg: 'h-32'
+  const iconSizes = {
+    sm: 'h-4 w-4',
+    md: 'h-5 w-5',
+    lg: 'h-8 w-8'
   };
 
   const textSizes = {
-    sm: { company: 'text-xs', app: 'text-sm' },
-    md: { company: 'text-xs', app: 'text-base' },
-    lg: { company: 'text-sm', app: 'text-2xl' }
+    sm: 'text-sm',
+    md: 'text-base',
+    lg: 'text-2xl'
   };
-
-  const content = (
-    <>
-      <img 
-        src={garnierLogoSvg}
-        alt="Grupo Garnier Logo"
-        className={cn(sizes[size], 'w-auto object-contain invert')}
-      />
-      
-      {showText && (
-        <div className="flex flex-col">
-          <span className={cn(textSizes[size].company, 'font-semibold text-primary-foreground/80')}>
-            Grupo Garnier
-          </span>
-          <span className={cn(textSizes[size].app, 'font-bold text-primary-foreground')}>
-            Talent Map
-          </span>
-        </div>
-      )}
-    </>
-  );
 
   return (
     <div className={cn('flex items-center gap-3', className)}>
-      {content}
+      <SkillFormLogo iconClassName={iconSizes[size]} textClassName={showText ? textSizes[size] : 'hidden'} />
     </div>
   );
 };
