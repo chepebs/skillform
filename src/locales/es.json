@@ -687,7 +687,9 @@
       "titlePart3": "con el talento de tu equipo",
       "description": "Una plataforma centralizada para explorar perfiles, habilidades y experiencia en toda Grupo Garnier. Encuentra el talento adecuado para cada proyecto.",
       "talentOverview": "Resumen de talento",
-      "totalProfiles": "Perfiles totales"
+      "totalProfiles": "Perfiles totales",
+      "servicesEyebrow": "Ahora con Servicios y Matching de Talento",
+      "servicesTagline": "documenta servicios externos, define las habilidades necesarias y haz match automático con el talento interno adecuado."
     },
     "features": {
       "title": "Todo lo que",
@@ -713,6 +715,11 @@
         "desc": "Obtén información sobre distribución de habilidades, niveles de experiencia, capacidades de idioma y composición por departamento en toda tu organización.",
         "cta": "Explorar analíticas",
         "skillMap": "Cobertura de habilidades"
+      },
+      "services": {
+        "title": "Servicios y Matching",
+        "desc": "Documenta servicios externos, controla proveedores y presupuestos, y haz match automático con el mejor talento interno para cada brief.",
+        "stat": "Acceso director y superior"
       }
     },
     "capabilities": {
@@ -752,12 +759,37 @@
         "role": "Gerente de RR. HH."
       }
     },
+    "services": {
+      "eyebrow": "Nuevo Módulo",
+      "title": "Servicios y",
+      "titleAccent": "Matching de Talento",
+      "subtitle": "Los empleados nivel director y los administradores pueden documentar cada servicio externo, gestionar proveedores y presupuestos, y dejar que Skill*form haga match automático con el mejor talento interno — basado en habilidades, experiencia y nivel reales.",
+      "step1": {
+        "title": "Documenta servicios",
+        "desc": "Captura cada servicio de producción externa — agencia, departamento, presupuesto, proveedores y frecuencia — en un catálogo compartido."
+      },
+      "step2": {
+        "title": "Define habilidades requeridas",
+        "desc": "Establece las habilidades que necesita cada servicio, márcalas como requeridas, preferidas o deseables y ajusta el nivel mínimo."
+      },
+      "step3": {
+        "title": "Match automático de talento",
+        "desc": "Skill*form puntúa a cada empleado cada noche, muestra los mejores matches internos y permite a los directores agregar o quitar personas manualmente."
+      },
+      "stat1": "Servicios en catálogo",
+      "stat2": "Matching por habilidades",
+      "stat3": "Match automático nocturno",
+      "stat4": "Interfaz bilingüe",
+      "access": "Disponible para directores de departamento, administradores organizadores, master admins y empleados senior (director, VP, C-level).",
+      "cta": "Inicia sesión para explorar Servicios"
+    },
     "footer": {
       "tagline": "Descubre y conecta con el talento en toda tu organización.",
       "product": "Producto",
       "features": "Funciones",
       "directory": "Directorio",
       "profiles": "Perfiles",
+      "services": "Servicios",
       "analytics": "Analíticas",
       "company": "Empresa",
       "about": "Acerca de",
