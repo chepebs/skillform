@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Select,
@@ -27,15 +27,16 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
   variant = 'default',
 }) => {
   const { i18n } = useTranslation();
+  const currentLanguageCode = (i18n.resolvedLanguage || i18n.language || 'en').split('-')[0];
 
   const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng);
+    void i18n.changeLanguage(lng);
   };
 
-  const currentLanguage = languages.find((l) => l.code === i18n.language) || languages[0];
+  const currentLanguage = languages.find((l) => l.code === currentLanguageCode) || languages[0];
 
   return (
-    <Select value={i18n.language} onValueChange={changeLanguage}>
+    <Select value={currentLanguageCode} onValueChange={changeLanguage}>
       <SelectTrigger
         className={cn(
           'h-9 w-auto gap-1.5 border-border bg-background px-3 text-sm',

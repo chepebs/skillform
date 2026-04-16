@@ -985,5 +985,98 @@
     "deleteTitle": "Eliminar Agencia",
     "deleteConfirm": "¿Está seguro de que desea eliminar \"{{name}}\"? Esta acción no se puede deshacer.",
     "noAgencies": "No se encontraron agencias"
+  },
+  "landing": {
+    "getStarted": "Comenzar",
+    "learnMore": "Conocer más",
+    "hero": {
+      "titlePart1": "Descubre y",
+      "titlePart2": "Conecta",
+      "titlePart3": "con el talento de tu equipo",
+      "description": "Una plataforma centralizada para explorar perfiles, habilidades y experiencia en toda Grupo Garnier. Encuentra el talento adecuado para cada proyecto.",
+      "talentOverview": "Resumen de talento",
+      "totalProfiles": "Perfiles totales"
+    },
+    "features": {
+      "title": "Todo lo que",
+      "titleAccent": "necesitas",
+      "subtitle": "Una plataforma integral de gestión de talento diseñada para organizaciones modernas.",
+      "directory": {
+        "title": "Directorio de talento",
+        "desc": "Busca y filtra en toda tu organización. Encuentra personas por habilidades, departamentos, idiomas y áreas de experiencia.",
+        "tag1": "Filtros inteligentes",
+        "tag2": "Búsqueda en tiempo real"
+      },
+      "profiles": {
+        "title": "Perfiles completos",
+        "desc": "Perfiles de talento integrales con habilidades, experiencia, premios e historial de proyectos.",
+        "stat": "Más de 10 secciones de perfil"
+      },
+      "groups": {
+        "title": "Grupos de equipo",
+        "desc": "Organiza el talento en grupos personalizados para proyectos, departamentos e iniciativas."
+      },
+      "analytics": {
+        "title": "Analíticas de talento",
+        "desc": "Obtén información sobre distribución de habilidades, niveles de experiencia, capacidades de idioma y composición por departamento en toda tu organización.",
+        "cta": "Explorar analíticas",
+        "skillMap": "Cobertura de habilidades"
+      }
+    },
+    "capabilities": {
+      "titlePart1": "Creado para",
+      "titlePart2": "equipos modernos",
+      "desc": "Cada función está diseñada para ayudarte a descubrir, organizar y aprovechar el talento dentro de tu organización.",
+      "multilingual": "Soporte multilenguaje",
+      "roleBased": "Acceso por roles",
+      "roles": "4 roles",
+      "awards": "Premios y reconocimiento",
+      "tracking": "Seguimiento completo",
+      "experience": "Gestión de experiencia",
+      "comprehensive": "Completo",
+      "badge": "Estadísticas de la plataforma",
+      "coverage": "Cobertura organizacional",
+      "departments": "Departamentos",
+      "skills": "Habilidades registradas",
+      "countries": "Países"
+    },
+    "trust": {
+      "title": "Con la confianza de",
+      "titleAccent": "los equipos",
+      "subtitle": "Mira cómo los equipos de Grupo Garnier usan Skill*form todos los días.",
+      "t1": {
+        "quote": "\"Skill*form transformó la manera en que encontramos a las personas adecuadas para nuestros proyectos. Las capacidades de búsqueda y filtrado son increíbles.\"",
+        "name": "María García",
+        "role": "Directora Creativa"
+      },
+      "t2": {
+        "quote": "\"Tener todas las habilidades y la experiencia de nuestro equipo en un solo lugar ha hecho que la asignación de recursos sea mucho más eficiente.\"",
+        "name": "Carlos Rodríguez",
+        "role": "Líder de Departamento"
+      },
+      "t3": {
+        "quote": "\"El soporte multilenguaje y el acceso por roles lo hacen perfecto para nuestra estructura de equipo internacional.\"",
+        "name": "Ana Martínez",
+        "role": "Gerente de RR. HH."
+      }
+    },
+    "footer": {
+      "tagline": "Descubre y conecta con el talento en toda tu organización.",
+      "product": "Producto",
+      "features": "Funciones",
+      "directory": "Directorio",
+      "profiles": "Perfiles",
+      "analytics": "Analíticas",
+      "company": "Empresa",
+      "about": "Acerca de",
+      "careers": "Carreras",
+      "contact": "Contacto",
+      "resources": "Recursos",
+      "help": "Centro de ayuda",
+      "guides": "Guías",
+      "support": "Soporte",
+      "privacy": "Privacidad",
+      "terms": "Términos"
+    }
   }
 }
