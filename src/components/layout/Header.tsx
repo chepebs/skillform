@@ -3,10 +3,8 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { Search, ChevronRight, LogOut, User, Settings, Menu } from 'lucide-react';
-import { SkillFormLogo } from '@/components/SkillFormLogo';
+import { ChevronRight, LogOut, User, Settings, Menu } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { ThemeToggle } from './ThemeToggle';
@@ -112,10 +110,10 @@ export const Header: React.FC<HeaderProps> = ({
     if (!userRole) return 'User';
     return userRole.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
   };
-  return <header className={cn('fixed top-0 right-0 z-30 h-14 bg-card/80 backdrop-blur-lg border-b border-border transition-all duration-300', sidebarCollapsed ? 'left-14' : 'left-56', 'max-md:left-0')}>
-      <div className="flex items-center justify-between h-full px-4 md:px-6">
-        {/* Left side - Logo, Talent Map & Breadcrumbs */}
-        <div className="flex items-center gap-4 min-w-0">
+  return <header className={cn('fixed top-0 right-0 z-30 h-14 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 transition-all duration-300', sidebarCollapsed ? 'left-14' : 'left-56', 'max-md:left-0')}>
+      <div className="flex items-center justify-between h-full px-6">
+        {/* Left side - Mobile menu & Breadcrumbs */}
+        <div className="flex items-center gap-3 min-w-0">
           <button onClick={onMobileMenuToggle} className="md:hidden p-2 hover:bg-secondary transition-colors shrink-0">
             <Menu className="h-4 w-4 text-muted-foreground" />
           </button>
@@ -130,25 +128,14 @@ export const Header: React.FC<HeaderProps> = ({
               </React.Fragment>)}
           </nav>
         </div>
-        {/* Right side - Search, Notifications, Profile */}
-        <div className="flex items-center gap-3">
-          {/* Search */}
-          <div className="relative hidden md:block">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input placeholder={t('common.buttons.search') + '...'} className="w-64 pl-10 bg-secondary border-border focus:border-primary" />
-          </div>
 
+        {/* Right side - Lang, Theme, Notifications, Profile */}
+        <div className="flex items-center gap-2">
           {/* Language Switcher */}
-          <LanguageSwitcher compact className="hidden md:flex" />
-          <LanguageSwitcher compact className="md:hidden" />
+          <LanguageSwitcher />
 
           {/* Theme Toggle */}
           <ThemeToggle />
-
-          {/* Mobile search button */}
-          <Button variant="ghost" size="icon" className="md:hidden">
-            <Search className="h-5 w-5 text-muted-foreground" />
-          </Button>
 
           {/* Notifications Dropdown */}
           <NotificationsDropdown />
@@ -156,21 +143,21 @@ export const Header: React.FC<HeaderProps> = ({
           {/* User Menu */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="flex items-center gap-2 pl-2 pr-3">
-                <div className="w-8 h-8 bg-foreground flex items-center justify-center text-background text-sm font-semibold">
+              <Button variant="ghost" className="flex items-center gap-2 pl-2 pr-3 h-9">
+                <div className="w-7 h-7 rounded-full bg-foreground flex items-center justify-center text-background text-xs font-semibold">
                   {profile?.first_name?.[0] || profile?.email?.[0]?.toUpperCase() || 'U'}
                 </div>
                 <div className="hidden md:block text-left">
-                  <p className="text-sm font-medium text-foreground">
+                  <p className="text-sm font-medium text-foreground leading-none">
                     {profile?.first_name || 'User'}
                   </p>
-                  <p className="text-xs text-muted-foreground">{formatRole(role)}</p>
+                  <p className="text-xs text-muted-foreground leading-none mt-0.5">{formatRole(role)}</p>
                 </div>
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-56 bg-card border-border">
+            <DropdownMenuContent align="end" className="w-56">
               <DropdownMenuLabel>{t('auth.myAccount')}</DropdownMenuLabel>
-              <DropdownMenuSeparator className="bg-border" />
+              <DropdownMenuSeparator />
               <DropdownMenuItem onClick={() => navigate('/profile/me')} className="cursor-pointer">
                 <User className="mr-2 h-4 w-4" />
                 {t('profile.viewProfile')}
@@ -179,7 +166,7 @@ export const Header: React.FC<HeaderProps> = ({
                 <Settings className="mr-2 h-4 w-4" />
                 {t('common.navigation.settings')}
               </DropdownMenuItem>
-              <DropdownMenuSeparator className="bg-border" />
+              <DropdownMenuSeparator />
               <DropdownMenuItem onClick={handleLogout} className="cursor-pointer text-destructive focus:text-destructive">
                 <LogOut className="mr-2 h-4 w-4" />
                 {t('auth.logout')}
