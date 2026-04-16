@@ -14,16 +14,26 @@ interface Profile {
   department: string | null;
   position: string | null;
   profile_completed: boolean;
+  company_id: string | null;
+}
+
+export interface Company {
+  id: string;
+  name: string;
+  slug: string;
+  logo_url: string | null;
+  invite_token: string;
 }
 
 interface AuthContextType {
   user: User | null;
   session: Session | null;
   profile: Profile | null;
+  company: Company | null;
   role: AppRole | null;
   isLoading: boolean;
   signIn: (email: string, password: string) => Promise<{ error: Error | null }>;
-  signUp: (email: string, password: string, metadata?: { first_name?: string; last_name?: string }) => Promise<{ error: Error | null }>;
+  signUp: (email: string, password: string, metadata?: { first_name?: string; last_name?: string; invite_token?: string; company_id?: string }) => Promise<{ error: Error | null }>;
   signOut: () => Promise<void>;
   refreshProfile: () => Promise<void>;
 }
@@ -42,20 +52,31 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [profile, setProfile] = useState<Profile | null>(null);
+  const [company, setCompany] = useState<Company | null>(null);
   const [role, setRole] = useState<AppRole | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchUserData = async (userId: string) => {
-    // Profile is optional (e.g. admin users may not have one)
     const { data: profileData } = await supabase
       .from('profiles')
       .select('*')
       .eq('user_id', userId)
       .maybeSingle();
 
-    setProfile((profileData as Profile) ?? null);
+    const profileTyped = (profileData as Profile) ?? null;
+    setProfile(profileTyped);
 
-    // Role is mandatory for admin access
+    if (profileTyped?.company_id) {
+      const { data: companyData } = await supabase
+        .from('companies')
+        .select('id, name, slug, logo_url, invite_token')
+        .eq('id', profileTyped.company_id)
+        .maybeSingle();
+      setCompany((companyData as Company) ?? null);
+    } else {
+      setCompany(null);
+    }
+
     const { data: roleData, error: roleError } = await supabase.rpc('get_user_role', {
       _user_id: userId,
     });
@@ -79,6 +100,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
       if (!session?.user) {
         setProfile(null);
+        setCompany(null);
         setRole(null);
         setIsLoading(false);
         return;
@@ -104,6 +126,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
       if (!session?.user) {
         setProfile(null);
+        setCompany(null);
         setRole(null);
         setIsLoading(false);
         return;
@@ -130,7 +153,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const signUp = async (
     email: string, 
     password: string, 
-    metadata?: { first_name?: string; last_name?: string }
+    metadata?: { first_name?: string; last_name?: string; invite_token?: string; company_id?: string }
   ) => {
     const redirectUrl = `${window.location.origin}/`;
     
@@ -150,6 +173,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setUser(null);
     setSession(null);
     setProfile(null);
+    setCompany(null);
     setRole(null);
   };
 
@@ -165,6 +189,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         user,
         session,
         profile,
+        company,
         role,
         isLoading,
         signIn,
