@@ -435,7 +435,7 @@ const ProfileCreate: React.FC = () => {
       <div className="flex-1 pt-24 pb-12 px-6 lg:px-10 max-w-6xl w-full mx-auto">
         {/* Header - left justified */}
         <div className="mb-2">
-          <p className="text-xs uppercase tracking-widest text-muted-foreground mb-1">TALENT MAP</p>
+          <p className="text-xs uppercase tracking-widest text-muted-foreground mb-1">SKILL*FORM</p>
           <h1 className="text-3xl sm:text-4xl font-bold text-foreground">{t('profile.creation.title')}</h1>
         </div>
         <div className="flex items-center justify-between mb-6">
