@@ -26,6 +26,13 @@ import OrganizerDashboard from "./pages/admin/OrganizerDashboard";
 import DirectorDashboard from "./pages/admin/DirectorDashboard";
 import AdminSettings from "./pages/admin/AdminSettings";
 
+// Services Pages
+import ServicesLayout from "./pages/services/ServicesLayout";
+import ServicesList from "./pages/services/ServicesList";
+import ServiceCreate from "./pages/services/ServiceCreate";
+import ServiceDetail from "./pages/services/ServiceDetail";
+import ServiceEdit from "./pages/services/ServiceEdit";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -105,6 +112,14 @@ const App = () => (
                   <MasterDashboard />
                 </ProtectedRoute>
               } />
+
+              {/* Services Module */}
+              <Route path="/services" element={<ServicesLayout />}>
+                <Route index element={<ServicesList />} />
+                <Route path="create" element={<ServiceCreate />} />
+                <Route path=":id" element={<ServiceDetail />} />
+                <Route path=":id/edit" element={<ServiceEdit />} />
+              </Route>
 
               {/* Admin Settings (accessible to all admin roles) */}
               <Route path="/admin/settings" element={

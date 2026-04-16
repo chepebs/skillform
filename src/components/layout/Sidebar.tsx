@@ -3,8 +3,9 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth, AppRole } from '@/contexts/AuthContext';
 import { cn } from '@/lib/utils';
-import { Home, User, Users, Folder, Building, Shield, BarChart3, Settings, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Home, User, Users, Folder, Building, Shield, BarChart3, Settings, ChevronLeft, ChevronRight, Briefcase } from 'lucide-react';
 import { SkillFormLogo } from '@/components/SkillFormLogo';
+import { useCanAccessServices } from '@/hooks/useCanAccessServices';
 
 interface SidebarProps {
   collapsed: boolean;
@@ -22,6 +23,7 @@ const navItems: NavItem[] = [
   { labelKey: 'common.navigation.dashboard', icon: Home, path: '/dashboard', roles: ['master_admin', 'organizer_admin', 'department_director'] },
   { labelKey: 'common.navigation.myProfile', icon: User, path: '/profile/me' },
   { labelKey: 'common.navigation.directory', icon: Users, path: '/directory' },
+  { labelKey: 'common.navigation.services', icon: Briefcase, path: '/services' },
   { labelKey: 'common.navigation.groups', icon: Folder, path: '/admin/organizer/groups', roles: ['organizer_admin', 'master_admin'] },
   { labelKey: 'common.navigation.myTeam', icon: Users, path: '/admin/director/team', roles: ['department_director', 'master_admin'] },
   { labelKey: 'common.navigation.departmentInfo', icon: Building, path: '/admin/director/info', roles: ['department_director', 'master_admin'] },
@@ -35,8 +37,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
   const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
+  const { canAccess: canAccessServices } = useCanAccessServices();
 
   const filteredItems = navItems.filter(item => {
+    if (item.path === '/services' && !canAccessServices) return false;
     if (!item.roles) return true;
     return role && item.roles.includes(role);
   });
