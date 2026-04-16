@@ -115,14 +115,32 @@ export const Header: React.FC<HeaderProps> = ({
   };
   return <header className={cn('fixed top-0 right-0 z-30 h-14 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 transition-all duration-300', sidebarCollapsed ? 'left-14' : 'left-56', 'max-md:left-0')}>
       <div className="flex items-center justify-between h-full px-6">
-        {/* Left side - Mobile menu & Breadcrumbs */}
+        {/* Left side - Mobile menu, Brand strip & Breadcrumbs */}
         <div className="flex items-center gap-3 min-w-0">
           <button onClick={onMobileMenuToggle} className="md:hidden p-2 hover:bg-secondary transition-colors shrink-0">
             <Menu className="h-4 w-4 text-muted-foreground" />
           </button>
-          
+
+          {/* Brand strip: aidea*form | Skill*form | Company */}
+          <div className="hidden md:flex items-center gap-3 shrink-0">
+            <img src={aideaformLogo} alt="aidea*form" className="h-3 dark:invert" />
+            <span className="text-muted-foreground/40 text-xs">|</span>
+            <SkillFormLogo iconClassName="h-4 w-4" textClassName="text-sm" />
+            {company && (
+              <>
+                <span className="text-muted-foreground/40 text-xs">|</span>
+                <div className="flex items-center gap-2">
+                  {company.logo_url && (
+                    <img src={company.logo_url} alt={company.name} className="h-5 w-5 object-contain" />
+                  )}
+                  <span className="text-xs font-medium text-foreground truncate max-w-[120px]">{company.name}</span>
+                </div>
+              </>
+            )}
+          </div>
+
           {/* Breadcrumbs - Desktop only */}
-          <nav className="hidden md:flex items-center gap-1 text-sm min-w-0">
+          <nav className="hidden lg:flex items-center gap-1 text-sm min-w-0 border-l border-border pl-3 ml-1">
             {breadcrumbs.map((crumb, index) => <React.Fragment key={index}>
                 {index > 0 && <ChevronRight className="h-3 w-3 text-muted-foreground shrink-0" />}
                 {crumb.path ? <button onClick={() => navigate(crumb.path!)} className="text-muted-foreground hover:text-foreground transition-colors truncate max-w-[120px] text-xs">
