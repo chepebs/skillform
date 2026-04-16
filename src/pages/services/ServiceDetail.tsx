@@ -48,6 +48,14 @@ const ServiceDetail: React.FC = () => {
         return;
       }
       setService(data);
+      // Check edit permission
+      if (user) {
+        const { data: canEditResult } = await supabase.rpc('can_edit_service', {
+          _user_id: user.id,
+          _service_id: id!,
+        });
+        setCanEdit(!!canEditResult);
+      }
       if (data.managed_by) {
         const { data: m } = await supabase
           .from('profiles')
