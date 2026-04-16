@@ -8,9 +8,9 @@ export function ThemeToggle() {
   const [mode, setMode] = useState<ThemeMode>(() => {
     if (typeof window !== "undefined") {
       const stored = localStorage.getItem("theme") as ThemeMode | null;
-      if (stored === "light" || stored === "dark" || stored === "system") return stored;
+    if (stored === "light" || stored === "dark" || stored === "system") return stored;
     }
-    return "system";
+    return "dark";
   });
 
   useEffect(() => {
