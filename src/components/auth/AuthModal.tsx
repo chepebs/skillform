@@ -60,13 +60,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
           </TabsContent>
 
           <TabsContent value="register" className="mt-0 focus-visible:outline-none">
-            {registerToken ? (
-              <RegisterForm />
-            ) : (
-              <div className="text-sm text-muted-foreground text-center py-6">
-                {t('auth.register.inviteOnly', 'Skill*form is invite-only. Ask your administrator for an invitation link to create an account.')}
-              </div>
-            )}
+            <RegisterForm />
           </TabsContent>
         </Tabs>
       </DialogContent>
