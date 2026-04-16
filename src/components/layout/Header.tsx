@@ -10,6 +10,8 @@ import { LanguageSwitcher } from './LanguageSwitcher';
 import { ThemeToggle } from './ThemeToggle';
 import { NotificationsDropdown } from './NotificationsDropdown';
 import { supabase } from '@/integrations/supabase/client';
+import aideaformLogo from '@/assets/aideaform-logo.svg';
+import { SkillFormLogo } from '@/components/SkillFormLogo';
 interface HeaderProps {
   sidebarCollapsed: boolean;
   onMobileMenuToggle: () => void;
