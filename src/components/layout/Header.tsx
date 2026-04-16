@@ -50,6 +50,7 @@ export const Header: React.FC<HeaderProps> = ({
   } = useTranslation();
   const {
     profile,
+    company,
     role,
     signOut
   } = useAuth();
