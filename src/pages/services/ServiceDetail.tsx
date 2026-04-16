@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { supabase } from '@/integrations/supabase/client';
+import { useAuth } from '@/contexts/AuthContext';
 import { ArrowLeft, Briefcase, DollarSign, Calendar, Clock, Edit, Trash2, Loader2 } from 'lucide-react';
+import ServiceSkillsManager from '@/components/services/ServiceSkillsManager';
+import MatchedTalentList from '@/components/services/MatchedTalentList';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
@@ -16,7 +19,9 @@ const ServiceDetail: React.FC = () => {
   const { t } = useTranslation();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const { user } = useAuth();
   const [loading, setLoading] = useState(true);
+  const [canEdit, setCanEdit] = useState(false);
   const [service, setService] = useState<any>(null);
   const [manager, setManager] = useState<any>(null);
 
@@ -43,6 +48,14 @@ const ServiceDetail: React.FC = () => {
         return;
       }
       setService(data);
+      // Check edit permission
+      if (user) {
+        const { data: canEditResult } = await supabase.rpc('can_edit_service', {
+          _user_id: user.id,
+          _service_id: id!,
+        });
+        setCanEdit(!!canEditResult);
+      }
       if (data.managed_by) {
         const { data: m } = await supabase
           .from('profiles')
@@ -191,6 +204,16 @@ const ServiceDetail: React.FC = () => {
             <p className="text-sm text-muted-foreground whitespace-pre-line">{service.notes}</p>
           </div>
         )}
+      </section>
+
+      {/* Skills Requirements */}
+      <section className="border border-border p-5">
+        <ServiceSkillsManager serviceId={id!} canEdit={canEdit} />
+      </section>
+
+      {/* Matched Talent */}
+      <section className="border border-border p-5">
+        <MatchedTalentList serviceId={id!} canEdit={canEdit} />
       </section>
     </div>
   );

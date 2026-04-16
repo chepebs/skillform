@@ -1180,6 +1180,45 @@
       "noNotes": "No additional notes",
       "createdAt": "Created",
       "updatedAt": "Last updated"
+    },
+    "skills": {
+      "required": "Required Skills",
+      "add": "Add Skill",
+      "selectSkill": "Select Skill",
+      "importanceLabel": "Importance",
+      "minProficiency": "Min Proficiency (%)",
+      "noSkills": "No skills defined yet. Add skills to enable talent matching.",
+      "added": "Skill added",
+      "addFailed": "Failed to add skill",
+      "deleted": "Skill removed",
+      "deleteFailed": "Failed to remove skill",
+      "importance": {
+        "required": "Required",
+        "preferred": "Preferred",
+        "nice-to-have": "Nice to Have"
+      }
+    },
+    "matches": {
+      "title": "Matched Talent",
+      "subtitle": "Internal talent that matches this service's skill requirements",
+      "minScore": "Min Score",
+      "refresh": "Refresh Matches",
+      "runMatching": "Run Matching",
+      "noMatches": "No matches found. Add skills and run matching to discover talent.",
+      "matchScore": "Match",
+      "matchedSkills": "Matched Skills",
+      "viewProfile": "View",
+      "contact": "Contact",
+      "remove": "Remove",
+      "removed": "Match removed",
+      "removeFailed": "Failed to remove match",
+      "refreshed": "Matches refreshed successfully",
+      "refreshFailed": "Failed to refresh matches",
+      "addTalent": "Add Talent",
+      "searchEmployees": "Search by name or email...",
+      "noResults": "No employees found",
+      "added": "Talent added successfully",
+      "addFailed": "Failed to add talent"
     }
   }
 }
