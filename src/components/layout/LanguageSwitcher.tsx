@@ -28,16 +28,8 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
 }) => {
   const { i18n } = useTranslation();
 
-  useEffect(() => {
-    const savedLang = localStorage.getItem('preferredLanguage');
-    if (savedLang && savedLang !== i18n.language) {
-      i18n.changeLanguage(savedLang);
-    }
-  }, [i18n]);
-
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
-    localStorage.setItem('preferredLanguage', lng);
   };
 
   const currentLanguage = languages.find((l) => l.code === i18n.language) || languages[0];
