@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { UseFormReturn, useFieldArray } from 'react-hook-form';
+import { SENIORITY_LEVELS } from '../types';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
@@ -33,6 +35,7 @@ interface ProfessionalInfoStepProps {
 }
 
 const ProfessionalInfoStep: React.FC<ProfessionalInfoStepProps> = ({ form }) => {
+  const { t } = useTranslation();
   const [countries, setCountries] = useState<Country[]>([]);
   const [agencies, setAgencies] = useState<Agency[]>([]);
   const [departments, setDepartments] = useState<Department[]>([]);
@@ -190,6 +193,40 @@ const ProfessionalInfoStep: React.FC<ProfessionalInfoStepProps> = ({ form }) => 
                 className="bg-dark-elevated border-dark-border focus:border-primary"
               />
             </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+
+      <FormField
+        control={form.control}
+        name="seniority_level"
+        render={({ field }) => (
+          <FormItem>
+            <Label>
+              {t('profile.seniorityLevel', 'Seniority Level')} <span className="text-destructive">*</span>
+            </Label>
+            <p className="text-xs text-muted-foreground -mt-1 mb-1">
+              {t('profile.seniorityLevelHint', 'Your current career level within the organization')}
+            </p>
+            <Select onValueChange={field.onChange} value={field.value || 'mid'}>
+              <FormControl>
+                <SelectTrigger className="bg-dark-elevated border-dark-border">
+                  <SelectValue />
+                </SelectTrigger>
+              </FormControl>
+              <SelectContent>
+                {SENIORITY_LEVELS.map((level) => (
+                  <SelectItem key={level} value={level}>
+                    {t(`profile.seniority.${level === 'c-level' ? 'cLevel' : level}`,
+                      level === 'mid' ? 'Mid-Level'
+                      : level === 'vp' ? 'Vice President / VP'
+                      : level === 'c-level' ? 'C-Level Executive'
+                      : level.charAt(0).toUpperCase() + level.slice(1))}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
             <FormMessage />
           </FormItem>
         )}

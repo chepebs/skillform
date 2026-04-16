@@ -1082,5 +1082,24 @@
       "privacy": "Privacy",
       "terms": "Terms"
     }
+  },
+  "profile": {
+    "seniorityLevel": "Seniority Level",
+    "seniorityLevelHint": "Your current career level within the organization",
+    "seniority": {
+      "junior": "Junior",
+      "mid": "Mid-Level",
+      "senior": "Senior",
+      "director": "Director",
+      "vp": "Vice President / VP",
+      "cLevel": "C-Level Executive"
+    }
+  },
+  "services": {
+    "title": "Services Module",
+    "subtitle": "Manage production services and external resources",
+    "moduleDescription": "Document services your department provides, track external budgets, and match internal talent to service needs.",
+    "noAccess": "Services module is only available to Directors and above.",
+    "requestAccess": "If you need access, please contact your department director or administrator."
   }
 }

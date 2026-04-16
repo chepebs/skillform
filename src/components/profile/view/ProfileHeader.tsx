@@ -17,6 +17,7 @@ import {
   MoreHorizontal,
   Printer,
   Loader2,
+  Briefcase,
 } from 'lucide-react';
 import {
   DropdownMenu,
@@ -312,6 +313,16 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({
                 <MapPin className="mr-1 h-3 w-3" />
                 {countryFlag && <span className="mr-1">{countryFlag}</span>}
                 {profile.country.name}
+              </Badge>
+            )}
+            {profile.seniority_level && (
+              <Badge variant="outline" className="border-amber-500/50 text-amber-500">
+                <Briefcase className="mr-1 h-3 w-3" />
+                {t(`profile.seniority.${profile.seniority_level === 'c-level' ? 'cLevel' : profile.seniority_level}`,
+                  profile.seniority_level === 'mid' ? 'Mid-Level'
+                  : profile.seniority_level === 'vp' ? 'Vice President / VP'
+                  : profile.seniority_level === 'c-level' ? 'C-Level Executive'
+                  : profile.seniority_level.charAt(0).toUpperCase() + profile.seniority_level.slice(1))}
               </Badge>
             )}
           </div>

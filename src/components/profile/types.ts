@@ -26,11 +26,15 @@ export const previousPositionSchema = z.object({
   return true;
 }, { message: 'End date must be after start date', path: ['end_date'] });
 
+export const SENIORITY_LEVELS = ['junior', 'mid', 'senior', 'director', 'vp', 'c-level'] as const;
+export type SeniorityLevel = typeof SENIORITY_LEVELS[number];
+
 export const professionalInfoSchema = z.object({
   country_id: z.string().min(1, 'Country is required'),
   agency_id: z.string().optional(),
   department_id: z.string().optional(),
   current_position: z.string().min(1, 'Current position is required'),
+  seniority_level: z.enum(SENIORITY_LEVELS).default('mid'),
   previous_positions: z.array(previousPositionSchema).max(10),
 });
 
