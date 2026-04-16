@@ -6,7 +6,8 @@ import { FadeIn } from '@/components/animations/FadeIn';
 import { StaggerContainer, StaggerItem } from '@/components/animations/StaggerContainer';
 import { ThemeToggle } from '@/components/layout/ThemeToggle';
 import { LanguageSwitcher } from '@/components/layout/LanguageSwitcher';
-import garnierLogoSvg from '@/assets/logo-garnier.svg';
+import { SkillFormLogo } from '@/components/SkillFormLogo';
+import aideaformLogo from '@/assets/aideaform-logo.svg';
 import { Users, Search, Shield, BarChart3, Globe, Folder, Award, Briefcase } from 'lucide-react';
 
 const Landing: React.FC = () => {
@@ -19,9 +20,9 @@ const Landing: React.FC = () => {
       <nav className="fixed top-0 w-full z-50 backdrop-blur-xl bg-background/80 dark:shadow-[0_20px_40px_rgba(0,0,0,0.4)] shadow-sm border-b border-border/50 dark:border-transparent">
         <div className="flex justify-between items-center px-6 sm:px-12 py-4 max-w-[1440px] mx-auto">
           <div className="flex items-center gap-3 shrink-0">
-            <img src={garnierLogoSvg} alt="Grupo Garnier" className="h-3 shrink-0 dark:invert" />
+            <img src={aideaformLogo} alt="aidea*form" className="h-3 shrink-0" />
             <span className="text-muted-foreground/40 text-xs">|</span>
-            <span className="font-headline font-bold text-sm text-foreground tracking-tight">Talent Map</span>
+            <SkillFormLogo iconClassName="h-4 w-4" textClassName="text-sm" />
           </div>
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             <LanguageSwitcher compact />
@@ -60,9 +61,8 @@ const Landing: React.FC = () => {
           <div className="max-w-[1440px] mx-auto px-6 sm:px-12 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 relative z-10">
             <div className="md:col-span-7 flex flex-col justify-center">
               <FadeIn>
-                <div className="mb-6 flex items-center gap-3">
-                  <img src={garnierLogoSvg} alt="Grupo Garnier" className="h-6 sm:h-7 dark:invert" />
-                  <span className="font-headline font-bold text-2xl sm:text-3xl text-foreground tracking-tight">Talent Map</span>
+                <div className="mb-6">
+                  <SkillFormLogo iconClassName="h-7 w-7 sm:h-8 sm:w-8" textClassName="text-2xl sm:text-3xl" />
                 </div>
                 <h1 className="text-display-lg text-foreground mb-8">
                   {t('landing.hero.titlePart1', 'Discover &')}{' '}
@@ -339,14 +339,14 @@ const Landing: React.FC = () => {
                 <span className="text-primary">{t('landing.trust.titleAccent', 'Teams')}</span>
               </h2>
               <p className="text-on-surface-variant text-lg">
-                {t('landing.trust.subtitle', 'See how teams across Grupo Garnier use Talent Map every day.')}
+                {t('landing.trust.subtitle', 'See how teams across Grupo Garnier use Skill*form every day.')}
               </p>
             </div>
           </FadeIn>
 
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {[
-              { quote: t('landing.trust.t1.quote', '"Talent Map transformed how we find the right people for our projects. The search and filter capabilities are incredible."'), name: t('landing.trust.t1.name', 'María García'), role: t('landing.trust.t1.role', 'Creative Director') },
+              { quote: t('landing.trust.t1.quote', '"Skill*form transformed how we find the right people for our projects. The search and filter capabilities are incredible."'), name: t('landing.trust.t1.name', 'María García'), role: t('landing.trust.t1.role', 'Creative Director') },
               { quote: t('landing.trust.t2.quote', '"Having all our team\'s skills and experience in one place has made resource allocation so much more efficient."'), name: t('landing.trust.t2.name', 'Carlos Rodríguez'), role: t('landing.trust.t2.role', 'Department Head') },
               { quote: t('landing.trust.t3.quote', '"The multi-language support and role-based access make it perfect for our international team structure."'), name: t('landing.trust.t3.name', 'Ana Martínez'), role: t('landing.trust.t3.role', 'HR Manager') },
             ].map((tm) => (
@@ -379,10 +379,8 @@ const Landing: React.FC = () => {
         <div className="max-w-[1440px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-12">
           <div className="col-span-2 md:col-span-1">
             <div className="flex flex-col gap-3 mb-6 sm:mb-8">
-              <div className="flex items-center gap-2">
-                <img src={garnierLogoSvg} alt="Grupo Garnier" className="h-3 dark:invert" />
-                <span className="font-headline font-bold text-sm text-foreground">Talent Map</span>
-              </div>
+              <SkillFormLogo iconClassName="h-5 w-5" textClassName="text-base" />
+              <img src={aideaformLogo} alt="aidea*form" className="h-3 shrink-0 w-fit" />
             </div>
             <p className="text-sm text-on-surface-variant/60 mb-6">
               {t('landing.footer.tagline', 'Discover and connect with talent across your organization.')}
