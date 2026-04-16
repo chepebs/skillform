@@ -703,7 +703,8 @@
         "title": "Talent Directory",
         "desc": "Search and filter through your entire organization. Find people by skills, departments, languages, and expertise areas.",
         "tag1": "Smart Filters",
-        "tag2": "Real-time Search"
+        "tag2": "Real-time Search",
+        "stat": "Smart filters & real-time search"
       },
       "profiles": {
         "title": "Rich Profiles",
@@ -712,18 +713,25 @@
       },
       "groups": {
         "title": "Team Groups",
-        "desc": "Organize talent into custom groups for projects, departments, and initiatives."
+        "desc": "Organize talent into custom groups for projects, departments, and initiatives.",
+        "stat": "Custom collections"
       },
       "analytics": {
         "title": "Talent Analytics",
         "desc": "Get insights into skill distribution, experience levels, language capabilities, and department composition across your organization.",
         "cta": "Explore Analytics",
-        "skillMap": "Skill Coverage"
+        "skillMap": "Skill Coverage",
+        "stat": "Real-time dashboards"
       },
       "services": {
         "title": "Services & Matching",
         "desc": "Document external services, track vendors and budgets, and auto-match the best internal talent for every brief.",
         "stat": "Director access & up"
+      },
+      "multilingual": {
+        "title": "Multilingual Ready",
+        "desc": "Full English and Spanish support across the platform, with language preferences saved per user.",
+        "stat": "EN & ES included"
       }
     },
     "capabilities": {
