@@ -37,8 +37,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
   const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
+  const { canAccess: canAccessServices } = useCanAccessServices();
 
   const filteredItems = navItems.filter(item => {
+    if (item.path === '/services' && !canAccessServices) return false;
     if (!item.roles) return true;
     return role && item.roles.includes(role);
   });
