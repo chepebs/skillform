@@ -989,5 +989,98 @@
     "deleteTitle": "Delete Agency",
     "deleteConfirm": "Are you sure you want to delete \"{{name}}\"? This action cannot be undone.",
     "noAgencies": "No agencies found"
+  },
+  "landing": {
+    "getStarted": "Get Started",
+    "learnMore": "Learn More",
+    "hero": {
+      "titlePart1": "Discover &",
+      "titlePart2": "Connect",
+      "titlePart3": "With Your Team's Talent",
+      "description": "A centralized platform to explore profiles, skills, and expertise across Grupo Garnier. Find the right talent for every project.",
+      "talentOverview": "Talent Overview",
+      "totalProfiles": "Total Profiles"
+    },
+    "features": {
+      "title": "Everything You",
+      "titleAccent": "Need",
+      "subtitle": "A comprehensive talent management platform designed for modern organizations.",
+      "directory": {
+        "title": "Talent Directory",
+        "desc": "Search and filter through your entire organization. Find people by skills, departments, languages, and expertise areas.",
+        "tag1": "Smart Filters",
+        "tag2": "Real-time Search"
+      },
+      "profiles": {
+        "title": "Rich Profiles",
+        "desc": "Comprehensive talent profiles with skills, experience, awards, and project history.",
+        "stat": "10+ profile sections"
+      },
+      "groups": {
+        "title": "Team Groups",
+        "desc": "Organize talent into custom groups for projects, departments, and initiatives."
+      },
+      "analytics": {
+        "title": "Talent Analytics",
+        "desc": "Get insights into skill distribution, experience levels, language capabilities, and department composition across your organization.",
+        "cta": "Explore Analytics",
+        "skillMap": "Skill Coverage"
+      }
+    },
+    "capabilities": {
+      "titlePart1": "Built for",
+      "titlePart2": "Modern Teams",
+      "desc": "Every feature designed to help you discover, organize, and leverage the talent within your organization.",
+      "multilingual": "Multi-language Support",
+      "roleBased": "Role-based Access",
+      "roles": "4 Roles",
+      "awards": "Awards & Recognition",
+      "tracking": "Full Tracking",
+      "experience": "Experience Management",
+      "comprehensive": "Complete",
+      "badge": "Platform Stats",
+      "coverage": "Organization Coverage",
+      "departments": "Departments",
+      "skills": "Skills Tracked",
+      "countries": "Countries"
+    },
+    "trust": {
+      "title": "Trusted by",
+      "titleAccent": "Teams",
+      "subtitle": "See how teams across Grupo Garnier use Skill*form every day.",
+      "t1": {
+        "quote": "\"Skill*form transformed how we find the right people for our projects. The search and filter capabilities are incredible.\"",
+        "name": "María García",
+        "role": "Creative Director"
+      },
+      "t2": {
+        "quote": "\"Having all our team's skills and experience in one place has made resource allocation so much more efficient.\"",
+        "name": "Carlos Rodríguez",
+        "role": "Department Head"
+      },
+      "t3": {
+        "quote": "\"The multi-language support and role-based access make it perfect for our international team structure.\"",
+        "name": "Ana Martínez",
+        "role": "HR Manager"
+      }
+    },
+    "footer": {
+      "tagline": "Discover and connect with talent across your organization.",
+      "product": "Product",
+      "features": "Features",
+      "directory": "Directory",
+      "profiles": "Profiles",
+      "analytics": "Analytics",
+      "company": "Company",
+      "about": "About",
+      "careers": "Careers",
+      "contact": "Contact",
+      "resources": "Resources",
+      "help": "Help Center",
+      "guides": "Guides",
+      "support": "Support",
+      "privacy": "Privacy",
+      "terms": "Terms"
+    }
   }
 }
