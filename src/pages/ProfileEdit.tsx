@@ -11,7 +11,7 @@ import { ChevronRight, ChevronLeft, Check, Loader2, Save, ArrowLeft, User, LogOu
 import { cn } from '@/lib/utils';
 import { LanguageSwitcher } from '@/components/layout/LanguageSwitcher';
 import { ThemeToggle } from '@/components/layout/ThemeToggle';
-import garnierLogoSvg from '@/assets/logo-garnier.svg';
+import { SkillFormLogo } from '@/components/SkillFormLogo';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -435,7 +435,7 @@ const ProfileEdit: React.FC = () => {
       {/* Top bar */}
       <div className="fixed top-0 left-0 right-0 z-50 h-16 bg-card/80 backdrop-blur-lg border-b border-border flex items-center justify-between px-6 lg:px-10">
         <div className="flex items-center gap-2">
-          <img src={garnierLogoSvg} alt="Logo" className="h-10 w-auto object-contain dark:invert" />
+          <SkillFormLogo iconClassName="h-5 w-5" textClassName="text-sm" />
         </div>
         <div className="flex items-center gap-3">
           <LanguageSwitcher compact />

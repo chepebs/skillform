@@ -4,7 +4,7 @@ import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
-import { useTheme } from 'next-themes';
+
 
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
@@ -53,7 +53,14 @@ type ThemeChoice = 'light' | 'dark' | 'system';
 const AdminSettings: React.FC = () => {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
-  const { setTheme, theme } = useTheme();
+  const theme = (localStorage.getItem('theme') || 'system') as ThemeChoice;
+  const setTheme = (t: ThemeChoice) => {
+    localStorage.setItem('theme', t);
+    const root = document.documentElement;
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    const dark = t === 'dark' || (t === 'system' && mq.matches);
+    root.classList.toggle('dark', dark);
+  };
   const { user, role, signOut } = useAuth();
 
   const [emailNotifications, setEmailNotifications] = useState(true);
