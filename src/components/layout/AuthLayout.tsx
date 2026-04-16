@@ -2,7 +2,8 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { ThemeToggle } from './ThemeToggle';
-import garnierLogoSvg from '@/assets/logo-garnier.svg';
+import { SkillFormLogo } from '@/components/SkillFormLogo';
+import aideaformLogo from '@/assets/aideaform-logo.svg';
 
 interface AuthLayoutProps {
   children: React.ReactNode;
@@ -22,9 +23,9 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({
       <div className="w-full max-w-sm animate-scale-in">
         <div className="mb-10 text-center">
           <div className="flex items-center justify-center gap-2 mb-6">
-            <img src={garnierLogoSvg} alt="Grupo Garnier" className="h-4 dark:invert" />
+            <img src={aideaformLogo} alt="aidea*form" className="h-3" />
             <span className="text-muted-foreground/40 text-xs">|</span>
-            <span className="font-headline font-bold text-sm text-foreground tracking-tight">Talent Map</span>
+            <SkillFormLogo iconClassName="h-4 w-4" textClassName="text-sm" />
           </div>
           <p className="eyebrow mb-3">{t('auth.login.eyebrow', 'Grupo Garnier')}</p>
           <h1 className="heading-section">{title}</h1>

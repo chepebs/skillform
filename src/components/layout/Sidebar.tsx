@@ -1,11 +1,10 @@
 import React from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useTheme } from 'next-themes';
 import { useAuth, AppRole } from '@/contexts/AuthContext';
 import { cn } from '@/lib/utils';
 import { Home, User, Users, Folder, Building, Shield, BarChart3, Settings, ChevronLeft, ChevronRight } from 'lucide-react';
-import garnierLogoSvg from '@/assets/logo-garnier.svg';
+import { SkillFormLogo } from '@/components/SkillFormLogo';
 
 interface SidebarProps {
   collapsed: boolean;
@@ -69,12 +68,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
         {/* Logo Header */}
         <div className={cn('flex items-center h-14 border-b border-border', collapsed ? 'justify-center px-2' : 'gap-2 px-3')}>
           <button onClick={() => navigate('/dashboard')} className={cn('flex items-center gap-2 hover:opacity-80 transition-opacity', collapsed ? 'justify-center' : '')}>
-            <img src={garnierLogoSvg} alt="Grupo Garnier Logo" className={cn('object-contain flex-shrink-0 dark:invert', collapsed ? 'h-7 w-7' : 'h-3')} />
-            {!collapsed && (
-              <>
-                <span className="text-muted-foreground/40 text-xs">|</span>
-                <span className="text-sm text-foreground whitespace-nowrap font-headline font-bold tracking-tight">Talent Map</span>
-              </>
+            {collapsed ? (
+              <SkillFormLogo iconClassName="h-5 w-5" textClassName="hidden" />
+            ) : (
+              <SkillFormLogo iconClassName="h-4 w-4" textClassName="text-sm" />
             )}
           </button>
         </div>
