@@ -699,7 +699,8 @@
         "title": "Directorio de talento",
         "desc": "Busca y filtra en toda tu organización. Encuentra personas por habilidades, departamentos, idiomas y áreas de experiencia.",
         "tag1": "Filtros inteligentes",
-        "tag2": "Búsqueda en tiempo real"
+        "tag2": "Búsqueda en tiempo real",
+        "stat": "Filtros inteligentes y búsqueda en tiempo real"
       },
       "profiles": {
         "title": "Perfiles completos",
@@ -708,18 +709,25 @@
       },
       "groups": {
         "title": "Grupos de equipo",
-        "desc": "Organiza el talento en grupos personalizados para proyectos, departamentos e iniciativas."
+        "desc": "Organiza el talento en grupos personalizados para proyectos, departamentos e iniciativas.",
+        "stat": "Colecciones personalizadas"
       },
       "analytics": {
         "title": "Analíticas de talento",
         "desc": "Obtén información sobre distribución de habilidades, niveles de experiencia, capacidades de idioma y composición por departamento en toda tu organización.",
         "cta": "Explorar analíticas",
-        "skillMap": "Cobertura de habilidades"
+        "skillMap": "Cobertura de habilidades",
+        "stat": "Paneles en tiempo real"
       },
       "services": {
         "title": "Servicios y Matching",
         "desc": "Documenta servicios externos, controla proveedores y presupuestos, y haz match automático con el mejor talento interno para cada brief.",
         "stat": "Acceso director y superior"
+      },
+      "multilingual": {
+        "title": "Listo para varios idiomas",
+        "desc": "Soporte completo en inglés y español en toda la plataforma, con preferencias de idioma guardadas por usuario.",
+        "stat": "EN y ES incluidos"
       }
     },
     "capabilities": {
