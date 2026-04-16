@@ -11,9 +11,9 @@ export function SkillFormLogo({ className = "", iconClassName = "h-5 w-5", textC
     <span className={`inline-flex items-center gap-1.5 ${className}`}>
       <img src={skillformIcon} alt="" className={`${iconClassName} dark:invert`} />
       <span className={`font-headline font-bold leading-none ${textClassName}`}>
-        <span className="text-primary">Skill</span>
-        <span className="text-primary">*</span>
-        <span className="text-primary">form</span>
+        <span className="text-primary dark:text-white">Skill</span>
+        <span className="text-primary dark:text-white">*</span>
+        <span className="text-primary dark:text-white">form</span>
       </span>
     </span>
   );
