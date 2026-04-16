@@ -65,7 +65,7 @@ const ProfileCreate: React.FC = () => {
   const [isSaving, setIsSaving] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
   const [lastSaved, setLastSaved] = useState<Date | null>(null);
-  const autoSaveTimerRef = useRef<NodeJS.Timeout>();
+  const autoSaveTimerRef = useRef<ReturnType<typeof setTimeout>>();
 
   // Form instances for each step
   const basicInfoForm = useForm<BasicInfoData>({
