@@ -811,28 +811,37 @@ export type Database = {
         Row: {
           auto_matched: boolean | null
           id: string
+          is_active: boolean | null
           last_updated: string | null
+          manually_added: boolean | null
           match_score: number | null
           matched_skills: string[] | null
           service_id: string
+          skill_breakdown: Json | null
           user_id: string
         }
         Insert: {
           auto_matched?: boolean | null
           id?: string
+          is_active?: boolean | null
           last_updated?: string | null
+          manually_added?: boolean | null
           match_score?: number | null
           matched_skills?: string[] | null
           service_id: string
+          skill_breakdown?: Json | null
           user_id: string
         }
         Update: {
           auto_matched?: boolean | null
           id?: string
+          is_active?: boolean | null
           last_updated?: string | null
+          manually_added?: boolean | null
           match_score?: number | null
           matched_skills?: string[] | null
           service_id?: string
+          skill_breakdown?: Json | null
           user_id?: string
         }
         Relationships: [
