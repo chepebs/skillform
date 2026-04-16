@@ -19,12 +19,10 @@ export const AppLayout: React.FC = () => {
     localStorage.setItem('sidebarCollapsed', JSON.stringify(sidebarCollapsed));
   }, [sidebarCollapsed]);
 
-  // Close mobile menu on route change
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [location.pathname]);
 
-  // Close mobile menu on escape key and prevent body scroll when open
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && mobileMenuOpen) {
@@ -43,7 +41,6 @@ export const AppLayout: React.FC = () => {
     };
   }, [mobileMenuOpen]);
 
-  // Explicit close handler with event prevention
   const handleCloseMobileMenu = useCallback((e: React.MouseEvent | React.TouchEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -60,26 +57,22 @@ export const AppLayout: React.FC = () => {
       {/* Mobile Sidebar Overlay */}
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-50 md:hidden">
-          {/* Backdrop */}
           <div 
             className="absolute inset-0 bg-background/80 backdrop-blur-sm"
             onClick={() => setMobileMenuOpen(false)}
             aria-hidden="true"
           />
-          {/* Sidebar panel */}
-          <div className="absolute left-0 top-0 h-full w-56 bg-sidebar border-r border-sidebar-border animate-slide-in-left">
-            {/* Close button - positioned ABOVE the sidebar content with high z-index */}
+          <div className="absolute left-0 top-0 h-full w-56 bg-card border-r border-border animate-slide-in-left">
             <button
               onClick={handleCloseMobileMenu}
               onTouchEnd={handleCloseMobileMenu}
-              className="absolute right-3 top-3 z-[60] p-2 bg-sidebar hover:bg-sidebar-accent active:scale-95 transition-all touch-manipulation select-none"
+              className="absolute right-3 top-3 z-[60] p-2 rounded-full bg-card hover:bg-accent active:scale-95 transition-all touch-manipulation select-none"
               style={{ WebkitTapHighlightColor: 'transparent' }}
               aria-label="Close menu"
               type="button"
             >
               <X className="h-5 w-5 text-foreground" />
             </button>
-            {/* Sidebar content - add top padding to avoid overlap with close button */}
             <div className="pt-14">
               <Sidebar collapsed={false} onToggle={() => {}} />
             </div>
