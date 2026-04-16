@@ -11,6 +11,7 @@ import { FormField, FormItem, FormControl, FormMessage } from '@/components/ui/f
 import { Plus, X, Calendar } from 'lucide-react';
 import { ProfessionalInfoData } from '../types';
 import { supabase } from '@/integrations/supabase/client';
+import { useAuth } from '@/contexts/AuthContext';
 import { cn } from '@/lib/utils';
 
 interface Country {
