@@ -1085,6 +1085,7 @@
     "notFoundDescription": "This profile doesn't exist or you don't have permission to view it.",
     "seniorityLevel": "Seniority Level",
     "seniorityLevelHint": "Your current career level within the organization",
+    "seniorityLevelLocked": "Seniority is set by an administrator and cannot be changed here.",
     "seniority": {
       "junior": "Junior",
       "mid": "Mid-Level",
