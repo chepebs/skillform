@@ -1081,6 +1081,7 @@
     "notFoundDescription": "Este perfil no existe o no tiene permiso para verlo.",
     "seniorityLevel": "Nivel de Antigüedad",
     "seniorityLevelHint": "Tu nivel profesional actual dentro de la organización",
+    "seniorityLevelLocked": "La antigüedad es asignada por un administrador y no puede cambiarse aquí.",
     "seniority": {
       "junior": "Junior",
       "mid": "Nivel Medio",
