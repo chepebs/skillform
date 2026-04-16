@@ -19,7 +19,9 @@ const ServiceDetail: React.FC = () => {
   const { t } = useTranslation();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const { user } = useAuth();
   const [loading, setLoading] = useState(true);
+  const [canEdit, setCanEdit] = useState(false);
   const [service, setService] = useState<any>(null);
   const [manager, setManager] = useState<any>(null);
 
