@@ -14,12 +14,22 @@ interface Profile {
   department: string | null;
   position: string | null;
   profile_completed: boolean;
+  company_id: string | null;
+}
+
+export interface Company {
+  id: string;
+  name: string;
+  slug: string;
+  logo_url: string | null;
+  invite_token: string;
 }
 
 interface AuthContextType {
   user: User | null;
   session: Session | null;
   profile: Profile | null;
+  company: Company | null;
   role: AppRole | null;
   isLoading: boolean;
   signIn: (email: string, password: string) => Promise<{ error: Error | null }>;
