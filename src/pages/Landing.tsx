@@ -406,7 +406,7 @@ const Landing: React.FC = () => {
         </div>
 
         <div className="max-w-[1440px] mx-auto mt-16 sm:mt-20 pt-6 sm:pt-8 border-t border-outline-variant/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-on-surface-variant/40">
-          <p>© Grupo Garnier. {t('common.labels.allRightsReserved', 'All rights reserved.')}</p>
+          <p>© 2026 aidea*form. {t('common.labels.allRightsReserved', 'All rights reserved.')}</p>
           <div className="flex gap-6 sm:gap-8">
             <a href="#" className="hover:text-foreground transition-all">{t('landing.footer.privacy', 'Privacy')}</a>
             <a href="#" className="hover:text-foreground transition-all">{t('landing.footer.terms', 'Terms')}</a>
