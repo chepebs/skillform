@@ -205,6 +205,16 @@ const ServiceDetail: React.FC = () => {
           </div>
         )}
       </section>
+
+      {/* Skills Requirements */}
+      <section className="border border-border p-5">
+        <ServiceSkillsManager serviceId={id!} canEdit={canEdit} />
+      </section>
+
+      {/* Matched Talent */}
+      <section className="border border-border p-5">
+        <MatchedTalentList serviceId={id!} canEdit={canEdit} />
+      </section>
     </div>
   );
 };
