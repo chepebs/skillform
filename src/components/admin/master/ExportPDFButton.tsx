@@ -76,7 +76,7 @@ export const ExportPDFButton: React.FC<ExportPDFButtonProps> = ({
       pdf.setProperties({
         title: 'Grupo Garnier Analytics Dashboard',
         subject: 'Analytics Report',
-        author: 'Grupo Garnier Talent Map',
+        author: 'Grupo Garnier Skill*form',
         creator: 'Grupo Garnier',
       });
 
@@ -104,7 +104,7 @@ export const ExportPDFButton: React.FC<ExportPDFButtonProps> = ({
       pdf.setFontSize(9);
       pdf.setTextColor(120, 120, 120);
       const date = new Date().toLocaleDateString();
-      pdf.text(`TALENT MAP  •  ${t('admin.master.export.generatedOn')}: ${date}`, margin, margin + 14);
+      pdf.text(`SKILL*FORM  •  ${t('admin.master.export.generatedOn')}: ${date}`, margin, margin + 14);
 
       // Content
       const firstPageStart = margin + headerHeight;
