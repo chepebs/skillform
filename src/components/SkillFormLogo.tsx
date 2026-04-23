@@ -1,4 +1,4 @@
-import skillformIcon from "@/assets/skillform-icon.svg";
+import { SkillFormIcon } from "./SkillFormIcon";
 
 interface SkillFormLogoProps {
   className?: string;
@@ -12,7 +12,7 @@ interface SkillFormLogoProps {
  * Brand mark for Skill*form.
  *
  * - Custom person-with-sparkle icon (rendered in primary red)
- * - Wordmark "Skill" + red asterisk + "form" using the brand headline font
+ * - Wordmark "Skill" + red asterisk + "form" in the brand headline font
  *   (asterisk is ALWAYS red per the Signal*form design system).
  */
 export function SkillFormLogo({
@@ -26,13 +26,7 @@ export function SkillFormLogo({
       className={`inline-flex items-center gap-1.5 font-headline font-bold leading-none ${textClassName} ${className}`}
     >
       {!hideIcon && (
-        <img
-          src={skillformIcon}
-          alt=""
-          aria-hidden="true"
-          className={`text-primary shrink-0 ${iconClassName}`}
-          style={{ filter: "none" }}
-        />
+        <SkillFormIcon className={`text-primary shrink-0 ${iconClassName}`} />
       )}
       <span className="inline-flex items-baseline">
         <span className="text-foreground">Skill</span>
