@@ -29,7 +29,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { MoreHorizontal, Eye, PencilSimple as Edit, UserCog, Envelope as Mail, Trash as Trash2, Copy, MagnifyingGlass as Search, CaretLeft as ChevronLeft, CaretRight as ChevronRight, Check, X, FileText } from '@phosphor-icons/react';
+import { DotsThree as MoreHorizontal, Eye, PencilSimple as Edit, UserGear as UserCog, Envelope as Mail, Trash as Trash2, Copy, MagnifyingGlass as Search, CaretLeft as ChevronLeft, CaretRight as ChevronRight, Check, X, FileText } from '@phosphor-icons/react';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';

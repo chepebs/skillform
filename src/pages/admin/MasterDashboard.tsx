@@ -11,7 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Users, CheckCircle, Activity, Server, ArrowsClockwise as RefreshCw, UserPlus, Buildings as Building2, LayoutDashboard } from '@phosphor-icons/react';
+import { Users, CheckCircle, Pulse as Activity, HardDrives as Server, ArrowsClockwise as RefreshCw, UserPlus, Buildings as Building2, SquaresFour as LayoutDashboard } from '@phosphor-icons/react';
 import { StatsCard } from '@/components/admin/master/StatsCard';
 import { UserManagementTable } from '@/components/admin/master/UserManagementTable';
 import { ActivityFeed } from '@/components/admin/master/ActivityFeed';

@@ -6,7 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
 import jsPDF from 'jspdf/dist/jspdf.umd.min.js';
 import html2canvas from 'html2canvas/dist/html2canvas.min.js';
-import { Envelope as Mail, Phone, PencilSimple as Edit, Buildings as Building, MapPin, UserPlus, FileDown, MoreHorizontal, Printer, CircleNotch as Loader2, Briefcase } from '@phosphor-icons/react';
+import { Envelope as Mail, Phone, PencilSimple as Edit, Buildings as Building, MapPin, UserPlus, FileArrowDown as FileDown, DotsThree as MoreHorizontal, Printer, CircleNotch as Loader2, Briefcase } from '@phosphor-icons/react';
 import {
   DropdownMenu,
   DropdownMenuContent,
