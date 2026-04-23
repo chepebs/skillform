@@ -49,18 +49,15 @@ const passwordSchema = z
 
 type PasswordForm = z.infer<typeof passwordSchema>;
 
-type ThemeChoice = 'light' | 'dark' | 'system';
+type ThemeChoice = 'light' | 'dark';
 
 const AdminSettings: React.FC = () => {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
-  const theme = (localStorage.getItem('theme') || 'dark') as ThemeChoice;
+  const theme = (localStorage.getItem('theme') === 'light' ? 'light' : 'dark') as ThemeChoice;
   const setTheme = (t: ThemeChoice) => {
     localStorage.setItem('theme', t);
-    const root = document.documentElement;
-    const mq = window.matchMedia('(prefers-color-scheme: dark)');
-    const dark = t === 'dark' || (t === 'system' && mq.matches);
-    root.classList.toggle('dark', dark);
+    document.documentElement.classList.toggle('dark', t === 'dark');
   };
   const { user, role, signOut } = useAuth();
 
@@ -232,14 +229,13 @@ const AdminSettings: React.FC = () => {
 
             <div className="space-y-2">
               <Label>Theme</Label>
-              <Select value={(theme as ThemeChoice) || 'system'} onValueChange={(v) => onChangeTheme(v as ThemeChoice)}>
+              <Select value={theme} onValueChange={(v) => onChangeTheme(v as ThemeChoice)}>
                 <SelectTrigger>
                   <SelectValue placeholder="Select theme" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="system">System</SelectItem>
-                  <SelectItem value="light">Light</SelectItem>
                   <SelectItem value="dark">Dark</SelectItem>
+                  <SelectItem value="light">Light</SelectItem>
                 </SelectContent>
               </Select>
             </div>
