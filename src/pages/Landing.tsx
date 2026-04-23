@@ -214,7 +214,7 @@ const Landing: React.FC = () => {
             <img
               src={aideaformLogo}
               alt="aidea*form"
-              className="h-3 shrink-0 hidden md:block dark:invert"
+              className="h-3 shrink-0 hidden md:block"
             />
             <span className="text-muted-foreground/40 text-xs hidden md:inline">|</span>
 
@@ -845,7 +845,7 @@ const Landing: React.FC = () => {
               <img
                 src={aideaformLogo}
                 alt="aidea*form"
-                className="h-3 shrink-0 w-fit dark:invert"
+                className="h-3 shrink-0 w-fit"
               />
             </div>
             <p className="text-sm text-muted-foreground mb-6">

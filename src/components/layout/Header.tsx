@@ -170,7 +170,7 @@ export const Header: React.FC<HeaderProps> = ({
           <img
             src={aideaformLogo}
             alt="aidea*form"
-            className="h-3 shrink-0 hidden md:block dark:invert"
+            className="h-3 shrink-0 hidden md:block"
           />
           <span className="text-muted-foreground/40 text-xs hidden md:inline">|</span>
 
