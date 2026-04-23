@@ -2,23 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import {
-  MagnifyingGlass,
-  Users,
-  FolderOpen,
-  Briefcase,
-  ChartLine,
-  Globe,
-  ShieldCheck,
-  Trophy,
-  FileText,
-  ListChecks,
-  Target,
-  Sparkle,
-  ArrowRight,
-  Star,
-  User as UserIcon,
-} from '@phosphor-icons/react';
+import { MagnifyingGlass, Users, FolderOpen, Briefcase, ChartLine, Globe, ShieldCheck, Trophy, FileText, ListChecks, Target, Sparkle, ArrowRight, Star, User as UserIcon } from '@phosphor-icons/react';
 
 import { ThemeToggle } from '@/components/layout/ThemeToggle';
 import { LanguageSwitcher } from '@/components/layout/LanguageSwitcher';
@@ -26,6 +10,7 @@ import { BrandMark } from '@/components/brand/BrandMark';
 import { BracketTag } from '@/components/brand/BracketTag';
 import { SectionAdornment } from '@/components/brand/SectionAdornment';
 import { ImagePlaceholder } from '@/components/brand/ImagePlaceholder';
+import { SectionRail } from '@/components/brand/SectionRail';
 import { AuthModal, AuthModalMode } from '@/components/auth/AuthModal';
 import aideaformLogo from '@/assets/aideaform-logo.svg';
 
@@ -208,6 +193,16 @@ const Landing: React.FC = () => {
       >
         <div className="absolute right-0 -top-px h-1 w-1 rounded-full bg-primary shadow-signal" />
       </div>
+
+      {/* Section rail (desktop) + bottom-left section indicator */}
+      <SectionRail
+        items={[
+          { id: 'features', label: t('landing.nav.features', 'Features') },
+          { id: 'services', label: t('landing.nav.services', 'Services') },
+          { id: 'capabilities', label: t('landing.nav.capabilities', 'Capabilities') },
+          { id: 'trust', label: t('landing.nav.trust', 'Trust') },
+        ]}
+      />
 
       {/* ── STICKY NAV ── */}
       <nav className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">

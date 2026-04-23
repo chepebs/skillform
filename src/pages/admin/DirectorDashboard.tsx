@@ -8,7 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Users, FileText, BarChart3, Settings } from 'lucide-react';
+import { Users, FileText, ChartBar as BarChart3, Gear as Settings } from '@phosphor-icons/react';
 import { useDirectorData, DepartmentInfo } from '@/hooks/useDirectorData';
 import { DirectorStatsCards } from '@/components/admin/director/DirectorStatsCards';
 import { TeamRoster } from '@/components/admin/director/TeamRoster';
@@ -75,17 +75,15 @@ const DirectorDashboard: React.FC = () => {
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
         <div>
           <div className="flex items-center gap-3">
-            <h1 className="text-3xl sm:text-4xl font-bold text-foreground">
+            <h1 className="text-display-md text-foreground">
               Department Director
             </h1>
-            <Badge className="bg-yellow-500 hover:bg-yellow-600 text-white">
-              Director
-            </Badge>
+            <span className="bracket-tag bracket-tag-warning">Director</span>
           </div>
-          <p className="text-muted-foreground mt-1">
+          <p className="text-body-md text-muted-foreground mt-2">
             Manage your department and team
           </p>
         </div>
@@ -113,8 +111,8 @@ const DirectorDashboard: React.FC = () => {
       {/* Current Department */}
       {currentDepartment && (
         <div className="glass-card rounded-xl p-4 flex items-center gap-4">
-          <div className="w-12 h-12 rounded-xl bg-yellow-500/10 flex items-center justify-center">
-            <Settings className="h-6 w-6 text-yellow-500" />
+          <div className="w-12 h-12 rounded-xl bg-warning/10 flex items-center justify-center">
+            <Settings className="h-6 w-6 text-warning" />
           </div>
           <div>
             <h2 className="font-semibold text-foreground">{currentDepartment.name}</h2>

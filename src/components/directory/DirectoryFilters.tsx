@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Filter, ChevronDown } from 'lucide-react';
+import { X, Funnel as Filter, CaretDown as ChevronDown } from '@phosphor-icons/react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';

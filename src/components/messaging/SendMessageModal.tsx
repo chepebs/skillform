@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { MessageSquare, X, Loader2, Send } from 'lucide-react';
+import { ChatCircle as MessageSquare, X, CircleNotch as Loader2, PaperPlaneTilt as Send } from '@phosphor-icons/react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';

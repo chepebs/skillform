@@ -14,7 +14,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
-import { Loader2, AlertTriangle } from 'lucide-react';
+import { CircleNotch as Loader2, WarningCircle as AlertTriangle } from '@phosphor-icons/react';
 import { cn } from '@/lib/utils';
 
 interface User {

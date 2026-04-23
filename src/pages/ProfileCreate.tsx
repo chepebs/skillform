@@ -8,7 +8,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
-import { ChevronRight, ChevronLeft, Check, Loader2, Save, User, LogOut } from 'lucide-react';
+import { CaretRight as ChevronRight, CaretLeft as ChevronLeft, Check, CircleNotch as Loader2, FloppyDisk as Save, User, SignOut as LogOut } from '@phosphor-icons/react';
 import { cn } from '@/lib/utils';
 import { LanguageSwitcher } from '@/components/layout/LanguageSwitcher';
 import { ThemeToggle } from '@/components/layout/ThemeToggle';

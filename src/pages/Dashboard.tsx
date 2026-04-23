@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth, AppRole } from '@/contexts/AuthContext';
-import { Loader2 } from 'lucide-react';
+import { CircleNotch as Loader2 } from '@phosphor-icons/react';
 
 const Dashboard: React.FC = () => {
   const { role, isLoading, profile } = useAuth();

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Grid, List, Download, Users, SortAsc } from 'lucide-react';
+import { GridFour as Grid, List, DownloadSimple as Download, Users, SortAscending as SortAsc } from '@phosphor-icons/react';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
@@ -14,6 +14,7 @@ import { DirectoryPagination } from '@/components/directory/DirectoryPagination'
 import { SkeletonCard, SkeletonRow } from '@/components/directory/SkeletonCard';
 import { useDirectoryData, useExportCSV } from '@/hooks/useDirectoryData';
 import { DirectoryFilters, SortOption, ViewMode } from '@/components/directory/types';
+import { SectionAdornment } from '@/components/brand/SectionAdornment';
 const DEFAULT_FILTERS: DirectoryFilters = {
   departments: [],
   countries: [],
@@ -131,14 +132,21 @@ const Directory: React.FC = () => {
   };
   return <div className="space-y-8">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
         <div>
-          <h1 className="text-foreground text-6xl font-normal">{t('directory.title')}</h1>
-          <p className="text-muted-foreground mt-1">
+          <SectionAdornment
+            index={1}
+            total={1}
+            label={t('directory.eyebrow', 'Talent directory')}
+            align="left"
+            className="mb-3"
+          />
+          <h1 className="text-display-md text-foreground">{t('directory.title')}</h1>
+          <p className="text-body-md text-muted-foreground mt-2">
             {t('directory.subtitle')}
           </p>
         </div>
-        {isAdmin && <Button onClick={handleExport} variant="outline" className="gap-2">
+        {isAdmin && <Button onClick={handleExport} variant="outline" className="gap-2 rounded-full">
             <Download className="h-4 w-4" />
             {t('directory.export.exportButton')}
           </Button>}

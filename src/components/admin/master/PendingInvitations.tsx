@@ -17,7 +17,7 @@ import {
 } from '@/components/ui/collapsible';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
-import { ChevronDown, Copy, RefreshCw, X, Clock, AlertTriangle } from 'lucide-react';
+import { CaretDown as ChevronDown, Copy, ArrowsClockwise as RefreshCw, X, Clock, WarningCircle as AlertTriangle } from '@phosphor-icons/react';
 import { cn } from '@/lib/utils';
 
 interface Invitation {

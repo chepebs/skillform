@@ -254,14 +254,14 @@ export const SKILLS_BY_CATEGORY: Record<string, string[]> = {
 };
 
 export const CATEGORY_COLORS: Record<string, string> = {
-  'Strategy & Planning': '#3B82F6',
-  'Creative & Design': '#EC4899',
-  'Advertising & Media': '#8B5CF6',
-  'Digital Marketing': '#10B981',
-  'Production': '#F59E0B',
-  'Technology & Development': '#06B6D4',
-  'Data & Analytics': '#6366F1',
-  'AI & Emerging Tech': '#EF4444',
-  'Storytelling & Content': '#F97316',
-  'Client & Project Management': '#84CC16',
+  'Strategy & Planning': 'hsl(var(--chart-3))',
+  'Creative & Design': 'hsl(var(--chart-7))',
+  'Advertising & Media': 'hsl(var(--chart-6))',
+  'Digital Marketing': 'hsl(var(--chart-5))',
+  'Production': 'hsl(var(--chart-4))',
+  'Technology & Development': 'hsl(var(--chart-2))',
+  'Data & Analytics': 'hsl(var(--chart-3))',
+  'AI & Emerging Tech': 'hsl(var(--chart-1))',
+  'Storytelling & Content': 'hsl(var(--chart-4))',
+  'Client & Project Management': 'hsl(var(--chart-5))',
 };

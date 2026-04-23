@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
-import { Loader2, Building2 } from 'lucide-react';
+import { CircleNotch as Loader2, Buildings as Building2 } from '@phosphor-icons/react';
 import { SkillFormLogo } from '@/components/SkillFormLogo';
 import { ThemeToggle } from '@/components/layout/ThemeToggle';
 import { LanguageSwitcher } from '@/components/layout/LanguageSwitcher';

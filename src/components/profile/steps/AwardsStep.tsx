@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
 import { FormField, FormItem, FormControl, FormMessage } from '@/components/ui/form';
-import { Plus, X, Trophy } from 'lucide-react';
+import { Plus, X, Trophy } from '@phosphor-icons/react';
 import { AwardsData, AWARD_TYPES } from '../types';
 import { cn } from '@/lib/utils';
 

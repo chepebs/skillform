@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
-import { Globe, Star, ArrowUpDown } from 'lucide-react';
+import { Globe, Star, ArrowsDownUp as ArrowUpDown } from '@phosphor-icons/react';
 import type { EmployeeLanguage, BrandManaged } from '@/hooks/useProfileData';
 
 interface SkillsLanguagesTabProps {

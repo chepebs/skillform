@@ -10,7 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Download, FileText, Loader2, FileSpreadsheet } from 'lucide-react';
+import { DownloadSimple as Download, FileText, CircleNotch as Loader2, FileXls as FileSpreadsheet } from '@phosphor-icons/react';
 import { toast } from 'sonner';
 import garnierLogo from '@/assets/logo-garnier-small.png';
 

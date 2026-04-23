@@ -9,7 +9,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Card } from '@/components/ui/card';
 import { toast } from 'sonner';
-import { Loader2, Upload, Check, Copy, Building2, Image as ImageIcon, CreditCard, Sparkles } from 'lucide-react';
+import { CircleNotch as Loader2, UploadSimple as Upload, Check, Copy, Buildings as Building2, Image as ImageIcon, CreditCard, Sparkle as Sparkles } from '@phosphor-icons/react';
 import { SkillFormLogo } from '@/components/SkillFormLogo';
 import { ThemeToggle } from '@/components/layout/ThemeToggle';
 import { LanguageSwitcher } from '@/components/layout/LanguageSwitcher';

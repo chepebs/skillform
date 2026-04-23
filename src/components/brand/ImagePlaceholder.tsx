@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { Image as ImageIcon } from "@phosphor-icons/react";
+import { Image as ImageIcon } from '@phosphor-icons/react';
 
 type Tint = "primary" | "teal" | "neutral";
 

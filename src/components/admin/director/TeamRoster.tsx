@@ -1,15 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { formatDistanceToNow } from 'date-fns';
-import {
-  Search,
-  Eye,
-  Mail,
-  Download,
-  ChevronUp,
-  ChevronDown,
-  MoreVertical,
-} from 'lucide-react';
+import { MagnifyingGlass as Search, Eye, Envelope as Mail, DownloadSimple as Download, CaretUp as ChevronUp, CaretDown as ChevronDown, DotsThreeVertical as MoreVertical } from '@phosphor-icons/react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';

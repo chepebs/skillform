@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { supabase } from '@/integrations/supabase/client';
-import { Briefcase, Plus, Search, Users, DollarSign, Loader2 } from 'lucide-react';
+import { Briefcase, Plus, MagnifyingGlass as Search, Users, CurrencyDollar as DollarSign, CircleNotch as Loader2 } from '@phosphor-icons/react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
@@ -151,15 +151,15 @@ const ServicesList: React.FC = () => {
 
   return (
     <div className="max-w-6xl mx-auto space-y-6">
-      <div className="flex items-start justify-between gap-4 flex-wrap">
+      <div className="flex items-end justify-between gap-4 flex-wrap">
         <div>
-          <h1 className="text-3xl font-semibold flex items-center gap-2">
-            <Briefcase className="h-7 w-7" />
+          <h1 className="text-display-md flex items-center gap-3 text-foreground">
+            <Briefcase className="h-7 w-7 text-primary" />
             {t('services.title')}
           </h1>
-          <p className="text-muted-foreground mt-1">{t('services.subtitle')}</p>
+          <p className="text-body-md text-muted-foreground mt-2">{t('services.subtitle')}</p>
         </div>
-        <Button onClick={() => navigate('/services/create')}>
+        <Button onClick={() => navigate('/services/create')} className="rounded-full">
           <Plus className="h-4 w-4" />
           {t('services.addService')}
         </Button>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Loader2, Lock } from 'lucide-react';
+import { CircleNotch as Loader2, Lock } from '@phosphor-icons/react';
 import { useCanAccessServices } from '@/hooks/useCanAccessServices';
 
 const ServicesLayout: React.FC = () => {

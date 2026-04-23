@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Clock, Languages, Trophy, Mail, Phone } from 'lucide-react';
+import { Clock, Translate as Languages, Trophy, Envelope as Mail, Phone } from '@phosphor-icons/react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';

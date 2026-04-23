@@ -103,6 +103,27 @@ export default {
           light: "hsl(var(--primary) / 0.7)",
           dark: "hsl(0 73% 44%)",
         },
+        chart: {
+          1: "hsl(var(--chart-1))",
+          2: "hsl(var(--chart-2))",
+          3: "hsl(var(--chart-3))",
+          4: "hsl(var(--chart-4))",
+          5: "hsl(var(--chart-5))",
+          6: "hsl(var(--chart-6))",
+          7: "hsl(var(--chart-7))",
+          8: "hsl(var(--chart-8))",
+        },
+        seniority: {
+          junior: "hsl(var(--seniority-junior))",
+          mid: "hsl(var(--seniority-mid))",
+          senior: "hsl(var(--seniority-senior))",
+          lead: "hsl(var(--seniority-lead))",
+        },
+        social: {
+          linkedin: "hsl(var(--social-linkedin))",
+          instagram: "hsl(var(--social-instagram))",
+          behance: "hsl(var(--social-behance))",
+        },
       },
       borderRadius: {
         lg: "var(--radius-lg)",

@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
-import { Loader2, Mail, Lock, Eye, EyeOff } from 'lucide-react';
+import { CircleNotch as Loader2, Envelope as Mail, Lock, Eye, EyeSlash as EyeOff } from '@phosphor-icons/react';
 import { toast } from 'sonner';
 
 const loginSchema = z.object({

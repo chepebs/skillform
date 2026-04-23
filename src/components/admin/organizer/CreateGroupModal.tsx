@@ -13,7 +13,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { Loader2 } from 'lucide-react';
+import { CircleNotch as Loader2 } from '@phosphor-icons/react';
 
 const groupSchema = z.object({
   name: z.string().min(1, 'Group name is required').max(100, 'Group name is too long'),

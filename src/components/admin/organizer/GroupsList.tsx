@@ -1,6 +1,6 @@
 import React from 'react';
 import { formatDistanceToNow } from 'date-fns';
-import { Folder, MoreVertical, Edit, Trash2, Users, Plus, Search } from 'lucide-react';
+import { Folder, DotsThreeVertical as MoreVertical, PencilSimple as Edit, Trash as Trash2, Users, Plus, MagnifyingGlass as Search } from '@phosphor-icons/react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {

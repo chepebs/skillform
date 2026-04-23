@@ -8,7 +8,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { FormField, FormItem, FormControl, FormMessage } from '@/components/ui/form';
-import { Plus, X, Calendar } from 'lucide-react';
+import { Plus, X, Calendar } from '@phosphor-icons/react';
 import { ProfessionalInfoData } from '../types';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';

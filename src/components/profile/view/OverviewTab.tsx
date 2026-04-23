@@ -3,16 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
-import {
-  Briefcase,
-  Building,
-  MapPin,
-  GraduationCap,
-  Target,
-  Star,
-  Trophy,
-  ArrowRight,
-} from 'lucide-react';
+import { Briefcase, Buildings as Building, MapPin, GraduationCap, Target, Star, Trophy, ArrowRight } from '@phosphor-icons/react';
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 import type { ProfileData } from '@/hooks/useProfileData';
 
@@ -41,9 +32,9 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({ profile, onNavigateToT
   const experienceLevel = getExperienceLevel(profile.years_of_experience || 0);
 
   const getRateColor = (rate: number) => {
-    if (rate >= 60) return '#10b981';
-    if (rate >= 30) return '#f59e0b';
-    return '#ef4444';
+    if (rate >= 60) return 'hsl(var(--success))';
+    if (rate >= 30) return 'hsl(var(--warning))';
+    return 'hsl(var(--destructive))';
   };
 
   const createDonutData = (value: number) => [
@@ -73,8 +64,8 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({ profile, onNavigateToT
             </div>
 
             <div className="flex items-center gap-3 p-3 rounded-lg bg-muted/30">
-              <div className="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center">
-                <Building className="h-5 w-5 text-blue-400" />
+              <div className="w-10 h-10 rounded-lg bg-chart-3/10 flex items-center justify-center">
+                <Building className="h-5 w-5 text-chart-3" />
               </div>
               <div>
                 <p className="text-xs text-muted-foreground">Department & Agency</p>
@@ -85,8 +76,8 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({ profile, onNavigateToT
             </div>
 
             <div className="flex items-center gap-3 p-3 rounded-lg bg-muted/30">
-              <div className="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center">
-                <GraduationCap className="h-5 w-5 text-emerald-400" />
+              <div className="w-10 h-10 rounded-lg bg-success/10 flex items-center justify-center">
+                <GraduationCap className="h-5 w-5 text-success" />
               </div>
               <div>
                 <p className="text-xs text-muted-foreground">Academic Degree</p>
@@ -97,8 +88,8 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({ profile, onNavigateToT
             </div>
 
             <div className="flex items-center gap-3 p-3 rounded-lg bg-muted/30">
-              <div className="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center">
-                <MapPin className="h-5 w-5 text-purple-400" />
+              <div className="w-10 h-10 rounded-lg bg-chart-6/10 flex items-center justify-center">
+                <MapPin className="h-5 w-5 text-chart-6" />
               </div>
               <div>
                 <p className="text-xs text-muted-foreground">Location</p>
@@ -166,7 +157,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({ profile, onNavigateToT
         <Card className="bg-card/50 backdrop-blur-sm border-border/50">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm flex items-center gap-2">
-              <Star className="h-4 w-4 text-yellow-400" />
+              <Star className="h-4 w-4 text-warning" />
               Brand Work
             </CardTitle>
           </CardHeader>
@@ -179,7 +170,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({ profile, onNavigateToT
                   <p className="text-xs text-muted-foreground">Creations</p>
                 </div>
                 <div className="text-center">
-                  <div className="w-12 bg-blue-500/80 rounded-t" style={{ height: `${Math.min((profile.brand_refreshes || 0) * 10, 60)}px` }} />
+                  <div className="w-12 bg-chart-3/80 rounded-t" style={{ height: `${Math.min((profile.brand_refreshes || 0) * 10, 60)}px` }} />
                   <p className="text-2xl font-bold mt-2">{profile.brand_refreshes || 0}</p>
                   <p className="text-xs text-muted-foreground">Refreshes</p>
                 </div>
@@ -192,7 +183,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({ profile, onNavigateToT
         <Card className="bg-card/50 backdrop-blur-sm border-border/50">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm flex items-center gap-2">
-              <Trophy className="h-4 w-4 text-amber-400" />
+              <Trophy className="h-4 w-4 text-warning" />
               Effie Awards
             </CardTitle>
           </CardHeader>

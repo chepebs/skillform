@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
-import { ArrowLeft, Briefcase, DollarSign, Calendar, Clock, Edit, Trash2, Loader2 } from 'lucide-react';
+import { ArrowLeft, Briefcase, CurrencyDollar as DollarSign, Calendar, Clock, PencilSimple as Edit, Trash as Trash2, CircleNotch as Loader2 } from '@phosphor-icons/react';
 import ServiceSkillsManager from '@/components/services/ServiceSkillsManager';
 import MatchedTalentList from '@/components/services/MatchedTalentList';
 import { Button } from '@/components/ui/button';

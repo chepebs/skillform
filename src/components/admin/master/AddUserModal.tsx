@@ -32,7 +32,7 @@ import {
 } from '@/components/ui/form';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
-import { Loader2, Copy, Check } from 'lucide-react';
+import { CircleNotch as Loader2, Copy, Check } from '@phosphor-icons/react';
 
 const addUserSchema = z.object({
   email: z.string().email('Please enter a valid email address'),

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { FileText, Shield, AlertTriangle } from 'lucide-react';
+import { FileText, Shield, WarningCircle as AlertTriangle } from '@phosphor-icons/react';
 import type { ProfileData } from '@/hooks/useProfileData';
 
 interface AdditionalInfoTabProps {

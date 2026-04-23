@@ -1,5 +1,5 @@
 import React from 'react';
-import { Users, TrendingUp, Briefcase, Award } from 'lucide-react';
+import { Users, TrendUp as TrendingUp, Briefcase, Medal as Award } from '@phosphor-icons/react';
 import { DirectorStats } from '@/hooks/useDirectorData';
 
 interface DirectorStatsCardsProps {

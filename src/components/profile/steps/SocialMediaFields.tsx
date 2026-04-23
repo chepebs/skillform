@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Linkedin, Instagram, Palette } from 'lucide-react';
+import { LinkedinLogo as Linkedin, InstagramLogo as Instagram, Palette } from '@phosphor-icons/react';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
@@ -40,7 +40,7 @@ export const SocialMediaFields: React.FC<SocialMediaFieldsProps> = ({
       <div className="space-y-3">
         <div className="space-y-1.5">
           <Label htmlFor="linkedin" className="flex items-center gap-2 text-sm">
-            <Linkedin className="h-4 w-4 text-[#0A66C2]" />
+            <Linkedin className="h-4 w-4 text-social-linkedin" />
             {t('profile.socialMedia.linkedin', 'LinkedIn')}
           </Label>
           <Input
@@ -55,7 +55,7 @@ export const SocialMediaFields: React.FC<SocialMediaFieldsProps> = ({
 
         <div className="space-y-1.5">
           <Label htmlFor="instagram" className="flex items-center gap-2 text-sm">
-            <Instagram className="h-4 w-4 text-[#E4405F]" />
+            <Instagram className="h-4 w-4 text-social-instagram" />
             {t('profile.socialMedia.instagram', 'Instagram')}
           </Label>
           <Input
@@ -70,7 +70,7 @@ export const SocialMediaFields: React.FC<SocialMediaFieldsProps> = ({
 
         <div className="space-y-1.5">
           <Label htmlFor="behance" className="flex items-center gap-2 text-sm">
-            <Palette className="h-4 w-4 text-[#1769FF]" />
+            <Palette className="h-4 w-4 text-social-behance" />
             {t('profile.socialMedia.behance', 'Behance')}
           </Label>
           <Input
