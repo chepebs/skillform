@@ -54,7 +54,7 @@ type ThemeChoice = 'light' | 'dark' | 'system';
 const AdminSettings: React.FC = () => {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
-  const theme = (localStorage.getItem('theme') || 'system') as ThemeChoice;
+  const theme = (localStorage.getItem('theme') || 'dark') as ThemeChoice;
   const setTheme = (t: ThemeChoice) => {
     localStorage.setItem('theme', t);
     const root = document.documentElement;
