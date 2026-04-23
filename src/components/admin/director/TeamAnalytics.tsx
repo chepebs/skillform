@@ -195,8 +195,8 @@ export const TeamAnalytics: React.FC<TeamAnalyticsProps> = ({ teamMembers }) => 
               dataKey="value"
               label={({ name, value }) => (value > 0 ? `${name}: ${value}` : '')}
             >
-              <Cell fill="#22c55e" />
-              <Cell fill="#ef4444" />
+              <Cell fill="hsl(var(--success))" />
+              <Cell fill="hsl(var(--destructive))" />
             </Pie>
             <Tooltip />
             <Legend />
