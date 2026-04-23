@@ -52,7 +52,7 @@ export const SocialMediaLinks: React.FC<SocialMediaLinksProps> = ({
           href={linkedinUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className={cn(linkClasses, 'hover:bg-[#0A66C2] hover:text-white')}
+          className={cn(linkClasses, 'hover:bg-social-linkedin hover:text-white')}
           title={t('profile.socialMedia.linkedin', 'LinkedIn')}
         >
           <Linkedin className={iconSizes[size]} />
@@ -64,7 +64,7 @@ export const SocialMediaLinks: React.FC<SocialMediaLinksProps> = ({
           href={instagramUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className={cn(linkClasses, 'hover:bg-gradient-to-br hover:from-[#833AB4] hover:via-[#FD1D1D] hover:to-[#F77737] hover:text-white')}
+          className={cn(linkClasses, 'hover:bg-social-instagram hover:text-white')}
           title={t('profile.socialMedia.instagram', 'Instagram')}
         >
           <Instagram className={iconSizes[size]} />
@@ -76,7 +76,7 @@ export const SocialMediaLinks: React.FC<SocialMediaLinksProps> = ({
           href={behanceUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className={cn(linkClasses, 'hover:bg-[#1769FF] hover:text-white')}
+          className={cn(linkClasses, 'hover:bg-social-behance hover:text-white')}
           title={t('profile.socialMedia.behance', 'Behance')}
         >
           <Palette className={iconSizes[size]} />

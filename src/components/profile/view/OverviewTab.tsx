@@ -64,8 +64,8 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({ profile, onNavigateToT
             </div>
 
             <div className="flex items-center gap-3 p-3 rounded-lg bg-muted/30">
-              <div className="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center">
-                <Building className="h-5 w-5 text-blue-400" />
+              <div className="w-10 h-10 rounded-lg bg-chart-3/10 flex items-center justify-center">
+                <Building className="h-5 w-5 text-chart-3" />
               </div>
               <div>
                 <p className="text-xs text-muted-foreground">Department & Agency</p>
@@ -76,8 +76,8 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({ profile, onNavigateToT
             </div>
 
             <div className="flex items-center gap-3 p-3 rounded-lg bg-muted/30">
-              <div className="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center">
-                <GraduationCap className="h-5 w-5 text-emerald-400" />
+              <div className="w-10 h-10 rounded-lg bg-success/10 flex items-center justify-center">
+                <GraduationCap className="h-5 w-5 text-success" />
               </div>
               <div>
                 <p className="text-xs text-muted-foreground">Academic Degree</p>
@@ -88,8 +88,8 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({ profile, onNavigateToT
             </div>
 
             <div className="flex items-center gap-3 p-3 rounded-lg bg-muted/30">
-              <div className="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center">
-                <MapPin className="h-5 w-5 text-purple-400" />
+              <div className="w-10 h-10 rounded-lg bg-chart-6/10 flex items-center justify-center">
+                <MapPin className="h-5 w-5 text-chart-6" />
               </div>
               <div>
                 <p className="text-xs text-muted-foreground">Location</p>
