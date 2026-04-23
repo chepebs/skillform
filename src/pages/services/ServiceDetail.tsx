@@ -14,6 +14,7 @@ import {
   AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
+import { SectionAdornment } from '@/components/brand/SectionAdornment';
 
 const ServiceDetail: React.FC = () => {
   const { t } = useTranslation();
@@ -102,6 +103,8 @@ const ServiceDetail: React.FC = () => {
         </Link>
       </div>
 
+      <SectionAdornment index={1} total={3} label={t('services.detail.sectionLabel', 'Service Detail')} align="left" />
+
       <div className="flex items-start justify-between gap-4 flex-wrap">
         <div>
           <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
@@ -109,16 +112,16 @@ const ServiceDetail: React.FC = () => {
             {service.catalog?.category?.name}
             {service.catalog?.subcategory?.name && <> / {service.catalog.subcategory.name}</>}
           </div>
-          <h1 className="text-3xl font-semibold">{service.catalog?.service_name}</h1>
+          <h1 className="text-display-md">{service.catalog?.service_name}</h1>
         </div>
         <div className="flex gap-2">
-          <Button variant="outline" onClick={() => navigate(`/services/${id}/edit`)}>
-            <Edit className="h-4 w-4" /> {t('services.edit')}
+          <Button variant="outline" className="rounded-full" onClick={() => navigate(`/services/${id}/edit`)}>
+            <Edit className="h-4 w-4 mr-1" /> {t('services.edit')}
           </Button>
           <AlertDialog>
             <AlertDialogTrigger asChild>
-              <Button variant="destructive">
-                <Trash2 className="h-4 w-4" /> {t('services.delete')}
+              <Button variant="destructive" className="rounded-full">
+                <Trash2 className="h-4 w-4 mr-1" /> {t('services.delete')}
               </Button>
             </AlertDialogTrigger>
             <AlertDialogContent>
@@ -207,11 +210,13 @@ const ServiceDetail: React.FC = () => {
       </section>
 
       {/* Skills Requirements */}
+      <SectionAdornment index={2} total={3} label={t('services.detail.skillsLabel', 'Skill Requirements')} align="left" />
       <section className="border border-border p-5">
         <ServiceSkillsManager serviceId={id!} canEdit={canEdit} />
       </section>
 
       {/* Matched Talent */}
+      <SectionAdornment index={3} total={3} label={t('services.detail.matchedLabel', 'Matched Talent')} align="left" />
       <section className="border border-border p-5">
         <MatchedTalentList serviceId={id!} canEdit={canEdit} />
       </section>

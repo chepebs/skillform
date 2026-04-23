@@ -10,6 +10,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { CircleNotch as Loader2, Plus, FloppyDisk as Save } from '@phosphor-icons/react';
 import { toast } from 'sonner';
+import { SectionAdornment } from '@/components/brand/SectionAdornment';
 
 export interface ServiceFormValues {
   service_catalog_id: string;
@@ -160,8 +161,14 @@ const ServiceForm: React.FC<Props> = ({ mode, serviceId, initialValues, initialC
 
   return (
     <form onSubmit={handleSubmit} className="max-w-3xl mx-auto space-y-8">
-      <div>
-        <h1 className="text-3xl font-semibold">
+      <div className="space-y-2">
+        <SectionAdornment
+          index={1}
+          total={5}
+          label={mode === 'create' ? t('services.createLabel', 'Create Service') : t('services.editLabel', 'Edit Service')}
+          align="left"
+        />
+        <h1 className="text-display-md">
           {mode === 'create' ? t('services.createNew') : t('services.edit')}
         </h1>
         <p className="text-muted-foreground mt-1">{t('services.createDescription')}</p>
@@ -309,11 +316,11 @@ const ServiceForm: React.FC<Props> = ({ mode, serviceId, initialValues, initialC
       </section>
 
       <div className="flex gap-3 justify-end">
-        <Button type="button" variant="outline" onClick={() => navigate(mode === 'create' ? '/services' : `/services/${serviceId}`)}>
+        <Button type="button" variant="outline" className="rounded-full" onClick={() => navigate(mode === 'create' ? '/services' : `/services/${serviceId}`)}>
           {t('common.buttons.cancel')}
         </Button>
-        <Button type="submit" disabled={loading}>
-          {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : mode === 'create' ? <Plus className="h-4 w-4" /> : <Save className="h-4 w-4" />}
+        <Button type="submit" disabled={loading} className="accent-gradient text-white rounded-full px-8 shadow-signal hover:opacity-90">
+          {loading ? <Loader2 className="h-4 w-4 animate-spin mr-1" /> : mode === 'create' ? <Plus className="h-4 w-4 mr-1" /> : <Save className="h-4 w-4 mr-1" />}
           {mode === 'create' ? t('services.createService') : t('common.buttons.save')}
         </Button>
       </div>

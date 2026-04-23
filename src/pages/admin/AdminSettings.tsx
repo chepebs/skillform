@@ -35,6 +35,7 @@ import {
 } from '@/components/ui/alert-dialog';
 
 import { toast } from 'sonner';
+import { SectionAdornment } from '@/components/brand/SectionAdornment';
 
 const passwordSchema = z
   .object({
@@ -135,16 +136,19 @@ const AdminSettings: React.FC = () => {
 
   return (
     <main className="max-w-4xl mx-auto p-6 space-y-6">
-      <header className="flex items-start justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-bold text-foreground">Admin Settings</h1>
-          <p className="text-muted-foreground">
-            Manage your admin account preferences.
-          </p>
+      <header className="space-y-3">
+        <SectionAdornment index={1} total={3} label={t('admin.settings.sectionLabel', 'Admin Settings')} align="left" />
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <h1 className="text-display-md">{t('admin.settings.title', 'Admin Settings')}</h1>
+            <p className="text-muted-foreground mt-1">
+              {t('admin.settings.subtitle', 'Manage your admin account preferences.')}
+            </p>
+          </div>
+          <Badge variant="secondary" className="bg-primary/15 text-primary border border-primary/20">
+            {roleLabel}
+          </Badge>
         </div>
-        <Badge variant="secondary" className="bg-primary/15 text-primary border border-primary/20">
-          {roleLabel}
-        </Badge>
       </header>
 
       <section className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -198,7 +202,7 @@ const AdminSettings: React.FC = () => {
                 )}
               </div>
 
-              <Button type="submit" disabled={isSubmitting} className="bg-gradient-primary">
+              <Button type="submit" disabled={isSubmitting} className="accent-gradient text-white rounded-full px-6 shadow-signal hover:opacity-90">
                 {isSubmitting ? 'Updating…' : 'Update password'}
               </Button>
             </form>
@@ -258,7 +262,7 @@ const AdminSettings: React.FC = () => {
           <CardContent className="space-y-4">
             <AlertDialog>
               <AlertDialogTrigger asChild>
-                <Button variant="destructive">Delete account</Button>
+                <Button variant="destructive" className="rounded-full">Delete account</Button>
               </AlertDialogTrigger>
               <AlertDialogContent>
                 <AlertDialogHeader>
@@ -275,7 +279,7 @@ const AdminSettings: React.FC = () => {
             </AlertDialog>
 
             <Button variant="outline" onClick={() => navigate('/admin/master')}
-              className="border-border"
+              className="rounded-full border-border"
             >
               Back to dashboard
             </Button>

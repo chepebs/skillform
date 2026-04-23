@@ -14,6 +14,7 @@ import { SkillsLanguagesTab } from '@/components/profile/view/SkillsLanguagesTab
 import { ProjectsAwardsTab } from '@/components/profile/view/ProjectsAwardsTab';
 import { AdditionalInfoTab } from '@/components/profile/view/AdditionalInfoTab';
 import { ProfileSkeleton } from '@/components/profile/view/ProfileSkeleton';
+import { SectionAdornment } from '@/components/brand/SectionAdornment';
 
 const ProfileView: React.FC = () => {
   const { id } = useParams<{ id?: string }>();
@@ -120,6 +121,8 @@ const ProfileView: React.FC = () => {
         <ArrowLeft className="mr-2 h-4 w-4" />
         {t('common.buttons.back')}
       </Button>
+
+      <SectionAdornment index={1} total={1} label={t('profile.sectionLabel', 'Profile')} align="left" />
 
       {/* Profile Header */}
       <ProfileHeader
