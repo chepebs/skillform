@@ -71,12 +71,12 @@ const MasterDashboard: React.FC = () => {
   return (
     <div id="analytics-dashboard" className="space-y-8 pdf-exportable animate-fade-in">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 no-print">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 no-print">
         <div className="flex items-center gap-3">
-          <h1 className="text-3xl font-bold text-foreground">{t('admin.master.title')}</h1>
-          <Badge className="bg-purple-500/20 text-purple-400 border-purple-500/30">
+          <h1 className="text-display-md text-foreground">{t('admin.master.title')}</h1>
+          <span className="bracket-tag bracket-tag-accent">
             {t('admin.master.badge')}
-          </Badge>
+          </span>
         </div>
         <div className="flex items-center gap-3">
           {activeTab === 'dashboard' && (

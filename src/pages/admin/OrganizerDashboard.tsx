@@ -88,17 +88,17 @@ const OrganizerDashboard: React.FC = () => {
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
         <div>
           <div className="flex items-center gap-3">
-            <h1 className="text-3xl sm:text-4xl font-bold text-foreground">
+            <h1 className="text-display-md text-foreground">
               {t('admin.organizer.title')}
             </h1>
-            <Badge className="bg-blue-500 hover:bg-blue-600 text-white">
+            <span className="bracket-tag bracket-tag-accent">
               {t('admin.organizer.badge')}
-            </Badge>
+            </span>
           </div>
-          <p className="text-muted-foreground mt-1">
+          <p className="text-body-md text-muted-foreground mt-2">
             {t('admin.organizer.subtitle')}
           </p>
         </div>
