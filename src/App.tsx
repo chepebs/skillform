@@ -1,3 +1,4 @@
+import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -10,6 +11,7 @@ import { CompanyGate } from "@/components/auth/CompanyGate";
 import { AppLayout } from "@/components/layout/AppLayout";
 import { AmbientBackground } from "@/components/brand/AmbientBackground";
 import { AsteriskPreloader } from "@/components/brand/AsteriskPreloader";
+import { useSmoothScroll } from "@/lib/useSmoothScroll";
 
 // Pages
 import Landing from "./pages/Landing";
@@ -40,9 +42,14 @@ import ServiceEdit from "./pages/services/ServiceEdit";
 
 const queryClient = new QueryClient();
 
+const SmoothScrollProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  useSmoothScroll();
+  return <>{children}</>;
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <>
+    <SmoothScrollProvider>
       <AmbientBackground />
       <AsteriskPreloader />
       <TooltipProvider>
@@ -168,7 +175,7 @@ const App = () => (
         </AuthProvider>
       </BrowserRouter>
       </TooltipProvider>
-    </>
+    </SmoothScrollProvider>
   </QueryClientProvider>
 );
 
