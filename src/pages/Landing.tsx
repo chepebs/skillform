@@ -10,6 +10,7 @@ import { BrandMark } from '@/components/brand/BrandMark';
 import { BracketTag } from '@/components/brand/BracketTag';
 import { SectionAdornment } from '@/components/brand/SectionAdornment';
 import { ImagePlaceholder } from '@/components/brand/ImagePlaceholder';
+import { SectionRail } from '@/components/brand/SectionRail';
 import { AuthModal, AuthModalMode } from '@/components/auth/AuthModal';
 import aideaformLogo from '@/assets/aideaform-logo.svg';
 
