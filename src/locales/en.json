@@ -683,8 +683,8 @@
     "noAgencies": "No agencies found"
   },
   "landing": {
-    "getStarted": "Get Started",
-    "learnMore": "Learn More",
+    "getStarted": "Get started",
+    "learnMore": "Learn more",
     "hero": {
       "titlePart1": "Discover &",
       "titlePart2": "Connect",
@@ -693,7 +693,11 @@
       "talentOverview": "Talent Overview",
       "totalProfiles": "Total Profiles",
       "servicesEyebrow": "Now with Services & Talent Matching",
-      "servicesTagline": "document external services, define required skills, and auto-match the right internal talent."
+      "servicesTagline": "document external services, define required skills, and auto-match the right internal talent.",
+      "live": "Skill*form Live",
+      "tag": "Talent suite v2",
+      "eyebrow": "Discover and connect with talent",
+      "placeholder": "Hero product shot — Skill*form directory dashboard showing search, filters, and a grid of talent profile cards in dark mode."
     },
     "features": {
       "title": "Everything You",
@@ -732,7 +736,8 @@
         "title": "Multilingual Ready",
         "desc": "Full English and Spanish support across the platform, with language preferences saved per user.",
         "stat": "EN & ES included"
-      }
+      },
+      "badge": "Capabilities"
     },
     "capabilities": {
       "titlePart1": "Built for",
@@ -745,11 +750,12 @@
       "tracking": "Full Tracking",
       "experience": "Experience Management",
       "comprehensive": "Complete",
-      "badge": "Platform Stats",
+      "badge": "Built in",
       "coverage": "Organization Coverage",
       "departments": "Departments",
       "skills": "Skills Tracked",
-      "countries": "Countries"
+      "countries": "Countries",
+      "badgeStats": "Platform stats"
     },
     "trust": {
       "title": "Trusted by",
@@ -769,7 +775,8 @@
         "quote": "\"The multi-language support and role-based access make it perfect for our international team structure.\"",
         "name": "Ana Martínez",
         "role": "HR Manager"
-      }
+      },
+      "badge": "Voices"
     },
     "services": {
       "eyebrow": "New Module",
@@ -793,7 +800,8 @@
       "stat3": "Nightly auto-match",
       "stat4": "Bilingual interface",
       "access": "Available to department directors, organizer admins, master admins, and senior employees (director, VP, C-level).",
-      "cta": "Sign in to explore Services"
+      "cta": "Sign in to explore Services",
+      "placeholder": "Services module screenshot — service detail view with required skills, vendor list, and the auto-matched internal talent panel."
     },
     "footer": {
       "tagline": "Discover and connect with talent across your organization.",
@@ -813,6 +821,27 @@
       "support": "Support",
       "privacy": "Privacy",
       "terms": "Terms"
+    },
+    "nav": {
+      "features": "Features",
+      "services": "Services",
+      "capabilities": "Capabilities",
+      "trust": "Trust"
+    },
+    "showcase": {
+      "badge": "Inside the product",
+      "title": "A glimpse of",
+      "titleAccent": "the platform",
+      "placeholder1": "Profile detail page — header with avatar, role, country flag, plus skills, languages, and project history tabs.",
+      "placeholder2": "Master admin analytics dashboard — bar charts of skill distribution and seniority breakdown across the organization.",
+      "placeholder3": "Director my team roster view — list of direct reports with seniority badges and quick-action buttons.",
+      "placeholder4": "Service create wizard — step-by-step form for naming a service, picking a category, and assigning vendors."
+    },
+    "cta": {
+      "badge": "Get started",
+      "title": "Bring your talent into",
+      "titleAccent": "one signal.",
+      "subtitle": "Sign in to start exploring profiles, services, and the matching engine."
     }
   },
   "profile": {

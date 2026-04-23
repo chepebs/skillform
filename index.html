@@ -1,30 +1,39 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     <title>Skill*form by Grupo Garnier</title>
-    <meta name="description" content="Skill*form by Grupo Garnier - Discover and connect with talent across the organization">
+    <meta name="description" content="Skill*form by Grupo Garnier — Discover and connect with talent across the organization">
     <meta name="author" content="Lovable" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/iNIri80HyfX54aGd6Iw2Z6RfeaP2/social-images/social-1767928303364-Logo-Garnier-2025-square.png">
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@Lovable" />
     <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/iNIri80HyfX54aGd6Iw2Z6RfeaP2/social-images/social-1767928303364-Logo-Garnier-2025-square.png">
-    <meta property="og:title" content="Garnier Talent Map">
-    <meta name="twitter:title" content="Garnier Talent Map">
-    <meta property="og:description" content="Grupo Garnier Talent Map - Discover and connect with talent across the organization">
-    <meta name="twitter:description" content="Grupo Garnier Talent Map - Discover and connect with talent across the organization">
+    <meta property="og:title" content="Skill*form by Grupo Garnier">
+    <meta name="twitter:title" content="Skill*form by Grupo Garnier">
+    <meta property="og:description" content="Skill*form by Grupo Garnier — Discover and connect with talent across the organization">
+    <meta name="twitter:description" content="Skill*form by Grupo Garnier — Discover and connect with talent across the organization">
     <link rel="icon" type="image/png" href="https://storage.googleapis.com/gpt-engineer-file-uploads/iNIri80HyfX54aGd6Iw2Z6RfeaP2/uploads/1767928298343-Logo-Garnier-2025-square.png">
   </head>
 
   <body>
     <script>
-      (function(){var t=localStorage.getItem('theme');var d=t==='light'?false:true;if(d)document.documentElement.classList.add('dark');})();
+      // Default to dark; allow user override via localStorage
+      (function(){
+        var t = localStorage.getItem('theme');
+        var root = document.documentElement;
+        if (t === 'light') {
+          root.classList.remove('dark');
+        } else {
+          root.classList.add('dark');
+        }
+      })();
     </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
