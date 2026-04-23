@@ -83,6 +83,27 @@
     --sidebar-accent-foreground: 215 31% 12%;
     --sidebar-border: 213 24% 84%;
     --sidebar-ring: 1 81% 57%;
+
+    /* ── Chart palette (categorical, theme-aware) ── */
+    --chart-1: 1 81% 57%;     /* brand red */
+    --chart-2: 181 100% 22%;  /* brand teal */
+    --chart-3: 217 72% 55%;   /* info blue */
+    --chart-4: 35 95% 46%;    /* warning amber */
+    --chart-5: 160 72% 34%;   /* success green */
+    --chart-6: 271 81% 56%;   /* purple */
+    --chart-7: 326 78% 60%;   /* pink */
+    --chart-8: 220 13% 60%;   /* neutral */
+
+    /* ── Seniority palette ── */
+    --seniority-junior: 220 13% 60%;
+    --seniority-mid: 217 72% 55%;
+    --seniority-senior: 271 65% 60%;
+    --seniority-lead: 35 95% 46%;
+
+    /* ── Social brand colors ── */
+    --social-linkedin: 210 90% 40%;
+    --social-instagram: 340 75% 55%;
+    --social-behance: 217 100% 55%;
   }
 
   .dark {
