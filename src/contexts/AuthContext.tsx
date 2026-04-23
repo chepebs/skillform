@@ -22,7 +22,6 @@ export interface Company {
   name: string;
   slug: string;
   logo_url: string | null;
-  invite_token: string;
 }
 
 interface AuthContextType {
