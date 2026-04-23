@@ -157,7 +157,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({ profile, onNavigateToT
         <Card className="bg-card/50 backdrop-blur-sm border-border/50">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm flex items-center gap-2">
-              <Star className="h-4 w-4 text-yellow-400" />
+              <Star className="h-4 w-4 text-warning" />
               Brand Work
             </CardTitle>
           </CardHeader>
@@ -170,7 +170,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({ profile, onNavigateToT
                   <p className="text-xs text-muted-foreground">Creations</p>
                 </div>
                 <div className="text-center">
-                  <div className="w-12 bg-blue-500/80 rounded-t" style={{ height: `${Math.min((profile.brand_refreshes || 0) * 10, 60)}px` }} />
+                  <div className="w-12 bg-chart-3/80 rounded-t" style={{ height: `${Math.min((profile.brand_refreshes || 0) * 10, 60)}px` }} />
                   <p className="text-2xl font-bold mt-2">{profile.brand_refreshes || 0}</p>
                   <p className="text-xs text-muted-foreground">Refreshes</p>
                 </div>
@@ -183,7 +183,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({ profile, onNavigateToT
         <Card className="bg-card/50 backdrop-blur-sm border-border/50">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm flex items-center gap-2">
-              <Trophy className="h-4 w-4 text-amber-400" />
+              <Trophy className="h-4 w-4 text-warning" />
               Effie Awards
             </CardTitle>
           </CardHeader>
