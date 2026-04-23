@@ -5,3 +5,6 @@ verify_jwt = false
 
 [functions.auto-match-services]
 verify_jwt = false
+
+[functions.seed-master-user]
+verify_jwt = false
