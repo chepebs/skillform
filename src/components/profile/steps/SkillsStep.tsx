@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Plus, X, Search, Star, Check, Sparkles } from 'lucide-react';
+import { Plus, X, MagnifyingGlass as Search, Star, Check, Sparkle as Sparkles } from '@phosphor-icons/react';
 import { SkillsData, Skill, SKILL_CATEGORIES, SKILLS_BY_CATEGORY, CATEGORY_COLORS } from '../types';
 import { cn } from '@/lib/utils';
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Edit2, User, Briefcase, GraduationCap, BarChart3, FolderOpen, Languages, Award, Factory } from 'lucide-react';
+import { PencilSimpleLine as Edit2, User, Briefcase, GraduationCap, ChartBar as BarChart3, FolderOpen, Translate as Languages, Medal as Award, Factory } from '@phosphor-icons/react';
 import { ProfileFormData } from '../types';
 import { cn } from '@/lib/utils';
 import { supabase } from '@/integrations/supabase/client';

@@ -31,16 +31,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
-import {
-  Building2,
-  Plus,
-  Edit2,
-  Trash2,
-  GripVertical,
-  Loader2,
-  Save,
-  X,
-} from 'lucide-react';
+import { Buildings as Building2, Plus, PencilSimpleLine as Edit2, Trash as Trash2, DotsSixVertical as GripVertical, CircleNotch as Loader2, FloppyDisk as Save, X } from '@phosphor-icons/react';
 import {
   DndContext,
   closestCenter,

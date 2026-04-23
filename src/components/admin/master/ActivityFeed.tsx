@@ -4,16 +4,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Button } from '@/components/ui/button';
-import {
-  UserPlus,
-  CheckCircle,
-  Edit,
-  Trash2,
-  UserCog,
-  LogIn,
-  Activity,
-  ExternalLink,
-} from 'lucide-react';
+import { UserPlus, CheckCircle, PencilSimple as Edit, Trash as Trash2, UserCog, LogIn, Activity, ArrowSquareOut as ExternalLink } from '@phosphor-icons/react';
 import { cn } from '@/lib/utils';
 
 interface AuditLogEntry {

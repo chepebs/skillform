@@ -3,7 +3,7 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth, AppRole } from '@/contexts/AuthContext';
 import { cn } from '@/lib/utils';
-import { Home, User, Users, Folder, Building, Shield, BarChart3, Settings, ChevronLeft, ChevronRight, Briefcase } from 'lucide-react';
+import { House as Home, User, Users, Folder, Buildings as Building, Shield, ChartBar as BarChart3, Gear as Settings, CaretLeft as ChevronLeft, CaretRight as ChevronRight, Briefcase } from '@phosphor-icons/react';
 import { SkillFormLogo } from '@/components/SkillFormLogo';
 import { useCanAccessServices } from '@/hooks/useCanAccessServices';
 

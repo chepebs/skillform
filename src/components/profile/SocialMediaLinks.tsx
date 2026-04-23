@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Linkedin, Instagram, Palette, ExternalLink } from 'lucide-react';
+import { LinkedinLogo as Linkedin, InstagramLogo as Instagram, Palette, ArrowSquareOut as ExternalLink } from '@phosphor-icons/react';
 import { cn } from '@/lib/utils';
 
 interface SocialMediaLinksProps {

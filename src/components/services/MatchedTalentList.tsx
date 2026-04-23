@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
-import { RefreshCw, UserPlus, X, Loader2, User, Mail } from 'lucide-react';
+import { ArrowsClockwise as RefreshCw, UserPlus, X, CircleNotch as Loader2, User, Envelope as Mail } from '@phosphor-icons/react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';

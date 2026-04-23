@@ -1,5 +1,5 @@
 import React from 'react';
-import { Users, Folder, PieChart } from 'lucide-react';
+import { Users, Folder, ChartPie as PieChart } from '@phosphor-icons/react';
 
 interface OrganizerStatsProps {
   totalProfiles: number;

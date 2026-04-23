@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { MessageSquare } from 'lucide-react';
+import { ChatCircle as MessageSquare } from '@phosphor-icons/react';
 import { Button } from '@/components/ui/button';
 import { SendMessageModal } from './SendMessageModal';
 import { useAuth } from '@/contexts/AuthContext';

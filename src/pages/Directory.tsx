@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Grid, List, Download, Users, SortAsc } from 'lucide-react';
+import { GridFour as Grid, List, DownloadSimple as Download, Users, SortAscending as SortAsc } from '@phosphor-icons/react';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';

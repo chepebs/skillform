@@ -4,7 +4,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useTranslation } from 'react-i18next';
-import { ArrowLeft, User } from 'lucide-react';
+import { ArrowLeft, User } from '@phosphor-icons/react';
 import { useProfileData } from '@/hooks/useProfileData';
 import { ProfileHeader } from '@/components/profile/view/ProfileHeader';
 import { QuickStatsBar } from '@/components/profile/view/QuickStatsBar';

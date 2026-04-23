@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { FormField, FormItem, FormControl, FormMessage } from '@/components/ui/form';
-import { Plus, X, Calendar, GraduationCap } from 'lucide-react';
+import { Plus, X, Calendar, GraduationCap } from '@phosphor-icons/react';
 import { EducationData } from '../types';
 import { cn } from '@/lib/utils';
 

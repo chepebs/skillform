@@ -6,7 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { FormField, FormItem, FormControl, FormMessage } from '@/components/ui/form';
-import { Plus, X } from 'lucide-react';
+import { Plus, X } from '@phosphor-icons/react';
 import { BrandsProjectsData, YEARS, MONTHS } from '../types';
 import { cn } from '@/lib/utils';
 

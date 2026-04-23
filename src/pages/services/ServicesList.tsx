@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { supabase } from '@/integrations/supabase/client';
-import { Briefcase, Plus, Search, Users, DollarSign, Loader2 } from 'lucide-react';
+import { Briefcase, Plus, MagnifyingGlass as Search, Users, CurrencyDollar as DollarSign, CircleNotch as Loader2 } from '@phosphor-icons/react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';

@@ -3,16 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
-import {
-  Briefcase,
-  Building,
-  MapPin,
-  GraduationCap,
-  Target,
-  Star,
-  Trophy,
-  ArrowRight,
-} from 'lucide-react';
+import { Briefcase, Buildings as Building, MapPin, GraduationCap, Target, Star, Trophy, ArrowRight } from '@phosphor-icons/react';
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 import type { ProfileData } from '@/hooks/useProfileData';
 

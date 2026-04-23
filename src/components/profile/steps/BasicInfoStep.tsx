@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { FormField, FormItem, FormControl, FormMessage } from '@/components/ui/form';
-import { Phone, Upload, X, Loader2 } from 'lucide-react';
+import { Phone, UploadSimple as Upload, X, CircleNotch as Loader2 } from '@phosphor-icons/react';
 import { BasicInfoData } from '../types';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';

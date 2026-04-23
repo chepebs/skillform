@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Bell, Check, Trash2, Info, UserPlus, Award, MessageSquare, Mail } from 'lucide-react';
+import { Bell, Check, Trash as Trash2, Info, UserPlus, Medal as Award, ChatCircle as MessageSquare, Envelope as Mail } from '@phosphor-icons/react';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,

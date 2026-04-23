@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Linkedin, Instagram, Palette } from 'lucide-react';
+import { LinkedinLogo as Linkedin, InstagramLogo as Instagram, Palette } from '@phosphor-icons/react';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { CheckCircle2, Circle, Loader2 } from 'lucide-react';
+import { CheckCircle as CheckCircle2, Circle, CircleNotch as Loader2 } from '@phosphor-icons/react';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { supabase } from '@/integrations/supabase/client';

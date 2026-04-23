@@ -6,7 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Slider } from '@/components/ui/slider';
 import { Checkbox } from '@/components/ui/checkbox';
 import { FormField, FormItem, FormControl, FormMessage } from '@/components/ui/form';
-import { Plus, X } from 'lucide-react';
+import { Plus, X } from '@phosphor-icons/react';
 import { LanguagesData, LANGUAGES_OPTIONS } from '../types';
 import { cn } from '@/lib/utils';
 

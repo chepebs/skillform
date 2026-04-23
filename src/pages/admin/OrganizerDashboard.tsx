@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { LayoutGrid, List, Folder } from 'lucide-react';
+import { SquaresFour as LayoutGrid, List, Folder } from '@phosphor-icons/react';
 import { useOrganizerData, Group } from '@/hooks/useOrganizerData';
 import { OrganizerStats } from '@/components/admin/organizer/OrganizerStats';
 import { GroupsList } from '@/components/admin/organizer/GroupsList';

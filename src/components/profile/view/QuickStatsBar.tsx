@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Briefcase, Globe, Star, Trophy, Target } from 'lucide-react';
+import { Briefcase, Globe, Star, Trophy, Target } from '@phosphor-icons/react';
 import type { ProfileData, EmployeeLanguage, BrandManaged, Award } from '@/hooks/useProfileData';
 
 interface QuickStatsBarProps {

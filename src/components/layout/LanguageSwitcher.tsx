@@ -7,7 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Globe } from 'lucide-react';
+import { Globe } from '@phosphor-icons/react';
 import { cn } from '@/lib/utils';
 
 interface LanguageSwitcherProps {

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Sidebar } from './Sidebar';
 import { Header } from './Header';
 import { cn } from '@/lib/utils';
-import { X } from 'lucide-react';
+import { X } from '@phosphor-icons/react';
 
 export const AppLayout: React.FC = () => {
   const { t } = useTranslation();

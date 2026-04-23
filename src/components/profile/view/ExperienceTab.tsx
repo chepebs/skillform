@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Building, Calendar, Clock, Briefcase } from 'lucide-react';
+import { Buildings as Building, Calendar, Clock, Briefcase } from '@phosphor-icons/react';
 import { formatDistanceStrict, parseISO, differenceInMonths } from 'date-fns';
 import type { ProfileData, PreviousPosition, PreviousAgency } from '@/hooks/useProfileData';
 

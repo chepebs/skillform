@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth, AppRole } from '@/contexts/AuthContext';
-import { Loader2 } from 'lucide-react';
+import { CircleNotch as Loader2 } from '@phosphor-icons/react';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;

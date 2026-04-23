@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { ShieldX, ArrowLeft, Home } from 'lucide-react';
+import { ShieldSlash as ShieldX, ArrowLeft, House as Home } from '@phosphor-icons/react';
 import { useAuth } from '@/contexts/AuthContext';
 
 const Forbidden: React.FC = () => {

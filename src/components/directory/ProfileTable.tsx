@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowUpDown, ArrowUp, ArrowDown, Mail, Languages, Trophy } from 'lucide-react';
+import { ArrowsDownUp as ArrowUpDown, ArrowUp, ArrowDown, Envelope as Mail, Translate as Languages, Trophy } from '@phosphor-icons/react';
 import {
   Table,
   TableBody,

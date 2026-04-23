@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import ServiceForm, { } from './ServiceForm';
-import { Loader2 } from 'lucide-react';
+import { CircleNotch as Loader2 } from '@phosphor-icons/react';
 
 const ServiceEdit: React.FC = () => {
   const { id } = useParams<{ id: string }>();

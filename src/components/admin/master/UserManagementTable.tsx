@@ -29,21 +29,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import {
-  MoreHorizontal,
-  Eye,
-  Edit,
-  UserCog,
-  Mail,
-  Trash2,
-  Copy,
-  Search,
-  ChevronLeft,
-  ChevronRight,
-  Check,
-  X,
-  FileText,
-} from 'lucide-react';
+import { MoreHorizontal, Eye, PencilSimple as Edit, UserCog, Envelope as Mail, Trash as Trash2, Copy, MagnifyingGlass as Search, CaretLeft as ChevronLeft, CaretRight as ChevronRight, Check, X, FileText } from '@phosphor-icons/react';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';

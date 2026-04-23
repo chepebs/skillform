@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Users, Trash2, Search, Plus, X, UserPlus } from 'lucide-react';
+import { Users, Trash as Trash2, MagnifyingGlass as Search, Plus, X, UserPlus } from '@phosphor-icons/react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';

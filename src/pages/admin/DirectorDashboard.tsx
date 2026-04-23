@@ -8,7 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Users, FileText, BarChart3, Settings } from 'lucide-react';
+import { Users, FileText, ChartBar as BarChart3, Gear as Settings } from '@phosphor-icons/react';
 import { useDirectorData, DepartmentInfo } from '@/hooks/useDirectorData';
 import { DirectorStatsCards } from '@/components/admin/director/DirectorStatsCards';
 import { TeamRoster } from '@/components/admin/director/TeamRoster';
