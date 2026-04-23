@@ -1,40 +1,28 @@
 import { useState, useEffect } from "react";
-import { Moon, Sun, Monitor } from '@phosphor-icons/react';
+import { Moon, Sun } from '@phosphor-icons/react';
 import { Button } from "@/components/ui/button";
 
-type ThemeMode = "light" | "dark" | "system";
+type ThemeMode = "light" | "dark";
 
 export function ThemeToggle() {
   const [mode, setMode] = useState<ThemeMode>(() => {
     if (typeof window !== "undefined") {
-      const stored = localStorage.getItem("theme") as ThemeMode | null;
-    if (stored === "light" || stored === "dark" || stored === "system") return stored;
+      const stored = localStorage.getItem("theme");
+      if (stored === "light" || stored === "dark") return stored;
     }
     return "dark";
   });
 
   useEffect(() => {
     const root = document.documentElement;
-    const mq = window.matchMedia("(prefers-color-scheme: dark)");
-
-    const apply = () => {
-      const dark = mode === "dark" || (mode === "system" && mq.matches);
-      root.classList.toggle("dark", dark);
-    };
-
-    apply();
+    root.classList.toggle("dark", mode === "dark");
     localStorage.setItem("theme", mode);
-
-    if (mode === "system") {
-      mq.addEventListener("change", apply);
-      return () => mq.removeEventListener("change", apply);
-    }
   }, [mode]);
 
-  const cycle = () => setMode((m) => (m === "light" ? "dark" : m === "dark" ? "system" : "light"));
+  const cycle = () => setMode((m) => (m === "light" ? "dark" : "light"));
 
-  const Icon = mode === "dark" ? Moon : mode === "system" ? Monitor : Sun;
-  const label = mode === "dark" ? "Dark" : mode === "system" ? "System" : "Light";
+  const Icon = mode === "dark" ? Moon : Sun;
+  const label = mode === "dark" ? "Dark" : "Light";
 
   return (
     <Button
@@ -49,3 +37,4 @@ export function ThemeToggle() {
     </Button>
   );
 }
+
