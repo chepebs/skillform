@@ -73,9 +73,7 @@ export const AppLayout: React.FC = () => {
             >
               <X className="h-5 w-5 text-foreground" />
             </button>
-            <div className="pt-14">
-              <Sidebar collapsed={false} onToggle={() => {}} />
-            </div>
+            <Sidebar collapsed={false} onToggle={() => {}} />
           </div>
         </div>
       )}
@@ -89,7 +87,7 @@ export const AppLayout: React.FC = () => {
       {/* Main Content */}
       <main
         className={cn(
-          'pt-14 min-h-screen transition-all duration-300',
+          'pt-[58px] min-h-screen transition-all duration-300',
           sidebarCollapsed ? 'md:pl-14' : 'md:pl-56'
         )}
       >
