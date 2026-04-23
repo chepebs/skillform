@@ -19,10 +19,10 @@ interface TeamAnalyticsProps {
 }
 
 const COLORS = {
-  junior: '#94a3b8',
-  mid: '#3b82f6',
-  senior: '#8b5cf6',
-  lead: '#f59e0b',
+  junior: 'hsl(var(--seniority-junior))',
+  mid: 'hsl(var(--seniority-mid))',
+  senior: 'hsl(var(--seniority-senior))',
+  lead: 'hsl(var(--seniority-lead))',
 };
 
 export const TeamAnalytics: React.FC<TeamAnalyticsProps> = ({ teamMembers }) => {
@@ -81,7 +81,12 @@ export const TeamAnalytics: React.FC<TeamAnalyticsProps> = ({ teamMembers }) => 
     }));
   }, [teamMembers]);
 
-  const PIE_COLORS = ['#94a3b8', '#3b82f6', '#8b5cf6', '#f59e0b'];
+  const PIE_COLORS = [
+    'hsl(var(--seniority-junior))',
+    'hsl(var(--seniority-mid))',
+    'hsl(var(--seniority-senior))',
+    'hsl(var(--seniority-lead))',
+  ];
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

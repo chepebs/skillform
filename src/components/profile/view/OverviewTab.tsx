@@ -32,9 +32,9 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({ profile, onNavigateToT
   const experienceLevel = getExperienceLevel(profile.years_of_experience || 0);
 
   const getRateColor = (rate: number) => {
-    if (rate >= 60) return '#10b981';
-    if (rate >= 30) return '#f59e0b';
-    return '#ef4444';
+    if (rate >= 60) return 'hsl(var(--success))';
+    if (rate >= 30) return 'hsl(var(--warning))';
+    return 'hsl(var(--destructive))';
   };
 
   const createDonutData = (value: number) => [
