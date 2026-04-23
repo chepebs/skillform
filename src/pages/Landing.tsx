@@ -7,6 +7,7 @@ import { MagnifyingGlass, Users, FolderOpen, Briefcase, ChartLine, Globe, Shield
 import { ThemeToggle } from '@/components/layout/ThemeToggle';
 import { LanguageSwitcher } from '@/components/layout/LanguageSwitcher';
 import { BrandMark } from '@/components/brand/BrandMark';
+import { SkillFormIcon } from '@/components/SkillFormIcon';
 import { BracketTag } from '@/components/brand/BracketTag';
 import { SectionAdornment } from '@/components/brand/SectionAdornment';
 import { ImagePlaceholder } from '@/components/brand/ImagePlaceholder';
@@ -220,10 +221,10 @@ const Landing: React.FC = () => {
             {/* Brand tile + wordmark */}
             <a href="#top" className="flex items-center gap-2 min-w-0">
               <span
-                className="w-7 h-7 rounded-md accent-gradient flex items-center justify-center text-white shadow-signal shrink-0 font-headline font-bold text-base leading-none"
+                className="w-7 h-7 rounded-md accent-gradient flex items-center justify-center text-white shadow-signal shrink-0"
                 aria-hidden="true"
               >
-                *
+                <SkillFormIcon className="h-4 w-4" />
               </span>
               <BrandMark
                 prefix="Skill"
