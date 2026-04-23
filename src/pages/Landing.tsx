@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { MagnifyingGlass, Users, FolderOpen, Briefcase, ChartLine, Globe, ShieldCheck, Trophy, FileText, ListChecks, Target, Sparkle, ArrowRight, Star, User as UserIcon } from '@phosphor-icons/react';
+import { MagnifyingGlass, Users, FolderOpen, Briefcase, ChartLine, Globe, ShieldCheck, Trophy, FileText, ListChecks, Target, Sparkle, ArrowRight, Star, User as UserIcon, LinkedinLogo, YoutubeLogo, InstagramLogo } from '@phosphor-icons/react';
+import { Button } from '@/components/ui/button';
+import { SkillFormLogo } from '@/components/SkillFormLogo';
 
 import { ThemeToggle } from '@/components/layout/ThemeToggle';
 import { LanguageSwitcher } from '@/components/layout/LanguageSwitcher';
