@@ -125,8 +125,8 @@ const MasterDashboard: React.FC = () => {
           title={t('admin.master.stats.totalUsers')}
           value={stats.totalUsers}
           icon={Users}
-          iconColor="text-blue-400"
-          iconBgColor="bg-blue-500/10"
+          iconColor="text-chart-3"
+          iconBgColor="bg-chart-3/10"
           loading={loading}
         >
           <RoleDistributionMini data={stats.roleDistribution} />
@@ -136,8 +136,8 @@ const MasterDashboard: React.FC = () => {
           title={t('admin.master.stats.profileCompletion')}
           value={completionRate}
           icon={CheckCircle}
-          iconColor={completionRate > 80 ? 'text-green-400' : completionRate > 50 ? 'text-yellow-400' : 'text-red-400'}
-          iconBgColor={completionRate > 80 ? 'bg-green-500/10' : completionRate > 50 ? 'bg-yellow-500/10' : 'bg-red-500/10'}
+          iconColor={completionRate > 80 ? 'text-success' : completionRate > 50 ? 'text-warning' : 'text-destructive'}
+          iconBgColor={completionRate > 80 ? 'bg-success/10' : completionRate > 50 ? 'bg-warning/10' : 'bg-destructive/10'}
           subtitle={t('admin.master.stats.completionRate', { count: stats.completedProfiles, total: stats.totalUsers })}
           loading={loading}
         />
@@ -146,8 +146,8 @@ const MasterDashboard: React.FC = () => {
           title={t('admin.master.stats.activeThisMonth')}
           value={stats.activeThisMonth}
           icon={Activity}
-          iconColor="text-green-400"
-          iconBgColor="bg-green-500/10"
+          iconColor="text-success"
+          iconBgColor="bg-success/10"
           subtitle={stats.totalUsers > 0 ? t('admin.master.stats.engagementRate', { percent: Math.round((stats.activeThisMonth / stats.totalUsers) * 100) }) : t('admin.master.stats.engagementRate', { percent: 0 })}
           loading={loading}
         />
@@ -156,13 +156,13 @@ const MasterDashboard: React.FC = () => {
           title={t('admin.master.stats.systemStatus')}
           value={0}
           icon={Server}
-          iconColor="text-green-400"
-          iconBgColor="bg-green-500/10"
+          iconColor="text-success"
+          iconBgColor="bg-success/10"
           loading={loading}
         >
           <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-            <span className="text-sm text-green-500">{t('admin.master.stats.online')}</span>
+            <div className="w-2 h-2 rounded-full bg-success animate-pulse" />
+            <span className="text-sm text-success">{t('admin.master.stats.online')}</span>
           </div>
         </StatsCard>
       </div>
