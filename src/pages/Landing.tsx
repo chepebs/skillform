@@ -222,7 +222,6 @@ const Landing: React.FC = () => {
             <BrandMark
               prefix="Skill"
               suffix="form"
-              textClassName=""
               className="text-base sm:text-lg truncate min-w-0"
             />
           </div>
