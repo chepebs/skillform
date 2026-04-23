@@ -17,6 +17,7 @@ import {
   Briefcase,
 } from '@phosphor-icons/react';
 import { SkillFormLogo } from '@/components/SkillFormLogo';
+import { SkillFormIcon } from '@/components/SkillFormIcon';
 import { useCanAccessServices } from '@/hooks/useCanAccessServices';
 
 interface SidebarProps {
@@ -94,10 +95,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
             className="flex items-center gap-2 hover:opacity-90 transition-opacity min-w-0"
             aria-label="Skill form home"
           >
-            <div className="w-7 h-7 rounded-md accent-gradient flex items-center justify-center text-white shadow-signal shrink-0 font-headline text-base leading-none">
-              *
+            <div className="w-7 h-7 rounded-md accent-gradient flex items-center justify-center text-white shadow-signal shrink-0">
+              <SkillFormIcon className="h-4 w-4" />
             </div>
-            {!collapsed && <SkillFormLogo textClassName="text-[15px]" />}
+            {!collapsed && <SkillFormLogo hideIcon textClassName="text-[15px]" />}
           </button>
         </div>
 
