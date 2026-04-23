@@ -194,6 +194,16 @@ const Landing: React.FC = () => {
         <div className="absolute right-0 -top-px h-1 w-1 rounded-full bg-primary shadow-signal" />
       </div>
 
+      {/* Section rail (desktop) + bottom-left section indicator */}
+      <SectionRail
+        items={[
+          { id: 'features', label: t('landing.nav.features', 'Features') },
+          { id: 'services', label: t('landing.nav.services', 'Services') },
+          { id: 'capabilities', label: t('landing.nav.capabilities', 'Capabilities') },
+          { id: 'trust', label: t('landing.nav.trust', 'Trust') },
+        ]}
+      />
+
       {/* ── STICKY NAV ── */}
       <nav className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
