@@ -58,13 +58,8 @@ export const LoginForm: React.FC = () => {
     }
   };
 
-  const onSubmitWithDebug = (data: LoginFormData) => {
-    console.log('🔍 Login attempt with:', { email: data.email, passwordLength: data.password?.length });
-    onSubmit(data);
-  };
-
   return (
-    <form onSubmit={handleSubmit(onSubmitWithDebug)} className="space-y-6" autoComplete="off">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" autoComplete="off">
       <div className="space-y-2">
         <Label htmlFor="login-email" className="text-card-foreground">{t('auth.login.emailLabel')}</Label>
         <div className="relative">

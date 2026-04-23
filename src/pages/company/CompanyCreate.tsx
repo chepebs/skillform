@@ -58,17 +58,7 @@ const CompanyCreate: React.FC = () => {
     if (!user) return;
     setSubmitting(true);
     try {
-      let logo_url: string | null = null;
-      if (logoFile) {
-        const ext = logoFile.name.split('.').pop() || 'png';
-        const path = `${user.id}/${Date.now()}.${ext}`;
-        const { error: upErr } = await supabase.storage
-          .from('company-logos')
-          .upload(path, logoFile, { upsert: true });
-        if (upErr) throw upErr;
-        logo_url = supabase.storage.from('company-logos').getPublicUrl(path).data.publicUrl;
-      }
-
+      // 1) Create the company first so we have an id for the logo storage path
       const { data: company, error: cErr } = await supabase
         .from('companies')
         .insert({
@@ -77,10 +67,10 @@ const CompanyCreate: React.FC = () => {
           description: data.description || null,
           website: data.website || null,
           industry: data.industry || null,
-          logo_url,
+          logo_url: null,
           created_by: user.id,
         })
-        .select('id, slug, invite_token')
+        .select('id, slug')
         .single();
       if (cErr) throw cErr;
 
@@ -89,11 +79,29 @@ const CompanyCreate: React.FC = () => {
         .update({ company_id: company.id, profile_completed: true })
         .eq('user_id', user.id);
 
-      // Promote to master_admin within their company
+      // Promote to master_admin within their company (needed before logo upload RLS)
       await supabase.from('user_roles')
         .upsert({ user_id: user.id, role: 'master_admin' }, { onConflict: 'user_id,role' });
 
-      const url = `${window.location.origin}/c/${company.slug}/join?token=${company.invite_token}`;
+      // 2) Upload the logo into the company's own folder, then patch the company row
+      let logo_url: string | null = null;
+      if (logoFile) {
+        const ext = logoFile.name.split('.').pop() || 'png';
+        const path = `${company.id}/${Date.now()}.${ext}`;
+        const { error: upErr } = await supabase.storage
+          .from('company-logos')
+          .upload(path, logoFile, { upsert: true });
+        if (upErr) throw upErr;
+        logo_url = supabase.storage.from('company-logos').getPublicUrl(path).data.publicUrl;
+        await supabase.from('companies').update({ logo_url }).eq('id', company.id);
+      }
+
+      // 3) Fetch the invite token securely (only company admins can read it)
+      const { data: tokenData, error: tErr } = await supabase
+        .rpc('get_company_invite_token', { _company_id: company.id });
+      if (tErr) throw tErr;
+
+      const url = `${window.location.origin}/c/${company.slug}/join?token=${tokenData}`;
       setInviteUrl(url);
       await refreshProfile();
       setStep(5);

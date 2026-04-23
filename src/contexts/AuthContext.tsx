@@ -22,7 +22,6 @@ export interface Company {
   name: string;
   slug: string;
   logo_url: string | null;
-  invite_token: string;
 }
 
 interface AuthContextType {
@@ -69,7 +68,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     if (profileTyped?.company_id) {
       const { data: companyData } = await supabase
         .from('companies')
-        .select('id, name, slug, logo_url, invite_token')
+        .select('id, name, slug, logo_url')
         .eq('id', profileTyped.company_id)
         .maybeSingle();
       setCompany((companyData as Company) ?? null);
