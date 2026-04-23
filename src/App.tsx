@@ -43,6 +43,8 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <>
+      <AmbientBackground />
+      <AsteriskPreloader />
       <TooltipProvider>
         <Toaster />
         <Sonner />
