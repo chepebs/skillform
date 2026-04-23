@@ -8,6 +8,8 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
 import { CompanyGate } from "@/components/auth/CompanyGate";
 import { AppLayout } from "@/components/layout/AppLayout";
+import { AmbientBackground } from "@/components/brand/AmbientBackground";
+import { AsteriskPreloader } from "@/components/brand/AsteriskPreloader";
 
 // Pages
 import Landing from "./pages/Landing";
