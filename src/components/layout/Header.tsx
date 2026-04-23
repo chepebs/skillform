@@ -25,6 +25,7 @@ import { NotificationsDropdown } from './NotificationsDropdown';
 import { supabase } from '@/integrations/supabase/client';
 import aideaformLogo from '@/assets/aideaform-logo.svg';
 import { SkillFormLogo } from '@/components/SkillFormLogo';
+import { SkillFormIcon } from '@/components/SkillFormIcon';
 
 interface HeaderProps {
   sidebarCollapsed: boolean;
@@ -173,13 +174,13 @@ export const Header: React.FC<HeaderProps> = ({
           />
           <span className="text-muted-foreground/40 text-xs hidden md:inline">|</span>
 
-          {/* Brand mark: gradient asterisk tile + Skill*form wordmark */}
+          {/* Brand mark: gradient icon tile + Skill*form wordmark */}
           <Link to="/dashboard" className="flex items-center gap-2 min-w-0 group">
-            <div className="w-7 h-7 rounded-md accent-gradient flex items-center justify-center text-white shadow-signal shrink-0 font-headline text-base leading-none group-hover:opacity-90 transition-opacity">
-              *
+            <div className="w-7 h-7 rounded-md accent-gradient flex items-center justify-center text-white shadow-signal shrink-0 group-hover:opacity-90 transition-opacity">
+              <SkillFormIcon className="h-4 w-4" />
             </div>
             <span className="hidden sm:inline-flex">
-              <SkillFormLogo textClassName="text-[15px]" />
+              <SkillFormLogo hideIcon textClassName="text-[15px]" />
             </span>
           </Link>
 
