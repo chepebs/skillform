@@ -839,80 +839,96 @@ const Landing: React.FC = () => {
       </main>
 
       {/* ── FOOTER ── */}
-      <footer className="w-full py-16 px-6 border-t border-border bg-background">
-        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
-          <div className="col-span-2 md:col-span-1">
-            <div className="flex flex-col gap-3 mb-6">
-              <BrandMark prefix="Skill" suffix="form" className="text-base" />
-              <img
-                src={aideaformLogo}
-                alt="aidea*form"
-                className="h-3 shrink-0 w-fit"
-              />
+      <footer className="border-t border-border bg-muted/10 pt-16 pb-8 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-12">
+            {/* Brand cluster */}
+            <div>
+              <div className="flex flex-col gap-3 mb-4">
+                <SkillFormLogo textClassName="text-base" />
+                <img
+                  src={aideaformLogo}
+                  alt="aidea*form"
+                  className="h-3 shrink-0 w-fit"
+                />
+              </div>
+              <p className="text-sm text-muted-foreground mt-3">
+                {t(
+                  'landing.footer.tagline',
+                  'Discover and connect with talent across your organization.',
+                )}
+              </p>
+              <div className="flex gap-3 mt-5">
+                {[LinkedinLogo, YoutubeLogo, InstagramLogo].map((Icon, i) => (
+                  <Button
+                    key={i}
+                    variant="ghost"
+                    size="icon"
+                    className="text-muted-foreground hover:text-foreground w-8 h-8"
+                  >
+                    <Icon className="w-4 h-4" weight="regular" />
+                  </Button>
+                ))}
+              </div>
             </div>
-            <p className="text-sm text-muted-foreground mb-6">
-              {t(
-                'landing.footer.tagline',
-                'Discover and connect with talent across your organization.',
-              )}
-            </p>
-          </div>
 
-          {[
-            {
-              title: t('landing.footer.product', 'Product'),
-              links: [
-                t('landing.footer.features', 'Features'),
-                t('landing.footer.directory', 'Directory'),
-                t('landing.footer.profiles', 'Profiles'),
-                t('landing.footer.services', 'Services'),
-                t('landing.footer.analytics', 'Analytics'),
-              ],
-            },
-            {
-              title: t('landing.footer.company', 'Company'),
-              links: [
-                t('landing.footer.about', 'About'),
-                t('landing.footer.careers', 'Careers'),
-                t('landing.footer.contact', 'Contact'),
-              ],
-            },
-            {
-              title: t('landing.footer.resources', 'Resources'),
-              links: [
-                t('landing.footer.help', 'Help center'),
-                t('landing.footer.guides', 'Guides'),
-                t('landing.footer.support', 'Support'),
-              ],
-            },
-          ].map((section) => (
-            <div key={section.title}>
-              <h4 className="text-label text-primary mb-6">{section.title}</h4>
-              <ul className="space-y-3 text-sm">
-                {section.links.map((link) => (
-                  <li key={link}>
+            {/* Link columns */}
+            {[
+              {
+                title: t('landing.footer.product', 'Product'),
+                links: [
+                  t('landing.footer.features', 'Features'),
+                  t('landing.footer.directory', 'Directory'),
+                  t('landing.footer.profiles', 'Profiles'),
+                  t('landing.footer.services', 'Services'),
+                  t('landing.footer.analytics', 'Analytics'),
+                ],
+              },
+              {
+                title: t('landing.footer.company', 'Company'),
+                links: [
+                  t('landing.footer.about', 'About'),
+                  t('landing.footer.careers', 'Careers'),
+                  t('landing.footer.contact', 'Contact'),
+                  t('landing.footer.privacy', 'Privacy policy'),
+                  t('landing.footer.terms', 'Terms of service'),
+                ],
+              },
+              {
+                title: t('landing.footer.resources', 'Resources'),
+                links: [
+                  t('landing.footer.help', 'Help center'),
+                  t('landing.footer.guides', 'Guides'),
+                  t('landing.footer.support', 'Support'),
+                ],
+              },
+            ].map((section) => (
+              <div key={section.title}>
+                <p className="eyebrow mb-4">{section.title}</p>
+                <div className="space-y-2.5">
+                  {section.links.map((link) => (
                     <a
+                      key={link}
                       href="#"
-                      className="text-muted-foreground hover:text-foreground transition-colors story-link"
+                      className="block text-sm text-muted-foreground hover:text-foreground transition-colors"
                     >
                       {link}
                     </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
 
-        <div className="max-w-6xl mx-auto mt-16 pt-6 border-t border-border/60 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
-          <p>© Grupo Garnier. {t('common.labels.allRightsReserved', 'All rights reserved.')}</p>
-          <div className="flex gap-6">
-            <a href="#" className="hover:text-foreground transition-colors">
-              {t('landing.footer.privacy', 'Privacy')}
-            </a>
-            <a href="#" className="hover:text-foreground transition-colors">
-              {t('landing.footer.terms', 'Terms')}
-            </a>
+          <div className="tonal-divider" />
+
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-3 mt-8">
+            <p className="text-sm text-muted-foreground">
+              © Grupo Garnier. {t('common.labels.allRightsReserved', 'All rights reserved.')}
+            </p>
+            <p className="text-sm text-muted-foreground">
+              {t('landing.footer.builtWithAI', 'Built with AI by aidea*form')}
+            </p>
           </div>
         </div>
       </footer>
