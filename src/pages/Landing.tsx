@@ -204,52 +204,77 @@ const Landing: React.FC = () => {
         ]}
       />
 
-      {/* ── STICKY NAV ── */}
-      <nav className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
-          <div className="flex items-center gap-3 min-w-0">
+      {/* ── STICKY NAV (Signal*form Launchpad style) ── */}
+      <nav className="sticky top-0 w-full z-50 bg-card border-b border-border">
+        <div className="flex justify-between items-center h-[58px] px-4 sm:px-6 md:px-12 max-w-[1440px] mx-auto gap-2">
+          {/* Left: Logos + Menu trigger */}
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0 min-w-0">
+            {/* Partner logo + separator — desktop only to avoid mobile crowding */}
             <img
               src={aideaformLogo}
               alt="aidea*form"
-              className="h-3 shrink-0 dark:invert"
+              className="h-3 shrink-0 hidden md:block dark:invert"
             />
-            <span className="text-muted-foreground/40 text-xs">|</span>
-            <BrandMark
-              prefix="Skill"
-              suffix="form"
-              className="text-base sm:text-lg truncate min-w-0"
-            />
-          </div>
+            <span className="text-muted-foreground/40 text-xs hidden md:inline">|</span>
 
-          <div className="hidden md:flex items-center gap-6 text-sm text-muted-foreground">
-            <a href="#features" className="hover:text-foreground transition-colors">
-              {t('landing.nav.features', 'Features')}
+            {/* Brand tile + wordmark */}
+            <a href="#top" className="flex items-center gap-2 min-w-0">
+              <span
+                className="w-7 h-7 rounded-md accent-gradient flex items-center justify-center text-white shadow-signal shrink-0 font-headline font-bold text-base leading-none"
+                aria-hidden="true"
+              >
+                *
+              </span>
+              <BrandMark
+                prefix="Skill"
+                suffix="form"
+                className="text-[15px] tracking-tight truncate"
+              />
             </a>
-            <a href="#services" className="hover:text-foreground transition-colors">
-              {t('landing.nav.services', 'Services')}
-            </a>
-            <a href="#capabilities" className="hover:text-foreground transition-colors">
-              {t('landing.nav.capabilities', 'Capabilities')}
-            </a>
-            <a href="#trust" className="hover:text-foreground transition-colors">
-              {t('landing.nav.trust', 'Trust')}
-            </a>
-          </div>
 
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-            <LanguageSwitcher compact />
-            <div className="hidden sm:block">
-              <ThemeToggle />
+            {/* Menu trigger (desktop) — separator + section links */}
+            <span className="hidden md:inline text-muted-foreground/40 text-xs ml-1">|</span>
+            <div className="hidden md:flex items-center gap-5 ml-1 text-sm text-muted-foreground">
+              <a href="#features" className="hover:text-foreground transition-colors">
+                {t('landing.nav.features', 'Features')}
+              </a>
+              <a href="#services" className="hover:text-foreground transition-colors">
+                {t('landing.nav.services', 'Services')}
+              </a>
+              <a href="#capabilities" className="hover:text-foreground transition-colors">
+                {t('landing.nav.capabilities', 'Capabilities')}
+              </a>
+              <a href="#trust" className="hover:text-foreground transition-colors">
+                {t('landing.nav.trust', 'Trust')}
+              </a>
             </div>
+          </div>
+
+          {/* Right: Lang + Theme + Auth */}
+          <div className="hidden md:flex items-center gap-2 sm:gap-3 shrink-0">
+            <LanguageSwitcher compact />
+            <ThemeToggle />
             <button
               onClick={() => openAuth('login')}
-              className="hidden sm:block text-sm font-medium text-muted-foreground hover:text-foreground transition-colors px-2"
+              className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors px-2"
             >
               {t('auth.login.signIn', 'Sign in')}
             </button>
             <button
               onClick={() => openAuth('login')}
               className="accent-gradient text-white text-sm font-medium px-5 py-2 rounded-full shadow-signal hover:opacity-90 transition-opacity"
+            >
+              {t('landing.getStarted', 'Get started')}
+            </button>
+          </div>
+
+          {/* Mobile: Lang + Theme + CTA */}
+          <div className="flex md:hidden items-center gap-2 shrink-0">
+            <LanguageSwitcher compact />
+            <ThemeToggle />
+            <button
+              onClick={() => openAuth('login')}
+              className="accent-gradient text-white text-xs font-medium px-4 py-1.5 rounded-full shadow-signal hover:opacity-90 transition-opacity"
             >
               {t('landing.getStarted', 'Get started')}
             </button>
