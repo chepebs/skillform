@@ -163,6 +163,25 @@
     --sidebar-accent-foreground: 220 25% 93%;
     --sidebar-border: 215 38% 19%;
     --sidebar-ring: 1 81% 57%;
+
+    /* ── Chart palette (dark-tuned) ── */
+    --chart-1: 1 81% 65%;
+    --chart-2: 181 100% 50%;
+    --chart-3: 217 72% 65%;
+    --chart-4: 35 95% 60%;
+    --chart-5: 160 72% 50%;
+    --chart-6: 271 81% 70%;
+    --chart-7: 326 78% 70%;
+    --chart-8: 220 13% 70%;
+
+    --seniority-junior: 220 13% 70%;
+    --seniority-mid: 217 72% 65%;
+    --seniority-senior: 271 65% 70%;
+    --seniority-lead: 35 95% 60%;
+
+    --social-linkedin: 210 90% 60%;
+    --social-instagram: 340 75% 65%;
+    --social-behance: 217 100% 65%;
   }
 
   * {
