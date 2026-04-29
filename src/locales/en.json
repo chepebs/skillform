@@ -634,6 +634,47 @@
         "save": "Save Changes",
         "saving": "Saving..."
       }
+    },
+    "agencies": {
+      "title": "Agency Management",
+      "subtitle": "Manage agencies for employee profiles",
+      "addNew": "Add Agency",
+      "edit": "Edit Agency",
+      "name": "Agency Name",
+      "namePlaceholder": "Enter agency name",
+      "nameRequired": "Agency name is required",
+      "duplicateName": "An agency with this name already exists",
+      "country": "Country",
+      "created": "Agency created successfully",
+      "updated": "Agency updated successfully",
+      "deleted": "Agency deleted successfully",
+      "saveFailed": "Failed to save agency",
+      "deleteFailed": "Failed to delete agency",
+      "deleteTitle": "Delete Agency",
+      "deleteConfirm": "Are you sure you want to delete \"{{name}}\"? This action cannot be undone.",
+      "noAgencies": "No agencies found"
+    },
+    "departments": {
+      "title": "Department Management",
+      "subtitle": "Manage agency departments. Pick from the standard list or add a custom one.",
+      "addNew": "Add Department",
+      "edit": "Edit Department",
+      "fromList": "From standard list",
+      "custom": "Custom",
+      "name": "Department Name",
+      "namePlaceholder": "Enter department name",
+      "description": "Description",
+      "descriptionPlaceholder": "Optional description",
+      "nameRequired": "Department name is required",
+      "duplicateName": "A department with this name already exists",
+      "created": "Department created successfully",
+      "updated": "Department updated successfully",
+      "deleted": "Department deleted successfully",
+      "saveFailed": "Failed to save department",
+      "deleteFailed": "Failed to delete department",
+      "deleteTitle": "Delete Department",
+      "deleteConfirm": "Are you sure you want to delete \"{{name}}\"? This action cannot be undone.",
+      "noDepartments": "No departments yet"
     }
   },
   "roles": {
