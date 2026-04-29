@@ -9,7 +9,7 @@
     "inactive": "Inactivo",
     "select": "Seleccionar...",
     "loading": "Cargando...",
-    "messages": { "error": "Algo salió mal. Inténtalo de nuevo." },
+    
     "buttons": {
       "save": "Guardar",
       "cancel": "Cancelar",
