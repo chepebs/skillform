@@ -19,13 +19,11 @@ export const useAppNavigation = () => {
       return;
     }
 
-    // Employees should go through /dashboard so it can decide whether to show
-    // profile creation vs. the profile view.
+    // Users go through /dashboard which routes them to the right view.
     const dashboardRoutes: Record<AppRole, string> = {
-      employee: '/dashboard',
-      organizer_admin: '/admin/organizer',
-      department_director: '/admin/director',
-      master_admin: '/admin/master',
+      user: '/dashboard',
+      manager: '/admin/director',
+      admin: '/admin/master',
     };
 
     navigate(dashboardRoutes[role] || '/dashboard');
