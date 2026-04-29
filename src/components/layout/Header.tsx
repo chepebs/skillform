@@ -101,6 +101,10 @@ export const Header: React.FC<HeaderProps> = ({
     fetchName();
   }, [profileUserId]);
 
+  // Segments that are URL groupings only — they have no destination page,
+  // so the breadcrumb should render as plain text (not a link).
+  const NON_NAVIGABLE_SEGMENTS = new Set(['admin']);
+
   const generateBreadcrumbs = (): Breadcrumb[] => {
     const breadcrumbs: Breadcrumb[] = [];
     let currentPath = '';
@@ -120,13 +124,15 @@ export const Header: React.FC<HeaderProps> = ({
         segment === 'profile' &&
         pathSegments.length === 2 &&
         isProfileView;
+      const isNonNavigable = NON_NAVIGABLE_SEGMENTS.has(segment);
       breadcrumbs.push({
         label,
-        path: isProfileParent
-          ? undefined
-          : index < pathSegments.length - 1
-          ? currentPath
-          : undefined,
+        path:
+          isProfileParent || isNonNavigable
+            ? undefined
+            : index < pathSegments.length - 1
+            ? currentPath
+            : undefined,
       });
     });
     return breadcrumbs;

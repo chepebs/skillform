@@ -259,7 +259,13 @@ const ProfileCreate: React.FC = () => {
 
   const handleNext = async () => {
     const isValid = await validateCurrentStep();
-    if (isValid) setCurrentStep((prev) => Math.min(prev + 1, TOTAL_STEPS));
+    if (isValid) {
+      setCurrentStep((prev) => Math.min(prev + 1, TOTAL_STEPS));
+      // Scroll to top so users see the next step's content
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      toast.error(t('profile.creation.validationError', 'Please complete the required fields before continuing.'));
+    }
   };
 
   const handlePrevious = () => setCurrentStep((prev) => Math.max(prev - 1, 1));

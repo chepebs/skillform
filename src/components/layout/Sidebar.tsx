@@ -10,7 +10,6 @@ import {
   Folder,
   Buildings as Building,
   Shield,
-  ChartBar as BarChart3,
   Gear as Settings,
   CaretLeft as ChevronLeft,
   CaretRight as ChevronRight,
@@ -41,7 +40,6 @@ const navItems: NavItem[] = [
   { labelKey: 'common.navigation.myTeam', icon: Users, path: '/admin/director/team', roles: ['department_director', 'master_admin'] },
   { labelKey: 'common.navigation.departmentInfo', icon: Building, path: '/admin/director/info', roles: ['department_director', 'master_admin'] },
   { labelKey: 'common.navigation.userManagement', icon: Shield, path: '/admin/master/users', roles: ['master_admin'] },
-  { labelKey: 'common.navigation.analytics', icon: BarChart3, path: '/admin/master/analytics', roles: ['master_admin'] },
   { labelKey: 'common.navigation.settings', icon: Settings, path: '/admin/settings', roles: ['master_admin'] },
 ];
 
