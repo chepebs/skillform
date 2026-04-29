@@ -1,5 +1,15 @@
 {
   "common": {
+    "save": "Save",
+    "saving": "Saving...",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "active": "Active",
+    "inactive": "Inactive",
+    "select": "Select...",
+    "loading": "Loading...",
+    "messages": { "error": "Something went wrong. Please try again." },
     "buttons": {
       "save": "Save",
       "cancel": "Cancel",

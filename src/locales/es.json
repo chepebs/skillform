@@ -1,5 +1,15 @@
 {
   "common": {
+    "save": "Guardar",
+    "saving": "Guardando...",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "active": "Activo",
+    "inactive": "Inactivo",
+    "select": "Seleccionar...",
+    "loading": "Cargando...",
+    "messages": { "error": "Algo salió mal. Inténtalo de nuevo." },
     "buttons": {
       "save": "Guardar",
       "cancel": "Cancelar",
