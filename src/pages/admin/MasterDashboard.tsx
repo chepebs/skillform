@@ -27,6 +27,7 @@ import { DeleteUserDialog } from '@/components/admin/master/DeleteUserDialog';
 import { PendingInvitations } from '@/components/admin/master/PendingInvitations';
 import { ExportPDFButton } from '@/components/admin/master/ExportPDFButton';
 import { AgencyManagement } from '@/components/admin/master/AgencyManagement';
+import { DepartmentManagement } from '@/components/admin/master/DepartmentManagement';
 import { useMasterDashboardData } from '@/hooks/useMasterDashboardData';
 
 interface User {
@@ -106,7 +107,7 @@ const MasterDashboard: React.FC = () => {
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid w-full max-w-md grid-cols-2 mb-6">
+        <TabsList className="grid w-full max-w-xl grid-cols-3 mb-6">
           <TabsTrigger value="dashboard" className="flex items-center gap-2">
             <LayoutDashboard className="h-4 w-4" />
             {t('admin.master.tabs.dashboard')}
@@ -114,6 +115,10 @@ const MasterDashboard: React.FC = () => {
           <TabsTrigger value="agencies" className="flex items-center gap-2">
             <Building2 className="h-4 w-4" />
             {t('admin.master.tabs.agencies')}
+          </TabsTrigger>
+          <TabsTrigger value="departments" className="flex items-center gap-2">
+            <Building2 className="h-4 w-4" />
+            {t('admin.master.tabs.departments')}
           </TabsTrigger>
         </TabsList>
 
@@ -200,6 +205,10 @@ const MasterDashboard: React.FC = () => {
 
         <TabsContent value="agencies" className="tab-content">
           <AgencyManagement />
+        </TabsContent>
+
+        <TabsContent value="departments" className="tab-content">
+          <DepartmentManagement />
         </TabsContent>
       </Tabs>
 
