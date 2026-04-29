@@ -10,7 +10,6 @@ import {
   Folder,
   Buildings as Building,
   Shield,
-  ChartBar as BarChart3,
   Gear as Settings,
   CaretLeft as ChevronLeft,
   CaretRight as ChevronRight,
