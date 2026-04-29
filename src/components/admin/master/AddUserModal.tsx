@@ -136,12 +136,12 @@ export const AddUserModal: React.FC<AddUserModalProps> = ({
       expiresAt.setDate(expiresAt.getDate() + 7); // 7 days expiry
 
       // Create invitation token
-      const { error: tokenError } = await supabase.from('invitation_tokens').insert({
+      const { error: tokenError } = await supabase.from('invitation_tokens').insert([{
         email: data.email,
         token,
         role: data.role,
         expires_at: expiresAt.toISOString(),
-      });
+      }]);
 
       if (tokenError) throw tokenError;
 

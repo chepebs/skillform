@@ -79,9 +79,9 @@ const CompanyCreate: React.FC = () => {
         .update({ company_id: company.id, profile_completed: true })
         .eq('user_id', user.id);
 
-      // Promote to master_admin within their company (needed before logo upload RLS)
+      // Promote to admin within their company (needed before logo upload RLS)
       await supabase.from('user_roles')
-        .upsert({ user_id: user.id, role: 'admin' }, { onConflict: 'user_id,role' });
+        .upsert([{ user_id: user.id, role: 'admin' as const }], { onConflict: 'user_id,role' });
 
       // 2) Upload the logo into the company's own folder, then patch the company row
       let logo_url: string | null = null;
