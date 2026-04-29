@@ -187,8 +187,7 @@ export const UserManagementTable: React.FC<UserManagementTableProps> = ({
           <SelectContent>
             <SelectItem value="all">All Roles</SelectItem>
             <SelectItem value="user">Employee</SelectItem>
-            <SelectItem value="manager">Organizer Admin</SelectItem>
-            <SelectItem value="manager">Dept. Director</SelectItem>
+            <SelectItem value="manager">Manager</SelectItem>
             <SelectItem value="admin">Master Admin</SelectItem>
           </SelectContent>
         </Select>

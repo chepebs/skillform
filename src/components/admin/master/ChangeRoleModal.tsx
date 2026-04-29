@@ -79,7 +79,7 @@ export const ChangeRoleModal: React.FC<ChangeRoleModalProps> = ({
       // Update user role
       const { error } = await supabase
         .from('user_roles')
-        .update({ role: newRole as 'user' | 'manager' | 'manager' | 'admin' })
+        .update({ role: newRole as 'user' | 'manager' | 'admin' })
         .eq('user_id', user.user_id);
 
       if (error) throw error;
@@ -165,8 +165,7 @@ export const ChangeRoleModal: React.FC<ChangeRoleModalProps> = ({
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="user">Employee</SelectItem>
-                <SelectItem value="manager">Organizer Admin</SelectItem>
-                <SelectItem value="manager">Department Director</SelectItem>
+                <SelectItem value="manager">Manager</SelectItem>
                 <SelectItem value="admin">Master Admin</SelectItem>
               </SelectContent>
             </Select>

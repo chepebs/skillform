@@ -36,7 +36,7 @@ import { CircleNotch as Loader2, Copy, Check } from '@phosphor-icons/react';
 
 const addUserSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
-  role: z.enum(['user', 'manager', 'manager', 'admin']),
+  role: z.enum(['user', 'manager', 'admin']),
   department: z.string().optional(),
   sendInvitation: z.boolean().default(true),
   customMessage: z.string().optional(),
@@ -266,8 +266,7 @@ export const AddUserModal: React.FC<AddUserModalProps> = ({
                       </FormControl>
                       <SelectContent>
                         <SelectItem value="user">Employee</SelectItem>
-                        <SelectItem value="manager">Organizer Admin</SelectItem>
-                        <SelectItem value="manager">Department Director</SelectItem>
+                        <SelectItem value="manager">Manager</SelectItem>
                         <SelectItem value="admin">Master Admin</SelectItem>
                       </SelectContent>
                     </Select>
