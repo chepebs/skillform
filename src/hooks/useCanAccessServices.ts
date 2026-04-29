@@ -14,7 +14,7 @@ export const useCanAccessServices = (): { canAccess: boolean; isLoading: boolean
     enabled: !!user?.id,
     queryFn: async () => {
       // Role-based access first (cheap)
-      if (role === 'admin' || role === 'manager' || role === 'manager') {
+      if (role === 'admin' || role === 'manager') {
         return true;
       }
       // Otherwise, check seniority on profile
