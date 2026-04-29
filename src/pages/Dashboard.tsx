@@ -16,10 +16,6 @@ const Dashboard: React.FC = () => {
       return;
     }
     if (role === 'manager') {
-      navigate('/admin/organizer', { replace: true });
-      return;
-    }
-    if (role === 'manager') {
       navigate('/admin/director', { replace: true });
       return;
     }
