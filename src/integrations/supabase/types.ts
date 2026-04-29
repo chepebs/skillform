@@ -259,7 +259,9 @@ export type Database = {
           description: string | null
           director_id: string | null
           id: string
+          is_active: boolean
           name: string
+          sort_order: number
         }
         Insert: {
           company_id?: string | null
@@ -267,7 +269,9 @@ export type Database = {
           description?: string | null
           director_id?: string | null
           id?: string
+          is_active?: boolean
           name: string
+          sort_order?: number
         }
         Update: {
           company_id?: string | null
@@ -275,7 +279,9 @@ export type Database = {
           description?: string | null
           director_id?: string | null
           id?: string
+          is_active?: boolean
           name?: string
+          sort_order?: number
         }
         Relationships: [
           {
