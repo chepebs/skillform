@@ -1,5 +1,15 @@
 {
   "common": {
+    "save": "Guardar",
+    "saving": "Guardando...",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "active": "Activo",
+    "inactive": "Inactivo",
+    "select": "Seleccionar...",
+    "loading": "Cargando...",
+    
     "buttons": {
       "save": "Guardar",
       "cancel": "Cancelar",
@@ -429,6 +439,11 @@
       "badge": "Administrador Principal",
       "addUser": "Agregar Usuario",
       "userManagement": "Gestión de Usuarios",
+      "tabs": {
+        "dashboard": "Panel",
+        "agencies": "Agencias",
+        "departments": "Departamentos"
+      },
       "dateRange": {
         "last7Days": "Últimos 7 días",
         "last30Days": "Últimos 30 días",
@@ -619,6 +634,47 @@
         "save": "Guardar Cambios",
         "saving": "Guardando..."
       }
+    },
+    "agencies": {
+      "title": "Gestión de Agencias",
+      "subtitle": "Administra las agencias para los perfiles de empleados",
+      "addNew": "Agregar Agencia",
+      "edit": "Editar Agencia",
+      "name": "Nombre de la Agencia",
+      "namePlaceholder": "Ingrese el nombre de la agencia",
+      "nameRequired": "El nombre de la agencia es obligatorio",
+      "duplicateName": "Ya existe una agencia con este nombre",
+      "country": "País",
+      "created": "Agencia creada exitosamente",
+      "updated": "Agencia actualizada exitosamente",
+      "deleted": "Agencia eliminada exitosamente",
+      "saveFailed": "Error al guardar la agencia",
+      "deleteFailed": "Error al eliminar la agencia",
+      "deleteTitle": "Eliminar Agencia",
+      "deleteConfirm": "¿Seguro que deseas eliminar \"{{name}}\"? Esta acción no se puede deshacer.",
+      "noAgencies": "No se encontraron agencias"
+    },
+    "departments": {
+      "title": "Gestión de Departamentos",
+      "subtitle": "Administra los departamentos de la agencia. Elige de la lista estándar o agrega uno personalizado.",
+      "addNew": "Agregar Departamento",
+      "edit": "Editar Departamento",
+      "fromList": "Desde la lista estándar",
+      "custom": "Personalizado",
+      "name": "Nombre del Departamento",
+      "namePlaceholder": "Ingrese el nombre del departamento",
+      "description": "Descripción",
+      "descriptionPlaceholder": "Descripción opcional",
+      "nameRequired": "El nombre del departamento es obligatorio",
+      "duplicateName": "Ya existe un departamento con este nombre",
+      "created": "Departamento creado exitosamente",
+      "updated": "Departamento actualizado exitosamente",
+      "deleted": "Departamento eliminado exitosamente",
+      "saveFailed": "Error al guardar el departamento",
+      "deleteFailed": "Error al eliminar el departamento",
+      "deleteTitle": "Eliminar Departamento",
+      "deleteConfirm": "¿Seguro que deseas eliminar \"{{name}}\"? Esta acción no se puede deshacer.",
+      "noDepartments": "Aún no hay departamentos"
     }
   },
   "roles": {
