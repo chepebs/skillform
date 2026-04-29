@@ -860,7 +860,8 @@
       "completing": "Completando perfil...",
       "profileCompleted": "¡Perfil Completado!",
       "congratulations": "¡Felicitaciones! Su perfil está completo.",
-      "redirecting": "Redirigiendo a su perfil..."
+      "redirecting": "Redirigiendo a su perfil...",
+      "validationError": "Por favor complete los campos requeridos antes de continuar."
     },
     "basicInfo": {
       "title": "Información Básica",

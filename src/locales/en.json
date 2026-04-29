@@ -864,7 +864,8 @@
       "completing": "Completing profile...",
       "profileCompleted": "Profile Completed!",
       "congratulations": "Congratulations! Your profile is complete.",
-      "redirecting": "Redirecting to your profile..."
+      "redirecting": "Redirecting to your profile...",
+      "validationError": "Please complete the required fields before continuing."
     },
     "basicInfo": {
       "title": "Basic Information",
