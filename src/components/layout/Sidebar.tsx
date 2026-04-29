@@ -32,15 +32,15 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { labelKey: 'common.navigation.dashboard', icon: Home, path: '/dashboard', roles: ['master_admin', 'organizer_admin', 'department_director'] },
+  { labelKey: 'common.navigation.dashboard', icon: Home, path: '/dashboard', roles: ['admin', 'manager', 'manager'] },
   { labelKey: 'common.navigation.myProfile', icon: User, path: '/profile/me' },
   { labelKey: 'common.navigation.directory', icon: Users, path: '/directory' },
   { labelKey: 'common.navigation.services', icon: Briefcase, path: '/services' },
-  { labelKey: 'common.navigation.groups', icon: Folder, path: '/admin/organizer/groups', roles: ['organizer_admin', 'master_admin'] },
-  { labelKey: 'common.navigation.myTeam', icon: Users, path: '/admin/director/team', roles: ['department_director', 'master_admin'] },
-  { labelKey: 'common.navigation.departmentInfo', icon: Building, path: '/admin/director/info', roles: ['department_director', 'master_admin'] },
-  { labelKey: 'common.navigation.userManagement', icon: Shield, path: '/admin/master/users', roles: ['master_admin'] },
-  { labelKey: 'common.navigation.settings', icon: Settings, path: '/admin/settings', roles: ['master_admin'] },
+  { labelKey: 'common.navigation.groups', icon: Folder, path: '/admin/organizer/groups', roles: ['manager', 'admin'] },
+  { labelKey: 'common.navigation.myTeam', icon: Users, path: '/admin/director/team', roles: ['manager', 'admin'] },
+  { labelKey: 'common.navigation.departmentInfo', icon: Building, path: '/admin/director/info', roles: ['manager', 'admin'] },
+  { labelKey: 'common.navigation.userManagement', icon: Shield, path: '/admin/master/users', roles: ['admin'] },
+  { labelKey: 'common.navigation.settings', icon: Settings, path: '/admin/settings', roles: ['admin'] },
 ];
 
 /**

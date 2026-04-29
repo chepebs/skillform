@@ -39,19 +39,19 @@ const ProfileView: React.FC = () => {
     error,
   } = useProfileData(profileId);
 
-  const isOrganizerOrAdmin = role === 'organizer_admin' || role === 'master_admin';
-  const isMasterAdmin = role === 'master_admin';
+  const isOrganizerOrAdmin = role === 'manager' || role === 'admin';
+  const isMasterAdmin = role === 'admin';
   const showAdditionalTab = profile?.consulting_work || isMasterAdmin;
 
   // Admins should never land on /profile/me (they may not have an employee profile)
   useEffect(() => {
     if (!isMe || !role) return;
 
-    if (role === 'master_admin') {
+    if (role === 'admin') {
       navigate('/admin/master', { replace: true });
-    } else if (role === 'organizer_admin') {
+    } else if (role === 'manager') {
       navigate('/admin/organizer', { replace: true });
-    } else if (role === 'department_director') {
+    } else if (role === 'manager') {
       navigate('/admin/director', { replace: true });
     }
   }, [isMe, role, navigate]);
@@ -59,7 +59,7 @@ const ProfileView: React.FC = () => {
   // Employees without a profile should be sent to the profile wizard.
   useEffect(() => {
     if (!isMe) return;
-    if (role !== 'employee') return;
+    if (role !== 'user') return;
     if (isLoading) return;
 
     if (!profile) {
@@ -76,7 +76,7 @@ const ProfileView: React.FC = () => {
   }
 
   // Avoid flashing the "Profile not found" state while we redirect.
-  if (isMe && role && role !== 'employee') {
+  if (isMe && role && role !== 'user') {
     return (
       <div className="p-6">
         <ProfileSkeleton />
@@ -84,7 +84,7 @@ const ProfileView: React.FC = () => {
     );
   }
 
-  if (isMe && role === 'employee' && !profile) {
+  if (isMe && role === 'user' && !profile) {
     return (
       <div className="p-6">
         <ProfileSkeleton />

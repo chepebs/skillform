@@ -70,7 +70,7 @@ const ProfileEdit: React.FC = () => {
   // Determine the user ID to edit
   const profileUserId = id || user?.id;
   const isOwnProfile = profileUserId === user?.id;
-  const canEdit = isOwnProfile || role === 'master_admin' || role === 'organizer_admin';
+  const canEdit = isOwnProfile || role === 'admin' || role === 'manager';
 
   // Form instances for each step
   const basicInfoForm = useForm<BasicInfoData>({

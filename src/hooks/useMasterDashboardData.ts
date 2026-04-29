@@ -163,7 +163,7 @@ export function useMasterDashboardData(dateRange: number = 30) {
         is_active: p.is_active ?? true,
         profile_completed: p.profile_completed ?? false,
         last_login_at: p.last_login_at,
-        role: roleMap[p.user_id] || 'employee',
+        role: roleMap[p.user_id] || 'user',
         agency_name: (p.agencies as { name: string } | null)?.name,
       }));
 

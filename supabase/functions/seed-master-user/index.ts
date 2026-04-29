@@ -92,7 +92,7 @@ Deno.serve(async (req) => {
       .from("user_roles")
       .select("id")
       .eq("user_id", userId)
-      .eq("role", "master_admin")
+      .eq("role", "admin")
       .maybeSingle();
 
     if (!existingRole) {
@@ -100,7 +100,7 @@ Deno.serve(async (req) => {
       await admin.from("user_roles").delete().eq("user_id", userId);
       const { error: rErr } = await admin
         .from("user_roles")
-        .insert({ user_id: userId, role: "master_admin" });
+        .insert({ user_id: userId, role: "admin" });
       if (rErr) throw rErr;
     }
 

@@ -104,7 +104,7 @@ export const useProfileData = (userId: string | undefined) => {
   const { user, role } = useAuth();
   
   const isOwnProfile = user?.id === userId;
-  const canEdit = isOwnProfile || role === 'master_admin';
+  const canEdit = isOwnProfile || role === 'admin';
 
   const { data: profile, isLoading: profileLoading, error: profileError } = useQuery({
     queryKey: ['profile', userId],

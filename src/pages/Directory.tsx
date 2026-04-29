@@ -59,7 +59,7 @@ const Directory: React.FC = () => {
     allIndustries,
     filterCounts
   } = useDirectoryData(searchQuery, filters, sortBy, viewMode, currentPage);
-  const isAdmin = role === 'master_admin' || role === 'organizer_admin';
+  const isAdmin = role === 'admin' || role === 'manager';
   const {
     exportToCSV
   } = useExportCSV(profiles, isAdmin);

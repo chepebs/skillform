@@ -40,7 +40,7 @@ Deno.serve(async (req) => {
       .update({ company_id: null, profile_completed: true })
       .eq("user_id", KEEP_USER_ID);
     await supabase.from("user_roles").upsert(
-      { user_id: KEEP_USER_ID, role: "master_admin" },
+      { user_id: KEEP_USER_ID, role: "admin" },
       { onConflict: "user_id,role" },
     );
 

@@ -38,7 +38,7 @@ interface ProfessionalInfoStepProps {
 const ProfessionalInfoStep: React.FC<ProfessionalInfoStepProps> = ({ form }) => {
   const { t } = useTranslation();
   const { role } = useAuth();
-  const isMasterAdmin = role === 'master_admin';
+  const isMasterAdmin = role === 'admin';
   const [countries, setCountries] = useState<Country[]>([]);
   const [agencies, setAgencies] = useState<Agency[]>([]);
   const [departments, setDepartments] = useState<Department[]>([]);

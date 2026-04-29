@@ -36,7 +36,7 @@ import { CircleNotch as Loader2, Copy, Check } from '@phosphor-icons/react';
 
 const addUserSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
-  role: z.enum(['employee', 'organizer_admin', 'department_director', 'master_admin']),
+  role: z.enum(['user', 'manager', 'admin']),
   department: z.string().optional(),
   sendInvitation: z.boolean().default(true),
   customMessage: z.string().optional(),
@@ -72,7 +72,7 @@ export const AddUserModal: React.FC<AddUserModalProps> = ({
     resolver: zodResolver(addUserSchema),
     defaultValues: {
       email: '',
-      role: 'employee',
+      role: 'user',
       department: '',
       sendInvitation: true,
       customMessage: '',
@@ -136,12 +136,12 @@ export const AddUserModal: React.FC<AddUserModalProps> = ({
       expiresAt.setDate(expiresAt.getDate() + 7); // 7 days expiry
 
       // Create invitation token
-      const { error: tokenError } = await supabase.from('invitation_tokens').insert({
+      const { error: tokenError } = await supabase.from('invitation_tokens').insert([{
         email: data.email,
         token,
         role: data.role,
         expires_at: expiresAt.toISOString(),
-      });
+      }]);
 
       if (tokenError) throw tokenError;
 
@@ -265,10 +265,9 @@ export const AddUserModal: React.FC<AddUserModalProps> = ({
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="employee">Employee</SelectItem>
-                        <SelectItem value="organizer_admin">Organizer Admin</SelectItem>
-                        <SelectItem value="department_director">Department Director</SelectItem>
-                        <SelectItem value="master_admin">Master Admin</SelectItem>
+                        <SelectItem value="user">Employee</SelectItem>
+                        <SelectItem value="manager">Manager</SelectItem>
+                        <SelectItem value="admin">Master Admin</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />

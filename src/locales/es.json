@@ -622,10 +622,9 @@
     }
   },
   "roles": {
-    "employee": "Empleado",
-    "organizer_admin": "Administrador de Organización",
-    "department_director": "Director de Departamento",
-    "master_admin": "Administrador Principal"
+    "user": "Usuario",
+    "manager": "Gerente",
+    "admin": "Administrador"
   },
   "errors": {
     "403": {
