@@ -10,11 +10,11 @@ const Forbidden: React.FC = () => {
 
   const handleGoToDashboard = () => {
     // Smart redirect based on role
-    if (role === 'master_admin') {
+    if (role === 'admin') {
       navigate('/admin/master');
-    } else if (role === 'organizer_admin') {
+    } else if (role === 'manager') {
       navigate('/admin/organizer');
-    } else if (role === 'department_director') {
+    } else if (role === 'manager') {
       navigate('/admin/director');
     } else {
       navigate('/dashboard');

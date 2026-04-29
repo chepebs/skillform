@@ -88,51 +88,51 @@ const App = () => (
 
               {/* Organizer Admin Routes */}
               <Route path="/admin/organizer" element={
-                <ProtectedRoute allowedRoles={['organizer_admin', 'master_admin']}>
+                <ProtectedRoute allowedRoles={['manager', 'admin']}>
                   <OrganizerDashboard />
                 </ProtectedRoute>
               } />
               <Route path="/admin/organizer/groups" element={
-                <ProtectedRoute allowedRoles={['organizer_admin', 'master_admin']}>
+                <ProtectedRoute allowedRoles={['manager', 'admin']}>
                   <OrganizerDashboard />
                 </ProtectedRoute>
               } />
 
               {/* Department Director Routes */}
               <Route path="/admin/director" element={
-                <ProtectedRoute allowedRoles={['department_director', 'master_admin']}>
+                <ProtectedRoute allowedRoles={['manager', 'admin']}>
                   <DirectorDashboard />
                 </ProtectedRoute>
               } />
               <Route path="/admin/director/team" element={
-                <ProtectedRoute allowedRoles={['department_director', 'master_admin']}>
+                <ProtectedRoute allowedRoles={['manager', 'admin']}>
                   <DirectorDashboard />
                 </ProtectedRoute>
               } />
               <Route path="/admin/director/info" element={
-                <ProtectedRoute allowedRoles={['department_director', 'master_admin']}>
+                <ProtectedRoute allowedRoles={['manager', 'admin']}>
                   <DirectorDashboard />
                 </ProtectedRoute>
               } />
 
               {/* Master Admin Routes */}
               <Route path="/admin/master" element={
-                <ProtectedRoute allowedRoles={['master_admin']}>
+                <ProtectedRoute allowedRoles={['admin']}>
                   <MasterDashboard />
                 </ProtectedRoute>
               } />
               <Route path="/admin/master/users" element={
-                <ProtectedRoute allowedRoles={['master_admin']}>
+                <ProtectedRoute allowedRoles={['admin']}>
                   <MasterDashboard />
                 </ProtectedRoute>
               } />
               <Route path="/admin/master/users/new" element={
-                <ProtectedRoute allowedRoles={['master_admin']}>
+                <ProtectedRoute allowedRoles={['admin']}>
                   <MasterDashboard />
                 </ProtectedRoute>
               } />
               <Route path="/admin/master/analytics" element={
-                <ProtectedRoute allowedRoles={['master_admin']}>
+                <ProtectedRoute allowedRoles={['admin']}>
                   <MasterDashboard />
                 </ProtectedRoute>
               } />
@@ -147,7 +147,7 @@ const App = () => (
 
               {/* Admin Settings (accessible to all admin roles) */}
               <Route path="/admin/settings" element={
-                <ProtectedRoute allowedRoles={['master_admin']}>
+                <ProtectedRoute allowedRoles={['admin']}>
                   <AdminSettings />
                 </ProtectedRoute>
               } />

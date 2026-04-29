@@ -62,7 +62,7 @@ export const ChangeRoleModal: React.FC<ChangeRoleModalProps> = ({
   currentUserId,
 }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [newRole, setNewRole] = useState<string>(user?.role || 'employee');
+  const [newRole, setNewRole] = useState<string>(user?.role || 'user');
 
   React.useEffect(() => {
     if (user) setNewRole(user.role);
@@ -79,7 +79,7 @@ export const ChangeRoleModal: React.FC<ChangeRoleModalProps> = ({
       // Update user role
       const { error } = await supabase
         .from('user_roles')
-        .update({ role: newRole as 'employee' | 'organizer_admin' | 'department_director' | 'master_admin' })
+        .update({ role: newRole as 'user' | 'manager' | 'manager' | 'admin' })
         .eq('user_id', user.user_id);
 
       if (error) throw error;
@@ -164,10 +164,10 @@ export const ChangeRoleModal: React.FC<ChangeRoleModalProps> = ({
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="employee">Employee</SelectItem>
-                <SelectItem value="organizer_admin">Organizer Admin</SelectItem>
-                <SelectItem value="department_director">Department Director</SelectItem>
-                <SelectItem value="master_admin">Master Admin</SelectItem>
+                <SelectItem value="user">Employee</SelectItem>
+                <SelectItem value="manager">Organizer Admin</SelectItem>
+                <SelectItem value="manager">Department Director</SelectItem>
+                <SelectItem value="admin">Master Admin</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -183,7 +183,7 @@ export const ChangeRoleModal: React.FC<ChangeRoleModalProps> = ({
           )}
 
           {/* Warning for role downgrade */}
-          {!isSelf && user.role === 'master_admin' && newRole !== 'master_admin' && (
+          {!isSelf && user.role === 'admin' && newRole !== 'admin' && (
             <div className="flex items-start gap-3 p-3 bg-orange-500/10 border border-orange-500/20 rounded-lg">
               <AlertTriangle className="h-5 w-5 text-orange-500 flex-shrink-0 mt-0.5" />
               <p className="text-sm text-orange-600 dark:text-orange-400">

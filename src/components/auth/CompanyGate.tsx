@@ -23,7 +23,7 @@ export const CompanyGate: React.FC<{ children: React.ReactNode }> = ({ children 
   if (!user) return <Navigate to="/landing" state={{ from: location }} replace />;
 
   // Platform-level master (no company) — full access
-  if (role === 'master_admin' && !profile?.company_id) return <>{children}</>;
+  if (role === 'admin' && !profile?.company_id) return <>{children}</>;
 
   // Has company → ok
   if (profile?.company_id) return <>{children}</>;

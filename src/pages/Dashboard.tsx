@@ -11,15 +11,15 @@ const Dashboard: React.FC = () => {
     if (isLoading) return;
 
     // Admin roles go straight to their dashboards (no profile required)
-    if (role === 'master_admin') {
+    if (role === 'admin') {
       navigate('/admin/master', { replace: true });
       return;
     }
-    if (role === 'organizer_admin') {
+    if (role === 'manager') {
       navigate('/admin/organizer', { replace: true });
       return;
     }
-    if (role === 'department_director') {
+    if (role === 'manager') {
       navigate('/admin/director', { replace: true });
       return;
     }

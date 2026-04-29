@@ -82,7 +82,7 @@ serve(async (req) => {
     });
   }
 
-  if (role !== "master_admin") {
+  if (role !== "admin") {
     return new Response(JSON.stringify({ error: "Forbidden" }), {
       status: 403,
       headers: { ...corsHeaders, "Content-Type": "application/json" },

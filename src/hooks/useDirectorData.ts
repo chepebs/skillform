@@ -54,7 +54,7 @@ export const useDirectorData = () => {
       if (!user?.id) return [];
 
       // For master_admin, show all departments
-      if (role === 'master_admin') {
+      if (role === 'admin') {
         const { data, error } = await supabase
           .from('departments')
           .select('*')

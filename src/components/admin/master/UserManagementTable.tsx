@@ -186,10 +186,10 @@ export const UserManagementTable: React.FC<UserManagementTableProps> = ({
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All Roles</SelectItem>
-            <SelectItem value="employee">Employee</SelectItem>
-            <SelectItem value="organizer_admin">Organizer Admin</SelectItem>
-            <SelectItem value="department_director">Dept. Director</SelectItem>
-            <SelectItem value="master_admin">Master Admin</SelectItem>
+            <SelectItem value="user">Employee</SelectItem>
+            <SelectItem value="manager">Organizer Admin</SelectItem>
+            <SelectItem value="manager">Dept. Director</SelectItem>
+            <SelectItem value="admin">Master Admin</SelectItem>
           </SelectContent>
         </Select>
         <Select value={statusFilter} onValueChange={setStatusFilter}>
