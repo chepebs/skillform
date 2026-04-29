@@ -13,8 +13,6 @@ const Forbidden: React.FC = () => {
     if (role === 'admin') {
       navigate('/admin/master');
     } else if (role === 'manager') {
-      navigate('/admin/organizer');
-    } else if (role === 'manager') {
       navigate('/admin/director');
     } else {
       navigate('/dashboard');

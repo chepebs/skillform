@@ -50,8 +50,6 @@ const ProfileView: React.FC = () => {
     if (role === 'admin') {
       navigate('/admin/master', { replace: true });
     } else if (role === 'manager') {
-      navigate('/admin/organizer', { replace: true });
-    } else if (role === 'manager') {
       navigate('/admin/director', { replace: true });
     }
   }, [isMe, role, navigate]);
