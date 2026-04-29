@@ -441,7 +441,8 @@
       "userManagement": "User Management",
       "tabs": {
         "dashboard": "Dashboard",
-        "agencies": "Agencies"
+        "agencies": "Agencies",
+        "departments": "Departments"
       },
       "dateRange": {
         "last7Days": "Last 7 days",
