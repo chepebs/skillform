@@ -505,11 +505,11 @@ const ProfileCreate: React.FC = () => {
           </div>
 
           {currentStep < TOTAL_STEPS ? (
-            <Button onClick={handleNext} className="bg-gradient-primary shadow-primary">
+            <Button onClick={handleNext} className="bg-primary hover:bg-primary/90">
               {t('common.buttons.next')} <ChevronRight className="ml-2 h-4 w-4" />
             </Button>
           ) : (
-            <Button onClick={handleSubmit} disabled={isSubmitting} className="bg-gradient-primary shadow-primary">
+            <Button onClick={handleSubmit} disabled={isSubmitting} className="bg-primary hover:bg-primary/90">
               {isSubmitting ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> {t('profile.creation.completing')}</> : <><Check className="mr-2 h-4 w-4" /> {t('profile.creation.completeProfile')}</>}
             </Button>
           )}

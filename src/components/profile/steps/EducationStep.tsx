@@ -46,7 +46,7 @@ const EducationStep: React.FC<EducationStepProps> = ({ form }) => {
                 <Input
                   {...field}
                   placeholder="e.g., MBA in Marketing"
-                  className="pl-10 bg-dark-elevated border-dark-border focus:border-primary"
+                  className="pl-10 bg-background border-border focus:border-primary"
                 />
               </div>
             </FormControl>
@@ -68,7 +68,7 @@ const EducationStep: React.FC<EducationStepProps> = ({ form }) => {
                 min={0}
                 max={50}
                 onChange={(e) => field.onChange(parseInt(e.target.value) || 0)}
-                className="bg-dark-elevated border-dark-border focus:border-primary"
+                className="bg-background border-border focus:border-primary"
               />
             </FormControl>
             <p className="text-xs text-muted-foreground">0-50 years</p>
@@ -85,7 +85,7 @@ const EducationStep: React.FC<EducationStepProps> = ({ form }) => {
           <div
             key={field.id}
             className={cn(
-              'p-4 rounded-lg border border-dark-border bg-dark-elevated/50 space-y-4',
+              'p-4 rounded-lg border border-border bg-background/50 space-y-4',
               'animate-fade-in'
             )}
           >
@@ -110,7 +110,7 @@ const EducationStep: React.FC<EducationStepProps> = ({ form }) => {
                   <FormItem>
                     <Label className="text-xs">Agency Name <span className="text-destructive">*</span></Label>
                     <FormControl>
-                      <Input {...field} placeholder="Agency name" className="bg-dark-elevated border-dark-border" />
+                      <Input {...field} placeholder="Agency name" className="bg-background border-border" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -124,7 +124,7 @@ const EducationStep: React.FC<EducationStepProps> = ({ form }) => {
                   <FormItem>
                     <Label className="text-xs">Role <span className="text-destructive">*</span></Label>
                     <FormControl>
-                      <Input {...field} placeholder="Your role" className="bg-dark-elevated border-dark-border" />
+                      <Input {...field} placeholder="Your role" className="bg-background border-border" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -142,7 +142,7 @@ const EducationStep: React.FC<EducationStepProps> = ({ form }) => {
                     <FormControl>
                       <div className="relative">
                         <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input {...field} type="date" className="pl-10 bg-dark-elevated border-dark-border" />
+                        <Input {...field} type="date" className="pl-10 bg-background border-border" />
                       </div>
                     </FormControl>
                     <FormMessage />
@@ -159,7 +159,7 @@ const EducationStep: React.FC<EducationStepProps> = ({ form }) => {
                     <FormControl>
                       <div className="relative">
                         <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input {...field} type="date" className="pl-10 bg-dark-elevated border-dark-border" />
+                        <Input {...field} type="date" className="pl-10 bg-background border-border" />
                       </div>
                     </FormControl>
                     <FormMessage />
@@ -174,7 +174,7 @@ const EducationStep: React.FC<EducationStepProps> = ({ form }) => {
           type="button"
           variant="outline"
           onClick={addAgency}
-          className="w-full border-dashed border-dark-border hover:border-primary"
+          className="w-full border-dashed border-border hover:border-primary"
         >
           <Plus className="mr-2 h-4 w-4" />
           Add Previous Agency

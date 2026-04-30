@@ -45,7 +45,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ profile, searchQuery }
       onClick={() => navigate(`/profile/${profile.user_id}`)}
     >
       {/* Avatar */}
-      <div className="w-16 h-16 rounded-full border-2 border-border group-hover:border-primary/50 transition-colors flex-shrink-0 overflow-hidden bg-gradient-primary">
+      <div className="w-16 h-16 rounded-full border-2 border-border group-hover:border-primary/50 transition-colors flex-shrink-0 overflow-hidden bg-primary">
         {profile.avatar_url ? (
           <img
             src={profile.avatar_url}
@@ -149,7 +149,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ profile, searchQuery }
           
           <Button 
             size="sm" 
-            className="bg-gradient-primary text-primary-foreground hover:opacity-90 transition-opacity text-xs h-7 px-3"
+            className="bg-primary text-primary-foreground hover:opacity-90 transition-opacity text-xs h-7 px-3"
             onClick={(e) => {
               e.stopPropagation();
               navigate(`/profile/${profile.user_id}`);

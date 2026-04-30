@@ -306,7 +306,7 @@ export const AgencyManagement: React.FC = () => {
             <p className="text-sm text-muted-foreground">{t('admin.agencies.subtitle')}</p>
           </div>
         </div>
-        <Button onClick={openAddModal} className="bg-gradient-primary hover:opacity-90 transition-opacity">
+        <Button onClick={openAddModal} className="bg-primary hover:opacity-90 transition-opacity">
           <Plus className="h-4 w-4 mr-2" />
           {t('admin.agencies.addNew')}
         </Button>
@@ -391,7 +391,7 @@ export const AgencyManagement: React.FC = () => {
             <Button variant="outline" onClick={() => setIsModalOpen(false)}>
               {t('common.cancel')}
             </Button>
-            <Button onClick={handleSave} disabled={saving} className="bg-gradient-primary">
+            <Button onClick={handleSave} disabled={saving} className="bg-primary">
               {saving ? (
                 <>
                   <Loader2 className="h-4 w-4 mr-2 animate-spin" />

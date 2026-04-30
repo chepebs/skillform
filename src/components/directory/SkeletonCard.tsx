@@ -23,7 +23,7 @@ export const SkeletonCard: React.FC = () => {
 
 export const SkeletonRow: React.FC = () => {
   return (
-    <div className="flex items-center gap-4 p-4 border-b border-dark-border">
+    <div className="flex items-center gap-4 p-4 border-b border-border">
       <Skeleton className="w-10 h-10 rounded-full" />
       <div className="flex-1 grid grid-cols-7 gap-4 items-center">
         <div className="space-y-1">

@@ -80,7 +80,7 @@ const LanguagesStep: React.FC<LanguagesStepProps> = ({ form }) => {
         <div
           key={field.id}
           className={cn(
-            'p-4 rounded-lg border border-dark-border bg-dark-elevated/50 space-y-4',
+            'p-4 rounded-lg border border-border bg-background/50 space-y-4',
             'animate-fade-in'
           )}
         >
@@ -108,7 +108,7 @@ const LanguagesStep: React.FC<LanguagesStepProps> = ({ form }) => {
                   <Label className="text-xs">Language <span className="text-destructive">*</span></Label>
                   <Select onValueChange={field.onChange} value={field.value}>
                     <FormControl>
-                      <SelectTrigger className="bg-dark-elevated border-dark-border">
+                      <SelectTrigger className="bg-background border-border">
                         <SelectValue placeholder="Select language" />
                       </SelectTrigger>
                     </FormControl>
@@ -208,7 +208,7 @@ const LanguagesStep: React.FC<LanguagesStepProps> = ({ form }) => {
         type="button"
         variant="outline"
         onClick={addLanguage}
-        className="w-full border-dashed border-dark-border hover:border-primary"
+        className="w-full border-dashed border-border hover:border-primary"
       >
         <Plus className="mr-2 h-4 w-4" />
         Add Another Language

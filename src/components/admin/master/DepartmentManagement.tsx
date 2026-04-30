@@ -211,7 +211,7 @@ export const DepartmentManagement: React.FC = () => {
             <p className="text-sm text-muted-foreground">{t('admin.departments.subtitle')}</p>
           </div>
         </div>
-        <Button onClick={openAddModal} className="bg-gradient-primary hover:opacity-90 transition-opacity">
+        <Button onClick={openAddModal} className="bg-primary hover:opacity-90 transition-opacity">
           <Plus className="h-4 w-4 mr-2" />
           {t('admin.departments.addNew')}
         </Button>
@@ -342,7 +342,7 @@ export const DepartmentManagement: React.FC = () => {
               {t('common.cancel')}
             </Button>
             {(editing || mode === 'custom') && (
-              <Button onClick={handleSave} disabled={saving} className="bg-gradient-primary">
+              <Button onClick={handleSave} disabled={saving} className="bg-primary">
                 {saving ? (
                   <>
                     <Loader2 className="h-4 w-4 mr-2 animate-spin" />

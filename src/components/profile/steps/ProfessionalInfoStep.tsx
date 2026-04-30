@@ -109,7 +109,7 @@ const ProfessionalInfoStep: React.FC<ProfessionalInfoStepProps> = ({ form }) => 
               <Label>Country <span className="text-destructive">*</span></Label>
               <Select onValueChange={field.onChange} value={field.value}>
                 <FormControl>
-                  <SelectTrigger className="bg-dark-elevated border-dark-border">
+                  <SelectTrigger className="bg-background border-border">
                     <SelectValue placeholder="Select country" />
                   </SelectTrigger>
                 </FormControl>
@@ -134,7 +134,7 @@ const ProfessionalInfoStep: React.FC<ProfessionalInfoStepProps> = ({ form }) => 
               <Label>Agency <span className="text-destructive">*</span></Label>
               <Select onValueChange={field.onChange} value={field.value}>
                 <FormControl>
-                  <SelectTrigger className="bg-dark-elevated border-dark-border">
+                  <SelectTrigger className="bg-background border-border">
                     <SelectValue placeholder="Select agency" />
                   </SelectTrigger>
                 </FormControl>
@@ -166,7 +166,7 @@ const ProfessionalInfoStep: React.FC<ProfessionalInfoStepProps> = ({ form }) => 
             <Label>Department</Label>
             <Select onValueChange={field.onChange} value={field.value}>
               <FormControl>
-                <SelectTrigger className="bg-dark-elevated border-dark-border">
+                <SelectTrigger className="bg-background border-border">
                   <SelectValue placeholder="Select department" />
                 </SelectTrigger>
               </FormControl>
@@ -193,7 +193,7 @@ const ProfessionalInfoStep: React.FC<ProfessionalInfoStepProps> = ({ form }) => 
               <Input
                 {...field}
                 placeholder="e.g., Senior Creative Director"
-                className="bg-dark-elevated border-dark-border focus:border-primary"
+                className="bg-background border-border focus:border-primary"
               />
             </FormControl>
             <FormMessage />
@@ -216,7 +216,7 @@ const ProfessionalInfoStep: React.FC<ProfessionalInfoStepProps> = ({ form }) => 
             </p>
             <Select onValueChange={field.onChange} value={field.value || 'mid'} disabled={!isMasterAdmin}>
               <FormControl>
-                <SelectTrigger className="bg-dark-elevated border-dark-border">
+                <SelectTrigger className="bg-background border-border">
                   <SelectValue />
                 </SelectTrigger>
               </FormControl>
@@ -248,7 +248,7 @@ const ProfessionalInfoStep: React.FC<ProfessionalInfoStepProps> = ({ form }) => 
           <div
             key={field.id}
             className={cn(
-              'p-4 rounded-lg border border-dark-border bg-dark-elevated/50 space-y-4',
+              'p-4 rounded-lg border border-border bg-background/50 space-y-4',
               'animate-fade-in'
             )}
           >
@@ -273,7 +273,7 @@ const ProfessionalInfoStep: React.FC<ProfessionalInfoStepProps> = ({ form }) => 
                   <FormItem>
                     <Label className="text-xs">Title <span className="text-destructive">*</span></Label>
                     <FormControl>
-                      <Input {...field} placeholder="Position title" className="bg-dark-elevated border-dark-border" />
+                      <Input {...field} placeholder="Position title" className="bg-background border-border" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -287,7 +287,7 @@ const ProfessionalInfoStep: React.FC<ProfessionalInfoStepProps> = ({ form }) => 
                   <FormItem>
                     <Label className="text-xs">Company <span className="text-destructive">*</span></Label>
                     <FormControl>
-                      <Input {...field} placeholder="Company name" className="bg-dark-elevated border-dark-border" />
+                      <Input {...field} placeholder="Company name" className="bg-background border-border" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -305,7 +305,7 @@ const ProfessionalInfoStep: React.FC<ProfessionalInfoStepProps> = ({ form }) => 
                     <FormControl>
                       <div className="relative">
                         <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input {...field} type="date" className="pl-10 bg-dark-elevated border-dark-border" />
+                        <Input {...field} type="date" className="pl-10 bg-background border-border" />
                       </div>
                     </FormControl>
                     <FormMessage />
@@ -322,7 +322,7 @@ const ProfessionalInfoStep: React.FC<ProfessionalInfoStepProps> = ({ form }) => 
                     <FormControl>
                       <div className="relative">
                         <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input {...field} type="date" className="pl-10 bg-dark-elevated border-dark-border" />
+                        <Input {...field} type="date" className="pl-10 bg-background border-border" />
                       </div>
                     </FormControl>
                     <FormMessage />
@@ -341,7 +341,7 @@ const ProfessionalInfoStep: React.FC<ProfessionalInfoStepProps> = ({ form }) => 
                     <Textarea
                       {...field}
                       placeholder="Brief description of your role..."
-                      className="bg-dark-elevated border-dark-border resize-none"
+                      className="bg-background border-border resize-none"
                       rows={2}
                     />
                   </FormControl>
@@ -357,7 +357,7 @@ const ProfessionalInfoStep: React.FC<ProfessionalInfoStepProps> = ({ form }) => 
             type="button"
             variant="outline"
             onClick={addPosition}
-            className="w-full border-dashed border-dark-border hover:border-primary"
+            className="w-full border-dashed border-border hover:border-primary"
           >
             <Plus className="mr-2 h-4 w-4" />
             Add Previous Position

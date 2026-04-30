@@ -91,7 +91,7 @@ const ImageCropper: React.FC<ImageCropperProps> = ({ image, open, onClose, onCro
         <DialogHeader>
           <DialogTitle>Crop Your Photo</DialogTitle>
         </DialogHeader>
-        <div className="relative h-64 bg-dark-elevated rounded-lg overflow-hidden">
+        <div className="relative h-64 bg-background rounded-lg overflow-hidden">
           <Cropper
             image={image}
             crop={crop}
@@ -114,7 +114,7 @@ const ImageCropper: React.FC<ImageCropperProps> = ({ image, open, onClose, onCro
         </div>
         <DialogFooter>
           <Button variant="outline" onClick={onClose}>Cancel</Button>
-          <Button onClick={handleSave} className="bg-gradient-primary">Save</Button>
+          <Button onClick={handleSave} className="bg-primary">Save</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

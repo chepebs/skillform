@@ -18,7 +18,7 @@ const Section: React.FC<{
   onEdit: (step: number) => void;
   children: React.ReactNode;
 }> = ({ title, icon: Icon, step, onEdit, children }) => (
-  <div className="p-4 rounded-lg border border-dark-border bg-dark-elevated/50">
+  <div className="p-4 rounded-lg border border-border bg-background/50">
     <div className="flex items-center justify-between mb-4">
       <div className="flex items-center gap-2">
         <Icon className="h-5 w-5 text-primary" />

@@ -68,7 +68,7 @@ export const ProfileTable: React.FC<ProfileTableProps> = ({
     <div className="glass-card rounded-xl overflow-hidden">
       <Table>
         <TableHeader className="sticky top-0 bg-dark-card z-10">
-          <TableRow className="border-dark-border hover:bg-transparent">
+          <TableRow className="border-border hover:bg-transparent">
             <TableHead className="w-[250px]">
               <button
                 onClick={() => handleSort('name_asc', 'name_desc')}
@@ -117,14 +117,14 @@ export const ProfileTable: React.FC<ProfileTableProps> = ({
               <TableRow
                 key={profile.id}
                 className={cn(
-                  'cursor-pointer border-dark-border hover:bg-dark-elevated transition-colors',
-                  index % 2 === 1 && 'bg-dark-elevated/30'
+                  'cursor-pointer border-border hover:bg-background transition-colors',
+                  index % 2 === 1 && 'bg-background/30'
                 )}
                 onClick={() => navigate(`/profile/${profile.user_id}`)}
               >
                 <TableCell>
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full border border-dark-border flex-shrink-0 overflow-hidden bg-gradient-primary">
+                    <div className="w-10 h-10 rounded-full border border-border flex-shrink-0 overflow-hidden bg-primary">
                       {profile.avatar_url ? (
                         <img
                           src={profile.avatar_url}

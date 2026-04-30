@@ -56,7 +56,7 @@ const AwardsStep: React.FC<AwardsStepProps> = ({ form, onSkip }) => {
           <div
             key={field.id}
             className={cn(
-              'p-4 rounded-lg border border-dark-border bg-dark-elevated/50 space-y-4',
+              'p-4 rounded-lg border border-border bg-background/50 space-y-4',
               'animate-fade-in'
             )}
           >
@@ -81,7 +81,7 @@ const AwardsStep: React.FC<AwardsStepProps> = ({ form, onSkip }) => {
                   <FormItem>
                     <Label className="text-xs">Award Name <span className="text-destructive">*</span></Label>
                     <FormControl>
-                      <Input {...field} placeholder="Award name" className="bg-dark-elevated border-dark-border" />
+                      <Input {...field} placeholder="Award name" className="bg-background border-border" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -96,7 +96,7 @@ const AwardsStep: React.FC<AwardsStepProps> = ({ form, onSkip }) => {
                     <Label className="text-xs">Award Type</Label>
                     <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
-                        <SelectTrigger className="bg-dark-elevated border-dark-border">
+                        <SelectTrigger className="bg-background border-border">
                           <SelectValue placeholder="Select type" />
                         </SelectTrigger>
                       </FormControl>
@@ -120,7 +120,7 @@ const AwardsStep: React.FC<AwardsStepProps> = ({ form, onSkip }) => {
                   <FormItem>
                     <Label className="text-xs">Category</Label>
                     <FormControl>
-                      <Input {...field} placeholder="Category" className="bg-dark-elevated border-dark-border" />
+                      <Input {...field} placeholder="Category" className="bg-background border-border" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -135,7 +135,7 @@ const AwardsStep: React.FC<AwardsStepProps> = ({ form, onSkip }) => {
                     <Label className="text-xs">Year</Label>
                     <Select onValueChange={(v) => field.onChange(parseInt(v))} value={field.value?.toString()}>
                       <FormControl>
-                        <SelectTrigger className="bg-dark-elevated border-dark-border">
+                        <SelectTrigger className="bg-background border-border">
                           <SelectValue placeholder="Year" />
                         </SelectTrigger>
                       </FormControl>
@@ -177,7 +177,7 @@ const AwardsStep: React.FC<AwardsStepProps> = ({ form, onSkip }) => {
                     <Textarea
                       {...field}
                       placeholder="Brief description of the award..."
-                      className="bg-dark-elevated border-dark-border resize-none"
+                      className="bg-background border-border resize-none"
                       rows={2}
                     />
                   </FormControl>
@@ -192,7 +192,7 @@ const AwardsStep: React.FC<AwardsStepProps> = ({ form, onSkip }) => {
           type="button"
           variant="outline"
           onClick={addAward}
-          className="w-full border-dashed border-dark-border hover:border-primary"
+          className="w-full border-dashed border-border hover:border-primary"
         >
           <Plus className="mr-2 h-4 w-4" />
           Add Award
@@ -211,7 +211,7 @@ const AwardsStep: React.FC<AwardsStepProps> = ({ form, onSkip }) => {
                 <Textarea
                   {...field}
                   placeholder="Describe any consulting work, speaking engagements, or other professional activities..."
-                  className="bg-dark-elevated border-dark-border resize-none min-h-[120px]"
+                  className="bg-background border-border resize-none min-h-[120px]"
                 />
               </FormControl>
               <div className="flex justify-end">

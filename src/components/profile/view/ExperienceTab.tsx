@@ -89,7 +89,7 @@ export const ExperienceTab: React.FC<ExperienceTabProps> = ({
                     {/* Timeline node */}
                     <div className={`absolute left-0 w-8 h-8 rounded-full flex items-center justify-center ${
                       position.isCurrent 
-                        ? 'bg-primary shadow-lg shadow-primary/30' 
+                        ? 'bg-primary shadow-lg hover:bg-primary/90/30' 
                         : 'bg-muted border-2 border-border'
                     }`}>
                       <div className={`w-3 h-3 rounded-full ${

@@ -204,11 +204,11 @@ const Directory: React.FC = () => {
             </Select>
 
             {/* View mode toggle - hidden on mobile */}
-            <div className="hidden sm:flex rounded-lg border border-dark-border overflow-hidden">
-              <Button variant="ghost" size="icon" onClick={() => setViewMode('grid')} className={cn('rounded-none', viewMode === 'grid' && 'bg-dark-elevated')}>
+            <div className="hidden sm:flex rounded-lg border border-border overflow-hidden">
+              <Button variant="ghost" size="icon" onClick={() => setViewMode('grid')} className={cn('rounded-none', viewMode === 'grid' && 'bg-background')}>
                 <Grid className="h-4 w-4" />
               </Button>
-              <Button variant="ghost" size="icon" onClick={() => setViewMode('list')} className={cn('rounded-none', viewMode === 'list' && 'bg-dark-elevated')}>
+              <Button variant="ghost" size="icon" onClick={() => setViewMode('list')} className={cn('rounded-none', viewMode === 'list' && 'bg-background')}>
                 <List className="h-4 w-4" />
               </Button>
             </div>

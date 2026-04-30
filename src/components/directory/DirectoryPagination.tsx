@@ -144,7 +144,7 @@ export const DirectoryPagination: React.FC<DirectoryPaginationProps> = ({
           value={jumpToPage}
           onChange={(e) => setJumpToPage(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && handleJumpToPage()}
-          className="w-16 h-9 bg-dark-elevated border-dark-border"
+          className="w-16 h-9 bg-background border-border"
           placeholder="#"
         />
         <Button

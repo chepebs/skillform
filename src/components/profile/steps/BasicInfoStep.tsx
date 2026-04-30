@@ -169,7 +169,7 @@ const BasicInfoStep: React.FC<BasicInfoStepProps> = ({ form, userId }) => {
                 <Input
                   {...field}
                   placeholder="John"
-                  className="bg-dark-elevated border-dark-border focus:border-primary"
+                  className="bg-background border-border focus:border-primary"
                 />
               </FormControl>
               <FormMessage />
@@ -187,7 +187,7 @@ const BasicInfoStep: React.FC<BasicInfoStepProps> = ({ form, userId }) => {
                 <Input
                   {...field}
                   placeholder="Doe"
-                  className="bg-dark-elevated border-dark-border focus:border-primary"
+                  className="bg-background border-border focus:border-primary"
                 />
               </FormControl>
               <FormMessage />
@@ -207,7 +207,7 @@ const BasicInfoStep: React.FC<BasicInfoStepProps> = ({ form, userId }) => {
                 {...field}
                 readOnly
                 disabled
-                className="bg-dark-elevated border-dark-border opacity-50"
+                className="bg-background border-border opacity-50"
               />
             </FormControl>
             <FormMessage />
@@ -227,7 +227,7 @@ const BasicInfoStep: React.FC<BasicInfoStepProps> = ({ form, userId }) => {
                 <Input
                   {...field}
                   placeholder="+1234567890"
-                  className="pl-10 bg-dark-elevated border-dark-border focus:border-primary"
+                  className="pl-10 bg-background border-border focus:border-primary"
                 />
               </div>
             </FormControl>
