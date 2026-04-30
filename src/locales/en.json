@@ -889,8 +889,73 @@
     "nav": {
       "features": "Features",
       "services": "Services",
+      "suite": "HR Suite",
       "capabilities": "Capabilities",
       "trust": "Trust"
+    },
+    "suite": {
+      "badge": "Complete HR suite",
+      "title": "One platform,",
+      "titleAccent": "every people workflow",
+      "subtitle": "From the day someone is hired to the day-to-day rhythm of work — Skill*form covers every people-ops process your team needs.",
+      "timeOff": {
+        "title": "Time-off management",
+        "desc": "Request, approve, and track PTO with per-policy balances and a manager approval queue.",
+        "tag": "PTO & balances"
+      },
+      "onboarding": {
+        "title": "Onboarding journeys",
+        "desc": "Templated checklists guide new hires through their first weeks — with progress visible to HR.",
+        "tag": "Templates & tasks"
+      },
+      "jobs": {
+        "title": "Internal job board & ATS",
+        "desc": "Post openings, collect applications, and move candidates through a lightweight pipeline.",
+        "tag": "Postings & pipeline"
+      },
+      "announcements": {
+        "title": "Announcements",
+        "desc": "Reach the whole company or scoped audiences with rich-text updates and acknowledgements.",
+        "tag": "Company-wide"
+      },
+      "files": {
+        "title": "Documents & policies",
+        "desc": "A central library for handbooks, contracts, and policies — searchable and access-controlled.",
+        "tag": "Secure library"
+      },
+      "surveys": {
+        "title": "Surveys & pulse",
+        "desc": "Capture employee sentiment with anonymous or attributed surveys and live response tracking.",
+        "tag": "Pulse & feedback"
+      },
+      "kudos": {
+        "title": "Kudos & recognition",
+        "desc": "Peer-to-peer shout-outs tied to company values, surfaced in a public recognition feed.",
+        "tag": "Peer recognition"
+      },
+      "events": {
+        "title": "Events & celebrations",
+        "desc": "Company events, RSVPs, and automatic birthday & work-anniversary highlights.",
+        "tag": "Calendar & RSVPs"
+      },
+      "orgChart": {
+        "title": "Org chart",
+        "desc": "Live reporting structure built from real manager assignments — drill in to any team.",
+        "tag": "Live structure"
+      },
+      "widgets": {
+        "badge": "On every dashboard",
+        "title": "Surfaced where it matters",
+        "desc": "Cross-suite widgets pull approvals, balances, onboarding progress and recognition straight onto the right dashboard for each role.",
+        "approvals": "Pending approvals",
+        "approvalsSub": "For managers & admins",
+        "balance": "My time-off balance",
+        "balanceSub": "Per employee",
+        "onboarding": "Onboarding progress",
+        "onboardingSub": "For new hires",
+        "kudos": "Kudos feed",
+        "kudosSub": "Visible to everyone"
+      }
     },
     "showcase": {
       "badge": "Inside the product",
