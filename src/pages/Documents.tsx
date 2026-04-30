@@ -50,7 +50,11 @@ const Documents: React.FC = () => {
   const [submitting, setSubmitting] = useState(false);
 
   const load = async () => {
-    if (!profile?.company_id) return;
+    if (!profile?.company_id) {
+      setDocs([]);
+      setLoading(false);
+      return;
+    }
     const { data } = await supabase
       .from('documents')
       .select('*')

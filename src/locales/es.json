@@ -45,6 +45,14 @@
       "startOver": "Empezar de Nuevo"
     },
     "actions": {
+      "create": "Crear",
+      "cancel": "Cancelar",
+      "save": "Guardar",
+      "delete": "Eliminar",
+      "edit": "Editar",
+      "submit": "Enviar",
+      "approve": "Aprobar",
+      "reject": "Rechazar",
       "addNew": "Agregar Nuevo",
       "addAnother": "Agregar Otro",
       "createNew": "Crear Nuevo",

@@ -47,7 +47,11 @@ const Events: React.FC = () => {
   });
 
   const load = async () => {
-    if (!profile?.company_id || !user) return;
+    if (!profile?.company_id || !user) {
+      setEvents([]);
+      setLoading(false);
+      return;
+    }
     const { data: evs } = await supabase
       .from('events')
       .select('*')
