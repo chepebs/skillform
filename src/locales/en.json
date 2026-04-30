@@ -1706,6 +1706,30 @@
       "attached": "Joined company successfully",
       "invalidTitle": "Invite link invalid",
       "invalidDesc": "This invite link is not valid or has been disabled."
+    },
+    "widgets": {
+      "pendingApprovals": {
+        "title": "Pending approvals",
+        "timeOff": "Time-off requests",
+        "jobApplications": "Job applications",
+        "review": "Review all"
+      },
+      "timeOffBalance": {
+        "title": "My time-off balance",
+        "empty": "No balance allocated yet.",
+        "days": "days",
+        "request": "Request time off"
+      },
+      "onboarding": {
+        "title": "My onboarding",
+        "progress": "{{done}} of {{total}} tasks",
+        "open": "Open onboarding"
+      },
+      "kudos": {
+        "title": "Recent kudos",
+        "empty": "No kudos yet — be the first!",
+        "openFeed": "Open kudos feed"
+      }
     }
   }
 }
