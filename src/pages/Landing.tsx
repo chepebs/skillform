@@ -17,7 +17,7 @@ import { SectionRail } from '@/components/brand/SectionRail';
 import { AuthModal, AuthModalMode } from '@/components/auth/AuthModal';
 import aideaformLogo from '@/assets/aideaform-logo.svg';
 
-const TOTAL_SECTIONS = 6;
+const TOTAL_SECTIONS = 7;
 
 const Landing: React.FC = () => {
   const { t } = useTranslation();
