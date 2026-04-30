@@ -231,7 +231,7 @@
     "myAccount": "My Account",
     "logout": "Log Out",
     "login": {
-      "title": "Welcome to the Grupo Garnier Talent Map",
+      "title": "Welcome to Skill*form",
       "subtitle": "Sign-in or create an account",
       "emailLabel": "Email Address",
       "emailPlaceholder": "your.email@company.com",
@@ -250,7 +250,7 @@
     },
     "register": {
       "title": "Create Your Account",
-      "subtitle": "Welcome to Grupo Garnier Talent Map",
+      "subtitle": "Welcome to Skill*form",
       "verifyingToken": "Verifying invitation...",
       "invalidToken": "Invalid or expired invitation link",
       "tokenExpired": "This invitation has expired",

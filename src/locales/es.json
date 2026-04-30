@@ -231,7 +231,7 @@
     "myAccount": "Mi Cuenta",
     "logout": "Cerrar Sesión",
     "login": {
-      "title": "Bienvenido al Mapa de Talento de Grupo Garnier",
+      "title": "Bienvenido Skill*form",
       "subtitle": "Inicia sesión o crea una cuenta",
       "emailLabel": "Correo Electrónico",
       "emailPlaceholder": "tu.correo@empresa.com",
@@ -250,7 +250,7 @@
     },
     "register": {
       "title": "Cree Su Cuenta",
-      "subtitle": "Bienvenido al Mapa de Talento Grupo Garnier",
+      "subtitle": "Bienvenido Skill*form",
       "verifyingToken": "Verificando invitación...",
       "invalidToken": "Enlace de invitación inválido o expirado",
       "tokenExpired": "Esta invitación ha expirado",
