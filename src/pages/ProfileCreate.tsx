@@ -264,14 +264,34 @@ const ProfileCreate: React.FC = () => {
     }
   };
 
+  const getCurrentForm = () => {
+    switch (currentStep) {
+      case 1: return basicInfoForm;
+      case 2: return professionalForm;
+      case 3: return educationForm;
+      case 4: return performanceForm;
+      case 5: return brandsProjectsForm;
+      case 6: return languagesForm;
+      case 7: return skillsForm;
+      case 8: return industriesForm;
+      case 9: return awardsForm;
+      default: return null;
+    }
+  };
+
   const handleNext = async () => {
     const isValid = await validateCurrentStep();
     if (isValid) {
       setCurrentStep((prev) => Math.min(prev + 1, TOTAL_STEPS));
-      // Scroll to top so users see the next step's content
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      toast.error(t('profile.creation.validationError', 'Please complete the required fields before continuing.'));
+      const form = getCurrentForm();
+      const errors = form?.formState.errors as Record<string, { message?: string }> | undefined;
+      const firstError = errors ? Object.values(errors).find((e) => e?.message)?.message : undefined;
+      toast.error(
+        firstError ||
+          t('profile.creation.validationError', 'Please complete the required fields before continuing.')
+      );
     }
   };
 
