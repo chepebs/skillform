@@ -18,6 +18,7 @@ interface BasicInfoStepProps {
 }
 
 const BasicInfoStep: React.FC<BasicInfoStepProps> = ({ form, userId }) => {
+  const { t } = useTranslation();
   const [isUploading, setIsUploading] = useState(false);
   const [previewUrl, setPreviewUrl] = useState<string | null>(form.getValues('avatar_url') || null);
   const [cropperImage, setCropperImage] = useState<string | null>(null);
@@ -27,15 +28,13 @@ const BasicInfoStep: React.FC<BasicInfoStepProps> = ({ form, userId }) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    // Validate file type
     if (!['image/jpeg', 'image/png'].includes(file.type)) {
-      toast.error('Only JPG and PNG files are allowed');
+      toast.error(t('profile.basicInfo.photoInvalidType'));
       return;
     }
 
-    // Validate file size (5MB)
     if (file.size > 5 * 1024 * 1024) {
-      toast.error('File size must be less than 5MB');
+      toast.error(t('profile.basicInfo.photoTooLarge'));
       return;
     }
 
@@ -45,34 +44,23 @@ const BasicInfoStep: React.FC<BasicInfoStepProps> = ({ form, userId }) => {
       setShowCropper(true);
     };
     reader.readAsDataURL(file);
-  }, []);
+  }, [t]);
 
   const handleCropComplete = async (croppedBlob: Blob) => {
     setIsUploading(true);
     try {
       const fileName = `${userId}/avatar.jpg`;
-      
-      // Upload to Supabase Storage
       const { error: uploadError } = await supabase.storage
         .from('profile-photos')
-        .upload(fileName, croppedBlob, {
-          upsert: true,
-          contentType: 'image/jpeg',
-        });
-
+        .upload(fileName, croppedBlob, { upsert: true, contentType: 'image/jpeg' });
       if (uploadError) throw uploadError;
-
-      // Get public URL
-      const { data: { publicUrl } } = supabase.storage
-        .from('profile-photos')
-        .getPublicUrl(fileName);
-
+      const { data: { publicUrl } } = supabase.storage.from('profile-photos').getPublicUrl(fileName);
       setPreviewUrl(publicUrl);
       form.setValue('avatar_url', publicUrl);
-      toast.success('Photo uploaded successfully!');
+      toast.success(t('profile.basicInfo.photoUploaded'));
     } catch (error) {
       console.error('Upload error:', error);
-      toast.error('Failed to upload photo');
+      toast.error(t('profile.basicInfo.photoError'));
     } finally {
       setIsUploading(false);
     }
@@ -87,16 +75,9 @@ const BasicInfoStep: React.FC<BasicInfoStepProps> = ({ form, userId }) => {
     e.preventDefault();
     const file = e.dataTransfer.files?.[0];
     if (file) {
-      const input = document.createElement('input');
-      input.type = 'file';
       const dataTransfer = new DataTransfer();
       dataTransfer.items.add(file);
-      
-      // Create synthetic event
-      const event = {
-        target: { files: dataTransfer.files }
-      } as React.ChangeEvent<HTMLInputElement>;
-      
+      const event = { target: { files: dataTransfer.files } } as React.ChangeEvent<HTMLInputElement>;
       handleFileSelect(event);
     }
   }, [handleFileSelect]);
@@ -104,11 +85,10 @@ const BasicInfoStep: React.FC<BasicInfoStepProps> = ({ form, userId }) => {
   return (
     <div className="space-y-6 animate-fade-in">
       <div className="text-center mb-6">
-        <h2 className="text-xl font-semibold text-foreground">Basic Information</h2>
-        <p className="text-muted-foreground">Let's start with your basic details</p>
+        <h2 className="text-xl font-semibold text-foreground">{t('profile.basicInfo.title')}</h2>
+        <p className="text-muted-foreground">{t('profile.basicInfo.subtitle')}</p>
       </div>
 
-      {/* Photo Upload */}
       <div className="flex flex-col items-center mb-8">
         <div
           onDrop={handleDrop}
@@ -121,11 +101,7 @@ const BasicInfoStep: React.FC<BasicInfoStepProps> = ({ form, userId }) => {
         >
           {previewUrl ? (
             <>
-              <img
-                src={previewUrl}
-                alt="Profile"
-                className="w-full h-full rounded-full object-cover"
-              />
+              <img src={previewUrl} alt={t('profile.basicInfo.photo')} className="w-full h-full rounded-full object-cover" />
               <button
                 type="button"
                 onClick={handleRemovePhoto}
@@ -142,20 +118,15 @@ const BasicInfoStep: React.FC<BasicInfoStepProps> = ({ form, userId }) => {
                 <>
                   <Upload className="h-8 w-8 text-muted-foreground mb-2" />
                   <span className="text-xs text-muted-foreground text-center px-2">
-                    Drag or click
+                    {t('profile.basicInfo.photoDragDrop')}
                   </span>
                 </>
               )}
-              <input
-                type="file"
-                accept="image/jpeg,image/png"
-                onChange={handleFileSelect}
-                className="hidden"
-              />
+              <input type="file" accept="image/jpeg,image/png" onChange={handleFileSelect} className="hidden" />
             </label>
           )}
         </div>
-        <p className="text-xs text-muted-foreground mt-2">Max 5MB, JPG or PNG</p>
+        <p className="text-xs text-muted-foreground mt-2">{t('profile.basicInfo.photoRequirements')}</p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -164,13 +135,9 @@ const BasicInfoStep: React.FC<BasicInfoStepProps> = ({ form, userId }) => {
           name="first_name"
           render={({ field }) => (
             <FormItem>
-              <Label>First Name <span className="text-destructive">*</span></Label>
+              <Label>{t('profile.basicInfo.firstName')} <span className="text-destructive">*</span></Label>
               <FormControl>
-                <Input
-                  {...field}
-                  placeholder="John"
-                  className="bg-background border-border focus:border-primary"
-                />
+                <Input {...field} placeholder={t('profile.basicInfo.firstNamePlaceholder')} className="bg-background border-border focus:border-primary" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -182,13 +149,9 @@ const BasicInfoStep: React.FC<BasicInfoStepProps> = ({ form, userId }) => {
           name="last_name"
           render={({ field }) => (
             <FormItem>
-              <Label>Last Name <span className="text-destructive">*</span></Label>
+              <Label>{t('profile.basicInfo.lastName')} <span className="text-destructive">*</span></Label>
               <FormControl>
-                <Input
-                  {...field}
-                  placeholder="Doe"
-                  className="bg-background border-border focus:border-primary"
-                />
+                <Input {...field} placeholder={t('profile.basicInfo.lastNamePlaceholder')} className="bg-background border-border focus:border-primary" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -201,15 +164,11 @@ const BasicInfoStep: React.FC<BasicInfoStepProps> = ({ form, userId }) => {
         name="email"
         render={({ field }) => (
           <FormItem>
-            <Label>Email</Label>
+            <Label>{t('profile.basicInfo.email')}</Label>
             <FormControl>
-              <Input
-                {...field}
-                readOnly
-                disabled
-                className="bg-background border-border opacity-50"
-              />
+              <Input {...field} readOnly disabled className="bg-background border-border opacity-50" />
             </FormControl>
+            <p className="text-xs text-muted-foreground">{t('profile.basicInfo.emailReadOnly')}</p>
             <FormMessage />
           </FormItem>
         )}
@@ -220,31 +179,21 @@ const BasicInfoStep: React.FC<BasicInfoStepProps> = ({ form, userId }) => {
         name="phone"
         render={({ field }) => (
           <FormItem>
-            <Label>Phone <span className="text-destructive">*</span></Label>
+            <Label>{t('profile.basicInfo.phone')} <span className="text-destructive">*</span></Label>
             <FormControl>
               <div className="relative">
                 <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <Input
-                  {...field}
-                  placeholder="+1234567890"
-                  className="pl-10 bg-background border-border focus:border-primary"
-                />
+                <Input {...field} placeholder={t('profile.basicInfo.phonePlaceholder')} className="pl-10 bg-background border-border focus:border-primary" />
               </div>
             </FormControl>
-            <p className="text-xs text-muted-foreground">International format (e.g., +1234567890)</p>
+            <p className="text-xs text-muted-foreground">{t('profile.basicInfo.phoneHelper')}</p>
             <FormMessage />
           </FormItem>
         )}
       />
 
-      <ImageCropper
-        image={cropperImage || ''}
-        open={showCropper}
-        onClose={() => setShowCropper(false)}
-        onCropComplete={handleCropComplete}
-      />
+      <ImageCropper image={cropperImage || ''} open={showCropper} onClose={() => setShowCropper(false)} onCropComplete={handleCropComplete} />
 
-      {/* Social Media Fields */}
       <SocialMediaFields
         linkedinUrl={form.watch('linkedin_url') || ''}
         instagramUrl={form.watch('instagram_url') || ''}
