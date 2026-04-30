@@ -122,6 +122,13 @@ const ProfileCreate: React.FC = () => {
     defaultValues: { industries: [] },
   });
 
+  // Ensure email is populated as soon as user loads (for fresh signups)
+  useEffect(() => {
+    if (user?.email && !basicInfoForm.getValues('email')) {
+      basicInfoForm.setValue('email', user.email);
+    }
+  }, [user, basicInfoForm]);
+
   // Load existing data on mount
   useEffect(() => {
     if (!user) return;
