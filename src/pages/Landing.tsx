@@ -160,6 +160,63 @@ const Landing: React.FC = () => {
     { icon: Briefcase, label: t('landing.capabilities.experience', 'Experience management'), value: t('landing.capabilities.comprehensive', 'Complete') },
   ];
 
+  const hrModules = [
+    {
+      icon: Calendar,
+      title: t('landing.suite.timeOff.title', 'Time-off management'),
+      desc: t('landing.suite.timeOff.desc', 'Request, approve, and track PTO with per-policy balances and a manager approval queue.'),
+      tag: t('landing.suite.timeOff.tag', 'PTO & balances'),
+    },
+    {
+      icon: GraduationCap,
+      title: t('landing.suite.onboarding.title', 'Onboarding journeys'),
+      desc: t('landing.suite.onboarding.desc', 'Templated checklists guide new hires through their first weeks — with progress visible to HR.'),
+      tag: t('landing.suite.onboarding.tag', 'Templates & tasks'),
+    },
+    {
+      icon: Briefcase,
+      title: t('landing.suite.jobs.title', 'Internal job board & ATS'),
+      desc: t('landing.suite.jobs.desc', 'Post openings, collect applications, and move candidates through a lightweight pipeline.'),
+      tag: t('landing.suite.jobs.tag', 'Postings & pipeline'),
+    },
+    {
+      icon: Megaphone,
+      title: t('landing.suite.announcements.title', 'Announcements'),
+      desc: t('landing.suite.announcements.desc', 'Reach the whole company or scoped audiences with rich-text updates and acknowledgements.'),
+      tag: t('landing.suite.announcements.tag', 'Company-wide'),
+    },
+    {
+      icon: Files,
+      title: t('landing.suite.files.title', 'Documents & policies'),
+      desc: t('landing.suite.files.desc', 'A central library for handbooks, contracts, and policies — searchable and access-controlled.'),
+      tag: t('landing.suite.files.tag', 'Secure library'),
+    },
+    {
+      icon: ClipboardText,
+      title: t('landing.suite.surveys.title', 'Surveys & pulse'),
+      desc: t('landing.suite.surveys.desc', 'Capture employee sentiment with anonymous or attributed surveys and live response tracking.'),
+      tag: t('landing.suite.surveys.tag', 'Pulse & feedback'),
+    },
+    {
+      icon: Heart,
+      title: t('landing.suite.kudos.title', 'Kudos & recognition'),
+      desc: t('landing.suite.kudos.desc', 'Peer-to-peer shout-outs tied to company values, surfaced in a public recognition feed.'),
+      tag: t('landing.suite.kudos.tag', 'Peer recognition'),
+    },
+    {
+      icon: Confetti,
+      title: t('landing.suite.events.title', 'Events & celebrations'),
+      desc: t('landing.suite.events.desc', 'Company events, RSVPs, and automatic birthday & work-anniversary highlights.'),
+      tag: t('landing.suite.events.tag', 'Calendar & RSVPs'),
+    },
+    {
+      icon: TreeStructure,
+      title: t('landing.suite.orgChart.title', 'Org chart'),
+      desc: t('landing.suite.orgChart.desc', 'Live reporting structure built from real manager assignments — drill in to any team.'),
+      tag: t('landing.suite.orgChart.tag', 'Live structure'),
+    },
+  ];
+
   const testimonials = [
     {
       quote: t(
