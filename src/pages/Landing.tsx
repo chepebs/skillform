@@ -749,12 +749,13 @@ const Landing: React.FC = () => {
 
         {/* ═══════ CAPABILITIES ═══════ */}
         <section id="capabilities" className="relative py-24 px-6">
-          <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          <div className="max-w-6xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="max-w-2xl mb-12"
             >
               <SectionAdornment
                 index={4}
@@ -769,13 +770,15 @@ const Landing: React.FC = () => {
                   {t('landing.capabilities.titlePart2', 'modern teams')}
                 </span>
               </h2>
-              <p className="text-body-lg text-muted-foreground mt-4 mb-10">
+              <p className="text-body-lg text-muted-foreground mt-4">
                 {t(
                   'landing.capabilities.desc',
                   'Every feature designed to help you discover, organize, and leverage the talent within your organization.',
                 )}
               </p>
+            </motion.div>
 
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
               <div className="space-y-3">
                 {capabilities.map((c, i) => (
                   <motion.div
@@ -798,47 +801,47 @@ const Landing: React.FC = () => {
                   </motion.div>
                 ))}
               </div>
-            </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="relative rounded-xl border border-border bg-card p-10 text-center overflow-hidden"
-            >
-              <div className="scan-line" />
-
-              <BracketTag variant="accent" className="mb-6">
-                {t('landing.capabilities.badgeStats', 'Platform stats')}
-              </BracketTag>
-
-              <p className="text-display-lg tracking-tighter text-foreground">100%</p>
-              <p className="text-muted-foreground mt-3">
-                {t('landing.capabilities.coverage', 'Organization coverage')}
-              </p>
-
-              <div className="mt-10 grid grid-cols-3 gap-3">
-                {[
-                  { label: t('landing.capabilities.departments', 'Departments'), value: '12+', tone: 'text-secondary' },
-                  { label: t('landing.capabilities.skills', 'Skills tracked'), value: '200+', tone: 'text-primary' },
-                  { label: t('landing.capabilities.countries', 'Countries'), value: '15+', tone: 'text-foreground' },
-                ].map((s) => (
-                  <div key={s.label} className="stat-card text-center">
-                    <p className="text-mono text-muted-foreground mb-1">{s.label}</p>
-                    <p className={`text-headline-md ${s.tone}`}>{s.value}</p>
-                  </div>
-                ))}
-              </div>
-
-              <button
-                onClick={() => openAuth('login')}
-                className="mt-10 w-full inline-flex items-center justify-center gap-2 accent-gradient text-white px-8 py-3 rounded-full shadow-signal hover:opacity-90 transition-opacity font-medium"
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-80px' }}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                className="relative rounded-xl border border-border bg-card p-10 text-center overflow-hidden"
               >
-                {t('landing.getStarted', 'Get started')}
-                <ArrowRight weight="bold" size={16} />
-              </button>
-            </motion.div>
+                <div className="scan-line" />
+
+                <BracketTag variant="accent" className="mb-6">
+                  {t('landing.capabilities.badgeStats', 'Platform stats')}
+                </BracketTag>
+
+                <p className="text-display-lg tracking-tighter text-foreground">100%</p>
+                <p className="text-muted-foreground mt-3">
+                  {t('landing.capabilities.coverage', 'Organization coverage')}
+                </p>
+
+                <div className="mt-10 grid grid-cols-3 gap-3">
+                  {[
+                    { label: t('landing.capabilities.departments', 'Departments'), value: '12+', tone: 'text-secondary' },
+                    { label: t('landing.capabilities.skills', 'Skills tracked'), value: '200+', tone: 'text-primary' },
+                    { label: t('landing.capabilities.countries', 'Countries'), value: '15+', tone: 'text-foreground' },
+                  ].map((s) => (
+                    <div key={s.label} className="stat-card text-center">
+                      <p className="text-mono text-muted-foreground mb-1">{s.label}</p>
+                      <p className={`text-headline-md ${s.tone}`}>{s.value}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <button
+                  onClick={() => openAuth('login')}
+                  className="mt-10 w-full inline-flex items-center justify-center gap-2 accent-gradient text-white px-8 py-3 rounded-full shadow-signal hover:opacity-90 transition-opacity font-medium"
+                >
+                  {t('landing.getStarted', 'Get started')}
+                  <ArrowRight weight="bold" size={16} />
+                </button>
+              </motion.div>
+            </div>
           </div>
         </section>
 
