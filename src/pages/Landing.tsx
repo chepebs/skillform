@@ -418,11 +418,11 @@ const Landing: React.FC = () => {
             >
               <span className="inline-flex items-center gap-2 font-medium text-foreground">
                 <Sparkle weight="fill" size={14} className="text-primary" />
-                {t('landing.hero.servicesEyebrow', 'Now with services & talent matching')}
+                {t('landing.hero.suiteEyebrow', 'A full HR & talent suite')}
               </span>{' '}
               — {t(
-                'landing.hero.servicesTagline',
-                'document external services, define required skills, and auto-match the right internal talent.',
+                'landing.hero.suiteTagline',
+                'directory, services matching, time-off, onboarding, jobs, announcements, documents, surveys, kudos and more.',
               )}
             </motion.p>
 
