@@ -26,6 +26,10 @@ import Forbidden from "./pages/Forbidden";
 import NotFound from "./pages/NotFound";
 import CompanyCreate from "./pages/company/CompanyCreate";
 import CompanyJoin from "./pages/company/CompanyJoin";
+import OrgChart from "./pages/OrgChart";
+import Celebrations from "./pages/Celebrations";
+import Kudos from "./pages/Kudos";
+import Events from "./pages/Events";
 
 // Admin Pages
 import MasterDashboard from "./pages/admin/MasterDashboard";
@@ -85,6 +89,10 @@ const App = () => (
               <Route path="/directory" element={<Directory />} />
               <Route path="/profile/me" element={<ProfileView />} />
               <Route path="/profile/:id" element={<ProfileView />} />
+              <Route path="/org-chart" element={<OrgChart />} />
+              <Route path="/people/celebrations" element={<Celebrations />} />
+              <Route path="/kudos" element={<Kudos />} />
+              <Route path="/events" element={<Events />} />
 
               {/* Organizer Admin Routes */}
               <Route path="/admin/organizer" element={
