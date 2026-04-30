@@ -9,7 +9,6 @@
     "inactive": "Inactivo",
     "select": "Seleccionar...",
     "loading": "Cargando...",
-    
     "buttons": {
       "save": "Guardar",
       "cancel": "Cancelar",
@@ -99,298 +98,6 @@
       "files": "Archivos",
       "people": "Personas",
       "workplace": "Espacio de trabajo"
-    },
-    "modules": {
-      "orgChart": {
-        "title": "Organigrama",
-        "subtitle": "Estructura de reportes de la compañía",
-        "noManager": "Sin jefe asignado",
-        "directReports": "Reportes directos",
-        "viewProfile": "Ver perfil"
-      },
-      "celebrations": {
-        "title": "Cumpleaños y aniversarios",
-        "subtitle": "Celebra a las personas que hacen posible todo",
-        "today": "Hoy",
-        "thisWeek": "Esta semana",
-        "thisMonth": "Este mes",
-        "birthdays": "Cumpleaños",
-        "anniversaries": "Aniversarios laborales",
-        "yearsLabel": "{{count}} año",
-        "yearsLabel_plural": "{{count}} años",
-        "noUpcoming": "No hay celebraciones próximas",
-        "turning": "Cumple {{age}}",
-        "celebrating": "Celebrando {{years}} años"
-      },
-      "kudos": {
-        "title": "Reconocimientos",
-        "subtitle": "Reconoce y celebra a tus colegas",
-        "give": "Dar reconocimiento",
-        "giveTo": "Reconocer a",
-        "selectColleague": "Selecciona un colega",
-        "message": "Mensaje",
-        "messagePlaceholder": "¿Por qué lo estás reconociendo?",
-        "valueTag": "Valor (opcional)",
-        "send": "Enviar",
-        "noKudos": "Aún no hay reconocimientos — sé el primero.",
-        "from": "De",
-        "to": "Para",
-        "values": {
-          "teamwork": "Trabajo en equipo",
-          "innovation": "Innovación",
-          "leadership": "Liderazgo",
-          "excellence": "Excelencia",
-          "impact": "Impacto",
-          "ownership": "Compromiso"
-        }
-      },
-      "events": {
-        "title": "Eventos",
-        "subtitle": "Eventos, reuniones y encuentros de la compañía",
-        "create": "Crear evento",
-        "upcoming": "Próximos",
-        "past": "Pasados",
-        "noEvents": "No hay eventos programados",
-        "form": {
-          "eventTitle": "Título",
-          "description": "Descripción",
-          "startsAt": "Comienza",
-          "endsAt": "Termina",
-          "location": "Ubicación",
-          "isVirtual": "Evento virtual",
-          "meetingUrl": "URL de reunión"
-        },
-        "rsvp": {
-          "going": "Voy",
-          "maybe": "Tal vez",
-          "declined": "No iré",
-          "attending": "{{count}} asistirán"
-        }
-      },
-      "documents": {
-        "title": "Documentos",
-        "subtitle": "Archivos personales de RR.HH. y documentos compartidos",
-        "upload": "Subir documento",
-        "newFolder": "Nueva carpeta",
-        "noDocuments": "Aún no hay documentos",
-        "tabs": {
-          "personal": "Mis documentos",
-          "shared": "Compartidos",
-          "managed": "Mi equipo"
-        },
-        "form": {
-          "name": "Nombre",
-          "description": "Descripción",
-          "visibility": "Visibilidad",
-          "personal": "Personal (solo yo, mi jefe y admins)",
-          "department": "Mi departamento",
-          "company": "Toda la compañía",
-          "owner": "Propietario",
-          "file": "Archivo"
-        },
-        "uploadedBy": "Subido por",
-        "size": "Tamaño",
-        "download": "Descargar",
-        "delete": "Eliminar"
-      },
-      "policies": {
-        "title": "Políticas de la compañía",
-        "subtitle": "Lee, comprende y firma las políticas de la compañía",
-        "create": "Nueva política",
-        "edit": "Editar política",
-        "publish": "Publicar",
-        "archive": "Archivar",
-        "draft": "Borrador",
-        "published": "Publicada",
-        "archived": "Archivada",
-        "version": "Versión",
-        "effectiveFrom": "Vigente desde",
-        "acknowledge": "Reconozco esta política",
-        "acknowledged": "Reconocida",
-        "pendingAcknowledgement": "Pendiente de reconocimiento",
-        "coverage": "Cobertura de reconocimientos",
-        "noPolicies": "Aún no hay políticas publicadas",
-        "form": {
-          "title": "Título",
-          "summary": "Resumen",
-          "body": "Contenido (markdown)",
-          "effectiveFrom": "Vigente desde",
-          "requiresAcknowledgement": "Requiere reconocimiento"
-        }
-      },
-      "hrFields": {
-        "title": "Información de RR.HH.",
-        "subtitle": "Usada para celebraciones, organigrama y aprobaciones",
-        "birthDate": "Fecha de nacimiento",
-        "startDate": "Fecha de ingreso",
-        "manager": "Jefe directo",
-        "noManager": "Sin jefe",
-        "save": "Guardar info",
-        "saved": "Información actualizada"
-      },
-      "timeOff": {
-        "title": "Ausencias",
-        "subtitle": "Solicita y aprueba vacaciones, días por enfermedad y tiempo personal",
-        "requestTimeOff": "Solicitar ausencia",
-        "newPolicy": "Nueva política",
-        "policy": "Política",
-        "policyName": "Nombre de la política",
-        "type": "Tipo",
-        "annualDays": "Días anuales",
-        "paid": "Pagada",
-        "policyCreated": "Política creada",
-        "noPolicies": "No hay políticas de ausencias configuradas",
-        "myRequests": "Mis solicitudes",
-        "teamRequests": "Solicitudes del equipo",
-        "noRequests": "Sin solicitudes",
-        "reason": "Motivo",
-        "totalDays": "Días totales",
-        "days": "días",
-        "submit": "Enviar solicitud",
-        "requestCreated": "Solicitud enviada",
-        "approve": "Aprobar",
-        "reject": "Rechazar",
-        "approved": "Aprobada",
-        "rejected": "Rechazada",
-        "daysAvailable": "días disponibles",
-        "used": "Usados",
-        "pending": "Pendientes",
-        "allocated": "Asignados",
-        "types": {
-          "vacation": "Vacaciones",
-          "sick": "Enfermedad",
-          "personal": "Personal",
-          "unpaid": "Sin goce",
-          "other": "Otro"
-        }
-      },
-      "jobs": {
-        "title": "Empleos internos",
-        "subtitle": "Vacantes abiertas dentro de la empresa",
-        "create": "Publicar empleo",
-        "jobTitle": "Título del puesto",
-        "description": "Descripción",
-        "employmentType": "Tipo de contratación",
-        "seniority": "Seniority",
-        "deadline": "Fecha límite",
-        "saveDraft": "Guardar borrador",
-        "publish": "Publicar",
-        "close": "Cerrar",
-        "apply": "Aplicar",
-        "applied": "Aplicado",
-        "applications": "postulaciones",
-        "coverNote": "Nota de presentación",
-        "coverNotePlaceholder": "¿Por qué eres ideal para el puesto?",
-        "submitApplication": "Enviar postulación",
-        "posted": "Empleo creado",
-        "noJobs": "No hay vacantes abiertas en este momento",
-        "statuses": {
-          "draft": "Borrador",
-          "open": "Abierto",
-          "closed": "Cerrado"
-        },
-        "employmentTypes": {
-          "full_time": "Tiempo completo",
-          "part_time": "Tiempo parcial",
-          "contract": "Contrato",
-          "internship": "Pasantía"
-        }
-      },
-      "onboarding": {
-        "title": "Onboarding",
-        "subtitle": "Flujos y tareas para nuevos integrantes",
-        "newTemplate": "Nueva plantilla",
-        "templateName": "Nombre de la plantilla",
-        "tasks": "Tareas",
-        "taskTitle": "Título de la tarea (días de plazo)",
-        "addTask": "Agregar tarea",
-        "templateCreated": "Plantilla creada",
-        "assign": "Asignar onboarding",
-        "assigned": "Onboarding asignado",
-        "employee": "Empleado",
-        "template": "Plantilla",
-        "templates": "Plantillas",
-        "myOnboarding": "Mi onboarding",
-        "teamOnboarding": "Onboarding del equipo",
-        "noAssignments": "Sin asignaciones de onboarding",
-        "noTemplates": "Aún no hay plantillas",
-        "started": "Iniciado",
-        "completed": "completadas",
-        "customPlan": "Plan personalizado",
-        "statuses": {
-          "in_progress": "En curso",
-          "completed": "Completado",
-          "cancelled": "Cancelado"
-        }
-      },
-      "surveys": {
-        "title": "Encuestas",
-        "subtitle": "Escucha a tu equipo — anónimas o identificadas",
-        "create": "Nueva encuesta",
-        "saveDraft": "Guardar borrador",
-        "publish": "Publicar",
-        "close": "Cerrar",
-        "anonymous": "Anónima",
-        "closesAt": "Cierra el",
-        "questions": "Preguntas",
-        "questionsLabel": "preguntas",
-        "questionPrompt": "Texto de la pregunta",
-        "optionsPlaceholder": "Una opción por línea",
-        "required": "Obligatoria",
-        "addQuestion": "Agregar pregunta",
-        "needQuestion": "Agrega al menos una pregunta",
-        "inbox": "Por responder",
-        "mySurveys": "Mis encuestas",
-        "noSurveys": "Sin encuestas",
-        "respond": "Responder",
-        "submit": "Enviar respuesta",
-        "submitted": "Enviada",
-        "responseSubmitted": "Gracias por tu respuesta",
-        "answerAllRequired": "Responde todas las preguntas obligatorias",
-        "results": "Resultados",
-        "responses": "respuestas",
-        "avg": "promedio",
-        "closes": "Cierra",
-        "created": "Encuesta creada",
-        "qtypes": {
-          "text": "Texto",
-          "single_choice": "Opción única",
-          "multi_choice": "Opción múltiple",
-          "rating": "Puntaje 1–5",
-          "yes_no": "Sí / No"
-        },
-        "statuses": {
-          "draft": "Borrador",
-          "open": "Abierta",
-          "closed": "Cerrada"
-        }
-      },
-      "announcements": {
-        "title": "Anuncios",
-        "subtitle": "Novedades y comunicados para toda la empresa",
-        "create": "Nuevo anuncio",
-        "post": "Publicar",
-        "posted": "Anuncio publicado",
-        "body": "Mensaje",
-        "pin": "Fijar arriba",
-        "expiresAt": "Expira el",
-        "expired": "expirado",
-        "markRead": "Marcar como leído",
-        "noAnnouncements": "Aún no hay anuncios"
-      },
-      "files": {
-        "title": "Archivos",
-        "subtitle": "Recursos compartidos de la empresa",
-        "upload": "Subir archivo",
-        "uploaded": "Archivo subido",
-        "file": "Archivo",
-        "scope": "Visibilidad",
-        "noFiles": "Aún no hay archivos",
-        "scopes": {
-          "company": "Toda la empresa",
-          "department": "Mi departamento"
-        }
-      }
     },
     "status": {
       "active": "Activo",
@@ -1706,30 +1413,322 @@
       "attached": "Te has unido a la empresa exitosamente",
       "invalidTitle": "Enlace de invitación inválido",
       "invalidDesc": "Este enlace de invitación no es válido o ha sido desactivado."
+    }
+  },
+  "modules": {
+    "orgChart": {
+      "title": "Organigrama",
+      "subtitle": "Estructura de reportes de la compañía",
+      "noManager": "Sin jefe asignado",
+      "directReports": "Reportes directos",
+      "viewProfile": "Ver perfil"
     },
-    "widgets": {
-      "pendingApprovals": {
-        "title": "Aprobaciones pendientes",
-        "timeOff": "Solicitudes de ausencia",
-        "jobApplications": "Postulaciones a empleo",
-        "review": "Revisar todo"
-      },
-      "timeOffBalance": {
-        "title": "Mi balance de ausencias",
-        "empty": "Aún no tienes balance asignado.",
-        "days": "días",
-        "request": "Solicitar ausencia"
-      },
-      "onboarding": {
-        "title": "Mi onboarding",
-        "progress": "{{done}} de {{total}} tareas",
-        "open": "Abrir onboarding"
-      },
-      "kudos": {
-        "title": "Reconocimientos recientes",
-        "empty": "Aún no hay reconocimientos — ¡sé el primero!",
-        "openFeed": "Abrir muro de kudos"
+    "celebrations": {
+      "title": "Cumpleaños y aniversarios",
+      "subtitle": "Celebra a las personas que hacen posible todo",
+      "today": "Hoy",
+      "thisWeek": "Esta semana",
+      "thisMonth": "Este mes",
+      "birthdays": "Cumpleaños",
+      "anniversaries": "Aniversarios laborales",
+      "yearsLabel": "{{count}} año",
+      "yearsLabel_plural": "{{count}} años",
+      "noUpcoming": "No hay celebraciones próximas",
+      "turning": "Cumple {{age}}",
+      "celebrating": "Celebrando {{years}} años"
+    },
+    "kudos": {
+      "title": "Reconocimientos",
+      "subtitle": "Reconoce y celebra a tus colegas",
+      "give": "Dar reconocimiento",
+      "giveTo": "Reconocer a",
+      "selectColleague": "Selecciona un colega",
+      "message": "Mensaje",
+      "messagePlaceholder": "¿Por qué lo estás reconociendo?",
+      "valueTag": "Valor (opcional)",
+      "send": "Enviar",
+      "noKudos": "Aún no hay reconocimientos — sé el primero.",
+      "from": "De",
+      "to": "Para",
+      "values": {
+        "teamwork": "Trabajo en equipo",
+        "innovation": "Innovación",
+        "leadership": "Liderazgo",
+        "excellence": "Excelencia",
+        "impact": "Impacto",
+        "ownership": "Compromiso"
       }
+    },
+    "events": {
+      "title": "Eventos",
+      "subtitle": "Eventos, reuniones y encuentros de la compañía",
+      "create": "Crear evento",
+      "upcoming": "Próximos",
+      "past": "Pasados",
+      "noEvents": "No hay eventos programados",
+      "form": {
+        "eventTitle": "Título",
+        "description": "Descripción",
+        "startsAt": "Comienza",
+        "endsAt": "Termina",
+        "location": "Ubicación",
+        "isVirtual": "Evento virtual",
+        "meetingUrl": "URL de reunión"
+      },
+      "rsvp": {
+        "going": "Voy",
+        "maybe": "Tal vez",
+        "declined": "No iré",
+        "attending": "{{count}} asistirán"
+      }
+    },
+    "documents": {
+      "title": "Documentos",
+      "subtitle": "Archivos personales de RR.HH. y documentos compartidos",
+      "upload": "Subir documento",
+      "newFolder": "Nueva carpeta",
+      "noDocuments": "Aún no hay documentos",
+      "tabs": {
+        "personal": "Mis documentos",
+        "shared": "Compartidos",
+        "managed": "Mi equipo"
+      },
+      "form": {
+        "name": "Nombre",
+        "description": "Descripción",
+        "visibility": "Visibilidad",
+        "personal": "Personal (solo yo, mi jefe y admins)",
+        "department": "Mi departamento",
+        "company": "Toda la compañía",
+        "owner": "Propietario",
+        "file": "Archivo"
+      },
+      "uploadedBy": "Subido por",
+      "size": "Tamaño",
+      "download": "Descargar",
+      "delete": "Eliminar"
+    },
+    "policies": {
+      "title": "Políticas de la compañía",
+      "subtitle": "Lee, comprende y firma las políticas de la compañía",
+      "create": "Nueva política",
+      "edit": "Editar política",
+      "publish": "Publicar",
+      "archive": "Archivar",
+      "draft": "Borrador",
+      "published": "Publicada",
+      "archived": "Archivada",
+      "version": "Versión",
+      "effectiveFrom": "Vigente desde",
+      "acknowledge": "Reconozco esta política",
+      "acknowledged": "Reconocida",
+      "pendingAcknowledgement": "Pendiente de reconocimiento",
+      "coverage": "Cobertura de reconocimientos",
+      "noPolicies": "Aún no hay políticas publicadas",
+      "form": {
+        "title": "Título",
+        "summary": "Resumen",
+        "body": "Contenido (markdown)",
+        "effectiveFrom": "Vigente desde",
+        "requiresAcknowledgement": "Requiere reconocimiento"
+      }
+    },
+    "hrFields": {
+      "title": "Información de RR.HH.",
+      "subtitle": "Usada para celebraciones, organigrama y aprobaciones",
+      "birthDate": "Fecha de nacimiento",
+      "startDate": "Fecha de ingreso",
+      "manager": "Jefe directo",
+      "noManager": "Sin jefe",
+      "save": "Guardar info",
+      "saved": "Información actualizada"
+    },
+    "timeOff": {
+      "title": "Ausencias",
+      "subtitle": "Solicita y aprueba vacaciones, días por enfermedad y tiempo personal",
+      "requestTimeOff": "Solicitar ausencia",
+      "newPolicy": "Nueva política",
+      "policy": "Política",
+      "policyName": "Nombre de la política",
+      "type": "Tipo",
+      "annualDays": "Días anuales",
+      "paid": "Pagada",
+      "policyCreated": "Política creada",
+      "noPolicies": "No hay políticas de ausencias configuradas",
+      "myRequests": "Mis solicitudes",
+      "teamRequests": "Solicitudes del equipo",
+      "noRequests": "Sin solicitudes",
+      "reason": "Motivo",
+      "totalDays": "Días totales",
+      "days": "días",
+      "submit": "Enviar solicitud",
+      "requestCreated": "Solicitud enviada",
+      "approve": "Aprobar",
+      "reject": "Rechazar",
+      "approved": "Aprobada",
+      "rejected": "Rechazada",
+      "daysAvailable": "días disponibles",
+      "used": "Usados",
+      "pending": "Pendientes",
+      "allocated": "Asignados",
+      "types": {
+        "vacation": "Vacaciones",
+        "sick": "Enfermedad",
+        "personal": "Personal",
+        "unpaid": "Sin goce",
+        "other": "Otro"
+      }
+    },
+    "jobs": {
+      "title": "Empleos internos",
+      "subtitle": "Vacantes abiertas dentro de la empresa",
+      "create": "Publicar empleo",
+      "jobTitle": "Título del puesto",
+      "description": "Descripción",
+      "employmentType": "Tipo de contratación",
+      "seniority": "Seniority",
+      "deadline": "Fecha límite",
+      "saveDraft": "Guardar borrador",
+      "publish": "Publicar",
+      "close": "Cerrar",
+      "apply": "Aplicar",
+      "applied": "Aplicado",
+      "applications": "postulaciones",
+      "coverNote": "Nota de presentación",
+      "coverNotePlaceholder": "¿Por qué eres ideal para el puesto?",
+      "submitApplication": "Enviar postulación",
+      "posted": "Empleo creado",
+      "noJobs": "No hay vacantes abiertas en este momento",
+      "statuses": {
+        "draft": "Borrador",
+        "open": "Abierto",
+        "closed": "Cerrado"
+      },
+      "employmentTypes": {
+        "full_time": "Tiempo completo",
+        "part_time": "Tiempo parcial",
+        "contract": "Contrato",
+        "internship": "Pasantía"
+      }
+    },
+    "onboarding": {
+      "title": "Onboarding",
+      "subtitle": "Flujos y tareas para nuevos integrantes",
+      "newTemplate": "Nueva plantilla",
+      "templateName": "Nombre de la plantilla",
+      "tasks": "Tareas",
+      "taskTitle": "Título de la tarea (días de plazo)",
+      "addTask": "Agregar tarea",
+      "templateCreated": "Plantilla creada",
+      "assign": "Asignar onboarding",
+      "assigned": "Onboarding asignado",
+      "employee": "Empleado",
+      "template": "Plantilla",
+      "templates": "Plantillas",
+      "myOnboarding": "Mi onboarding",
+      "teamOnboarding": "Onboarding del equipo",
+      "noAssignments": "Sin asignaciones de onboarding",
+      "noTemplates": "Aún no hay plantillas",
+      "started": "Iniciado",
+      "completed": "completadas",
+      "customPlan": "Plan personalizado",
+      "statuses": {
+        "in_progress": "En curso",
+        "completed": "Completado",
+        "cancelled": "Cancelado"
+      }
+    },
+    "surveys": {
+      "title": "Encuestas",
+      "subtitle": "Escucha a tu equipo — anónimas o identificadas",
+      "create": "Nueva encuesta",
+      "saveDraft": "Guardar borrador",
+      "publish": "Publicar",
+      "close": "Cerrar",
+      "anonymous": "Anónima",
+      "closesAt": "Cierra el",
+      "questions": "Preguntas",
+      "questionsLabel": "preguntas",
+      "questionPrompt": "Texto de la pregunta",
+      "optionsPlaceholder": "Una opción por línea",
+      "required": "Obligatoria",
+      "addQuestion": "Agregar pregunta",
+      "needQuestion": "Agrega al menos una pregunta",
+      "inbox": "Por responder",
+      "mySurveys": "Mis encuestas",
+      "noSurveys": "Sin encuestas",
+      "respond": "Responder",
+      "submit": "Enviar respuesta",
+      "submitted": "Enviada",
+      "responseSubmitted": "Gracias por tu respuesta",
+      "answerAllRequired": "Responde todas las preguntas obligatorias",
+      "results": "Resultados",
+      "responses": "respuestas",
+      "avg": "promedio",
+      "closes": "Cierra",
+      "created": "Encuesta creada",
+      "qtypes": {
+        "text": "Texto",
+        "single_choice": "Opción única",
+        "multi_choice": "Opción múltiple",
+        "rating": "Puntaje 1–5",
+        "yes_no": "Sí / No"
+      },
+      "statuses": {
+        "draft": "Borrador",
+        "open": "Abierta",
+        "closed": "Cerrada"
+      }
+    },
+    "announcements": {
+      "title": "Anuncios",
+      "subtitle": "Novedades y comunicados para toda la empresa",
+      "create": "Nuevo anuncio",
+      "post": "Publicar",
+      "posted": "Anuncio publicado",
+      "body": "Mensaje",
+      "pin": "Fijar arriba",
+      "expiresAt": "Expira el",
+      "expired": "expirado",
+      "markRead": "Marcar como leído",
+      "noAnnouncements": "Aún no hay anuncios"
+    },
+    "files": {
+      "title": "Archivos",
+      "subtitle": "Recursos compartidos de la empresa",
+      "upload": "Subir archivo",
+      "uploaded": "Archivo subido",
+      "file": "Archivo",
+      "scope": "Visibilidad",
+      "noFiles": "Aún no hay archivos",
+      "scopes": {
+        "company": "Toda la empresa",
+        "department": "Mi departamento"
+      }
+    }
+  },
+  "widgets": {
+    "pendingApprovals": {
+      "title": "Aprobaciones pendientes",
+      "timeOff": "Solicitudes de ausencia",
+      "jobApplications": "Postulaciones a empleo",
+      "review": "Revisar todo"
+    },
+    "timeOffBalance": {
+      "title": "Mi balance de ausencias",
+      "empty": "Aún no tienes balance asignado.",
+      "days": "días",
+      "request": "Solicitar ausencia"
+    },
+    "onboarding": {
+      "title": "Mi onboarding",
+      "progress": "{{done}} de {{total}} tareas",
+      "open": "Abrir onboarding"
+    },
+    "kudos": {
+      "title": "Reconocimientos recientes",
+      "empty": "Aún no hay reconocimientos — ¡sé el primero!",
+      "openFeed": "Abrir muro de kudos"
     }
   }
 }
