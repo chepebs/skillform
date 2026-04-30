@@ -160,9 +160,69 @@
           "declined": "Declined",
           "attending": "{{count}} attending"
         }
+      },
+      "documents": {
+        "title": "Documents",
+        "subtitle": "Personal HR files and shared company documents",
+        "upload": "Upload document",
+        "newFolder": "New folder",
+        "noDocuments": "No documents yet",
+        "tabs": {
+          "personal": "My documents",
+          "shared": "Shared",
+          "managed": "My team"
+        },
+        "form": {
+          "name": "Name",
+          "description": "Description",
+          "visibility": "Visibility",
+          "personal": "Personal (only me, my manager, and admins)",
+          "department": "My department",
+          "company": "Whole company",
+          "owner": "Owner",
+          "file": "File"
+        },
+        "uploadedBy": "Uploaded by",
+        "size": "Size",
+        "download": "Download",
+        "delete": "Delete"
+      },
+      "policies": {
+        "title": "Company policies",
+        "subtitle": "Read, understand, and acknowledge company policies",
+        "create": "New policy",
+        "edit": "Edit policy",
+        "publish": "Publish",
+        "archive": "Archive",
+        "draft": "Draft",
+        "published": "Published",
+        "archived": "Archived",
+        "version": "Version",
+        "effectiveFrom": "Effective from",
+        "acknowledge": "I acknowledge this policy",
+        "acknowledged": "Acknowledged",
+        "pendingAcknowledgement": "Pending acknowledgement",
+        "coverage": "Acknowledgement coverage",
+        "noPolicies": "No policies published yet",
+        "form": {
+          "title": "Title",
+          "summary": "Summary",
+          "body": "Body (markdown)",
+          "effectiveFrom": "Effective from",
+          "requiresAcknowledgement": "Requires acknowledgement"
+        }
+      },
+      "hrFields": {
+        "title": "HR information",
+        "subtitle": "Used for celebrations, org chart, and approvals",
+        "birthDate": "Birth date",
+        "startDate": "Start date at company",
+        "manager": "Direct manager",
+        "noManager": "No manager",
+        "save": "Save HR info",
+        "saved": "HR info updated"
       }
     },
-    "status": {
       "active": "Active",
       "inactive": "Inactive",
       "online": "Online",
