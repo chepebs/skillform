@@ -65,9 +65,19 @@ const CompanyCreate: React.FC = () => {
   };
 
   const handleSubmit = async () => {
-    if (!user) return;
+    if (!user) {
+      toast.error(t('common.messages.error'));
+      return;
+    }
     setSubmitting(true);
     try {
+      // Ensure we have a fresh session so auth.uid() resolves on the server side (RLS)
+      const { data: sessionData } = await supabase.auth.getSession();
+      const authedUserId = sessionData.session?.user?.id;
+      if (!authedUserId) {
+        throw new Error('You must be signed in to create a company.');
+      }
+
       // 1) Create the company first so we have an id for the logo storage path
       const { data: company, error: cErr } = await supabase
         .from('companies')
@@ -78,20 +88,20 @@ const CompanyCreate: React.FC = () => {
           website: data.website || null,
           industry: data.industry || null,
           logo_url: null,
-          created_by: user.id,
+          created_by: authedUserId,
         })
         .select('id, slug')
         .single();
       if (cErr) throw cErr;
 
-      // Attach creator profile to company + mark complete
+      // Attach creator profile to company
       await supabase.from('profiles')
-        .update({ company_id: company.id, profile_completed: true })
-        .eq('user_id', user.id);
+        .update({ company_id: company.id })
+        .eq('user_id', authedUserId);
 
       // Promote to admin within their company (needed before logo upload RLS)
       await supabase.from('user_roles')
-        .upsert([{ user_id: user.id, role: 'admin' as const }], { onConflict: 'user_id,role' });
+        .upsert([{ user_id: authedUserId, role: 'admin' as const }], { onConflict: 'user_id,role' });
 
       // 2) Upload the logo into the company's own folder, then patch the company row
       let logo_url: string | null = null;
