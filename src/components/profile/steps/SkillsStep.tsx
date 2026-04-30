@@ -108,7 +108,7 @@ const SkillsStep: React.FC<SkillsStepProps> = ({ form }) => {
     append({
       skill_name: skillName,
       skill_category: category,
-      proficiency_level: 0,
+      proficiency_level: 1,
       years_experience: undefined,
     });
   };
