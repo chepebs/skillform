@@ -757,7 +757,7 @@ const Landing: React.FC = () => {
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             >
               <SectionAdornment
-                index={3}
+                index={4}
                 total={TOTAL_SECTIONS}
                 label={t('landing.capabilities.badge', 'Built in')}
                 align="left"
