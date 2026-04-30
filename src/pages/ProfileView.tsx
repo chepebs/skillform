@@ -15,6 +15,7 @@ import { ProjectsAwardsTab } from '@/components/profile/view/ProjectsAwardsTab';
 import { AdditionalInfoTab } from '@/components/profile/view/AdditionalInfoTab';
 import { ProfileSkeleton } from '@/components/profile/view/ProfileSkeleton';
 import { SectionAdornment } from '@/components/brand/SectionAdornment';
+import { HRFieldsCard } from '@/components/profile/HRFieldsCard';
 
 const ProfileView: React.FC = () => {
   const { id } = useParams<{ id?: string }>();
@@ -128,6 +129,11 @@ const ProfileView: React.FC = () => {
         canEdit={canEdit}
         isOrganizerOrAdmin={isOrganizerOrAdmin}
       />
+
+      {/* HR information (own profile or admin) */}
+      {canEdit && profile?.user_id && (
+        <HRFieldsCard targetUserId={profile.user_id} />
+      )}
 
       {/* Quick Stats Bar */}
       <QuickStatsBar
