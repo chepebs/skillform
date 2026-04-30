@@ -14,6 +14,8 @@ import { DirectorStatsCards } from '@/components/admin/director/DirectorStatsCar
 import { TeamRoster } from '@/components/admin/director/TeamRoster';
 import { TeamAnalytics } from '@/components/admin/director/TeamAnalytics';
 import { DepartmentInfoForm } from '@/components/admin/director/DepartmentInfoForm';
+import { PendingApprovalsWidget } from '@/components/dashboard/widgets/PendingApprovalsWidget';
+import { KudosFeedWidget } from '@/components/dashboard/widgets/KudosFeedWidget';
 
 const DirectorDashboard: React.FC = () => {
   const [selectedDepartment, setSelectedDepartment] = useState<string | null>(null);
@@ -125,6 +127,12 @@ const DirectorDashboard: React.FC = () => {
 
       {/* Stats */}
       <DirectorStatsCards stats={stats} />
+
+      {/* HR cross-suite widgets */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <PendingApprovalsWidget />
+        <KudosFeedWidget />
+      </div>
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
