@@ -641,6 +641,112 @@ const Landing: React.FC = () => {
           </div>
         </section>
 
+        {/* ═══════ HR SUITE ═══════ */}
+        <section id="suite" className="relative py-24 px-6 bg-lines">
+          <div
+            className="pointer-events-none absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full blur-3xl"
+            style={{ background: 'hsl(var(--secondary) / 0.08)' }}
+          />
+          <div className="max-w-6xl mx-auto relative">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="text-center mb-14"
+            >
+              <SectionAdornment
+                index={3}
+                total={TOTAL_SECTIONS}
+                label={t('landing.suite.badge', 'Complete HR suite')}
+                className="mb-4"
+              />
+              <h2 className="text-display-md">
+                {t('landing.suite.title', 'One platform,')}{' '}
+                <span className="text-primary">
+                  {t('landing.suite.titleAccent', 'every people workflow')}
+                </span>
+              </h2>
+              <p className="text-body-lg text-muted-foreground mt-4 max-w-2xl mx-auto">
+                {t(
+                  'landing.suite.subtitle',
+                  'From the day someone is hired to the day-to-day rhythm of work — Skill*form covers every people-ops process your team needs.',
+                )}
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {hrModules.map((m, i) => (
+                <motion.div
+                  key={m.title}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-60px' }}
+                  transition={{
+                    duration: 0.4,
+                    delay: (i % 3) * 0.06,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className="feature-card flex flex-col h-full"
+                >
+                  <div className="flex items-center justify-between mb-5">
+                    <div className="w-11 h-11 rounded-lg bg-signal-subtle border border-signal flex items-center justify-center">
+                      <m.icon weight="regular" size={22} className="text-primary" />
+                    </div>
+                    <span className="text-mono text-primary/60">{m.tag}</span>
+                  </div>
+                  <h3 className="text-headline-md mb-3 text-foreground">{m.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed flex-1">{m.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Cross-suite widgets callout */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-12 rounded-xl border border-border bg-card p-8 sm:p-10"
+            >
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+                <div className="lg:col-span-1">
+                  <BracketTag variant="accent" className="mb-4">
+                    {t('landing.suite.widgets.badge', 'On every dashboard')}
+                  </BracketTag>
+                  <h3 className="text-headline-md text-foreground">
+                    {t('landing.suite.widgets.title', 'Surfaced where it matters')}
+                  </h3>
+                  <p className="text-muted-foreground mt-3 text-sm leading-relaxed">
+                    {t(
+                      'landing.suite.widgets.desc',
+                      'Cross-suite widgets pull approvals, balances, onboarding progress and recognition straight onto the right dashboard for each role.',
+                    )}
+                  </p>
+                </div>
+                <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {[
+                    { icon: ListChecks, label: t('landing.suite.widgets.approvals', 'Pending approvals'), sub: t('landing.suite.widgets.approvalsSub', 'For managers & admins') },
+                    { icon: Calendar, label: t('landing.suite.widgets.balance', 'My time-off balance'), sub: t('landing.suite.widgets.balanceSub', 'Per employee') },
+                    { icon: GraduationCap, label: t('landing.suite.widgets.onboarding', 'Onboarding progress'), sub: t('landing.suite.widgets.onboardingSub', 'For new hires') },
+                    { icon: Heart, label: t('landing.suite.widgets.kudos', 'Kudos feed'), sub: t('landing.suite.widgets.kudosSub', 'Visible to everyone') },
+                  ].map((w) => (
+                    <div key={w.label} className="stat-card flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-md bg-signal-subtle border border-signal flex items-center justify-center shrink-0">
+                        <w.icon weight="regular" size={16} className="text-primary" />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-sm font-medium text-foreground truncate">{w.label}</p>
+                        <p className="text-xs text-muted-foreground truncate">{w.sub}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
         {/* ═══════ CAPABILITIES ═══════ */}
         <section id="capabilities" className="relative py-24 px-6">
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
