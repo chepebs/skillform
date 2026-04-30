@@ -223,6 +223,7 @@
         "saved": "HR info updated"
       }
     },
+    "status": {
       "active": "Active",
       "inactive": "Inactive",
       "online": "Online",
