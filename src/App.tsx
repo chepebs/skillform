@@ -35,6 +35,9 @@ import Policies from "./pages/Policies";
 import TimeOff from "./pages/TimeOff";
 import Jobs from "./pages/Jobs";
 import Onboarding from "./pages/Onboarding";
+import Surveys from "./pages/Surveys";
+import Announcements from "./pages/Announcements";
+import Files from "./pages/Files";
 
 // Admin Pages
 import MasterDashboard from "./pages/admin/MasterDashboard";
@@ -103,6 +106,9 @@ const App = () => (
               <Route path="/time-off" element={<TimeOff />} />
               <Route path="/jobs" element={<Jobs />} />
               <Route path="/onboarding" element={<Onboarding />} />
+              <Route path="/surveys" element={<Surveys />} />
+              <Route path="/announcements" element={<Announcements />} />
+              <Route path="/files" element={<Files />} />
 
               {/* Organizer Admin Routes */}
               <Route path="/admin/organizer" element={

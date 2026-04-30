@@ -23,6 +23,9 @@ import {
   AirplaneTilt,
   ClipboardText,
   GraduationCap,
+  ChartBar,
+  Megaphone,
+  FolderOpen,
 } from '@phosphor-icons/react';
 import { SkillFormLogo } from '@/components/SkillFormLogo';
 import { SkillFormIcon } from '@/components/SkillFormIcon';
@@ -53,6 +56,9 @@ const navItems: NavItem[] = [
   { labelKey: 'common.navigation.timeOff', icon: AirplaneTilt, path: '/time-off' },
   { labelKey: 'common.navigation.jobs', icon: ClipboardText, path: '/jobs' },
   { labelKey: 'common.navigation.onboarding', icon: GraduationCap, path: '/onboarding' },
+  { labelKey: 'common.navigation.announcements', icon: Megaphone, path: '/announcements' },
+  { labelKey: 'common.navigation.surveys', icon: ChartBar, path: '/surveys' },
+  { labelKey: 'common.navigation.files', icon: FolderOpen, path: '/files' },
   { labelKey: 'common.navigation.services', icon: Briefcase, path: '/services' },
   { labelKey: 'common.navigation.groups', icon: Folder, path: '/admin/organizer/groups', roles: ['manager', 'admin'] },
   { labelKey: 'common.navigation.myTeam', icon: Users, path: '/admin/director/team', roles: ['manager', 'admin'] },
