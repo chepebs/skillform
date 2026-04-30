@@ -259,6 +259,7 @@ const Landing: React.FC = () => {
         items={[
           { id: 'features', label: t('landing.nav.features', 'Features') },
           { id: 'services', label: t('landing.nav.services', 'Services') },
+          { id: 'suite', label: t('landing.nav.suite', 'HR Suite') },
           { id: 'capabilities', label: t('landing.nav.capabilities', 'Capabilities') },
           { id: 'trust', label: t('landing.nav.trust', 'Trust') },
         ]}
