@@ -1304,6 +1304,20 @@
       "director": "Director",
       "vp": "Vicepresidente / VP",
       "cLevel": "Ejecutivo C-Level"
+    },
+    "counters": {
+      "positionN": "Posición {{n}}",
+      "agencyN": "Agencia {{n}}",
+      "brandN": "Marca {{n}}",
+      "projectN": "Proyecto {{n}}",
+      "awardN": "Premio {{n}}",
+      "languageN": "Idioma {{n}}",
+      "yearsCount": "{{n}}a",
+      "native": "Nativo",
+      "photoUploaded": "Foto subida",
+      "addAnotherLanguage": "Añadir otro idioma",
+      "minLanguagesRequired": "Mínimo 1 requerido",
+      "languagesLabel": "Idiomas"
     }
   },
   "services": {

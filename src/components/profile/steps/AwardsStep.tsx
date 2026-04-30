@@ -1,5 +1,6 @@
 import React from 'react';
 import { UseFormReturn, useFieldArray } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
@@ -19,6 +20,7 @@ interface AwardsStepProps {
 const AWARD_YEARS = Array.from({ length: 36 }, (_, i) => 2025 - i);
 
 const AwardsStep: React.FC<AwardsStepProps> = ({ form, onSkip }) => {
+  const { t } = useTranslation();
   const { fields, append, remove } = useFieldArray({
     control: form.control,
     name: 'awards',
@@ -38,8 +40,8 @@ const AwardsStep: React.FC<AwardsStepProps> = ({ form, onSkip }) => {
   return (
     <div className="space-y-6 animate-fade-in">
       <div className="text-center mb-6">
-        <h2 className="text-xl font-semibold text-foreground">Awards & Recognition</h2>
-        <p className="text-muted-foreground">Share your achievements (optional)</p>
+        <h2 className="text-xl font-semibold text-foreground">{t('profile.awards.title')}</h2>
+        <p className="text-muted-foreground">{t('profile.awards.subtitle')}</p>
       </div>
 
       {/* Awards */}
@@ -47,21 +49,18 @@ const AwardsStep: React.FC<AwardsStepProps> = ({ form, onSkip }) => {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Trophy className="h-5 w-5 text-primary" />
-            <Label className="text-lg">Awards</Label>
+            <Label className="text-lg">{t('profile.awards.title')}</Label>
           </div>
-          <span className="text-xs text-muted-foreground">Optional</span>
+          <span className="text-xs text-muted-foreground">{t('profile.awards.awardsHelper')}</span>
         </div>
 
         {fields.map((field, index) => (
           <div
             key={field.id}
-            className={cn(
-              'p-4 rounded-lg border border-border bg-background/50 space-y-4',
-              'animate-fade-in'
-            )}
+            className={cn('p-4 rounded-lg border border-border bg-background/50 space-y-4', 'animate-fade-in')}
           >
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-muted-foreground">Award {index + 1}</span>
+              <span className="text-sm font-medium text-muted-foreground">{t('profile.counters.awardN', { n: index + 1 })}</span>
               <Button
                 type="button"
                 variant="ghost"
@@ -79,9 +78,9 @@ const AwardsStep: React.FC<AwardsStepProps> = ({ form, onSkip }) => {
                 name={`awards.${index}.award_name`}
                 render={({ field }) => (
                   <FormItem>
-                    <Label className="text-xs">Award Name <span className="text-destructive">*</span></Label>
+                    <Label className="text-xs">{t('profile.awards.awardName')} <span className="text-destructive">*</span></Label>
                     <FormControl>
-                      <Input {...field} placeholder="Award name" className="bg-background border-border" />
+                      <Input {...field} placeholder={t('profile.awards.awardNamePlaceholder')} className="bg-background border-border" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -93,11 +92,11 @@ const AwardsStep: React.FC<AwardsStepProps> = ({ form, onSkip }) => {
                 name={`awards.${index}.award_type`}
                 render={({ field }) => (
                   <FormItem>
-                    <Label className="text-xs">Award Type</Label>
+                    <Label className="text-xs">{t('profile.awards.awardType')}</Label>
                     <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
                         <SelectTrigger className="bg-background border-border">
-                          <SelectValue placeholder="Select type" />
+                          <SelectValue placeholder={t('profile.awards.awardTypePlaceholder')} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -118,9 +117,9 @@ const AwardsStep: React.FC<AwardsStepProps> = ({ form, onSkip }) => {
                 name={`awards.${index}.category`}
                 render={({ field }) => (
                   <FormItem>
-                    <Label className="text-xs">Category</Label>
+                    <Label className="text-xs">{t('profile.awards.awardCategory')}</Label>
                     <FormControl>
-                      <Input {...field} placeholder="Category" className="bg-background border-border" />
+                      <Input {...field} placeholder={t('profile.awards.awardCategoryPlaceholder')} className="bg-background border-border" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -132,11 +131,11 @@ const AwardsStep: React.FC<AwardsStepProps> = ({ form, onSkip }) => {
                 name={`awards.${index}.award_year`}
                 render={({ field }) => (
                   <FormItem>
-                    <Label className="text-xs">Year</Label>
+                    <Label className="text-xs">{t('profile.awards.awardYear')}</Label>
                     <Select onValueChange={(v) => field.onChange(parseInt(v))} value={field.value?.toString()}>
                       <FormControl>
                         <SelectTrigger className="bg-background border-border">
-                          <SelectValue placeholder="Year" />
+                          <SelectValue placeholder={t('profile.awards.awardYearPlaceholder')} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -156,12 +155,9 @@ const AwardsStep: React.FC<AwardsStepProps> = ({ form, onSkip }) => {
                 render={({ field }) => (
                   <FormItem className="flex items-center gap-2 pt-6">
                     <FormControl>
-                      <Checkbox
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                      />
+                      <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                     </FormControl>
-                    <Label className="text-xs cursor-pointer">Won Award</Label>
+                    <Label className="text-xs cursor-pointer">{t('profile.awards.awardWon')}</Label>
                   </FormItem>
                 )}
               />
@@ -172,11 +168,11 @@ const AwardsStep: React.FC<AwardsStepProps> = ({ form, onSkip }) => {
               name={`awards.${index}.description`}
               render={({ field }) => (
                 <FormItem>
-                  <Label className="text-xs">Description</Label>
+                  <Label className="text-xs">{t('profile.awards.awardDescription')}</Label>
                   <FormControl>
                     <Textarea
                       {...field}
-                      placeholder="Brief description of the award..."
+                      placeholder={t('profile.awards.awardDescriptionPlaceholder')}
                       className="bg-background border-border resize-none"
                       rows={2}
                     />
@@ -195,13 +191,13 @@ const AwardsStep: React.FC<AwardsStepProps> = ({ form, onSkip }) => {
           className="w-full border-dashed border-border hover:border-primary"
         >
           <Plus className="mr-2 h-4 w-4" />
-          Add Award
+          {t('profile.awards.addAward')}
         </Button>
       </div>
 
       {/* Consulting Work */}
       <div className="space-y-4">
-        <Label className="text-lg">Consulting Work</Label>
+        <Label className="text-lg">{t('profile.awards.consultingWork')}</Label>
         <FormField
           control={form.control}
           name="consulting_work"
@@ -210,7 +206,7 @@ const AwardsStep: React.FC<AwardsStepProps> = ({ form, onSkip }) => {
               <FormControl>
                 <Textarea
                   {...field}
-                  placeholder="Describe any consulting work, speaking engagements, or other professional activities..."
+                  placeholder={t('profile.awards.consultingWorkPlaceholder')}
                   className="bg-background border-border resize-none min-h-[120px]"
                 />
               </FormControl>
@@ -231,7 +227,7 @@ const AwardsStep: React.FC<AwardsStepProps> = ({ form, onSkip }) => {
             onClick={onSkip}
             className="text-muted-foreground hover:text-foreground"
           >
-            Skip for now
+            {t('profile.creation.skipForNow')}
           </Button>
         </div>
       )}

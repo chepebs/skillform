@@ -1,5 +1,6 @@
 import React from 'react';
 import { UseFormReturn, useFieldArray } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
@@ -15,25 +16,12 @@ interface BrandsProjectsStepProps {
 }
 
 const BrandsProjectsStep: React.FC<BrandsProjectsStepProps> = ({ form }) => {
-  const brandsArray = useFieldArray({
-    control: form.control,
-    name: 'brands_managed',
-  });
+  const { t } = useTranslation();
+  const brandsArray = useFieldArray({ control: form.control, name: 'brands_managed' });
+  const projectsArray = useFieldArray({ control: form.control, name: 'recent_projects' });
 
-  const projectsArray = useFieldArray({
-    control: form.control,
-    name: 'recent_projects',
-  });
-
-  const addBrand = () => {
-    brandsArray.append({
-      brand_name: '',
-      description: '',
-      years_managed: 0,
-    });
-  };
-
-  const addProject = () => {
+  const addBrand = () => brandsArray.append({ brand_name: '', description: '', years_managed: 0 });
+  const addProject = () =>
     projectsArray.append({
       project_name: '',
       brand: '',
@@ -43,29 +31,25 @@ const BrandsProjectsStep: React.FC<BrandsProjectsStepProps> = ({ form }) => {
       role_in_project: '',
       key_results: '',
     });
-  };
 
   return (
     <div className="space-y-8 animate-fade-in">
       <div className="text-center mb-6">
-        <h2 className="text-xl font-semibold text-foreground">Brands & Projects</h2>
-        <p className="text-muted-foreground">Showcase your brand experience and recent projects</p>
+        <h2 className="text-xl font-semibold text-foreground">{t('profile.projects.title')}</h2>
+        <p className="text-muted-foreground">{t('profile.projects.subtitle')}</p>
       </div>
 
       {/* Brands Managed */}
       <div className="space-y-4">
-        <Label className="text-lg">Brands Managed</Label>
+        <Label className="text-lg">{t('profile.projects.brandsManaged')}</Label>
 
         {brandsArray.fields.map((field, index) => (
           <div
             key={field.id}
-            className={cn(
-              'p-4 rounded-lg border border-border bg-background/50 space-y-4',
-              'animate-fade-in'
-            )}
+            className={cn('p-4 rounded-lg border border-border bg-background/50 space-y-4', 'animate-fade-in')}
           >
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-muted-foreground">Brand {index + 1}</span>
+              <span className="text-sm font-medium text-muted-foreground">{t('profile.counters.brandN', { n: index + 1 })}</span>
               <Button
                 type="button"
                 variant="ghost"
@@ -83,9 +67,9 @@ const BrandsProjectsStep: React.FC<BrandsProjectsStepProps> = ({ form }) => {
                 name={`brands_managed.${index}.brand_name`}
                 render={({ field }) => (
                   <FormItem>
-                    <Label className="text-xs">Brand Name <span className="text-destructive">*</span></Label>
+                    <Label className="text-xs">{t('profile.projects.brandName')} <span className="text-destructive">*</span></Label>
                     <FormControl>
-                      <Input {...field} placeholder="Brand name" className="bg-background border-border" />
+                      <Input {...field} placeholder={t('profile.projects.brandNamePlaceholder')} className="bg-background border-border" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -97,7 +81,7 @@ const BrandsProjectsStep: React.FC<BrandsProjectsStepProps> = ({ form }) => {
                 name={`brands_managed.${index}.years_managed`}
                 render={({ field }) => (
                   <FormItem>
-                    <Label className="text-xs">Years Managed</Label>
+                    <Label className="text-xs">{t('profile.projects.yearsManaged')}</Label>
                     <FormControl>
                       <Input
                         {...field}
@@ -118,11 +102,11 @@ const BrandsProjectsStep: React.FC<BrandsProjectsStepProps> = ({ form }) => {
               name={`brands_managed.${index}.description`}
               render={({ field }) => (
                 <FormItem>
-                  <Label className="text-xs">Description</Label>
+                  <Label className="text-xs">{t('profile.projects.brandDescription')}</Label>
                   <FormControl>
                     <Textarea
                       {...field}
-                      placeholder="Brief description..."
+                      placeholder={t('profile.projects.brandDescriptionPlaceholder')}
                       className="bg-background border-border resize-none"
                       rows={2}
                     />
@@ -141,15 +125,15 @@ const BrandsProjectsStep: React.FC<BrandsProjectsStepProps> = ({ form }) => {
           className="w-full border-dashed border-border hover:border-primary"
         >
           <Plus className="mr-2 h-4 w-4" />
-          Add Brand
+          {t('profile.projects.addBrand')}
         </Button>
       </div>
 
       {/* Recent Projects */}
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <Label className="text-lg">Recent Projects <span className="text-destructive">*</span></Label>
-          <span className="text-xs text-muted-foreground">Minimum 1 required</span>
+          <Label className="text-lg">{t('profile.projects.recentProjects')} <span className="text-destructive">*</span></Label>
+          <span className="text-xs text-muted-foreground">{t('profile.projects.recentProjectsHelper')}</span>
         </div>
 
         {form.formState.errors.recent_projects?.root && (
@@ -159,13 +143,10 @@ const BrandsProjectsStep: React.FC<BrandsProjectsStepProps> = ({ form }) => {
         {projectsArray.fields.map((field, index) => (
           <div
             key={field.id}
-            className={cn(
-              'p-4 rounded-lg border border-border bg-background/50 space-y-4',
-              'animate-fade-in'
-            )}
+            className={cn('p-4 rounded-lg border border-border bg-background/50 space-y-4', 'animate-fade-in')}
           >
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-muted-foreground">Project {index + 1}</span>
+              <span className="text-sm font-medium text-muted-foreground">{t('profile.counters.projectN', { n: index + 1 })}</span>
               {projectsArray.fields.length > 1 && (
                 <Button
                   type="button"
@@ -185,9 +166,9 @@ const BrandsProjectsStep: React.FC<BrandsProjectsStepProps> = ({ form }) => {
                 name={`recent_projects.${index}.project_name`}
                 render={({ field }) => (
                   <FormItem>
-                    <Label className="text-xs">Project Name <span className="text-destructive">*</span></Label>
+                    <Label className="text-xs">{t('profile.projects.projectName')} <span className="text-destructive">*</span></Label>
                     <FormControl>
-                      <Input {...field} placeholder="Project name" className="bg-background border-border" />
+                      <Input {...field} placeholder={t('profile.projects.projectNamePlaceholder')} className="bg-background border-border" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -199,9 +180,9 @@ const BrandsProjectsStep: React.FC<BrandsProjectsStepProps> = ({ form }) => {
                 name={`recent_projects.${index}.brand`}
                 render={({ field }) => (
                   <FormItem>
-                    <Label className="text-xs">Brand</Label>
+                    <Label className="text-xs">{t('profile.projects.projectBrand')}</Label>
                     <FormControl>
-                      <Input {...field} placeholder="Associated brand" className="bg-background border-border" />
+                      <Input {...field} placeholder={t('profile.projects.projectBrandPlaceholder')} className="bg-background border-border" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -214,11 +195,11 @@ const BrandsProjectsStep: React.FC<BrandsProjectsStepProps> = ({ form }) => {
               name={`recent_projects.${index}.description`}
               render={({ field }) => (
                 <FormItem>
-                  <Label className="text-xs">Description <span className="text-destructive">*</span></Label>
+                  <Label className="text-xs">{t('profile.projects.projectDescription')} <span className="text-destructive">*</span></Label>
                   <FormControl>
                     <Textarea
                       {...field}
-                      placeholder="Project description..."
+                      placeholder={t('profile.projects.projectDescriptionPlaceholder')}
                       className="bg-background border-border resize-none"
                       rows={2}
                     />
@@ -237,11 +218,11 @@ const BrandsProjectsStep: React.FC<BrandsProjectsStepProps> = ({ form }) => {
                 name={`recent_projects.${index}.project_year`}
                 render={({ field }) => (
                   <FormItem>
-                    <Label className="text-xs">Year</Label>
+                    <Label className="text-xs">{t('profile.projects.projectYear')}</Label>
                     <Select onValueChange={(v) => field.onChange(parseInt(v))} value={field.value?.toString()}>
                       <FormControl>
                         <SelectTrigger className="bg-background border-border">
-                          <SelectValue placeholder="Year" />
+                          <SelectValue placeholder={t('profile.projects.projectYearPlaceholder')} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -260,11 +241,11 @@ const BrandsProjectsStep: React.FC<BrandsProjectsStepProps> = ({ form }) => {
                 name={`recent_projects.${index}.project_month`}
                 render={({ field }) => (
                   <FormItem>
-                    <Label className="text-xs">Month</Label>
+                    <Label className="text-xs">{t('profile.projects.projectMonth')}</Label>
                     <Select onValueChange={(v) => field.onChange(parseInt(v))} value={field.value?.toString()}>
                       <FormControl>
                         <SelectTrigger className="bg-background border-border">
-                          <SelectValue placeholder="Month" />
+                          <SelectValue placeholder={t('profile.projects.projectMonthPlaceholder')} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -283,9 +264,9 @@ const BrandsProjectsStep: React.FC<BrandsProjectsStepProps> = ({ form }) => {
                 name={`recent_projects.${index}.role_in_project`}
                 render={({ field }) => (
                   <FormItem className="col-span-2">
-                    <Label className="text-xs">Your Role</Label>
+                    <Label className="text-xs">{t('profile.projects.projectRole')}</Label>
                     <FormControl>
-                      <Input {...field} placeholder="Your role" className="bg-background border-border" />
+                      <Input {...field} placeholder={t('profile.projects.projectRolePlaceholder')} className="bg-background border-border" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -298,11 +279,11 @@ const BrandsProjectsStep: React.FC<BrandsProjectsStepProps> = ({ form }) => {
               name={`recent_projects.${index}.key_results`}
               render={({ field }) => (
                 <FormItem>
-                  <Label className="text-xs">Key Results</Label>
+                  <Label className="text-xs">{t('profile.projects.keyResults')}</Label>
                   <FormControl>
                     <Textarea
                       {...field}
-                      placeholder="Key achievements and results..."
+                      placeholder={t('profile.projects.keyResultsPlaceholder')}
                       className="bg-background border-border resize-none"
                       rows={2}
                     />
@@ -321,7 +302,7 @@ const BrandsProjectsStep: React.FC<BrandsProjectsStepProps> = ({ form }) => {
           className="w-full border-dashed border-border hover:border-primary"
         >
           <Plus className="mr-2 h-4 w-4" />
-          Add Project
+          {t('profile.projects.addProject')}
         </Button>
       </div>
     </div>
