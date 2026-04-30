@@ -853,7 +853,7 @@ const Landing: React.FC = () => {
               className="text-center mb-12"
             >
               <SectionAdornment
-                index={4}
+                index={5}
                 total={TOTAL_SECTIONS}
                 label={t('landing.showcase.badge', 'Inside the product')}
                 className="mb-4"
