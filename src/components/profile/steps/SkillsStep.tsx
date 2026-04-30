@@ -108,7 +108,7 @@ const SkillsStep: React.FC<SkillsStepProps> = ({ form }) => {
     append({
       skill_name: skillName,
       skill_category: category,
-      proficiency_level: 0,
+      proficiency_level: 1,
       years_experience: undefined,
     });
   };
@@ -363,7 +363,7 @@ const SkillsStep: React.FC<SkillsStepProps> = ({ form }) => {
                 key={field.id}
                 className={cn(
                   'p-4 rounded-lg border bg-card animate-fade-in',
-                  !field.proficiency_level && 'border-destructive/50'
+                  (!field.proficiency_level || field.proficiency_level < 1) && 'border-destructive/50'
                 )}
               >
                 <div className="flex items-start justify-between mb-3">
