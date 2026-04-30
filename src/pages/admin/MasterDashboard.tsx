@@ -29,6 +29,8 @@ import { ExportPDFButton } from '@/components/admin/master/ExportPDFButton';
 import { AgencyManagement } from '@/components/admin/master/AgencyManagement';
 import { DepartmentManagement } from '@/components/admin/master/DepartmentManagement';
 import { useMasterDashboardData } from '@/hooks/useMasterDashboardData';
+import { PendingApprovalsWidget } from '@/components/dashboard/widgets/PendingApprovalsWidget';
+import { KudosFeedWidget } from '@/components/dashboard/widgets/KudosFeedWidget';
 
 interface User {
   id: string;
@@ -183,6 +185,12 @@ const MasterDashboard: React.FC = () => {
           <CountryDistributionChart data={countryData} loading={loading} />
         </div>
         <ActivityFeed />
+      </div>
+
+      {/* HR cross-suite widgets */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <PendingApprovalsWidget />
+        <KudosFeedWidget />
       </div>
 
       {/* Pending Invitations */}

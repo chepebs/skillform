@@ -16,6 +16,9 @@ import { AdditionalInfoTab } from '@/components/profile/view/AdditionalInfoTab';
 import { ProfileSkeleton } from '@/components/profile/view/ProfileSkeleton';
 import { SectionAdornment } from '@/components/brand/SectionAdornment';
 import { HRFieldsCard } from '@/components/profile/HRFieldsCard';
+import { MyTimeOffBalanceWidget } from '@/components/dashboard/widgets/MyTimeOffBalanceWidget';
+import { MyOnboardingProgressWidget } from '@/components/dashboard/widgets/MyOnboardingProgressWidget';
+import { KudosFeedWidget } from '@/components/dashboard/widgets/KudosFeedWidget';
 
 const ProfileView: React.FC = () => {
   const { id } = useParams<{ id?: string }>();
@@ -133,6 +136,17 @@ const ProfileView: React.FC = () => {
       {/* HR information (own profile or admin) */}
       {canEdit && profile?.user_id && (
         <HRFieldsCard targetUserId={profile.user_id} />
+      )}
+
+      {/* Cross-suite HR widgets — only on the user's own profile */}
+      {isMe && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <MyTimeOffBalanceWidget />
+          <MyOnboardingProgressWidget />
+          <div className="md:col-span-2">
+            <KudosFeedWidget />
+          </div>
+        </div>
       )}
 
       {/* Quick Stats Bar */}
