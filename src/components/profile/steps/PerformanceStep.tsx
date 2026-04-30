@@ -22,7 +22,7 @@ const RatioDisplay: React.FC<{ won: number; participated: number; label: string 
   const colorClass = getColor();
 
   return (
-    <div className="flex items-center gap-4 p-4 rounded-lg bg-dark-elevated/50 border border-dark-border">
+    <div className="flex items-center gap-4 p-4 rounded-lg bg-background/50 border border-border">
       <div className="flex-1">
         <p className="text-sm text-muted-foreground">{label}</p>
         <p className={cn('text-2xl font-bold', colorClass.split(' ')[0])}>
@@ -89,7 +89,7 @@ const PerformanceStep: React.FC<PerformanceStepProps> = ({ form }) => {
                     type="number"
                     min={0}
                     onChange={(e) => field.onChange(parseInt(e.target.value) || 0)}
-                    className="bg-dark-elevated border-dark-border focus:border-primary"
+                    className="bg-background border-border focus:border-primary"
                   />
                 </FormControl>
                 <FormMessage />
@@ -109,7 +109,7 @@ const PerformanceStep: React.FC<PerformanceStepProps> = ({ form }) => {
                     type="number"
                     min={0}
                     onChange={(e) => field.onChange(parseInt(e.target.value) || 0)}
-                    className="bg-dark-elevated border-dark-border focus:border-primary"
+                    className="bg-background border-border focus:border-primary"
                   />
                 </FormControl>
                 <FormMessage />
@@ -138,7 +138,7 @@ const PerformanceStep: React.FC<PerformanceStepProps> = ({ form }) => {
                     type="number"
                     min={0}
                     onChange={(e) => field.onChange(parseInt(e.target.value) || 0)}
-                    className="bg-dark-elevated border-dark-border focus:border-primary"
+                    className="bg-background border-border focus:border-primary"
                   />
                 </FormControl>
                 <FormMessage />
@@ -158,7 +158,7 @@ const PerformanceStep: React.FC<PerformanceStepProps> = ({ form }) => {
                     type="number"
                     min={0}
                     onChange={(e) => field.onChange(parseInt(e.target.value) || 0)}
-                    className="bg-dark-elevated border-dark-border focus:border-primary"
+                    className="bg-background border-border focus:border-primary"
                   />
                 </FormControl>
                 <FormMessage />
@@ -185,7 +185,7 @@ const PerformanceStep: React.FC<PerformanceStepProps> = ({ form }) => {
                     type="number"
                     min={0}
                     onChange={(e) => field.onChange(parseInt(e.target.value) || 0)}
-                    className="bg-dark-elevated border-dark-border focus:border-primary"
+                    className="bg-background border-border focus:border-primary"
                   />
                 </FormControl>
                 <FormMessage />
@@ -205,7 +205,7 @@ const PerformanceStep: React.FC<PerformanceStepProps> = ({ form }) => {
                     type="number"
                     min={0}
                     onChange={(e) => field.onChange(parseInt(e.target.value) || 0)}
-                    className="bg-dark-elevated border-dark-border focus:border-primary"
+                    className="bg-background border-border focus:border-primary"
                   />
                 </FormControl>
                 <FormMessage />

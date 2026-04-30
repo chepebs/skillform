@@ -311,7 +311,7 @@ const SkillsStep: React.FC<SkillsStepProps> = ({ form }) => {
             </div>
             <Button 
               onClick={handleAddCustomSkill} 
-              className="w-full bg-gradient-primary"
+              className="w-full bg-primary"
               disabled={!customSkillName.trim() || !customSkillCategory}
             >
               {t('profile.skills.addSkill')}

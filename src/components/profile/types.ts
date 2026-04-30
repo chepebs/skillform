@@ -5,7 +5,10 @@ export const basicInfoSchema = z.object({
   first_name: z.string().min(1, 'First name is required').max(100),
   last_name: z.string().min(1, 'Last name is required').max(100),
   email: z.string().email('Invalid email'),
-  phone: z.string().min(1, 'Phone is required').regex(/^\+?[1-9]\d{1,14}$/, 'Invalid phone format'),
+  phone: z.string().min(1, 'Phone is required').refine(
+    (val) => /^\+?[1-9]\d{1,14}$/.test(val.replace(/[\s\-().]/g, '')),
+    'Invalid phone format (use international format, e.g., +1234567890)'
+  ),
   avatar_url: z.string().optional(),
   linkedin_url: z.string().url('Invalid URL').optional().or(z.literal('')),
   instagram_url: z.string().url('Invalid URL').optional().or(z.literal('')),

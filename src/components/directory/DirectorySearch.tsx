@@ -71,7 +71,7 @@ export const DirectorySearch: React.FC<DirectorySearchProps> = ({
           onFocus={() => setIsFocused(true)}
           onBlur={() => setTimeout(() => setIsFocused(false), 200)}
           onKeyDown={handleKeyDown}
-          className="pl-10 pr-10 bg-dark-elevated border-dark-border focus:border-primary h-11"
+          className="pl-10 pr-10 bg-background border-border focus:border-primary h-11"
         />
         {value && (
           <Button
@@ -94,7 +94,7 @@ export const DirectorySearch: React.FC<DirectorySearchProps> = ({
             <button
               key={index}
               onClick={() => handleSelectRecent(search)}
-              className="w-full px-3 py-2 flex items-center gap-2 text-sm text-foreground hover:bg-dark-elevated transition-colors"
+              className="w-full px-3 py-2 flex items-center gap-2 text-sm text-foreground hover:bg-background transition-colors"
             >
               <Clock className="h-3.5 w-3.5 text-muted-foreground" />
               {search}

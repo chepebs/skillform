@@ -60,7 +60,7 @@ const BrandsProjectsStep: React.FC<BrandsProjectsStepProps> = ({ form }) => {
           <div
             key={field.id}
             className={cn(
-              'p-4 rounded-lg border border-dark-border bg-dark-elevated/50 space-y-4',
+              'p-4 rounded-lg border border-border bg-background/50 space-y-4',
               'animate-fade-in'
             )}
           >
@@ -85,7 +85,7 @@ const BrandsProjectsStep: React.FC<BrandsProjectsStepProps> = ({ form }) => {
                   <FormItem>
                     <Label className="text-xs">Brand Name <span className="text-destructive">*</span></Label>
                     <FormControl>
-                      <Input {...field} placeholder="Brand name" className="bg-dark-elevated border-dark-border" />
+                      <Input {...field} placeholder="Brand name" className="bg-background border-border" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -104,7 +104,7 @@ const BrandsProjectsStep: React.FC<BrandsProjectsStepProps> = ({ form }) => {
                         type="number"
                         min={0}
                         onChange={(e) => field.onChange(parseInt(e.target.value) || 0)}
-                        className="bg-dark-elevated border-dark-border"
+                        className="bg-background border-border"
                       />
                     </FormControl>
                     <FormMessage />
@@ -123,7 +123,7 @@ const BrandsProjectsStep: React.FC<BrandsProjectsStepProps> = ({ form }) => {
                     <Textarea
                       {...field}
                       placeholder="Brief description..."
-                      className="bg-dark-elevated border-dark-border resize-none"
+                      className="bg-background border-border resize-none"
                       rows={2}
                     />
                   </FormControl>
@@ -138,7 +138,7 @@ const BrandsProjectsStep: React.FC<BrandsProjectsStepProps> = ({ form }) => {
           type="button"
           variant="outline"
           onClick={addBrand}
-          className="w-full border-dashed border-dark-border hover:border-primary"
+          className="w-full border-dashed border-border hover:border-primary"
         >
           <Plus className="mr-2 h-4 w-4" />
           Add Brand
@@ -160,7 +160,7 @@ const BrandsProjectsStep: React.FC<BrandsProjectsStepProps> = ({ form }) => {
           <div
             key={field.id}
             className={cn(
-              'p-4 rounded-lg border border-dark-border bg-dark-elevated/50 space-y-4',
+              'p-4 rounded-lg border border-border bg-background/50 space-y-4',
               'animate-fade-in'
             )}
           >
@@ -187,7 +187,7 @@ const BrandsProjectsStep: React.FC<BrandsProjectsStepProps> = ({ form }) => {
                   <FormItem>
                     <Label className="text-xs">Project Name <span className="text-destructive">*</span></Label>
                     <FormControl>
-                      <Input {...field} placeholder="Project name" className="bg-dark-elevated border-dark-border" />
+                      <Input {...field} placeholder="Project name" className="bg-background border-border" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -201,7 +201,7 @@ const BrandsProjectsStep: React.FC<BrandsProjectsStepProps> = ({ form }) => {
                   <FormItem>
                     <Label className="text-xs">Brand</Label>
                     <FormControl>
-                      <Input {...field} placeholder="Associated brand" className="bg-dark-elevated border-dark-border" />
+                      <Input {...field} placeholder="Associated brand" className="bg-background border-border" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -219,7 +219,7 @@ const BrandsProjectsStep: React.FC<BrandsProjectsStepProps> = ({ form }) => {
                     <Textarea
                       {...field}
                       placeholder="Project description..."
-                      className="bg-dark-elevated border-dark-border resize-none"
+                      className="bg-background border-border resize-none"
                       rows={2}
                     />
                   </FormControl>
@@ -240,7 +240,7 @@ const BrandsProjectsStep: React.FC<BrandsProjectsStepProps> = ({ form }) => {
                     <Label className="text-xs">Year</Label>
                     <Select onValueChange={(v) => field.onChange(parseInt(v))} value={field.value?.toString()}>
                       <FormControl>
-                        <SelectTrigger className="bg-dark-elevated border-dark-border">
+                        <SelectTrigger className="bg-background border-border">
                           <SelectValue placeholder="Year" />
                         </SelectTrigger>
                       </FormControl>
@@ -263,7 +263,7 @@ const BrandsProjectsStep: React.FC<BrandsProjectsStepProps> = ({ form }) => {
                     <Label className="text-xs">Month</Label>
                     <Select onValueChange={(v) => field.onChange(parseInt(v))} value={field.value?.toString()}>
                       <FormControl>
-                        <SelectTrigger className="bg-dark-elevated border-dark-border">
+                        <SelectTrigger className="bg-background border-border">
                           <SelectValue placeholder="Month" />
                         </SelectTrigger>
                       </FormControl>
@@ -285,7 +285,7 @@ const BrandsProjectsStep: React.FC<BrandsProjectsStepProps> = ({ form }) => {
                   <FormItem className="col-span-2">
                     <Label className="text-xs">Your Role</Label>
                     <FormControl>
-                      <Input {...field} placeholder="Your role" className="bg-dark-elevated border-dark-border" />
+                      <Input {...field} placeholder="Your role" className="bg-background border-border" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -303,7 +303,7 @@ const BrandsProjectsStep: React.FC<BrandsProjectsStepProps> = ({ form }) => {
                     <Textarea
                       {...field}
                       placeholder="Key achievements and results..."
-                      className="bg-dark-elevated border-dark-border resize-none"
+                      className="bg-background border-border resize-none"
                       rows={2}
                     />
                   </FormControl>
@@ -318,7 +318,7 @@ const BrandsProjectsStep: React.FC<BrandsProjectsStepProps> = ({ form }) => {
           type="button"
           variant="outline"
           onClick={addProject}
-          className="w-full border-dashed border-dark-border hover:border-primary"
+          className="w-full border-dashed border-border hover:border-primary"
         >
           <Plus className="mr-2 h-4 w-4" />
           Add Project

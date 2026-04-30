@@ -122,6 +122,13 @@ const ProfileCreate: React.FC = () => {
     defaultValues: { industries: [] },
   });
 
+  // Ensure email is populated as soon as user loads (for fresh signups)
+  useEffect(() => {
+    if (user?.email && !basicInfoForm.getValues('email')) {
+      basicInfoForm.setValue('email', user.email);
+    }
+  }, [user, basicInfoForm]);
+
   // Load existing data on mount
   useEffect(() => {
     if (!user) return;
@@ -257,14 +264,34 @@ const ProfileCreate: React.FC = () => {
     }
   };
 
+  const getCurrentForm = () => {
+    switch (currentStep) {
+      case 1: return basicInfoForm;
+      case 2: return professionalForm;
+      case 3: return educationForm;
+      case 4: return performanceForm;
+      case 5: return brandsProjectsForm;
+      case 6: return languagesForm;
+      case 7: return skillsForm;
+      case 8: return industriesForm;
+      case 9: return awardsForm;
+      default: return null;
+    }
+  };
+
   const handleNext = async () => {
     const isValid = await validateCurrentStep();
     if (isValid) {
       setCurrentStep((prev) => Math.min(prev + 1, TOTAL_STEPS));
-      // Scroll to top so users see the next step's content
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      toast.error(t('profile.creation.validationError', 'Please complete the required fields before continuing.'));
+      const form = getCurrentForm();
+      const errors = form?.formState.errors as Record<string, { message?: string }> | undefined;
+      const firstError = errors ? Object.values(errors).find((e) => e?.message)?.message : undefined;
+      toast.error(
+        firstError ||
+          t('profile.creation.validationError', 'Please complete the required fields before continuing.')
+      );
     }
   };
 
@@ -478,11 +505,11 @@ const ProfileCreate: React.FC = () => {
           </div>
 
           {currentStep < TOTAL_STEPS ? (
-            <Button onClick={handleNext} className="bg-gradient-primary shadow-primary">
+            <Button onClick={handleNext} className="bg-primary hover:bg-primary/90">
               {t('common.buttons.next')} <ChevronRight className="ml-2 h-4 w-4" />
             </Button>
           ) : (
-            <Button onClick={handleSubmit} disabled={isSubmitting} className="bg-gradient-primary shadow-primary">
+            <Button onClick={handleSubmit} disabled={isSubmitting} className="bg-primary hover:bg-primary/90">
               {isSubmitting ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> {t('profile.creation.completing')}</> : <><Check className="mr-2 h-4 w-4" /> {t('profile.creation.completeProfile')}</>}
             </Button>
           )}

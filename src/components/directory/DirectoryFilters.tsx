@@ -483,7 +483,7 @@ export const DirectoryFiltersPanel: React.FC<DirectoryFiltersProps> = ({
           <div className="h-[calc(100%-120px)]">{content}</div>
           <SheetFooter className="pt-4 border-t border-border">
             <SheetTrigger asChild>
-              <Button className="w-full bg-gradient-primary">{t('directory.filters.applyFilters')}</Button>
+              <Button className="w-full bg-primary">{t('directory.filters.applyFilters')}</Button>
             </SheetTrigger>
           </SheetFooter>
         </SheetContent>
