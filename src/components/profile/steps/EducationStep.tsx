@@ -1,5 +1,6 @@
 import React from 'react';
 import { UseFormReturn, useFieldArray } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
@@ -13,25 +14,21 @@ interface EducationStepProps {
 }
 
 const EducationStep: React.FC<EducationStepProps> = ({ form }) => {
+  const { t } = useTranslation();
   const { fields, append, remove } = useFieldArray({
     control: form.control,
     name: 'previous_agencies',
   });
 
   const addAgency = () => {
-    append({
-      agency_name: '',
-      role: '',
-      start_date: '',
-      end_date: '',
-    });
+    append({ agency_name: '', role: '', start_date: '', end_date: '' });
   };
 
   return (
     <div className="space-y-6 animate-fade-in">
       <div className="text-center mb-6">
-        <h2 className="text-xl font-semibold text-foreground">Education & Experience</h2>
-        <p className="text-muted-foreground">Your academic background and work history</p>
+        <h2 className="text-xl font-semibold text-foreground">{t('profile.education.title')}</h2>
+        <p className="text-muted-foreground">{t('profile.education.subtitle')}</p>
       </div>
 
       <FormField
@@ -39,13 +36,13 @@ const EducationStep: React.FC<EducationStepProps> = ({ form }) => {
         name="academic_degree"
         render={({ field }) => (
           <FormItem>
-            <Label>Academic Degree <span className="text-destructive">*</span></Label>
+            <Label>{t('profile.education.academicDegree')} <span className="text-destructive">*</span></Label>
             <FormControl>
               <div className="relative">
                 <GraduationCap className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
                   {...field}
-                  placeholder="e.g., MBA in Marketing"
+                  placeholder={t('profile.education.academicDegreePlaceholder')}
                   className="pl-10 bg-background border-border focus:border-primary"
                 />
               </div>
@@ -60,7 +57,7 @@ const EducationStep: React.FC<EducationStepProps> = ({ form }) => {
         name="years_of_experience"
         render={({ field }) => (
           <FormItem>
-            <Label>Years of Experience <span className="text-destructive">*</span></Label>
+            <Label>{t('profile.education.yearsOfExperience')} <span className="text-destructive">*</span></Label>
             <FormControl>
               <Input
                 {...field}
@@ -71,26 +68,22 @@ const EducationStep: React.FC<EducationStepProps> = ({ form }) => {
                 className="bg-background border-border focus:border-primary"
               />
             </FormControl>
-            <p className="text-xs text-muted-foreground">0-50 years</p>
+            <p className="text-xs text-muted-foreground">{t('profile.education.yearsOfExperienceHelper')}</p>
             <FormMessage />
           </FormItem>
         )}
       />
 
-      {/* Previous Agencies */}
       <div className="space-y-4">
-        <Label>Previous Agencies</Label>
+        <Label>{t('profile.education.previousAgencies')}</Label>
 
         {fields.map((field, index) => (
           <div
             key={field.id}
-            className={cn(
-              'p-4 rounded-lg border border-border bg-background/50 space-y-4',
-              'animate-fade-in'
-            )}
+            className={cn('p-4 rounded-lg border border-border bg-background/50 space-y-4', 'animate-fade-in')}
           >
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-muted-foreground">Agency {index + 1}</span>
+              <span className="text-sm font-medium text-muted-foreground">{t('profile.counters.agencyN', { n: index + 1 })}</span>
               <Button
                 type="button"
                 variant="ghost"
@@ -108,9 +101,9 @@ const EducationStep: React.FC<EducationStepProps> = ({ form }) => {
                 name={`previous_agencies.${index}.agency_name`}
                 render={({ field }) => (
                   <FormItem>
-                    <Label className="text-xs">Agency Name <span className="text-destructive">*</span></Label>
+                    <Label className="text-xs">{t('profile.education.agencyName')} <span className="text-destructive">*</span></Label>
                     <FormControl>
-                      <Input {...field} placeholder="Agency name" className="bg-background border-border" />
+                      <Input {...field} placeholder={t('profile.education.agencyNamePlaceholder')} className="bg-background border-border" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -122,9 +115,9 @@ const EducationStep: React.FC<EducationStepProps> = ({ form }) => {
                 name={`previous_agencies.${index}.role`}
                 render={({ field }) => (
                   <FormItem>
-                    <Label className="text-xs">Role <span className="text-destructive">*</span></Label>
+                    <Label className="text-xs">{t('profile.education.role')} <span className="text-destructive">*</span></Label>
                     <FormControl>
-                      <Input {...field} placeholder="Your role" className="bg-background border-border" />
+                      <Input {...field} placeholder={t('profile.education.rolePlaceholder')} className="bg-background border-border" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -138,7 +131,7 @@ const EducationStep: React.FC<EducationStepProps> = ({ form }) => {
                 name={`previous_agencies.${index}.start_date`}
                 render={({ field }) => (
                   <FormItem>
-                    <Label className="text-xs">Start Date</Label>
+                    <Label className="text-xs">{t('profile.education.startDate')}</Label>
                     <FormControl>
                       <div className="relative">
                         <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -155,7 +148,7 @@ const EducationStep: React.FC<EducationStepProps> = ({ form }) => {
                 name={`previous_agencies.${index}.end_date`}
                 render={({ field }) => (
                   <FormItem>
-                    <Label className="text-xs">End Date</Label>
+                    <Label className="text-xs">{t('profile.education.endDate')}</Label>
                     <FormControl>
                       <div className="relative">
                         <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -177,7 +170,7 @@ const EducationStep: React.FC<EducationStepProps> = ({ form }) => {
           className="w-full border-dashed border-border hover:border-primary"
         >
           <Plus className="mr-2 h-4 w-4" />
-          Add Previous Agency
+          {t('profile.education.addAgency')}
         </Button>
       </div>
     </div>
