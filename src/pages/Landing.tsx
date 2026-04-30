@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { MagnifyingGlass, Users, FolderOpen, Briefcase, ChartLine, Globe, ShieldCheck, Trophy, FileText, ListChecks, Target, Sparkle, ArrowRight, Star, User as UserIcon, LinkedinLogo, YoutubeLogo, InstagramLogo } from '@phosphor-icons/react';
+import { MagnifyingGlass, Users, FolderOpen, Briefcase, ChartLine, Globe, ShieldCheck, Trophy, FileText, ListChecks, Target, Sparkle, ArrowRight, Star, User as UserIcon, LinkedinLogo, YoutubeLogo, InstagramLogo, Calendar, Megaphone, Files, ClipboardText, Heart, Confetti, GraduationCap, ChartBar, TreeStructure, BookOpen } from '@phosphor-icons/react';
 import { Button } from '@/components/ui/button';
 import { SkillFormLogo } from '@/components/SkillFormLogo';
 
@@ -17,7 +17,7 @@ import { SectionRail } from '@/components/brand/SectionRail';
 import { AuthModal, AuthModalMode } from '@/components/auth/AuthModal';
 import aideaformLogo from '@/assets/aideaform-logo.svg';
 
-const TOTAL_SECTIONS = 6;
+const TOTAL_SECTIONS = 7;
 
 const Landing: React.FC = () => {
   const { t } = useTranslation();
@@ -160,6 +160,63 @@ const Landing: React.FC = () => {
     { icon: Briefcase, label: t('landing.capabilities.experience', 'Experience management'), value: t('landing.capabilities.comprehensive', 'Complete') },
   ];
 
+  const hrModules = [
+    {
+      icon: Calendar,
+      title: t('landing.suite.timeOff.title', 'Time-off management'),
+      desc: t('landing.suite.timeOff.desc', 'Request, approve, and track PTO with per-policy balances and a manager approval queue.'),
+      tag: t('landing.suite.timeOff.tag', 'PTO & balances'),
+    },
+    {
+      icon: GraduationCap,
+      title: t('landing.suite.onboarding.title', 'Onboarding journeys'),
+      desc: t('landing.suite.onboarding.desc', 'Templated checklists guide new hires through their first weeks — with progress visible to HR.'),
+      tag: t('landing.suite.onboarding.tag', 'Templates & tasks'),
+    },
+    {
+      icon: Briefcase,
+      title: t('landing.suite.jobs.title', 'Internal job board & ATS'),
+      desc: t('landing.suite.jobs.desc', 'Post openings, collect applications, and move candidates through a lightweight pipeline.'),
+      tag: t('landing.suite.jobs.tag', 'Postings & pipeline'),
+    },
+    {
+      icon: Megaphone,
+      title: t('landing.suite.announcements.title', 'Announcements'),
+      desc: t('landing.suite.announcements.desc', 'Reach the whole company or scoped audiences with rich-text updates and acknowledgements.'),
+      tag: t('landing.suite.announcements.tag', 'Company-wide'),
+    },
+    {
+      icon: Files,
+      title: t('landing.suite.files.title', 'Documents & policies'),
+      desc: t('landing.suite.files.desc', 'A central library for handbooks, contracts, and policies — searchable and access-controlled.'),
+      tag: t('landing.suite.files.tag', 'Secure library'),
+    },
+    {
+      icon: ClipboardText,
+      title: t('landing.suite.surveys.title', 'Surveys & pulse'),
+      desc: t('landing.suite.surveys.desc', 'Capture employee sentiment with anonymous or attributed surveys and live response tracking.'),
+      tag: t('landing.suite.surveys.tag', 'Pulse & feedback'),
+    },
+    {
+      icon: Heart,
+      title: t('landing.suite.kudos.title', 'Kudos & recognition'),
+      desc: t('landing.suite.kudos.desc', 'Peer-to-peer shout-outs tied to company values, surfaced in a public recognition feed.'),
+      tag: t('landing.suite.kudos.tag', 'Peer recognition'),
+    },
+    {
+      icon: Confetti,
+      title: t('landing.suite.events.title', 'Events & celebrations'),
+      desc: t('landing.suite.events.desc', 'Company events, RSVPs, and automatic birthday & work-anniversary highlights.'),
+      tag: t('landing.suite.events.tag', 'Calendar & RSVPs'),
+    },
+    {
+      icon: TreeStructure,
+      title: t('landing.suite.orgChart.title', 'Org chart'),
+      desc: t('landing.suite.orgChart.desc', 'Live reporting structure built from real manager assignments — drill in to any team.'),
+      tag: t('landing.suite.orgChart.tag', 'Live structure'),
+    },
+  ];
+
   const testimonials = [
     {
       quote: t(
@@ -202,6 +259,7 @@ const Landing: React.FC = () => {
         items={[
           { id: 'features', label: t('landing.nav.features', 'Features') },
           { id: 'services', label: t('landing.nav.services', 'Services') },
+          { id: 'suite', label: t('landing.nav.suite', 'HR Suite') },
           { id: 'capabilities', label: t('landing.nav.capabilities', 'Capabilities') },
           { id: 'trust', label: t('landing.nav.trust', 'Trust') },
         ]}
@@ -243,6 +301,9 @@ const Landing: React.FC = () => {
               </a>
               <a href="#services" className="hover:text-foreground transition-colors">
                 {t('landing.nav.services', 'Services')}
+              </a>
+              <a href="#suite" className="hover:text-foreground transition-colors">
+                {t('landing.nav.suite', 'HR Suite')}
               </a>
               <a href="#capabilities" className="hover:text-foreground transition-colors">
                 {t('landing.nav.capabilities', 'Capabilities')}
@@ -357,11 +418,11 @@ const Landing: React.FC = () => {
             >
               <span className="inline-flex items-center gap-2 font-medium text-foreground">
                 <Sparkle weight="fill" size={14} className="text-primary" />
-                {t('landing.hero.servicesEyebrow', 'Now with services & talent matching')}
+                {t('landing.hero.suiteEyebrow', 'A full HR & talent suite')}
               </span>{' '}
               — {t(
-                'landing.hero.servicesTagline',
-                'document external services, define required skills, and auto-match the right internal talent.',
+                'landing.hero.suiteTagline',
+                'directory, services matching, time-off, onboarding, jobs, announcements, documents, surveys, kudos and more.',
               )}
             </motion.p>
 
@@ -580,6 +641,112 @@ const Landing: React.FC = () => {
           </div>
         </section>
 
+        {/* ═══════ HR SUITE ═══════ */}
+        <section id="suite" className="relative py-24 px-6 bg-lines">
+          <div
+            className="pointer-events-none absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full blur-3xl"
+            style={{ background: 'hsl(var(--secondary) / 0.08)' }}
+          />
+          <div className="max-w-6xl mx-auto relative">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="text-center mb-14"
+            >
+              <SectionAdornment
+                index={3}
+                total={TOTAL_SECTIONS}
+                label={t('landing.suite.badge', 'Complete HR suite')}
+                className="mb-4"
+              />
+              <h2 className="text-display-md">
+                {t('landing.suite.title', 'One platform,')}{' '}
+                <span className="text-primary">
+                  {t('landing.suite.titleAccent', 'every people workflow')}
+                </span>
+              </h2>
+              <p className="text-body-lg text-muted-foreground mt-4 max-w-2xl mx-auto">
+                {t(
+                  'landing.suite.subtitle',
+                  'From the day someone is hired to the day-to-day rhythm of work — Skill*form covers every people-ops process your team needs.',
+                )}
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {hrModules.map((m, i) => (
+                <motion.div
+                  key={m.title}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-60px' }}
+                  transition={{
+                    duration: 0.4,
+                    delay: (i % 3) * 0.06,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className="feature-card flex flex-col h-full"
+                >
+                  <div className="flex items-center justify-between mb-5">
+                    <div className="w-11 h-11 rounded-lg bg-signal-subtle border border-signal flex items-center justify-center">
+                      <m.icon weight="regular" size={22} className="text-primary" />
+                    </div>
+                    <span className="text-mono text-primary/60">{m.tag}</span>
+                  </div>
+                  <h3 className="text-headline-md mb-3 text-foreground">{m.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed flex-1">{m.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Cross-suite widgets callout */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-12 rounded-xl border border-border bg-card p-8 sm:p-10"
+            >
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+                <div className="lg:col-span-1">
+                  <BracketTag variant="accent" className="mb-4">
+                    {t('landing.suite.widgets.badge', 'On every dashboard')}
+                  </BracketTag>
+                  <h3 className="text-headline-md text-foreground">
+                    {t('landing.suite.widgets.title', 'Surfaced where it matters')}
+                  </h3>
+                  <p className="text-muted-foreground mt-3 text-sm leading-relaxed">
+                    {t(
+                      'landing.suite.widgets.desc',
+                      'Cross-suite widgets pull approvals, balances, onboarding progress and recognition straight onto the right dashboard for each role.',
+                    )}
+                  </p>
+                </div>
+                <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {[
+                    { icon: ListChecks, label: t('landing.suite.widgets.approvals', 'Pending approvals'), sub: t('landing.suite.widgets.approvalsSub', 'For managers & admins') },
+                    { icon: Calendar, label: t('landing.suite.widgets.balance', 'My time-off balance'), sub: t('landing.suite.widgets.balanceSub', 'Per employee') },
+                    { icon: GraduationCap, label: t('landing.suite.widgets.onboarding', 'Onboarding progress'), sub: t('landing.suite.widgets.onboardingSub', 'For new hires') },
+                    { icon: Heart, label: t('landing.suite.widgets.kudos', 'Kudos feed'), sub: t('landing.suite.widgets.kudosSub', 'Visible to everyone') },
+                  ].map((w) => (
+                    <div key={w.label} className="stat-card flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-md bg-signal-subtle border border-signal flex items-center justify-center shrink-0">
+                        <w.icon weight="regular" size={16} className="text-primary" />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-sm font-medium text-foreground truncate">{w.label}</p>
+                        <p className="text-xs text-muted-foreground truncate">{w.sub}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
         {/* ═══════ CAPABILITIES ═══════ */}
         <section id="capabilities" className="relative py-24 px-6">
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -590,7 +757,7 @@ const Landing: React.FC = () => {
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             >
               <SectionAdornment
-                index={3}
+                index={4}
                 total={TOTAL_SECTIONS}
                 label={t('landing.capabilities.badge', 'Built in')}
                 align="left"
@@ -686,7 +853,7 @@ const Landing: React.FC = () => {
               className="text-center mb-12"
             >
               <SectionAdornment
-                index={4}
+                index={5}
                 total={TOTAL_SECTIONS}
                 label={t('landing.showcase.badge', 'Inside the product')}
                 className="mb-4"
@@ -747,7 +914,7 @@ const Landing: React.FC = () => {
               className="mb-16"
             >
               <SectionAdornment
-                index={5}
+                index={6}
                 total={TOTAL_SECTIONS}
                 label={t('landing.trust.badge', 'Voices')}
                 className="mb-4"
@@ -807,7 +974,7 @@ const Landing: React.FC = () => {
         <section className="relative py-20 px-6 bg-diagonal border-t border-border/60">
           <div className="max-w-4xl mx-auto text-center">
             <SectionAdornment
-              index={6}
+              index={7}
               total={TOTAL_SECTIONS}
               label={t('landing.cta.badge', 'Get started')}
               variant="live"

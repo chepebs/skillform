@@ -758,6 +758,8 @@
       "totalProfiles": "Perfiles totales",
       "servicesEyebrow": "Ahora con Servicios y Matching de Talento",
       "servicesTagline": "documenta servicios externos, define las habilidades necesarias y haz match automático con el talento interno adecuado.",
+      "suiteEyebrow": "Una suite completa de RR.HH. y talento",
+      "suiteTagline": "directorio, matching de servicios, vacaciones, onboarding, vacantes, anuncios, documentos, encuestas, kudos y mucho más.",
       "live": "Skill*form en vivo",
       "tag": "Suite de talento v2",
       "eyebrow": "Descubre y conecta con el talento",
@@ -889,8 +891,73 @@
     "nav": {
       "features": "Funciones",
       "services": "Servicios",
+      "suite": "Suite RR.HH.",
       "capabilities": "Capacidades",
       "trust": "Confianza"
+    },
+    "suite": {
+      "badge": "Suite completa de RR.HH.",
+      "title": "Una sola plataforma,",
+      "titleAccent": "todos los flujos de personas",
+      "subtitle": "Desde el día en que se contrata a alguien hasta el día a día del trabajo: Skill*form cubre todos los procesos de people-ops que tu equipo necesita.",
+      "timeOff": {
+        "title": "Gestión de vacaciones",
+        "desc": "Solicita, aprueba y registra ausencias con saldos por política y una bandeja de aprobaciones para managers.",
+        "tag": "Vacaciones y saldos"
+      },
+      "onboarding": {
+        "title": "Procesos de onboarding",
+        "desc": "Listas de tareas con plantillas guían a las nuevas incorporaciones — con progreso visible para RR.HH.",
+        "tag": "Plantillas y tareas"
+      },
+      "jobs": {
+        "title": "Vacantes internas y ATS",
+        "desc": "Publica vacantes, recibe candidaturas y avanza a las personas por un pipeline ligero.",
+        "tag": "Vacantes y pipeline"
+      },
+      "announcements": {
+        "title": "Anuncios",
+        "desc": "Llega a toda la empresa o a audiencias específicas con actualizaciones de texto enriquecido y acuses de recibo.",
+        "tag": "Para toda la empresa"
+      },
+      "files": {
+        "title": "Documentos y políticas",
+        "desc": "Una biblioteca central para manuales, contratos y políticas — con búsqueda y control de acceso.",
+        "tag": "Biblioteca segura"
+      },
+      "surveys": {
+        "title": "Encuestas y pulso",
+        "desc": "Captura el sentir del equipo con encuestas anónimas o nominales y seguimiento de respuestas en vivo.",
+        "tag": "Pulso y feedback"
+      },
+      "kudos": {
+        "title": "Kudos y reconocimiento",
+        "desc": "Reconocimientos entre colegas vinculados a los valores de la empresa, en un feed público.",
+        "tag": "Reconocimiento entre pares"
+      },
+      "events": {
+        "title": "Eventos y celebraciones",
+        "desc": "Eventos de empresa, RSVPs y destacados automáticos de cumpleaños y aniversarios laborales.",
+        "tag": "Calendario y RSVPs"
+      },
+      "orgChart": {
+        "title": "Organigrama",
+        "desc": "Estructura de reporte en vivo, construida a partir de las relaciones reales de manager — entra a cualquier equipo.",
+        "tag": "Estructura en vivo"
+      },
+      "widgets": {
+        "badge": "En cada dashboard",
+        "title": "Visible donde importa",
+        "desc": "Los widgets transversales muestran aprobaciones, saldos, progreso de onboarding y reconocimiento directamente en el dashboard adecuado para cada rol.",
+        "approvals": "Aprobaciones pendientes",
+        "approvalsSub": "Para managers y admins",
+        "balance": "Mi saldo de vacaciones",
+        "balanceSub": "Por colaborador",
+        "onboarding": "Progreso de onboarding",
+        "onboardingSub": "Para nuevas incorporaciones",
+        "kudos": "Feed de kudos",
+        "kudosSub": "Visible para todos"
+      }
     },
     "showcase": {
       "badge": "Dentro del producto",
