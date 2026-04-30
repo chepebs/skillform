@@ -806,6 +806,95 @@ export type Database = {
           },
         ]
       }
+      job_applications: {
+        Row: {
+          applicant_id: string
+          company_id: string | null
+          cover_note: string | null
+          created_at: string
+          id: string
+          job_id: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          applicant_id: string
+          company_id?: string | null
+          cover_note?: string | null
+          created_at?: string
+          id?: string
+          job_id: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          applicant_id?: string
+          company_id?: string | null
+          cover_note?: string | null
+          created_at?: string
+          id?: string
+          job_id?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "job_applications_job_id_fkey"
+            columns: ["job_id"]
+            isOneToOne: false
+            referencedRelation: "job_postings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      job_postings: {
+        Row: {
+          company_id: string
+          created_at: string
+          deadline: string | null
+          department: string | null
+          description: string | null
+          employment_type: string | null
+          id: string
+          location: string | null
+          posted_by: string
+          seniority: string | null
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          company_id: string
+          created_at?: string
+          deadline?: string | null
+          department?: string | null
+          description?: string | null
+          employment_type?: string | null
+          id?: string
+          location?: string | null
+          posted_by: string
+          seniority?: string | null
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          company_id?: string
+          created_at?: string
+          deadline?: string | null
+          department?: string | null
+          description?: string | null
+          employment_type?: string | null
+          id?: string
+          location?: string | null
+          posted_by?: string
+          seniority?: string | null
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       kudos: {
         Row: {
           company_id: string | null
@@ -926,6 +1015,174 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      onboarding_assignments: {
+        Row: {
+          company_id: string | null
+          created_at: string
+          created_by: string
+          due_at: string | null
+          id: string
+          started_at: string
+          status: string
+          template_id: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          company_id?: string | null
+          created_at?: string
+          created_by: string
+          due_at?: string | null
+          id?: string
+          started_at?: string
+          status?: string
+          template_id?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          company_id?: string | null
+          created_at?: string
+          created_by?: string
+          due_at?: string | null
+          id?: string
+          started_at?: string
+          status?: string
+          template_id?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "onboarding_assignments_template_id_fkey"
+            columns: ["template_id"]
+            isOneToOne: false
+            referencedRelation: "onboarding_templates"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      onboarding_tasks: {
+        Row: {
+          assignee_notes: string | null
+          assignment_id: string
+          completed_at: string | null
+          created_at: string
+          description: string | null
+          due_at: string | null
+          id: string
+          sort_order: number
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          assignee_notes?: string | null
+          assignment_id: string
+          completed_at?: string | null
+          created_at?: string
+          description?: string | null
+          due_at?: string | null
+          id?: string
+          sort_order?: number
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          assignee_notes?: string | null
+          assignment_id?: string
+          completed_at?: string | null
+          created_at?: string
+          description?: string | null
+          due_at?: string | null
+          id?: string
+          sort_order?: number
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "onboarding_tasks_assignment_id_fkey"
+            columns: ["assignment_id"]
+            isOneToOne: false
+            referencedRelation: "onboarding_assignments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      onboarding_template_tasks: {
+        Row: {
+          created_at: string
+          default_due_offset_days: number
+          description: string | null
+          id: string
+          sort_order: number
+          template_id: string
+          title: string
+        }
+        Insert: {
+          created_at?: string
+          default_due_offset_days?: number
+          description?: string | null
+          id?: string
+          sort_order?: number
+          template_id: string
+          title: string
+        }
+        Update: {
+          created_at?: string
+          default_due_offset_days?: number
+          description?: string | null
+          id?: string
+          sort_order?: number
+          template_id?: string
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "onboarding_template_tasks_template_id_fkey"
+            columns: ["template_id"]
+            isOneToOne: false
+            referencedRelation: "onboarding_templates"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      onboarding_templates: {
+        Row: {
+          company_id: string
+          created_at: string
+          created_by: string
+          description: string | null
+          id: string
+          is_active: boolean
+          name: string
+          updated_at: string
+        }
+        Insert: {
+          company_id: string
+          created_at?: string
+          created_by: string
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          name: string
+          updated_at?: string
+        }
+        Update: {
+          company_id?: string
+          created_at?: string
+          created_by?: string
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          name?: string
+          updated_at?: string
+        }
+        Relationships: []
       }
       policies: {
         Row: {
@@ -1617,6 +1874,160 @@ export type Database = {
             columns: ["service_catalog_id"]
             isOneToOne: false
             referencedRelation: "service_catalog"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      time_off_balances: {
+        Row: {
+          allocated_days: number
+          company_id: string | null
+          created_at: string
+          id: string
+          pending_days: number
+          policy_id: string
+          updated_at: string
+          used_days: number
+          user_id: string
+          year: number
+        }
+        Insert: {
+          allocated_days?: number
+          company_id?: string | null
+          created_at?: string
+          id?: string
+          pending_days?: number
+          policy_id: string
+          updated_at?: string
+          used_days?: number
+          user_id: string
+          year: number
+        }
+        Update: {
+          allocated_days?: number
+          company_id?: string | null
+          created_at?: string
+          id?: string
+          pending_days?: number
+          policy_id?: string
+          updated_at?: string
+          used_days?: number
+          user_id?: string
+          year?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "time_off_balances_policy_id_fkey"
+            columns: ["policy_id"]
+            isOneToOne: false
+            referencedRelation: "time_off_policies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      time_off_policies: {
+        Row: {
+          accrual_method: string
+          annual_allowance_days: number
+          color: string | null
+          company_id: string
+          created_at: string
+          created_by: string
+          id: string
+          is_active: boolean
+          is_paid: boolean
+          name: string
+          requires_approval: boolean
+          type: string
+          updated_at: string
+        }
+        Insert: {
+          accrual_method?: string
+          annual_allowance_days?: number
+          color?: string | null
+          company_id: string
+          created_at?: string
+          created_by: string
+          id?: string
+          is_active?: boolean
+          is_paid?: boolean
+          name: string
+          requires_approval?: boolean
+          type?: string
+          updated_at?: string
+        }
+        Update: {
+          accrual_method?: string
+          annual_allowance_days?: number
+          color?: string | null
+          company_id?: string
+          created_at?: string
+          created_by?: string
+          id?: string
+          is_active?: boolean
+          is_paid?: boolean
+          name?: string
+          requires_approval?: boolean
+          type?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      time_off_requests: {
+        Row: {
+          approver_id: string | null
+          company_id: string | null
+          created_at: string
+          day_count: number
+          decision_at: string | null
+          decision_notes: string | null
+          end_date: string
+          id: string
+          policy_id: string
+          reason: string | null
+          start_date: string
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          approver_id?: string | null
+          company_id?: string | null
+          created_at?: string
+          day_count: number
+          decision_at?: string | null
+          decision_notes?: string | null
+          end_date: string
+          id?: string
+          policy_id: string
+          reason?: string | null
+          start_date: string
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          approver_id?: string | null
+          company_id?: string | null
+          created_at?: string
+          day_count?: number
+          decision_at?: string | null
+          decision_notes?: string | null
+          end_date?: string
+          id?: string
+          policy_id?: string
+          reason?: string | null
+          start_date?: string
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "time_off_requests_policy_id_fkey"
+            columns: ["policy_id"]
+            isOneToOne: false
+            referencedRelation: "time_off_policies"
             referencedColumns: ["id"]
           },
         ]
