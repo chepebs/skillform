@@ -14,6 +14,10 @@ import {
   CaretLeft as ChevronLeft,
   CaretRight as ChevronRight,
   Briefcase,
+  TreeStructure,
+  Cake,
+  Heart,
+  CalendarBlank,
 } from '@phosphor-icons/react';
 import { SkillFormLogo } from '@/components/SkillFormLogo';
 import { SkillFormIcon } from '@/components/SkillFormIcon';
@@ -32,9 +36,13 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { labelKey: 'common.navigation.dashboard', icon: Home, path: '/dashboard', roles: ['admin', 'manager', 'manager'] },
+  { labelKey: 'common.navigation.dashboard', icon: Home, path: '/dashboard' },
   { labelKey: 'common.navigation.myProfile', icon: User, path: '/profile/me' },
   { labelKey: 'common.navigation.directory', icon: Users, path: '/directory' },
+  { labelKey: 'common.navigation.orgChart', icon: TreeStructure, path: '/org-chart' },
+  { labelKey: 'common.navigation.celebrations', icon: Cake, path: '/people/celebrations' },
+  { labelKey: 'common.navigation.kudos', icon: Heart, path: '/kudos' },
+  { labelKey: 'common.navigation.events', icon: CalendarBlank, path: '/events' },
   { labelKey: 'common.navigation.services', icon: Briefcase, path: '/services' },
   { labelKey: 'common.navigation.groups', icon: Folder, path: '/admin/organizer/groups', roles: ['manager', 'admin'] },
   { labelKey: 'common.navigation.myTeam', icon: Users, path: '/admin/director/team', roles: ['manager', 'admin'] },
