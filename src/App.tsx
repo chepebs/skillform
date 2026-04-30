@@ -30,6 +30,8 @@ import OrgChart from "./pages/OrgChart";
 import Celebrations from "./pages/Celebrations";
 import Kudos from "./pages/Kudos";
 import Events from "./pages/Events";
+import Documents from "./pages/Documents";
+import Policies from "./pages/Policies";
 
 // Admin Pages
 import MasterDashboard from "./pages/admin/MasterDashboard";
@@ -93,6 +95,8 @@ const App = () => (
               <Route path="/people/celebrations" element={<Celebrations />} />
               <Route path="/kudos" element={<Kudos />} />
               <Route path="/events" element={<Events />} />
+              <Route path="/documents" element={<Documents />} />
+              <Route path="/policies" element={<Policies />} />
 
               {/* Organizer Admin Routes */}
               <Route path="/admin/organizer" element={

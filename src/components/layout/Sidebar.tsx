@@ -18,6 +18,8 @@ import {
   Cake,
   Heart,
   CalendarBlank,
+  FileText,
+  ShieldCheck,
 } from '@phosphor-icons/react';
 import { SkillFormLogo } from '@/components/SkillFormLogo';
 import { SkillFormIcon } from '@/components/SkillFormIcon';
@@ -43,6 +45,8 @@ const navItems: NavItem[] = [
   { labelKey: 'common.navigation.celebrations', icon: Cake, path: '/people/celebrations' },
   { labelKey: 'common.navigation.kudos', icon: Heart, path: '/kudos' },
   { labelKey: 'common.navigation.events', icon: CalendarBlank, path: '/events' },
+  { labelKey: 'common.navigation.documents', icon: FileText, path: '/documents' },
+  { labelKey: 'common.navigation.policies', icon: ShieldCheck, path: '/policies' },
   { labelKey: 'common.navigation.services', icon: Briefcase, path: '/services' },
   { labelKey: 'common.navigation.groups', icon: Folder, path: '/admin/organizer/groups', roles: ['manager', 'admin'] },
   { labelKey: 'common.navigation.myTeam', icon: Users, path: '/admin/director/team', roles: ['manager', 'admin'] },

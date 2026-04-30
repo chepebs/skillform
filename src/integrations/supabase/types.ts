@@ -365,6 +365,103 @@ export type Database = {
           },
         ]
       }
+      document_folders: {
+        Row: {
+          company_id: string
+          created_at: string
+          created_by: string
+          id: string
+          name: string
+          parent_id: string | null
+        }
+        Insert: {
+          company_id: string
+          created_at?: string
+          created_by: string
+          id?: string
+          name: string
+          parent_id?: string | null
+        }
+        Update: {
+          company_id?: string
+          created_at?: string
+          created_by?: string
+          id?: string
+          name?: string
+          parent_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "document_folders_parent_id_fkey"
+            columns: ["parent_id"]
+            isOneToOne: false
+            referencedRelation: "document_folders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      documents: {
+        Row: {
+          company_id: string
+          created_at: string
+          department: string | null
+          description: string | null
+          file_name: string
+          file_path: string
+          folder_id: string | null
+          id: string
+          mime_type: string | null
+          name: string
+          owner_id: string
+          size_bytes: number | null
+          updated_at: string
+          uploaded_by: string
+          visibility: string
+        }
+        Insert: {
+          company_id: string
+          created_at?: string
+          department?: string | null
+          description?: string | null
+          file_name: string
+          file_path: string
+          folder_id?: string | null
+          id?: string
+          mime_type?: string | null
+          name: string
+          owner_id: string
+          size_bytes?: number | null
+          updated_at?: string
+          uploaded_by: string
+          visibility?: string
+        }
+        Update: {
+          company_id?: string
+          created_at?: string
+          department?: string | null
+          description?: string | null
+          file_name?: string
+          file_path?: string
+          folder_id?: string | null
+          id?: string
+          mime_type?: string | null
+          name?: string
+          owner_id?: string
+          size_bytes?: number | null
+          updated_at?: string
+          uploaded_by?: string
+          visibility?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "documents_folder_id_fkey"
+            columns: ["folder_id"]
+            isOneToOne: false
+            referencedRelation: "document_folders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       employee_industries: {
         Row: {
           company_id: string | null
@@ -826,6 +923,86 @@ export type Database = {
             columns: ["company_id"]
             isOneToOne: false
             referencedRelation: "companies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      policies: {
+        Row: {
+          body_md: string
+          company_id: string
+          created_at: string
+          created_by: string
+          effective_from: string | null
+          id: string
+          published_at: string | null
+          requires_acknowledgement: boolean
+          status: string
+          summary: string | null
+          title: string
+          updated_at: string
+          version: number
+        }
+        Insert: {
+          body_md: string
+          company_id: string
+          created_at?: string
+          created_by: string
+          effective_from?: string | null
+          id?: string
+          published_at?: string | null
+          requires_acknowledgement?: boolean
+          status?: string
+          summary?: string | null
+          title: string
+          updated_at?: string
+          version?: number
+        }
+        Update: {
+          body_md?: string
+          company_id?: string
+          created_at?: string
+          created_by?: string
+          effective_from?: string | null
+          id?: string
+          published_at?: string | null
+          requires_acknowledgement?: boolean
+          status?: string
+          summary?: string | null
+          title?: string
+          updated_at?: string
+          version?: number
+        }
+        Relationships: []
+      }
+      policy_acknowledgements: {
+        Row: {
+          acknowledged_at: string
+          id: string
+          policy_id: string
+          policy_version: number
+          user_id: string
+        }
+        Insert: {
+          acknowledged_at?: string
+          id?: string
+          policy_id: string
+          policy_version: number
+          user_id: string
+        }
+        Update: {
+          acknowledged_at?: string
+          id?: string
+          policy_id?: string
+          policy_version?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "policy_acknowledgements_policy_id_fkey"
+            columns: ["policy_id"]
+            isOneToOne: false
+            referencedRelation: "policies"
             referencedColumns: ["id"]
           },
         ]

@@ -89,6 +89,8 @@
       "celebrations": "Celebraciones",
       "kudos": "Reconocimientos",
       "events": "Eventos",
+      "documents": "Documentos",
+      "policies": "Políticas",
       "people": "Personas",
       "workplace": "Espacio de trabajo"
     },
@@ -158,6 +160,67 @@
           "declined": "No iré",
           "attending": "{{count}} asistirán"
         }
+      },
+      "documents": {
+        "title": "Documentos",
+        "subtitle": "Archivos personales de RR.HH. y documentos compartidos",
+        "upload": "Subir documento",
+        "newFolder": "Nueva carpeta",
+        "noDocuments": "Aún no hay documentos",
+        "tabs": {
+          "personal": "Mis documentos",
+          "shared": "Compartidos",
+          "managed": "Mi equipo"
+        },
+        "form": {
+          "name": "Nombre",
+          "description": "Descripción",
+          "visibility": "Visibilidad",
+          "personal": "Personal (solo yo, mi jefe y admins)",
+          "department": "Mi departamento",
+          "company": "Toda la compañía",
+          "owner": "Propietario",
+          "file": "Archivo"
+        },
+        "uploadedBy": "Subido por",
+        "size": "Tamaño",
+        "download": "Descargar",
+        "delete": "Eliminar"
+      },
+      "policies": {
+        "title": "Políticas de la compañía",
+        "subtitle": "Lee, comprende y firma las políticas de la compañía",
+        "create": "Nueva política",
+        "edit": "Editar política",
+        "publish": "Publicar",
+        "archive": "Archivar",
+        "draft": "Borrador",
+        "published": "Publicada",
+        "archived": "Archivada",
+        "version": "Versión",
+        "effectiveFrom": "Vigente desde",
+        "acknowledge": "Reconozco esta política",
+        "acknowledged": "Reconocida",
+        "pendingAcknowledgement": "Pendiente de reconocimiento",
+        "coverage": "Cobertura de reconocimientos",
+        "noPolicies": "Aún no hay políticas publicadas",
+        "form": {
+          "title": "Título",
+          "summary": "Resumen",
+          "body": "Contenido (markdown)",
+          "effectiveFrom": "Vigente desde",
+          "requiresAcknowledgement": "Requiere reconocimiento"
+        }
+      },
+      "hrFields": {
+        "title": "Información de RR.HH.",
+        "subtitle": "Usada para celebraciones, organigrama y aprobaciones",
+        "birthDate": "Fecha de nacimiento",
+        "startDate": "Fecha de ingreso",
+        "manager": "Jefe directo",
+        "noManager": "Sin jefe",
+        "save": "Guardar info",
+        "saved": "Información actualizada"
       }
     },
     "status": {
