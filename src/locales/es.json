@@ -1413,30 +1413,6 @@
       "attached": "Te has unido a la empresa exitosamente",
       "invalidTitle": "Enlace de invitación inválido",
       "invalidDesc": "Este enlace de invitación no es válido o ha sido desactivado."
-    },
-    "widgets": {
-      "pendingApprovals": {
-        "title": "Aprobaciones pendientes",
-        "timeOff": "Solicitudes de ausencia",
-        "jobApplications": "Postulaciones a empleo",
-        "review": "Revisar todo"
-      },
-      "timeOffBalance": {
-        "title": "Mi balance de ausencias",
-        "empty": "Aún no tienes balance asignado.",
-        "days": "días",
-        "request": "Solicitar ausencia"
-      },
-      "onboarding": {
-        "title": "Mi onboarding",
-        "progress": "{{done}} de {{total}} tareas",
-        "open": "Abrir onboarding"
-      },
-      "kudos": {
-        "title": "Reconocimientos recientes",
-        "empty": "Aún no hay reconocimientos — ¡sé el primero!",
-        "openFeed": "Abrir muro de kudos"
-      }
     }
   },
   "modules": {
@@ -1729,6 +1705,30 @@
         "company": "Toda la empresa",
         "department": "Mi departamento"
       }
+    }
+  },
+  "widgets": {
+    "pendingApprovals": {
+      "title": "Aprobaciones pendientes",
+      "timeOff": "Solicitudes de ausencia",
+      "jobApplications": "Postulaciones a empleo",
+      "review": "Revisar todo"
+    },
+    "timeOffBalance": {
+      "title": "Mi balance de ausencias",
+      "empty": "Aún no tienes balance asignado.",
+      "days": "días",
+      "request": "Solicitar ausencia"
+    },
+    "onboarding": {
+      "title": "Mi onboarding",
+      "progress": "{{done}} de {{total}} tareas",
+      "open": "Abrir onboarding"
+    },
+    "kudos": {
+      "title": "Reconocimientos recientes",
+      "empty": "Aún no hay reconocimientos — ¡sé el primero!",
+      "openFeed": "Abrir muro de kudos"
     }
   }
 }
