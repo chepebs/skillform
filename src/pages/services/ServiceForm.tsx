@@ -69,21 +69,30 @@ const ServiceForm: React.FC<Props> = ({ mode, serviceId, initialValues, initialC
 
   useEffect(() => {
     (async () => {
-      const [{ data: cats }, { data: deps }, { data: ags }, { data: mgrs }] = await Promise.all([
+      const [{ data: cats }, { data: deps }, { data: ags }, { data: mgrs }, { data: roleUsers }] = await Promise.all([
         supabase.from('service_categories').select('id, name').eq('level', 1).order('sort_order'),
         supabase.from('departments').select('id, name').order('name'),
         supabase.from('agencies').select('id, name').eq('is_active', true).order('name'),
         supabase
           .from('profiles')
           .select('user_id, first_name, last_name, current_position, seniority_level, is_active')
-          .in('seniority_level', ['director', 'vp', 'c-level'])
           .eq('is_active', true)
           .order('first_name'),
+        supabase.from('user_roles').select('user_id, role').in('role', ['admin', 'manager']),
       ]);
       setCategories(cats || []);
       setDepartments(deps || []);
       setAgencies(ags || []);
-      setManagers(mgrs || []);
+
+      // Eligible managers = seniority director/vp/c-level OR admin/manager role.
+      // Fall back to all active employees if none match (so the dropdown is never empty).
+      const adminIds = new Set((roleUsers || []).map((r: any) => r.user_id));
+      const seniorSet = new Set(['director', 'vp', 'c-level']);
+      const all = mgrs || [];
+      const eligible = all.filter(
+        (m: any) => seniorSet.has(m.seniority_level) || adminIds.has(m.user_id),
+      );
+      setManagers((eligible.length > 0 ? eligible : all) as any);
     })();
   }, []);
 
