@@ -84,7 +84,81 @@
       "organizer": "Organizer",
       "director": "Director",
       "masterAdmin": "Master Admin",
-      "services": "Services"
+      "services": "Services",
+      "orgChart": "Org Chart",
+      "celebrations": "Celebrations",
+      "kudos": "Kudos",
+      "events": "Events",
+      "people": "People",
+      "workplace": "Workplace"
+    },
+    "modules": {
+      "orgChart": {
+        "title": "Org Chart",
+        "subtitle": "Reporting structure across the company",
+        "noManager": "No manager assigned",
+        "directReports": "Direct reports",
+        "viewProfile": "View profile"
+      },
+      "celebrations": {
+        "title": "Birthdays & Anniversaries",
+        "subtitle": "Celebrate the people who make it happen",
+        "today": "Today",
+        "thisWeek": "This week",
+        "thisMonth": "This month",
+        "birthdays": "Birthdays",
+        "anniversaries": "Work anniversaries",
+        "yearsLabel": "{{count}} year",
+        "yearsLabel_plural": "{{count}} years",
+        "noUpcoming": "No upcoming celebrations",
+        "turning": "Turning {{age}}",
+        "celebrating": "Celebrating {{years}} years"
+      },
+      "kudos": {
+        "title": "Kudos",
+        "subtitle": "Recognize and celebrate your colleagues",
+        "give": "Give kudos",
+        "giveTo": "Give kudos to",
+        "selectColleague": "Select a colleague",
+        "message": "Message",
+        "messagePlaceholder": "Why are you recognizing them?",
+        "valueTag": "Value (optional)",
+        "send": "Send kudos",
+        "noKudos": "No kudos yet — be the first to recognize someone.",
+        "from": "From",
+        "to": "To",
+        "values": {
+          "teamwork": "Teamwork",
+          "innovation": "Innovation",
+          "leadership": "Leadership",
+          "excellence": "Excellence",
+          "impact": "Impact",
+          "ownership": "Ownership"
+        }
+      },
+      "events": {
+        "title": "Events",
+        "subtitle": "Company events, meetings, and gatherings",
+        "create": "Create event",
+        "upcoming": "Upcoming",
+        "past": "Past",
+        "noEvents": "No events scheduled",
+        "form": {
+          "eventTitle": "Title",
+          "description": "Description",
+          "startsAt": "Starts at",
+          "endsAt": "Ends at",
+          "location": "Location",
+          "isVirtual": "Virtual event",
+          "meetingUrl": "Meeting URL"
+        },
+        "rsvp": {
+          "going": "Going",
+          "maybe": "Maybe",
+          "declined": "Declined",
+          "attending": "{{count}} attending"
+        }
+      }
     },
     "status": {
       "active": "Active",
