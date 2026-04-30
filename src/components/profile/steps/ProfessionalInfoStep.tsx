@@ -96,8 +96,8 @@ const ProfessionalInfoStep: React.FC<ProfessionalInfoStepProps> = ({ form }) => 
   return (
     <div className="space-y-6 animate-fade-in">
       <div className="text-center mb-6">
-        <h2 className="text-xl font-semibold text-foreground">Professional Information</h2>
-        <p className="text-muted-foreground">Tell us about your current and previous work</p>
+        <h2 className="text-xl font-semibold text-foreground">{t('profile.professional.title')}</h2>
+        <p className="text-muted-foreground">{t('profile.professional.subtitle')}</p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -106,11 +106,11 @@ const ProfessionalInfoStep: React.FC<ProfessionalInfoStepProps> = ({ form }) => 
           name="country_id"
           render={({ field }) => (
             <FormItem>
-              <Label>Country <span className="text-destructive">*</span></Label>
+              <Label>{t('profile.professional.country')} <span className="text-destructive">*</span></Label>
               <Select onValueChange={field.onChange} value={field.value}>
                 <FormControl>
                   <SelectTrigger className="bg-background border-border">
-                    <SelectValue placeholder="Select country" />
+                    <SelectValue placeholder={t('profile.professional.countryPlaceholder')} />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
@@ -131,17 +131,17 @@ const ProfessionalInfoStep: React.FC<ProfessionalInfoStepProps> = ({ form }) => 
           name="agency_id"
           render={({ field }) => (
             <FormItem>
-              <Label>Agency <span className="text-destructive">*</span></Label>
+              <Label>{t('profile.professional.agency')} <span className="text-destructive">*</span></Label>
               <Select onValueChange={field.onChange} value={field.value}>
                 <FormControl>
                   <SelectTrigger className="bg-background border-border">
-                    <SelectValue placeholder="Select agency" />
+                    <SelectValue placeholder={t('profile.professional.agencyPlaceholder')} />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
                   {filteredAgencies.length === 0 ? (
                     <div className="p-2 text-sm text-muted-foreground text-center">
-                      No agencies available
+                      {t('common.messages.noResults')}
                     </div>
                   ) : (
                     filteredAgencies.map((agency) => (
@@ -163,11 +163,11 @@ const ProfessionalInfoStep: React.FC<ProfessionalInfoStepProps> = ({ form }) => 
         name="department_id"
         render={({ field }) => (
           <FormItem>
-            <Label>Department</Label>
+            <Label>{t('profile.professional.department')}</Label>
             <Select onValueChange={field.onChange} value={field.value}>
               <FormControl>
                 <SelectTrigger className="bg-background border-border">
-                  <SelectValue placeholder="Select department" />
+                  <SelectValue placeholder={t('profile.professional.departmentPlaceholder')} />
                 </SelectTrigger>
               </FormControl>
               <SelectContent>
@@ -188,11 +188,11 @@ const ProfessionalInfoStep: React.FC<ProfessionalInfoStepProps> = ({ form }) => 
         name="current_position"
         render={({ field }) => (
           <FormItem>
-            <Label>Current Position <span className="text-destructive">*</span></Label>
+            <Label>{t('profile.professional.currentPosition')} <span className="text-destructive">*</span></Label>
             <FormControl>
               <Input
                 {...field}
-                placeholder="e.g., Senior Creative Director"
+                placeholder={t('profile.professional.currentPositionPlaceholder')}
                 className="bg-background border-border focus:border-primary"
               />
             </FormControl>
@@ -240,7 +240,7 @@ const ProfessionalInfoStep: React.FC<ProfessionalInfoStepProps> = ({ form }) => 
       {/* Previous Positions */}
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <Label>Previous Positions</Label>
+          <Label>{t('profile.professional.previousPositions')}</Label>
           <span className="text-xs text-muted-foreground">{fields.length}/10</span>
         </div>
 
@@ -253,7 +253,7 @@ const ProfessionalInfoStep: React.FC<ProfessionalInfoStepProps> = ({ form }) => 
             )}
           >
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-muted-foreground">Position {index + 1}</span>
+              <span className="text-sm font-medium text-muted-foreground">{t('profile.counters.positionN', { n: index + 1 })}</span>
               <Button
                 type="button"
                 variant="ghost"
@@ -271,9 +271,9 @@ const ProfessionalInfoStep: React.FC<ProfessionalInfoStepProps> = ({ form }) => 
                 name={`previous_positions.${index}.position_title`}
                 render={({ field }) => (
                   <FormItem>
-                    <Label className="text-xs">Title <span className="text-destructive">*</span></Label>
+                    <Label className="text-xs">{t('profile.professional.positionTitle')} <span className="text-destructive">*</span></Label>
                     <FormControl>
-                      <Input {...field} placeholder="Position title" className="bg-background border-border" />
+                      <Input {...field} placeholder={t('profile.professional.positionTitlePlaceholder')} className="bg-background border-border" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -285,9 +285,9 @@ const ProfessionalInfoStep: React.FC<ProfessionalInfoStepProps> = ({ form }) => 
                 name={`previous_positions.${index}.company`}
                 render={({ field }) => (
                   <FormItem>
-                    <Label className="text-xs">Company <span className="text-destructive">*</span></Label>
+                    <Label className="text-xs">{t('profile.professional.company')} <span className="text-destructive">*</span></Label>
                     <FormControl>
-                      <Input {...field} placeholder="Company name" className="bg-background border-border" />
+                      <Input {...field} placeholder={t('profile.professional.companyPlaceholder')} className="bg-background border-border" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -301,7 +301,7 @@ const ProfessionalInfoStep: React.FC<ProfessionalInfoStepProps> = ({ form }) => 
                 name={`previous_positions.${index}.start_date`}
                 render={({ field }) => (
                   <FormItem>
-                    <Label className="text-xs">Start Date</Label>
+                    <Label className="text-xs">{t('profile.professional.startDate')}</Label>
                     <FormControl>
                       <div className="relative">
                         <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -318,7 +318,7 @@ const ProfessionalInfoStep: React.FC<ProfessionalInfoStepProps> = ({ form }) => 
                 name={`previous_positions.${index}.end_date`}
                 render={({ field }) => (
                   <FormItem>
-                    <Label className="text-xs">End Date</Label>
+                    <Label className="text-xs">{t('profile.professional.endDate')}</Label>
                     <FormControl>
                       <div className="relative">
                         <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -336,11 +336,11 @@ const ProfessionalInfoStep: React.FC<ProfessionalInfoStepProps> = ({ form }) => 
               name={`previous_positions.${index}.description`}
               render={({ field }) => (
                 <FormItem>
-                  <Label className="text-xs">Description</Label>
+                  <Label className="text-xs">{t('profile.professional.description')}</Label>
                   <FormControl>
                     <Textarea
                       {...field}
-                      placeholder="Brief description of your role..."
+                      placeholder={t('profile.professional.descriptionPlaceholder')}
                       className="bg-background border-border resize-none"
                       rows={2}
                     />
@@ -360,7 +360,7 @@ const ProfessionalInfoStep: React.FC<ProfessionalInfoStepProps> = ({ form }) => 
             className="w-full border-dashed border-border hover:border-primary"
           >
             <Plus className="mr-2 h-4 w-4" />
-            Add Previous Position
+            {t('profile.professional.addPosition')}
           </Button>
         )}
       </div>
