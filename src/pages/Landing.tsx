@@ -914,7 +914,7 @@ const Landing: React.FC = () => {
               className="mb-16"
             >
               <SectionAdornment
-                index={5}
+                index={6}
                 total={TOTAL_SECTIONS}
                 label={t('landing.trust.badge', 'Voices')}
                 className="mb-4"
