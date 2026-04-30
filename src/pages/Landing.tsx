@@ -974,7 +974,7 @@ const Landing: React.FC = () => {
         <section className="relative py-20 px-6 bg-diagonal border-t border-border/60">
           <div className="max-w-4xl mx-auto text-center">
             <SectionAdornment
-              index={6}
+              index={7}
               total={TOTAL_SECTIONS}
               label={t('landing.cta.badge', 'Get started')}
               variant="live"
