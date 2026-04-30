@@ -302,6 +302,9 @@ const Landing: React.FC = () => {
               <a href="#services" className="hover:text-foreground transition-colors">
                 {t('landing.nav.services', 'Services')}
               </a>
+              <a href="#suite" className="hover:text-foreground transition-colors">
+                {t('landing.nav.suite', 'HR Suite')}
+              </a>
               <a href="#capabilities" className="hover:text-foreground transition-colors">
                 {t('landing.nav.capabilities', 'Capabilities')}
               </a>
