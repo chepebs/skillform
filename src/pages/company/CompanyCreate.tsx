@@ -16,7 +16,17 @@ import { LanguageSwitcher } from '@/components/layout/LanguageSwitcher';
 import { cn } from '@/lib/utils';
 
 const slugify = (s: string) =>
-  s.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 50);
+  s
+    .toLowerCase()
+    .trim()
+    // Replace whitespace with underscores per requirement
+    .replace(/\s+/g, '_')
+    // Strip any other invalid characters (keep letters, digits, _ and -)
+    .replace(/[^a-z0-9_-]+/g, '')
+    // Collapse repeats
+    .replace(/_{2,}/g, '_')
+    .replace(/^[_-]+|[_-]+$/g, '')
+    .slice(0, 50);
 
 const CompanyCreate: React.FC = () => {
   const { t } = useTranslation();
