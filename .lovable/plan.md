@@ -1,73 +1,106 @@
 
+# Plan: Expand into a full HR & Talent platform
 
-## Plan: Multi-Tenant Companies + Cleanup + Display Fixes
+You're going from a talent directory + services module into a full HR suite. Trying to ship 11 modules in one pass would produce a fragile build. The cheapest path is to first build **shared foundations** that every module reuses, then ship modules in 4 thematic passes that share UI patterns, tables, and edge functions.
 
-### 1. Companies (full multi-tenancy)
+## Guiding principles
 
-**Schema** — new migration:
-- `companies` table: `id`, `name`, `slug` (unique, used in invite URL), `logo_url`, `description`, `website`, `industry`, `country_id`, `subscription_status` (enum: `trialing|active|past_due|canceled`, default `trialing`), `subscription_plan` (text, default `free_testing`), `invite_token` (unique), `created_by`, timestamps.
-- Add `company_id uuid` (nullable to avoid breaking the seed master) to: `profiles`, `services`, `service_vendors`, `service_skills`, `service_talent_matches`, `groups`, `group_members`, `departments`, `agencies`, `awards`, `brands_managed`, `recent_projects`, `previous_agencies`, `previous_positions`, `employee_skills`, `employee_languages`, `employee_industries`, `messages`, `notifications`, `invitation_tokens`.
-- Storage bucket `company-logos` (public), with RLS for company admins to upload.
+- **One company-scoped data model.** Every new table gets `company_id`, `created_at`, `updated_at`, RLS scoped to `get_user_company(auth.uid())`, and uses the existing 3-tier roles (`user`, `manager`, `admin`).
+- **Reuse what exists.** Notifications, messaging, departments, profiles, storage buckets, and i18n are already in place — every module hooks into them rather than reinventing.
+- **Ship vertically, not horizontally.** Each pass delivers a fully usable module (schema + RLS + UI + i18n + nav) before moving to the next, so you can demo at every step.
+- **No new role tiers.** Approvers (time-off, job applications, etc.) are derived from `manager` role + department director relationship, not new roles.
 
-**Security definer functions:**
-- `get_user_company(_user_id uuid) returns uuid` — returns the company_id from the user's profile.
-- `is_company_admin(_user_id uuid, _company_id uuid) returns boolean` — true if user is the company's `created_by` or has `master_admin` role within that company.
-- `is_platform_master(_user_id uuid) returns boolean` — true only when the user has `master_admin` role AND `company_id IS NULL` (the platform-level master like Master@mastertestuse.com).
+---
 
-**RLS rewrite** — every tenant-scoped table gets policies of the shape:
-`USING (company_id = get_user_company(auth.uid()) OR is_platform_master(auth.uid()))`.
-Existing role-based admin policies are kept but scoped to the same company. The platform master sees everything.
+## Pass 0 — Shared foundations (prerequisite, small)
 
-**Onboarding flow** — new `/company/create` wizard (4 steps): Company info → Logo upload → Admin profile → Billing (placeholder "Free during testing"). On finish:
-- Insert company, set creator's `profiles.company_id`, promote to `master_admin` for that company, mark `profile_completed = true`, generate `invite_token`, show shareable URL `/{slug}/join?token=...`.
+These unlock every later module. Doing them once avoids 11 rounds of duplicated work.
 
-**Invite URL** — new route `/:companySlug/join` that pre-resolves company from slug+token, opens the auth modal in register mode, and on signup auto-attaches the new user to that company via the `handle_new_user` trigger (extended to read invite metadata).
+1. **Storage buckets**: add `hr-documents` (private), `policies` (private), `event-images` (public).
+2. **Generic `attachments` table**: polymorphic `(entity_type, entity_id, file_path, file_name, mime_type, size, uploaded_by, company_id)` so policies/documents/events/onboarding all share one upload pipeline.
+3. **Generic `comments` table**: same polymorphic pattern for kudos, events, job postings.
+4. **Notification taxonomy**: extend `notifications.type` usage with constants (`time_off_request`, `kudos_received`, `birthday_today`, `event_invite`, `job_posted`, `onboarding_task`, `policy_acknowledge_required`, `survey_invite`).
+5. **Profile additions**: `birth_date date`, `start_date date`, `manager_id uuid` (self-FK to profiles.user_id) — needed by birthdays, anniversaries, org chart, onboarding, time-off approvals.
+6. **Sidebar restructure**: group nav into sections (`People`, `Workplace`, `Me`) so 11 new items don't explode the sidebar. Add a "More" overflow.
+7. **i18n scaffolding**: add `modules.*` namespace in `en.json`/`es.json` with empty blocks per module, filled per-pass.
 
-**Routing** — when a logged-in user has no `company_id`, redirect to `/company/create`. The platform master bypasses this.
+---
 
-### 2. Top-bar company logo
+## Pass 1 — People & culture (low complexity, high visibility)
 
-Modify `src/components/layout/Header.tsx` to render, on the left of the breadcrumbs:
-`[aidea*form] | [Skill*form] | [Company logo + name]`
-Logos come from `useAuth().profile.company` (joined). Hidden for the platform master (no company). Both light/dark variants supported via `dark:invert` on aidea*form and existing Skill*form handling.
+Modules that are mostly read + simple writes, share the same card/feed UI.
 
-### 3. Database cleanup
+- **Org Chart** — derived view from `profiles.manager_id` + `departments`. Tree component, no new tables. Routes: `/org-chart`.
+- **Birthdays & Anniversaries** — derived view from `birth_date` + `start_date`. Dashboard widget + dedicated page `/people/celebrations`. Daily edge function `daily-celebrations` posts notifications.
+- **Kudos** — table `kudos (id, from_user_id, to_user_id, message, value_tag, visibility, company_id)` + reactions via `comments`. Public feed at `/kudos`, dashboard widget, profile tab.
+- **Events** — tables `events`, `event_rsvps`. Calendar + list view at `/events`. Reuses `attachments` for cover image, `comments` for discussion.
 
-Delete 12 non-master auth users + cascade their data via an edge function using the service role (auth admin API):
-- Keep only `a4976bed-be57-4006-806d-829ad672d9f6` (Master@mastertestuse.com).
-- Set that user's `company_id = NULL` so they remain a platform-level master.
-- Remove the older `4b3e6055-...` (jose@arbolcg.com) master admin too per your request.
-- Also wipe child rows in: profiles, user_roles, employee_*, awards, brands_managed, recent_projects, previous_*, services, service_*, groups, group_members, messages, notifications, invitation_tokens.
+Deliverable: a working "company life" surface area with feed, calendar, org tree.
 
-### 4. Display / dark-light fixes
+---
 
-Audit pass for hard-coded white-on-white inputs and contrast:
-- Replace remaining `bg-white`, `text-white`, `bg-gray-*`, `text-gray-*` outside the dialog overlays with semantic tokens (`bg-background`, `text-foreground`, `text-muted-foreground`, `bg-muted`, `border-border`).
-- Files flagged: `ChangeRoleModal`, `DeleteUserDialog`, `PendingInvitations`, `UserManagementTable`, `GroupsList`, `KanbanView`, `DirectorDashboard`, `OrganizerDashboard`, `BasicInfoStep`, plus any `<Input>`/`<Textarea>` missing the `bg-background` class on white-card forms.
-- Verify the auth modal inputs render with foreground text in light mode (the SkillFormLogo uses `text-primary` which is red — confirm legibility on the modal's white background; switch to `text-foreground` if needed inside the modal header).
-- Re-run the grep after edits to make sure no offenders remain.
+## Pass 2 — Documents & policies (storage-heavy, shares one pattern)
 
-### 5. Translations sweep
+Both modules share file upload, versioning, and acknowledgement — build the pattern once.
 
-Add EN/ES keys for: `company.*` (create wizard, fields, billing placeholder, invite share screen, copy-link toast), header company badge, new routes, and any newly added UI strings. Run a key-diff script to ensure every key in `en.json` exists in `es.json` and vice-versa, then fix gaps. No Spanish strings will be left as English.
+- **Documents (Files)** — `documents (id, name, folder_id, owner_id, visibility, company_id)` + `document_folders` (tree) + uses `attachments`. Personal vs shared scopes. Routes: `/files`.
+  - Personal HR docs (payslips, contracts) visible only to owner + admin.
+  - Shared company files visible per-department or company-wide.
+- **Company Policies** — `policies (id, title, body_md, version, status, effective_from, company_id)` + `policy_acknowledgements (policy_id, user_id, acknowledged_at)`. Admin publishes → all users get notification → must acknowledge. Routes: `/policies`. Admin dashboard shows acknowledgement coverage %.
 
-### Technical notes
+Deliverable: compliant document hub + auditable policy acknowledgement.
 
-- The `handle_new_user` trigger will be updated to read `raw_user_meta_data->>'company_id'` and `->>'invite_token'` and attach the new profile accordingly. Invite tokens get marked used.
-- `prevent_seniority_self_escalation` trigger is left intact.
-- Company logo uploads use the existing image-cropper component (1:1 ratio, max 2MB).
-- Billing step is purely visual: a single "Free — Testing Phase" plan card with a disabled "Add payment method later" link. No Stripe wiring per your choice.
-- All new RLS policies will use security definer helpers so we don't trigger recursion.
+---
 
-### Deliverable order
+## Pass 3 — Workflows (approval engines, the heaviest pass)
 
-```text
-1. Migration: companies table, columns, helper functions, RLS rewrite, storage bucket
-2. Edge function: cleanup-test-users (one-shot, called once then can be deleted)
-3. Company onboarding wizard + routes + invite flow
-4. Header: company logo slot
-5. Display/contrast audit + fixes
-6. EN/ES translation sweep + parity check
-7. Smoke-test checklist for you to verify
-```
+These three share the same primitive: a request with states, an approver chain, and notifications.
 
+- **Time-off** — `time_off_policies` (per-company: vacation, sick, personal, accrual rules), `time_off_balances (user_id, policy_id, balance_days, year)`, `time_off_requests (user_id, policy_id, start_date, end_date, status, approver_id, reason)`. Manager approval flow uses `manager_id` chain. Calendar view + balance widget. Routes: `/time-off`, `/admin/time-off`.
+- **Internal Job Postings** — `job_postings (id, title, department_id, description, requirements, status, posted_by, closes_at)`, `job_applications (posting_id, user_id, cover_letter, resume_attachment_id, status)`. Anyone can apply, hiring manager reviews. Routes: `/jobs`, `/jobs/:id`, `/admin/jobs`.
+- **Onboarding** — `onboarding_templates`, `onboarding_template_tasks (template_id, title, description, day_offset, assignee_role)`, `onboarding_plans (user_id, template_id, started_at)`, `onboarding_tasks (plan_id, template_task_id, status, completed_at)`. Triggered when a new user joins. Checklist UI on dashboard for new hires; admin sees completion %. Routes: `/onboarding/me`, `/admin/onboarding`.
+
+Build a shared `<ApprovalRequestCard />` and `useApprovalChain(userId)` hook used by time-off and jobs.
+
+Deliverable: end-to-end employee lifecycle from onboarding through time-off requests to internal mobility.
+
+---
+
+## Pass 4 — Surveys (standalone, complex form engine)
+
+Last because it touches no other module and has the most form-builder UI.
+
+- **Surveys** — `surveys (id, title, description, status, anonymous, target_scope, opens_at, closes_at)`, `survey_questions (survey_id, type, prompt, options, required, sort_order)` (types: single, multi, scale, text, nps), `survey_responses (survey_id, user_id, submitted_at)` (user_id null if anonymous), `survey_answers (response_id, question_id, value)`. Admin builder UI, employee fill UI, results dashboard with charts. Routes: `/surveys`, `/admin/surveys`, `/admin/surveys/:id/results`.
+
+Deliverable: pulse surveys, eNPS, custom forms.
+
+---
+
+## Cross-cutting work each pass includes
+
+- RLS policies (company scope + role checks)
+- i18n keys for both `en` and `es`
+- Sidebar entry under the right section, role-gated
+- Dashboard widget where it makes sense (birthdays, my time-off balance, pending approvals, onboarding progress, kudos feed)
+- Notifications wired to existing `notifications` table + realtime
+- PDF export only where it adds value (policies, time-off history)
+
+---
+
+## Suggested execution order and sizing
+
+| Pass | Modules | Est. complexity | Demo value |
+|------|---------|-----------------|------------|
+| 0 | Foundations | S | Enables everything |
+| 1 | Org Chart, Birthdays, Kudos, Events | M | High — visible immediately |
+| 2 | Documents, Policies | M | High — compliance |
+| 3 | Time-off, Jobs, Onboarding | L | Highest — core HR |
+| 4 | Surveys | M | Medium |
+
+## What I need from you before starting
+
+1. **Confirm pass order** above, or reshuffle (e.g. push Time-off earlier if it's the priority).
+2. **Approver model for time-off**: strictly `manager_id` chain, or department director, or admin-defined per request?
+3. **Anonymous surveys**: required from day one, or v2?
+4. **Document privacy default**: personal HR docs visible to admin only, or also to direct manager?
+5. **Start with Pass 0 + Pass 1 in this run**, or just Pass 0 to keep the diff small?
