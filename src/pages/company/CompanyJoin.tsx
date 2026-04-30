@@ -79,7 +79,6 @@ const CompanyJoin: React.FC = () => {
           first_name: form.first_name,
           last_name: form.last_name,
           invite_token: token,
-          company_id: company.id,
         });
         if (error) {
           toast.error(error.message);
