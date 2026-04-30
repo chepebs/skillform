@@ -98,7 +98,11 @@ const OrgChart: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!profile?.company_id) return;
+    if (!profile?.company_id) {
+      setPeople([]);
+      setLoading(false);
+      return;
+    }
     (async () => {
       const { data } = await supabase
         .from('profiles')
