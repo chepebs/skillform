@@ -84,7 +84,81 @@
       "organizer": "Organizador",
       "director": "Director",
       "masterAdmin": "Administrador Principal",
-      "services": "Servicios"
+      "services": "Servicios",
+      "orgChart": "Organigrama",
+      "celebrations": "Celebraciones",
+      "kudos": "Reconocimientos",
+      "events": "Eventos",
+      "people": "Personas",
+      "workplace": "Espacio de trabajo"
+    },
+    "modules": {
+      "orgChart": {
+        "title": "Organigrama",
+        "subtitle": "Estructura de reportes de la compañía",
+        "noManager": "Sin jefe asignado",
+        "directReports": "Reportes directos",
+        "viewProfile": "Ver perfil"
+      },
+      "celebrations": {
+        "title": "Cumpleaños y aniversarios",
+        "subtitle": "Celebra a las personas que hacen posible todo",
+        "today": "Hoy",
+        "thisWeek": "Esta semana",
+        "thisMonth": "Este mes",
+        "birthdays": "Cumpleaños",
+        "anniversaries": "Aniversarios laborales",
+        "yearsLabel": "{{count}} año",
+        "yearsLabel_plural": "{{count}} años",
+        "noUpcoming": "No hay celebraciones próximas",
+        "turning": "Cumple {{age}}",
+        "celebrating": "Celebrando {{years}} años"
+      },
+      "kudos": {
+        "title": "Reconocimientos",
+        "subtitle": "Reconoce y celebra a tus colegas",
+        "give": "Dar reconocimiento",
+        "giveTo": "Reconocer a",
+        "selectColleague": "Selecciona un colega",
+        "message": "Mensaje",
+        "messagePlaceholder": "¿Por qué lo estás reconociendo?",
+        "valueTag": "Valor (opcional)",
+        "send": "Enviar",
+        "noKudos": "Aún no hay reconocimientos — sé el primero.",
+        "from": "De",
+        "to": "Para",
+        "values": {
+          "teamwork": "Trabajo en equipo",
+          "innovation": "Innovación",
+          "leadership": "Liderazgo",
+          "excellence": "Excelencia",
+          "impact": "Impacto",
+          "ownership": "Compromiso"
+        }
+      },
+      "events": {
+        "title": "Eventos",
+        "subtitle": "Eventos, reuniones y encuentros de la compañía",
+        "create": "Crear evento",
+        "upcoming": "Próximos",
+        "past": "Pasados",
+        "noEvents": "No hay eventos programados",
+        "form": {
+          "eventTitle": "Título",
+          "description": "Descripción",
+          "startsAt": "Comienza",
+          "endsAt": "Termina",
+          "location": "Ubicación",
+          "isVirtual": "Evento virtual",
+          "meetingUrl": "URL de reunión"
+        },
+        "rsvp": {
+          "going": "Voy",
+          "maybe": "Tal vez",
+          "declined": "No iré",
+          "attending": "{{count}} asistirán"
+        }
+      }
     },
     "status": {
       "active": "Activo",

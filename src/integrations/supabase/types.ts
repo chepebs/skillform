@@ -62,6 +62,45 @@ export type Database = {
           },
         ]
       }
+      attachments: {
+        Row: {
+          company_id: string | null
+          created_at: string
+          entity_id: string
+          entity_type: string
+          file_name: string
+          file_path: string
+          id: string
+          mime_type: string | null
+          size_bytes: number | null
+          uploaded_by: string
+        }
+        Insert: {
+          company_id?: string | null
+          created_at?: string
+          entity_id: string
+          entity_type: string
+          file_name: string
+          file_path: string
+          id?: string
+          mime_type?: string | null
+          size_bytes?: number | null
+          uploaded_by: string
+        }
+        Update: {
+          company_id?: string | null
+          created_at?: string
+          entity_id?: string
+          entity_type?: string
+          file_name?: string
+          file_path?: string
+          id?: string
+          mime_type?: string | null
+          size_bytes?: number | null
+          uploaded_by?: string
+        }
+        Relationships: []
+      }
       audit_log: {
         Row: {
           action: string
@@ -179,6 +218,39 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      comments: {
+        Row: {
+          body: string
+          company_id: string | null
+          created_at: string
+          entity_id: string
+          entity_type: string
+          id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          body: string
+          company_id?: string | null
+          created_at?: string
+          entity_id: string
+          entity_type: string
+          id?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          body?: string
+          company_id?: string | null
+          created_at?: string
+          entity_id?: string
+          entity_type?: string
+          id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
       }
       companies: {
         Row: {
@@ -423,6 +495,84 @@ export type Database = {
           },
         ]
       }
+      event_rsvps: {
+        Row: {
+          created_at: string
+          event_id: string
+          id: string
+          status: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          event_id: string
+          id?: string
+          status?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          event_id?: string
+          id?: string
+          status?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      events: {
+        Row: {
+          company_id: string | null
+          cover_image_url: string | null
+          created_at: string
+          created_by: string
+          department_id: string | null
+          description: string | null
+          ends_at: string | null
+          id: string
+          is_virtual: boolean
+          location: string | null
+          meeting_url: string | null
+          starts_at: string
+          title: string
+          updated_at: string
+          visibility: string
+        }
+        Insert: {
+          company_id?: string | null
+          cover_image_url?: string | null
+          created_at?: string
+          created_by: string
+          department_id?: string | null
+          description?: string | null
+          ends_at?: string | null
+          id?: string
+          is_virtual?: boolean
+          location?: string | null
+          meeting_url?: string | null
+          starts_at: string
+          title: string
+          updated_at?: string
+          visibility?: string
+        }
+        Update: {
+          company_id?: string | null
+          cover_image_url?: string | null
+          created_at?: string
+          created_by?: string
+          department_id?: string | null
+          description?: string | null
+          ends_at?: string | null
+          id?: string
+          is_virtual?: boolean
+          location?: string | null
+          meeting_url?: string | null
+          starts_at?: string
+          title?: string
+          updated_at?: string
+          visibility?: string
+        }
+        Relationships: []
+      }
       group_members: {
         Row: {
           added_at: string | null
@@ -558,6 +708,39 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      kudos: {
+        Row: {
+          company_id: string | null
+          created_at: string
+          from_user_id: string
+          id: string
+          message: string
+          to_user_id: string
+          value_tag: string | null
+          visibility: string
+        }
+        Insert: {
+          company_id?: string | null
+          created_at?: string
+          from_user_id: string
+          id?: string
+          message: string
+          to_user_id: string
+          value_tag?: string | null
+          visibility?: string
+        }
+        Update: {
+          company_id?: string | null
+          created_at?: string
+          from_user_id?: string
+          id?: string
+          message?: string
+          to_user_id?: string
+          value_tag?: string | null
+          visibility?: string
+        }
+        Relationships: []
       }
       messages: {
         Row: {
@@ -739,6 +922,7 @@ export type Database = {
           avatar_url: string | null
           behance_url: string | null
           bio: string | null
+          birth_date: string | null
           brand_creations: number | null
           brand_refreshes: number | null
           company_id: string | null
@@ -757,6 +941,7 @@ export type Database = {
           last_login_at: string | null
           last_name: string | null
           linkedin_url: string | null
+          manager_id: string | null
           phone: string | null
           pitches_participated: number | null
           pitches_won: number | null
@@ -764,6 +949,7 @@ export type Database = {
           profile_completed: boolean | null
           profile_completed_at: string | null
           seniority_level: Database["public"]["Enums"]["seniority_type"]
+          start_date: string | null
           updated_at: string | null
           user_id: string
           years_of_experience: number | null
@@ -774,6 +960,7 @@ export type Database = {
           avatar_url?: string | null
           behance_url?: string | null
           bio?: string | null
+          birth_date?: string | null
           brand_creations?: number | null
           brand_refreshes?: number | null
           company_id?: string | null
@@ -792,6 +979,7 @@ export type Database = {
           last_login_at?: string | null
           last_name?: string | null
           linkedin_url?: string | null
+          manager_id?: string | null
           phone?: string | null
           pitches_participated?: number | null
           pitches_won?: number | null
@@ -799,6 +987,7 @@ export type Database = {
           profile_completed?: boolean | null
           profile_completed_at?: string | null
           seniority_level?: Database["public"]["Enums"]["seniority_type"]
+          start_date?: string | null
           updated_at?: string | null
           user_id: string
           years_of_experience?: number | null
@@ -809,6 +998,7 @@ export type Database = {
           avatar_url?: string | null
           behance_url?: string | null
           bio?: string | null
+          birth_date?: string | null
           brand_creations?: number | null
           brand_refreshes?: number | null
           company_id?: string | null
@@ -827,6 +1017,7 @@ export type Database = {
           last_login_at?: string | null
           last_name?: string | null
           linkedin_url?: string | null
+          manager_id?: string | null
           phone?: string | null
           pitches_participated?: number | null
           pitches_won?: number | null
@@ -834,6 +1025,7 @@ export type Database = {
           profile_completed?: boolean | null
           profile_completed_at?: string | null
           seniority_level?: Database["public"]["Enums"]["seniority_type"]
+          start_date?: string | null
           updated_at?: string | null
           user_id?: string
           years_of_experience?: number | null
@@ -1307,6 +1499,10 @@ export type Database = {
       }
       is_company_admin: {
         Args: { _company_id: string; _user_id: string }
+        Returns: boolean
+      }
+      is_direct_manager: {
+        Args: { _manager_id: string; _user_id: string }
         Returns: boolean
       }
       is_platform_master: { Args: { _user_id: string }; Returns: boolean }
