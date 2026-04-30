@@ -94,6 +94,9 @@
       "timeOff": "Ausencias",
       "jobs": "Empleos",
       "onboarding": "Onboarding",
+      "announcements": "Anuncios",
+      "surveys": "Encuestas",
+      "files": "Archivos",
       "people": "Personas",
       "workplace": "Espacio de trabajo"
     },
@@ -318,6 +321,74 @@
           "in_progress": "En curso",
           "completed": "Completado",
           "cancelled": "Cancelado"
+        }
+      },
+      "surveys": {
+        "title": "Encuestas",
+        "subtitle": "Escucha a tu equipo — anónimas o identificadas",
+        "create": "Nueva encuesta",
+        "saveDraft": "Guardar borrador",
+        "publish": "Publicar",
+        "close": "Cerrar",
+        "anonymous": "Anónima",
+        "closesAt": "Cierra el",
+        "questions": "Preguntas",
+        "questionsLabel": "preguntas",
+        "questionPrompt": "Texto de la pregunta",
+        "optionsPlaceholder": "Una opción por línea",
+        "required": "Obligatoria",
+        "addQuestion": "Agregar pregunta",
+        "needQuestion": "Agrega al menos una pregunta",
+        "inbox": "Por responder",
+        "mySurveys": "Mis encuestas",
+        "noSurveys": "Sin encuestas",
+        "respond": "Responder",
+        "submit": "Enviar respuesta",
+        "submitted": "Enviada",
+        "responseSubmitted": "Gracias por tu respuesta",
+        "answerAllRequired": "Responde todas las preguntas obligatorias",
+        "results": "Resultados",
+        "responses": "respuestas",
+        "avg": "promedio",
+        "closes": "Cierra",
+        "created": "Encuesta creada",
+        "qtypes": {
+          "text": "Texto",
+          "single_choice": "Opción única",
+          "multi_choice": "Opción múltiple",
+          "rating": "Puntaje 1–5",
+          "yes_no": "Sí / No"
+        },
+        "statuses": {
+          "draft": "Borrador",
+          "open": "Abierta",
+          "closed": "Cerrada"
+        }
+      },
+      "announcements": {
+        "title": "Anuncios",
+        "subtitle": "Novedades y comunicados para toda la empresa",
+        "create": "Nuevo anuncio",
+        "post": "Publicar",
+        "posted": "Anuncio publicado",
+        "body": "Mensaje",
+        "pin": "Fijar arriba",
+        "expiresAt": "Expira el",
+        "expired": "expirado",
+        "markRead": "Marcar como leído",
+        "noAnnouncements": "Aún no hay anuncios"
+      },
+      "files": {
+        "title": "Archivos",
+        "subtitle": "Recursos compartidos de la empresa",
+        "upload": "Subir archivo",
+        "uploaded": "Archivo subido",
+        "file": "Archivo",
+        "scope": "Visibilidad",
+        "noFiles": "Aún no hay archivos",
+        "scopes": {
+          "company": "Toda la empresa",
+          "department": "Mi departamento"
         }
       }
     },

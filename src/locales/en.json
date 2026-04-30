@@ -94,6 +94,9 @@
       "timeOff": "Time Off",
       "jobs": "Jobs",
       "onboarding": "Onboarding",
+      "announcements": "Announcements",
+      "surveys": "Surveys",
+      "files": "Files",
       "people": "People",
       "workplace": "Workplace"
     },
@@ -318,6 +321,74 @@
           "in_progress": "In progress",
           "completed": "Completed",
           "cancelled": "Cancelled"
+        }
+      },
+      "surveys": {
+        "title": "Surveys",
+        "subtitle": "Listen to your team — anonymous or attributed",
+        "create": "New survey",
+        "saveDraft": "Save draft",
+        "publish": "Publish",
+        "close": "Close",
+        "anonymous": "Anonymous",
+        "closesAt": "Closes at",
+        "questions": "Questions",
+        "questionsLabel": "questions",
+        "questionPrompt": "Question prompt",
+        "optionsPlaceholder": "One option per line",
+        "required": "Required",
+        "addQuestion": "Add question",
+        "needQuestion": "Add at least one question",
+        "inbox": "To respond",
+        "mySurveys": "My surveys",
+        "noSurveys": "No surveys",
+        "respond": "Respond",
+        "submit": "Submit response",
+        "submitted": "Submitted",
+        "responseSubmitted": "Thanks for your response",
+        "answerAllRequired": "Please answer all required questions",
+        "results": "Results",
+        "responses": "responses",
+        "avg": "average",
+        "closes": "Closes",
+        "created": "Survey created",
+        "qtypes": {
+          "text": "Text",
+          "single_choice": "Single choice",
+          "multi_choice": "Multi choice",
+          "rating": "Rating 1–5",
+          "yes_no": "Yes / No"
+        },
+        "statuses": {
+          "draft": "Draft",
+          "open": "Open",
+          "closed": "Closed"
+        }
+      },
+      "announcements": {
+        "title": "Announcements",
+        "subtitle": "Company-wide updates and news",
+        "create": "New announcement",
+        "post": "Post",
+        "posted": "Announcement posted",
+        "body": "Message",
+        "pin": "Pin to top",
+        "expiresAt": "Expires on",
+        "expired": "expired",
+        "markRead": "Mark as read",
+        "noAnnouncements": "No announcements yet"
+      },
+      "files": {
+        "title": "Files",
+        "subtitle": "Shared company resources",
+        "upload": "Upload file",
+        "uploaded": "File uploaded",
+        "file": "File",
+        "scope": "Visibility",
+        "noFiles": "No files yet",
+        "scopes": {
+          "company": "Company-wide",
+          "department": "My department"
         }
       }
     },
