@@ -232,7 +232,24 @@
     "logout": "Cerrar Sesión",
     "login": {
       "title": "Bienvenido a Skill*form",
-...
+      "subtitle": "Inicia sesión o crea una cuenta",
+      "emailLabel": "Correo Electrónico",
+      "emailPlaceholder": "tu.correo@empresa.com",
+      "passwordLabel": "Contraseña",
+      "passwordPlaceholder": "Ingrese su contraseña",
+      "rememberMe": "Recordarme",
+      "forgotPassword": "¿Olvidó su contraseña?",
+      "submitButton": "Iniciar Sesión",
+      "signIn": "Iniciar sesión",
+      "noAccount": "¿No tiene una cuenta?",
+      "contactSupport": "Contactar soporte",
+      "invalidCredentials": "Correo o contraseña inválidos",
+      "accountLocked": "Su cuenta ha sido bloqueada",
+      "accountInactive": "Su cuenta está inactiva",
+      "tooManyAttempts": "Demasiados intentos de inicio de sesión. Por favor intente más tarde."
+    },
+    "register": {
+      "title": "Cree Su Cuenta",
       "subtitle": "Bienvenido a Skill*form",
       "verifyingToken": "Verificando invitación...",
       "invalidToken": "Enlace de invitación inválido o expirado",
